@@ -1,375 +1,375 @@
 \subsection*{Thin QR Decomposition w/ Gram-Schmidt
-(GS)}
+  (GS)}
 
 \begin{itemize}
 
-\item
-  Consider \textbf{full-rank}
-  \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}] \in \mathbb{R}^{m \times n}}
-  \emph{(\iMbox{m \geq n})},
-  i.e.~\iMbox{\ds\mathbf{a}_{1},\dots,\mathbf{a}_{n} \in \mathbb{R}^{m}}
-  are linearly independent
+  \item
+        Consider \textbf{full-rank}
+        \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}] \in \mathbb{R}^{m \times n}}
+        \emph{(\iMbox{m \geq n})},
+        i.e.~\iMbox{\ds\mathbf{a}_{1},\dots,\mathbf{a}_{n} \in \mathbb{R}^{m}}
+        are linearly independent
 
-  \begin{itemize}
-  
-  \item
-    Apply {[}{[}tutorial 1\#Gram-Schmidt method to generate orthonormal
-    basis from any linearly independent vectors\textbar GS{]}{]}
-    \iMbox{\ds\mathbf{q}_{1},\dots,\mathbf{q}_{n} \leftarrow \mathrm{GS}(\mathbf{a}_{1},\dots,\mathbf{a}_{n})}
-    to build \textbf{ONB}
-    \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
-    for \iMbox{\mathrm{C}(A)}
-  \item
-    \textbf{For exams}: more efficient to compute as
-    \iMbox{\ds \mathbf{u}_{j+1} = \mathbf{a}_{j+1} - Q_{j}\mathbf{c}_{j}}
+        \begin{itemize}
 
-    \begin{enumerate}
-    \def\labelenumi{\arabic{enumi})}
-    
-    \item
-      Gather
-      \iMbox{\ds Q_{j} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{j}] \in \mathbb{R}^{m \times j}}
-      \textbf{all-at-once}
-    \item
-      Compute
-      \iMbox{\ds \mathbf{c}_{j} = [\mathbf{q}_{1} \cdot \mathbf{a}_{j+1}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j+1}]^{T} \in \mathbb{R}^{j}}
-      \textbf{all-at-once}
-    \item
-      Compute \iMbox{\ds Q_{j}\mathbf{c}_{j} \in \mathbb{R}^{m}}, and
-      subtract from \iMbox{\mathbf{a}_{j+1}} \textbf{all-at-once}
-    \end{enumerate}
-  \item
-    Can now rewrite
-    \iMbox{\ds\mathbf{a}_{j}= \sum_{i=1}^{j} (\mathbf{q}_{i} \cdot \mathbf{a}_{j})\mathbf{q}_{i} = \mathrm{Q}_{j}\mathbf{c}_{j}}
-  \end{itemize}
-\item
-  Choose
-  \iMbox{\ds \mathbf{Q} = Q_{n} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}] \in \mathbb{R}^{m \times n}},
-  notice its {[}{[}tutorial 1\#Orthogonality
-  concepts\textbar semi-orthogonal{]}{]} since
-  \iMbox{\ds \mathbf{Q}^{T} \mathbf{Q} = \mathbf{I}_{n}}
+          \item
+                Apply {[}{[}tutorial 1\#Gram-Schmidt method to generate orthonormal
+                basis from any linearly independent vectors\textbar GS{]}{]}
+                \iMbox{\ds\mathbf{q}_{1},\dots,\mathbf{q}_{n} \leftarrow \mathrm{GS}(\mathbf{a}_{1},\dots,\mathbf{a}_{n})}
+                to build \textbf{ONB}
+                \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
+                for \iMbox{\mathrm{C}(A)}
+          \item
+                \textbf{For exams}: more efficient to compute as
+                \iMbox{\ds \mathbf{u}_{j+1} = \mathbf{a}_{j+1} - Q_{j}\mathbf{c}_{j}}
 
-  \begin{itemize}
-  
+                \begin{enumerate}
+                  \def\labelenumi{\arabic{enumi})}
+
+                  \item
+                        Gather
+                        \iMbox{\ds Q_{j} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{j}] \in \mathbb{R}^{m \times j}}
+                        \textbf{all-at-once}
+                  \item
+                        Compute
+                        \iMbox{\ds \mathbf{c}_{j} = [\mathbf{q}_{1} \cdot \mathbf{a}_{j+1}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j+1}]^{T} \in \mathbb{R}^{j}}
+                        \textbf{all-at-once}
+                  \item
+                        Compute \iMbox{\ds Q_{j}\mathbf{c}_{j} \in \mathbb{R}^{m}}, and
+                        subtract from \iMbox{\mathbf{a}_{j+1}} \textbf{all-at-once}
+                \end{enumerate}
+          \item
+                Can now rewrite
+                \iMbox{\ds\mathbf{a}_{j}= \sum_{i=1}^{j} (\mathbf{q}_{i} \cdot \mathbf{a}_{j})\mathbf{q}_{i} = \mathrm{Q}_{j}\mathbf{c}_{j}}
+        \end{itemize}
   \item
-    Notice =\textgreater{}
-    \iMbox{\ds\mathbf{a}_{j} = Q_{j} \mathbf{c}_{j} = \mathbf{Q}[\mathbf{q}_{1} \cdot \mathbf{a}_{j}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j}, 0, \dots, 0 ]^{T} = \mathbf{Q} \mathrm{r}_{j}}
-  \item
-    Let
-    \iMbox{R = [\mathrm{r}_{1}|\dots|\mathrm{r}_{n}] \in \mathbb{R}^{n \times n}}
-    =\textgreater{}
-    \iMbox{\ds A = \mathbf{Q}R = \mathbf{Q} \begin{bmatrix}\mathbf{q}_{1}^{T} \mathbf{a}_{1} & \dots & \mathbf{q}_{1}^{T} \mathbf{a}_{n} \\ & \ddots & \vdots \\ 0 & & \mathbf{q}_{n}^{T} \mathbf{a}_{n}\end{bmatrix}},
-    notice its {[}{[}tutorial 1\#Properties of
-    matrices\textbar upper-triangular{]}{]}
-  \end{itemize}
+        Choose
+        \iMbox{\ds \mathbf{Q} = Q_{n} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}] \in \mathbb{R}^{m \times n}},
+        notice its {[}{[}tutorial 1\#Orthogonality
+        concepts\textbar semi-orthogonal{]}{]} since
+        \iMbox{\ds \mathbf{Q}^{T} \mathbf{Q} = \mathbf{I}_{n}}
+
+        \begin{itemize}
+
+          \item
+                Notice =\textgreater{}
+                \iMbox{\ds\mathbf{a}_{j} = Q_{j} \mathbf{c}_{j} = \mathbf{Q}[\mathbf{q}_{1} \cdot \mathbf{a}_{j}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j}, 0, \dots, 0 ]^{T} = \mathbf{Q} \mathrm{r}_{j}}
+          \item
+                Let
+                \iMbox{R = [\mathrm{r}_{1}|\dots|\mathrm{r}_{n}] \in \mathbb{R}^{n \times n}}
+                =\textgreater{}
+                \iMbox{\ds A = \mathbf{Q}R = \mathbf{Q} \begin{bmatrix}\mathbf{q}_{1}^{T} \mathbf{a}_{1} & \dots & \mathbf{q}_{1}^{T} \mathbf{a}_{n} \\ & \ddots & \vdots \\ 0 & & \mathbf{q}_{n}^{T} \mathbf{a}_{n}\end{bmatrix}},
+                notice its {[}{[}tutorial 1\#Properties of
+                matrices\textbar upper-triangular{]}{]}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{Full QR Decomposition}
 
 \begin{itemize}
 
-\item
-  Consider \textbf{full-rank}
-  \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}] \in \mathbb{R}^{m \times n}}
-  \emph{(\iMbox{m \geq n})},
-  i.e.~\iMbox{\ds\mathbf{a}_{1},\dots,\mathbf{a}_{n} \in \mathbb{R}^{m}}
-  are linearly independent
-\item
-  Apply {[}{[}\#Thin QR Decomposition w/ Gram-Schmidt (GS)\textbar thin
-  QR decomposition{]}{]} to obtain:
+  \item
+        Consider \textbf{full-rank}
+        \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}] \in \mathbb{R}^{m \times n}}
+        \emph{(\iMbox{m \geq n})},
+        i.e.~\iMbox{\ds\mathbf{a}_{1},\dots,\mathbf{a}_{n} \in \mathbb{R}^{m}}
+        are linearly independent
+  \item
+        Apply {[}{[}\#Thin QR Decomposition w/ Gram-Schmidt (GS)\textbar thin
+        QR decomposition{]}{]} to obtain:
 
-  \begin{itemize}
-  
-  \item
-    ONB
-    \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
-    for \iMbox{\mathrm{C}(A)}
-  \item
-    Semi-orthogonal
-    \iMbox{\ds Q_{1}= [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}] \in \mathbb{R}^{m \times n}}
-    and upper-triangular \iMbox{R_{1} \in \mathbb{R}^{n \times n}},
-    where \iMbox{A = Q_{1}R_{1}}
-  \end{itemize}
-\item
-  {[}{[}tutorial 3\#Tricks Computing orthonormal vector-set
-  extensions\textbar Compute basis extension{]}{]} to obtain remaining
-  \iMbox{\mathbf{q}_{n+1},\dots,\mathbf{q}_{m} \in \mathbb{R}^{m}},
-  where \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{m} \rangle}
-  is \textbf{ONB} for \iMbox{\mathbb{R}^{m}}
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                ONB
+                \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
+                for \iMbox{\mathrm{C}(A)}
+          \item
+                Semi-orthogonal
+                \iMbox{\ds Q_{1}= [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}] \in \mathbb{R}^{m \times n}}
+                and upper-triangular \iMbox{R_{1} \in \mathbb{R}^{n \times n}},
+                where \iMbox{A = Q_{1}R_{1}}
+        \end{itemize}
   \item
-    Notice
-    \iMbox{\ds\langle \mathbf{q}_{n+1},\dots,\mathbf{q}_{m} \rangle} is
-    \textbf{ONB} for \iMbox{\mathrm{C}(A)^{\perp} = \ker(A^{T})}
-  \item
-    Let
-    \iMbox{Q_{2} = [\mathbf{q}_{n+1}|\dots|\mathbf{q}_{m}] \in \mathbb{R}^{m \times (m-n)}},
-    let \iMbox{\ds Q = [Q_{1}|Q_{2}] \in \mathbb{R}^{m \times m}}, let
-    \iMbox{R = [R_{1}; \mathbf{0}_{m-n}] \in \mathbb{R}^{m \times n}}
-  \end{itemize}
-\item
-  Then \textbf{full QR decomposition} is
-  \iMbox{A = QR = [Q_{1}|Q_{2}]\begin{bmatrix}R_{1}\\ \mathbf{0}_{m-n}\end{bmatrix} = Q_{1}R_{1}}
+        {[}{[}tutorial 3\#Tricks Computing orthonormal vector-set
+        extensions\textbar Compute basis extension{]}{]} to obtain remaining
+        \iMbox{\mathbf{q}_{n+1},\dots,\mathbf{q}_{m} \in \mathbb{R}^{m}},
+        where \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{m} \rangle}
+        is \textbf{ONB} for \iMbox{\mathbb{R}^{m}}
 
-  \begin{itemize}
-  
-  \item
-    \iMbox{Q} is \textbf{orthogonal}, i.e.~\iMbox{Q^{-1} = Q^{T}}, so
-    its a basis transformation
-  \item
-    \iMbox{\ds \mathrm{proj}_{\mathrm{C}(A)} = Q_{1}Q_{1}^{T}},
-    \iMbox{\ds \mathrm{proj}_{\mathrm{C}(A)^{\perp}} = Q_{2}Q_{2}^{T}}
-    are {[}{[}tutorial 1\#Projection properties\textbar orthogonal
-    projections{]}{]} \textbf{onto} \iMbox{C(A)},
-    \iMbox{\mathrm{C}(A)^{\perp} = \ker(A^{T})} \emph{respectively}
-  \item
-    Notice:
-    \iMbox{\ds QQ^T = \mathbf{I}_{m} = Q_{1}Q_{1}^{T} + Q_{2}Q_{2}^{T}}
-  \end{itemize}
-\item
-  \textbf{Generalizable} to \iMbox{A \in \mathbb{C}^{m \times n}} by
-  changing transpose to conjugate-transpose
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                Notice
+                \iMbox{\ds\langle \mathbf{q}_{n+1},\dots,\mathbf{q}_{m} \rangle} is
+                \textbf{ONB} for \iMbox{\mathrm{C}(A)^{\perp} = \ker(A^{T})}
+          \item
+                Let
+                \iMbox{Q_{2} = [\mathbf{q}_{n+1}|\dots|\mathbf{q}_{m}] \in \mathbb{R}^{m \times (m-n)}},
+                let \iMbox{\ds Q = [Q_{1}|Q_{2}] \in \mathbb{R}^{m \times m}}, let
+                \iMbox{R = [R_{1}; \mathbf{0}_{m-n}] \in \mathbb{R}^{m \times n}}
+        \end{itemize}
   \item
-    Inner product \iMbox{x^{T}y} =\textgreater{} \iMbox{x^{\dagger}y}
-  \item
-    Orthogonal matrix \iMbox{U^{-1} = U^{T}} =\textgreater{} unitary
-    matrix \iMbox{U^{-1} = U^{\dagger}}
+        Then \textbf{full QR decomposition} is
+        \iMbox{A = QR = [Q_{1}|Q_{2}]\begin{bmatrix}R_{1}\\ \mathbf{0}_{m-n}\end{bmatrix} = Q_{1}R_{1}}
 
-    \begin{itemize}
-    
-    \item
-      For orthogonal
-      \iMbox{\ds U = [ \mathbf{u}_{1}|\dots|\mathbf{u}_{k} ] \in \mathbb{R}^{m \times k}}
-      =\textgreater{} \iMbox{\ds \mathrm{proj}_{U} = UU^T} projects
-      \textbf{\emph{onto}} \iMbox{\ds \mathrm{C}(U)}
-    \item
-      For unitary
-      \iMbox{\ds U = [ \mathbf{u}_{1}|\dots|\mathbf{u}_{k} ] \in \mathbb{C}^{m \times k}}
-      =\textgreater{} \iMbox{\ds \mathrm{proj}_{U} = UU ^{\dagger}}
-      projects \textbf{\emph{onto}} \iMbox{\ds \mathrm{C}(U)}
-    \end{itemize}
+        \begin{itemize}
+
+          \item
+                \iMbox{Q} is \textbf{orthogonal}, i.e.~\iMbox{Q^{-1} = Q^{T}}, so
+                its a basis transformation
+          \item
+                \iMbox{\ds \mathrm{proj}_{\mathrm{C}(A)} = Q_{1}Q_{1}^{T}},
+                \iMbox{\ds \mathrm{proj}_{\mathrm{C}(A)^{\perp}} = Q_{2}Q_{2}^{T}}
+                are {[}{[}tutorial 1\#Projection properties\textbar orthogonal
+                projections{]}{]} \textbf{onto} \iMbox{C(A)},
+                \iMbox{\mathrm{C}(A)^{\perp} = \ker(A^{T})} \emph{respectively}
+          \item
+                Notice:
+                \iMbox{\ds QQ^T = \mathbf{I}_{m} = Q_{1}Q_{1}^{T} + Q_{2}Q_{2}^{T}}
+        \end{itemize}
   \item
-    And so on\ldots{}
-  \end{itemize}
+        \textbf{Generalizable} to \iMbox{A \in \mathbb{C}^{m \times n}} by
+        changing transpose to conjugate-transpose
+
+        \begin{itemize}
+
+          \item
+                Inner product \iMbox{x^{T}y} =\textgreater{} \iMbox{x^{\dagger}y}
+          \item
+                Orthogonal matrix \iMbox{U^{-1} = U^{T}} =\textgreater{} unitary
+                matrix \iMbox{U^{-1} = U^{\dagger}}
+
+                \begin{itemize}
+
+                  \item
+                        For orthogonal
+                        \iMbox{\ds U = [ \mathbf{u}_{1}|\dots|\mathbf{u}_{k} ] \in \mathbb{R}^{m \times k}}
+                        =\textgreater{} \iMbox{\ds \mathrm{proj}_{U} = UU^T} projects
+                        \textbf{\emph{onto}} \iMbox{\ds \mathrm{C}(U)}
+                  \item
+                        For unitary
+                        \iMbox{\ds U = [ \mathbf{u}_{1}|\dots|\mathbf{u}_{k} ] \in \mathbb{C}^{m \times k}}
+                        =\textgreater{} \iMbox{\ds \mathrm{proj}_{U} = UU ^{\dagger}}
+                        projects \textbf{\emph{onto}} \iMbox{\ds \mathrm{C}(U)}
+                \end{itemize}
+          \item
+                And so on\ldots{}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{\texorpdfstring{Lines and hyperplanes in Euclidean space
-\iMbox{\mathbb{E}^{n}({=}\mathbb{R}^{n})}}{Lines and hyperplanes in Euclidean space }}
+    \iMbox{\mathbb{E}^{n}({=}\mathbb{R}^{n})}}{Lines and hyperplanes in Euclidean space }}
 
 \begin{itemize}
 
-\item
-  Consider \textbf{standard Euclidean space}
-  \iMbox{\mathbb{E}^{n}({=}\mathbb{R}^{n})}
+  \item
+        Consider \textbf{standard Euclidean space}
+        \iMbox{\mathbb{E}^{n}({=}\mathbb{R}^{n})}
 
-  \begin{itemize}
-  
-  \item
-    with standard basis
-    \iMbox{\ds\langle \mathbf{e}_{1},\dots,\mathbf{e}_{n} \rangle \in \mathbb{R}^n}
-  \item
-    with standard origin \iMbox{\mathbf{0} \in \mathbb{R}^{n}}
-  \end{itemize}
-\item
-  A \textbf{line} \iMbox{\ds L = \mathbb{R}\mathbf{n} + \mathbf{c}} is
-  \emph{characterized} by direction
-  \iMbox{\mathbf{n} \in \mathbb{R}^{n}}
-  \emph{(\iMbox{\mathbf{n} \neq \mathbf{0}})} and offset from origin
-  \iMbox{\mathbf{c} \in L}
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                with standard basis
+                \iMbox{\ds\langle \mathbf{e}_{1},\dots,\mathbf{e}_{n} \rangle \in \mathbb{R}^n}
+          \item
+                with standard origin \iMbox{\mathbf{0} \in \mathbb{R}^{n}}
+        \end{itemize}
   \item
-    It is customary that:
+        A \textbf{line} \iMbox{\ds L = \mathbb{R}\mathbf{n} + \mathbf{c}} is
+        \emph{characterized} by direction
+        \iMbox{\mathbf{n} \in \mathbb{R}^{n}}
+        \emph{(\iMbox{\mathbf{n} \neq \mathbf{0}})} and offset from origin
+        \iMbox{\mathbf{c} \in L}
 
-    \begin{itemize}
-    
-    \item
-      \iMbox{\mathbf{n}} is a \textbf{unit vector},
-      i.e.~\iMbox{\ds \lVert \mathbf{n} \rVert = \lVert \widehat{\mathbf{n}} \rVert = 1}
-    \item
-      \iMbox{\mathbf{c} \in L} is \textbf{closest point to origin},
-      i.e.~\iMbox{\mathbf{c} \perp \mathbf{n}}
-    \end{itemize}
-  \item
-    If \iMbox{\ds \mathbf{c} \neq \lambda \mathbf{n}} =\textgreater{}
-    \iMbox{L} \textbf{not} vector-subspace of \iMbox{\mathbb{R}^{n}}
+        \begin{itemize}
 
-    \begin{itemize}
-    
-    \item
-      i.e.~\iMbox{\mathbf{0} \not\in L}, i.e.~\iMbox{L} doesn't go
-      through the origin
-    \item
-      \iMbox{L} \textbf{is} affine-subspace of \iMbox{\mathbb{R}^{n}}
-    \end{itemize}
-  \item
-    If \iMbox{\mathbf{c} = \lambda \mathbf{n}},
-    i.e.~\iMbox{\ds L = \mathbb{R} \mathbf{n}} =\textgreater{}
-    \iMbox{\ds L} \textbf{is} vector-subspace of \iMbox{\mathbb{R}^{n}}
+          \item
+                It is customary that:
 
-    \begin{itemize}
-    
-    \item
-      i.e.~\iMbox{\mathbf{0} \in L}, i.e.~\iMbox{L} goes through the
-      origin
-    \item
-      \iMbox{L} has \iMbox{\dim(L) = 1} and orthonormal basis (ONB)
-      \iMbox{\ds\{ \ \widehat{\mathbf{n}} \ \}}
-    \end{itemize}
-  \end{itemize}
-\item
-  A \textbf{hyperplane}
-  \iMbox{\ds \begin{align}P = (\mathbb{R}\mathbf{n})^{\bot} + \mathbf{c} &= \left\{ \ x + \mathbf{c} \ \middle| \ x \in \mathbb{R}^{n}, x \perp \mathbf{n} \ \right\} \\ &= \left\{ \ x \in \mathbb{R}^{n} \ \middle| \ x \cdot \mathbf{n} = \mathbf{c} \cdot \mathbf{n} \ \right\}\end{align}}
-  is \emph{characterized} by normal
-  \iMbox{\mathbf{n} \in \mathbb{R}^{n}}
-  \emph{(\iMbox{\mathbf{n} \neq \mathbf{0}})} and offset from origin
-  \iMbox{\mathbf{c} \in P}
+                \begin{itemize}
 
-  \begin{itemize}
-  
-  \item
-    It \emph{represents} an \textbf{\iMbox{(n-1)}-dimensional slice} of
-    the \textbf{\iMbox{n}-dimensional space}
+                  \item
+                        \iMbox{\mathbf{n}} is a \textbf{unit vector},
+                        i.e.~\iMbox{\ds \lVert \mathbf{n} \rVert = \lVert \widehat{\mathbf{n}} \rVert = 1}
+                  \item
+                        \iMbox{\mathbf{c} \in L} is \textbf{closest point to origin},
+                        i.e.~\iMbox{\mathbf{c} \perp \mathbf{n}}
+                \end{itemize}
+          \item
+                If \iMbox{\ds \mathbf{c} \neq \lambda \mathbf{n}} =\textgreater{}
+                \iMbox{L} \textbf{not} vector-subspace of \iMbox{\mathbb{R}^{n}}
 
-    \begin{itemize}
-    
-    \item
-      \textbf{Points} are hyperplanes for \iMbox{n=1}
-    \item
-      \textbf{Lines} are hyperplanes for \iMbox{n=2}
-    \item
-      \textbf{Planes} are hyperplanes for \iMbox{n=3}
-    \end{itemize}
-  \item
-    It is customary that:
+                \begin{itemize}
 
-    \begin{itemize}
-    
-    \item
-      \iMbox{\mathbf{n}} is a \textbf{unit vector},
-      i.e.~\iMbox{\ds \lVert \mathbf{n} \rVert = \lVert \widehat{\mathbf{n}} \rVert = 1}
-    \item
-      \iMbox{\mathbf{c} \in P} is \textbf{closest point to origin},
-      i.e.~\iMbox{\mathbf{c} = \lambda \mathbf{n}}
-    \item
-      With those =\textgreater{}
-      \iMbox{P = \left\{ \ x \in \mathbb{R}^{n} \ \middle| \ x \cdot \mathbf{n} = \lambda \ \right\}}
-    \end{itemize}
-  \item
-    If \iMbox{\mathbf{c} \cdot \mathbf{n} \neq \mathbf{0}}
-    =\textgreater{} \iMbox{P} \textbf{not} vector-subspace of
-    \iMbox{\mathbb{R}^{n}}
+                  \item
+                        i.e.~\iMbox{\mathbf{0} \not\in L}, i.e.~\iMbox{L} doesn't go
+                        through the origin
+                  \item
+                        \iMbox{L} \textbf{is} affine-subspace of \iMbox{\mathbb{R}^{n}}
+                \end{itemize}
+          \item
+                If \iMbox{\mathbf{c} = \lambda \mathbf{n}},
+                i.e.~\iMbox{\ds L = \mathbb{R} \mathbf{n}} =\textgreater{}
+                \iMbox{\ds L} \textbf{is} vector-subspace of \iMbox{\mathbb{R}^{n}}
 
-    \begin{itemize}
-    
-    \item
-      i.e.~\iMbox{\mathbf{0} \not\in P}, i.e.~\iMbox{P} doesn't go
-      through the origin
-    \item
-      \iMbox{P} \textbf{is} affine-subspace of \iMbox{\mathbb{R}^{n}}
-    \end{itemize}
-  \item
-    If \iMbox{\mathbf{c} \cdot \mathbf{n} = \mathbf{0}},
-    i.e.~\iMbox{\ds P = (\mathbb{R}\mathbf{n})^{\bot}} =\textgreater{}
-    \iMbox{\ds P} \textbf{is} vector-subspace of \iMbox{\mathbb{R}^{n}}
+                \begin{itemize}
 
-    \begin{itemize}
-    
-    \item
-      i.e.~\iMbox{\mathbf{0} \in P}, i.e.~\iMbox{P} goes through the
-      origin
-    \item
-      \iMbox{P} has \iMbox{\dim(P) = n-1}
-    \end{itemize}
-  \end{itemize}
-\item
-  Notice \iMbox{L = \mathbb{R}\mathbf{n}} and
-  \iMbox{P = (\mathbb{R}\mathbf{n})^{\bot}} are orthogonal compliments,
-  so:
+                  \item
+                        i.e.~\iMbox{\mathbf{0} \in L}, i.e.~\iMbox{L} goes through the
+                        origin
+                  \item
+                        \iMbox{L} has \iMbox{\dim(L) = 1} and orthonormal basis (ONB)
+                        \iMbox{\ds\{ \ \widehat{\mathbf{n}} \ \}}
+                \end{itemize}
+        \end{itemize}
+  \item
+        A \textbf{hyperplane}
+        \iMbox{\ds \begin{align}P = (\mathbb{R}\mathbf{n})^{\bot} + \mathbf{c} &= \left\{ \ x + \mathbf{c} \ \middle| \ x \in \mathbb{R}^{n}, x \perp \mathbf{n} \ \right\} \\ &= \left\{ \ x \in \mathbb{R}^{n} \ \middle| \ x \cdot \mathbf{n} = \mathbf{c} \cdot \mathbf{n} \ \right\}\end{align}}
+        is \emph{characterized} by normal
+        \iMbox{\mathbf{n} \in \mathbb{R}^{n}}
+        \emph{(\iMbox{\mathbf{n} \neq \mathbf{0}})} and offset from origin
+        \iMbox{\mathbf{c} \in P}
 
-  \begin{itemize}
-  
+        \begin{itemize}
+
+          \item
+                It \emph{represents} an \textbf{\iMbox{(n-1)}-dimensional slice} of
+                the \textbf{\iMbox{n}-dimensional space}
+
+                \begin{itemize}
+
+                  \item
+                        \textbf{Points} are hyperplanes for \iMbox{n=1}
+                  \item
+                        \textbf{Lines} are hyperplanes for \iMbox{n=2}
+                  \item
+                        \textbf{Planes} are hyperplanes for \iMbox{n=3}
+                \end{itemize}
+          \item
+                It is customary that:
+
+                \begin{itemize}
+
+                  \item
+                        \iMbox{\mathbf{n}} is a \textbf{unit vector},
+                        i.e.~\iMbox{\ds \lVert \mathbf{n} \rVert = \lVert \widehat{\mathbf{n}} \rVert = 1}
+                  \item
+                        \iMbox{\mathbf{c} \in P} is \textbf{closest point to origin},
+                        i.e.~\iMbox{\mathbf{c} = \lambda \mathbf{n}}
+                  \item
+                        With those =\textgreater{}
+                        \iMbox{P = \left\{ \ x \in \mathbb{R}^{n} \ \middle| \ x \cdot \mathbf{n} = \lambda \ \right\}}
+                \end{itemize}
+          \item
+                If \iMbox{\mathbf{c} \cdot \mathbf{n} \neq \mathbf{0}}
+                =\textgreater{} \iMbox{P} \textbf{not} vector-subspace of
+                \iMbox{\mathbb{R}^{n}}
+
+                \begin{itemize}
+
+                  \item
+                        i.e.~\iMbox{\mathbf{0} \not\in P}, i.e.~\iMbox{P} doesn't go
+                        through the origin
+                  \item
+                        \iMbox{P} \textbf{is} affine-subspace of \iMbox{\mathbb{R}^{n}}
+                \end{itemize}
+          \item
+                If \iMbox{\mathbf{c} \cdot \mathbf{n} = \mathbf{0}},
+                i.e.~\iMbox{\ds P = (\mathbb{R}\mathbf{n})^{\bot}} =\textgreater{}
+                \iMbox{\ds P} \textbf{is} vector-subspace of \iMbox{\mathbb{R}^{n}}
+
+                \begin{itemize}
+
+                  \item
+                        i.e.~\iMbox{\mathbf{0} \in P}, i.e.~\iMbox{P} goes through the
+                        origin
+                  \item
+                        \iMbox{P} has \iMbox{\dim(P) = n-1}
+                \end{itemize}
+        \end{itemize}
   \item
-    \iMbox{\ds\mathrm{proj}_{L} = \widehat{\mathbf{n}}\widehat{\mathbf{n}}^{T}}
-    is orthogonal projection \textbf{onto} \iMbox{L}
-    \emph{(\textbf{along} \iMbox{P})}
-  \item
-    \iMbox{\ds\mathrm{proj}_{P} = \mathrm{id}_{\ds\mathbb{R}^{n}} - \mathrm{proj}_{L} = \mathbf{I}_{n}-\widehat{\mathbf{n}}\widehat{\mathbf{n}}^{T}}
-    is orthogonal projection \textbf{onto} \iMbox{P} *(\textbf{along}
-    \iMbox{L})
-  \item
-    \iMbox{\ds L = \mathrm{im}\left(\mathrm{proj}_{L}\right) = \ker\left(\mathrm{proj}_{P}\right)}
-    and
-    \iMbox{\ds P = \ker\left(\mathrm{proj}_{L}\right) = \mathrm{im}\left(\mathrm{proj}_{P}\right)}
-  \item
-    \iMbox{\ds\mathbb{R}^{n} = \mathbb{R}\mathbf{n} \oplus(\mathbb{R}\mathbf{n})^{\bot}},
-    i.e.~all vectors \iMbox{\mathbf{v} \in \mathbb{R}^{n}} uniquely
-    decomposed into
-    \iMbox{\ds \mathbf{v} = \mathbf{v}_{L} + \mathbf{v}_{P}}
-  \end{itemize}
+        Notice \iMbox{L = \mathbb{R}\mathbf{n}} and
+        \iMbox{P = (\mathbb{R}\mathbf{n})^{\bot}} are orthogonal compliments,
+        so:
+
+        \begin{itemize}
+
+          \item
+                \iMbox{\ds\mathrm{proj}_{L} = \widehat{\mathbf{n}}\widehat{\mathbf{n}}^{T}}
+                is orthogonal projection \textbf{onto} \iMbox{L}
+                \emph{(\textbf{along} \iMbox{P})}
+          \item
+                \iMbox{\ds\mathrm{proj}_{P} = \mathrm{id}_{\ds\mathbb{R}^{n}} - \mathrm{proj}_{L} = \mathbf{I}_{n}-\widehat{\mathbf{n}}\widehat{\mathbf{n}}^{T}}
+                is orthogonal projection \textbf{onto} \iMbox{P} *(\textbf{along}
+                \iMbox{L})
+          \item
+                \iMbox{\ds L = \mathrm{im}\left(\mathrm{proj}_{L}\right) = \ker\left(\mathrm{proj}_{P}\right)}
+                and
+                \iMbox{\ds P = \ker\left(\mathrm{proj}_{L}\right) = \mathrm{im}\left(\mathrm{proj}_{P}\right)}
+          \item
+                \iMbox{\ds\mathbb{R}^{n} = \mathbb{R}\mathbf{n} \oplus(\mathbb{R}\mathbf{n})^{\bot}},
+                i.e.~all vectors \iMbox{\mathbf{v} \in \mathbb{R}^{n}} uniquely
+                decomposed into
+                \iMbox{\ds \mathbf{v} = \mathbf{v}_{L} + \mathbf{v}_{P}}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{Reflection w.r.t. hyperplanes and Householder
-Maps}
+  Maps}
 
 \begin{itemize}
 
-\item
-  Two points \iMbox{\ds \mathbf{x},\mathbf{y} \in \mathbb{E}^{n}} are
-  \textbf{reflections} w.r.t hyperplane
-  \iMbox{\ds P = (\mathbb{R}\mathbf{n})^{\bot} + \mathbf{c}} if:
+  \item
+        Two points \iMbox{\ds \mathbf{x},\mathbf{y} \in \mathbb{E}^{n}} are
+        \textbf{reflections} w.r.t hyperplane
+        \iMbox{\ds P = (\mathbb{R}\mathbf{n})^{\bot} + \mathbf{c}} if:
 
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi})}
-  
-  \item
-    The translation
-    \iMbox{\ds \overrightarrow{\mathbf{x}\mathbf{y}} = \mathbf{y} - \mathbf{x}}
-    is \textbf{\emph{parallel}} to normal \iMbox{\mathbf{n}},
-    i.e.~\iMbox{\ds \overrightarrow{\mathbf{x}\mathbf{y}} = \lambda \mathbf{n}}
-  \item
-    Midpoint \iMbox{\ds m = 1 / 2(\mathbf{x} + \mathbf{y}) \in P}
-    \textbf{\emph{lies}} on \iMbox{P},
-    i.e.~\iMbox{m \cdot \mathbf{n} = \mathbf{c} \cdot \mathbf{n}}
-  \end{enumerate}
-\item
-  Suppose
-  \iMbox{\ds P_{\boldsymbol{u}} = (\mathbb{R}\boldsymbol{u})^{\bot}}
-  goes through the origin with unit normal
-  \iMbox{\ds \boldsymbol{u} \in \mathbb{R}^{n}}
+        \begin{enumerate}
+          \def\labelenumi{\arabic{enumi})}
 
-  \begin{itemize}
-  
+          \item
+                The translation
+                \iMbox{\ds \overrightarrow{\mathbf{x}\mathbf{y}} = \mathbf{y} - \mathbf{x}}
+                is \textbf{\emph{parallel}} to normal \iMbox{\mathbf{n}},
+                i.e.~\iMbox{\ds \overrightarrow{\mathbf{x}\mathbf{y}} = \lambda \mathbf{n}}
+          \item
+                Midpoint \iMbox{\ds m = 1 / 2(\mathbf{x} + \mathbf{y}) \in P}
+                \textbf{\emph{lies}} on \iMbox{P},
+                i.e.~\iMbox{m \cdot \mathbf{n} = \mathbf{c} \cdot \mathbf{n}}
+        \end{enumerate}
   \item
-    \textbf{Householder matrix}
-    \iMbox{\ds H_{\boldsymbol{u}} = \mathbf{I}_{n}-2\boldsymbol{u}\boldsymbol{u}^{T}}
-    is reflection w.r.t. hyperplane \iMbox{\ds P_{\boldsymbol{u}}}
-  \item
-    Recall: let
-    \iMbox{\ds L_{\boldsymbol{u}} = \mathbb{R}\boldsymbol{u}}
+        Suppose
+        \iMbox{\ds P_{\boldsymbol{u}} = (\mathbb{R}\boldsymbol{u})^{\bot}}
+        goes through the origin with unit normal
+        \iMbox{\ds \boldsymbol{u} \in \mathbb{R}^{n}}
 
-    \begin{itemize}
-    
-    \item
-      \iMbox{\ds\mathrm{proj}_{L_{\boldsymbol{u}}} = \boldsymbol{u}\boldsymbol{u}^{T}}
-      and
-      \iMbox{\ds\mathrm{proj}_{P_{\boldsymbol{u}}} = \mathbf{I}_{n} - \boldsymbol{u}\boldsymbol{u}^{T}}
-      =\textgreater{}
-      \iMbox{\ds H_{\boldsymbol{u}} = \mathrm{proj}_{P_{\boldsymbol{u}}} - \mathrm{proj}_{L_{\boldsymbol{u}}}}
-    \item
-      \textbf{Visualize} as preserving component in
-      \iMbox{\ds P_{\boldsymbol{u}}}, then flipping component in
-      \iMbox{\ds L_{\boldsymbol{u}}}
-    \end{itemize}
-  \item
-    \iMbox{\ds H_{\boldsymbol{u}}} is involutory, orthogonal and
-    symmetric,
-    i.e.~\iMbox{\ds H_{\boldsymbol{u}} = \ds H_{\boldsymbol{u}}^{-1} = \ds H_{\boldsymbol{u}}^{T}}
-  \end{itemize}
+        \begin{itemize}
+
+          \item
+                \textbf{Householder matrix}
+                \iMbox{\ds H_{\boldsymbol{u}} = \mathbf{I}_{n}-2\boldsymbol{u}\boldsymbol{u}^{T}}
+                is reflection w.r.t. hyperplane \iMbox{\ds P_{\boldsymbol{u}}}
+          \item
+                Recall: let
+                \iMbox{\ds L_{\boldsymbol{u}} = \mathbb{R}\boldsymbol{u}}
+
+                \begin{itemize}
+
+                  \item
+                        \iMbox{\ds\mathrm{proj}_{L_{\boldsymbol{u}}} = \boldsymbol{u}\boldsymbol{u}^{T}}
+                        and
+                        \iMbox{\ds\mathrm{proj}_{P_{\boldsymbol{u}}} = \mathbf{I}_{n} - \boldsymbol{u}\boldsymbol{u}^{T}}
+                        =\textgreater{}
+                        \iMbox{\ds H_{\boldsymbol{u}} = \mathrm{proj}_{P_{\boldsymbol{u}}} - \mathrm{proj}_{L_{\boldsymbol{u}}}}
+                  \item
+                        \textbf{Visualize} as preserving component in
+                        \iMbox{\ds P_{\boldsymbol{u}}}, then flipping component in
+                        \iMbox{\ds L_{\boldsymbol{u}}}
+                \end{itemize}
+          \item
+                \iMbox{\ds H_{\boldsymbol{u}}} is involutory, orthogonal and
+                symmetric,
+                i.e.~\iMbox{\ds H_{\boldsymbol{u}} = \ds H_{\boldsymbol{u}}^{-1} = \ds H_{\boldsymbol{u}}^{T}}
+        \end{itemize}
 \end{itemize}

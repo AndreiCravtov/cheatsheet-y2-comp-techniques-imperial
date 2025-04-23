@@ -1,396 +1,396 @@
 
 \subsection*{Positive (semi-)definite symmetric
-matrices}
+  matrices}
 
 \begin{itemize}
 
-\item
-  Consider symmetric \iMbox{A \in \mathbb{R}^{n \times n}},
-  i.e.~\iMbox{A = A^{T}}
-\item
-  \iMbox{A} is positive-definite \textbf{iff} \iMbox{x^T Ax > 0} for all
-  \iMbox{x \neq 0}
+  \item
+        Consider symmetric \iMbox{A \in \mathbb{R}^{n \times n}},
+        i.e.~\iMbox{A = A^{T}}
+  \item
+        \iMbox{A} is positive-definite \textbf{iff} \iMbox{x^T Ax > 0} for all
+        \iMbox{x \neq 0}
 
-  \begin{itemize}
-  
-  \item
-    \iMbox{A} is positive-definite \textbf{iff} all its eigenvalues are
-    \textbf{strictly positive}
-  \item
-    \iMbox{A} is positive-definite =\textgreater{} all its diagonals are
-    \textbf{strictly positive}
-  \item
-    \iMbox{A} is positive-definite =\textgreater{}
-    \iMbox{\ds\max(A_{ii},A_{jj}) > |A_{ij}|}, i.e.~\textbf{strictly
-    larger coefficient} on the diagonals
-  \item
-    \iMbox{A} is positive-definite =\textgreater{} all
-    \textbf{upper-left submatrices} are \emph{also} positive-definite
-  \item
-    \textbf{Sylvester's criterion}: \iMbox{A} is positive-definite
-    \textbf{iff} all \textbf{upper-left submatrices} have strictly
-    positive determinant
-  \end{itemize}
-\item
-  \iMbox{A} is positive semi-definite \textbf{iff} \iMbox{x^T Ax \geq 0}
-  for all \iMbox{x}
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                \iMbox{A} is positive-definite \textbf{iff} all its eigenvalues are
+                \textbf{strictly positive}
+          \item
+                \iMbox{A} is positive-definite =\textgreater{} all its diagonals are
+                \textbf{strictly positive}
+          \item
+                \iMbox{A} is positive-definite =\textgreater{}
+                \iMbox{\ds\max(A_{ii},A_{jj}) > |A_{ij}|}, i.e.~\textbf{strictly
+                  larger coefficient} on the diagonals
+          \item
+                \iMbox{A} is positive-definite =\textgreater{} all
+                \textbf{upper-left submatrices} are \emph{also} positive-definite
+          \item
+                \textbf{Sylvester's criterion}: \iMbox{A} is positive-definite
+                \textbf{iff} all \textbf{upper-left submatrices} have strictly
+                positive determinant
+        \end{itemize}
   \item
-    \iMbox{A} is positive semi-definite \textbf{iff} all its eigenvalues
-    are \textbf{non-negative}
+        \iMbox{A} is positive semi-definite \textbf{iff} \iMbox{x^T Ax \geq 0}
+        for all \iMbox{x}
+
+        \begin{itemize}
+
+          \item
+                \iMbox{A} is positive semi-definite \textbf{iff} all its eigenvalues
+                are \textbf{non-negative}
+          \item
+                \iMbox{A} is positive semi-definite =\textgreater{} all its
+                diagonals are \textbf{non-negative}
+          \item
+                \iMbox{A} is positive semi-definite =\textgreater{}
+                \iMbox{\ds\max(A_{ii},A_{jj}) \geq |A_{ij}|}, i.e.~\textbf{no
+                  coefficient larger} than on the diagonals
+          \item
+                \iMbox{A} is positive semi-definite =\textgreater{} all
+                \textbf{upper-left submatrices} are \emph{also} positive
+                semi-definite
+          \item
+                \iMbox{A} is positive semi-definite =\textgreater{} it has a
+                {[}{[}tutorial 4\#Cholesky Decomposition\textbar Cholesky
+                Decomposition{]}{]}
+        \end{itemize}
   \item
-    \iMbox{A} is positive semi-definite =\textgreater{} all its
-    diagonals are \textbf{non-negative}
-  \item
-    \iMbox{A} is positive semi-definite =\textgreater{}
-    \iMbox{\ds\max(A_{ii},A_{jj}) \geq |A_{ij}|}, i.e.~\textbf{no
-    coefficient larger} than on the diagonals
-  \item
-    \iMbox{A} is positive semi-definite =\textgreater{} all
-    \textbf{upper-left submatrices} are \emph{also} positive
-    semi-definite
-  \item
-    \iMbox{A} is positive semi-definite =\textgreater{} it has a
-    {[}{[}tutorial 4\#Cholesky Decomposition\textbar Cholesky
-    Decomposition{]}{]}
-  \end{itemize}
-\item
-  For any \iMbox{M \in \mathbb{R}^{m \times n}}, \iMbox{MM^{T}} and
-  \iMbox{M^{T}M} are symmetric and \textbf{positive semi-definite}
+        For any \iMbox{M \in \mathbb{R}^{m \times n}}, \iMbox{MM^{T}} and
+        \iMbox{M^{T}M} are symmetric and \textbf{positive semi-definite}
 \end{itemize}
 
 \subsection*{Singular Value Decomposition (SVD) \& Singular
-Values}
+  Values}
 
 \begin{itemize}
 
-\item
-  \textbf{Singular Value Decomposition} of
-  \iMbox{A \in \mathbb{R}^{m \times n}} is \emph{any decomposition} of
-  the form \iMbox{A = USV^{T}}, where
-
-  \begin{itemize}
-  
   \item
-    {[}{[}tutorial 1\#Orthogonality concepts\textbar Orthogonal{]}{]}
-    \iMbox{U = [\mathbf{u}_{1}|\dots|\mathbf{u}_{m}] \in \mathbb{R}^{m \times m}}
-    and
-    \iMbox{V = [\mathbf{v}_{1}|\dots|\mathbf{v}_{n}] \in \mathbb{R}^{n \times n}}
-  \item
-    \iMbox{\ds S = \mathrm{diag}_{m \times n}(\sigma_{1},\dots,\sigma_{p})}
-    where \iMbox{p = \min(m,n)} and
-    \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{p} \geq 0}
-  \item
-    \iMbox{\ds\sigma_{1},\dots,\sigma_{p}} are \textbf{singular values}
-    of \iMbox{A},
-
-    \begin{itemize}
-    
-    \item
-      \emph{(Positive)} \textbf{singular values} are \emph{(positive)}
-      \textbf{square-roots of eigenvalues} of \iMbox{AA^T} or
-      \iMbox{A^{T}A}
-    \item
-      i.e.~\iMbox{\ds\sigma_{1}^2,\dots,\sigma_{p}^2} are
-      \textbf{eigenvalues} of \iMbox{AA^T} or \iMbox{A^{T}A}
-    \item
-      \iMbox{\ds\lVert A \rVert_{2} = \sigma_{1}} \emph{(link to
-      {[}{[}tutorial 1\#Matrix norms\textbar matrix norms{]}{]})}
-    \end{itemize}
-  \end{itemize}
-\item
-  Let \iMbox{r = \mathrm{rk}(A)}, then number of strictly positive
-  \textbf{singular values} is \iMbox{r}
-
-  \begin{itemize}
-  
-  \item
-    i.e.~\iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{r} > 0} and
-    \iMbox{\ds\sigma_{r+1}=\dots=\sigma_{p} = 0}
-  \item
-    \iMbox{\ds\ds A = \sum_{i = 1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{T}}
-  \end{itemize}
-\item
-  \textbf{SVD} is \emph{similar} to {[}{[}tutorial
-  1\#Eigen-values/vectors\textbar spectral decomposition{]}{]}, except
-  it always exists
-
-  \begin{itemize}
-  
-  \item
-    If \iMbox{n \leq m} then work with
-    \iMbox{A^T A \in \mathbb{R}^{n \times n}}:
-
-    \begin{itemize}
-    
-    \item
-      Obtain eigenvalues
-      \iMbox{\ds\sigma_{1}^2\geq\dots\geq\sigma_{n}^2 \geq 0} of
-      \iMbox{A^T A}
-    \item
-      Obtain \textbf{orthonormal} eigenvectors
-      \iMbox{\mathbf{v}_{1},\dots,\mathbf{v}_{n} \in \mathbb{R}^{n}} of
-      \iMbox{A^{T}A} (apply \textbf{normalization}
-      e.g.~\textbf{Gram-Schmidt}!!!! to \textbf{eigenspaces}
-      \iMbox{\ds E_{\sigma_{i}}})
-    \item
-      \iMbox{V = [\mathbf{v}_{1}|\dots|\mathbf{v}_{n}] \in \mathbb{R}^{n \times n}}
-      is {[}{[}tutorial 1\#Orthogonality
-      concepts\textbar orthogonal{]}{]} so \iMbox{V^{T} = V^{-1}}
-    \item
-      \iMbox{r = \mathrm{rk}(A) = \text{no. of strictly +ve} \ \ \sigma_{i}}
-    \item
-      Let
-      \iMbox{\ds \mathbf{u}_{i} = \frac{1}{\sigma_{i}}A \mathbf{v}_{i}}
-      then
-      \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r} \in \mathbb{R}^{m}} are
-      \textbf{orthonormal} \emph{(therefore linearly independent)}
-
-      \begin{itemize}
-      
-      \item
-        The {[}{[}tutorial 1\#Orthogonality concepts\textbar orthogonal
-        compliment{]}{]} of
-        \iMbox{\ds\mathrm{span} \{ \mathbf{u}_{1},\dots,\mathbf{u}_{r} \}}
-        =\textgreater{}
-        \iMbox{\ds\mathrm{span} \{ \mathbf{u}_{1},\dots,\mathbf{u}_{r} \}^{\perp} = \mathrm{span} \{ \mathbf{u}_{r + 1},\dots,\mathbf{u}_{m} \}}
+        \textbf{Singular Value Decomposition} of
+        \iMbox{A \in \mathbb{R}^{m \times n}} is \emph{any decomposition} of
+        the form \iMbox{A = USV^{T}}, where
 
         \begin{itemize}
-        
-        \item
-          Solve for unit-vector \iMbox{\mathbf{u}_{r+1}} s.t. it is
-          orthogonal to \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r}}
-        \item
-          Then solve for unit-vector \iMbox{\mathbf{u}_{r+2}} s.t. it is
-          orthogonal to \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r+1}}
-        \item
-          And so on\ldots{} {[}{[}\#Tricks Computing orthonormal
-          vector-set extensions\textbar see this for better
-          methods{]}{]}
-        \end{itemize}
-      \item
-        \iMbox{U = [\mathbf{u}_{1}|\dots|\mathbf{u}_{m}] \in \mathbb{R}^{m \times m}}
-        is {[}{[}tutorial 1\#Orthogonality
-        concepts\textbar orthogonal{]}{]} so \iMbox{U^{T} = U^{-1}}
-      \end{itemize}
-    \item
-      \iMbox{\ds S = \mathrm{diag}_{m \times n}(\sigma_{1},\dots,\sigma_{n})},
-      \textbf{AND DONE!!!}
-    \end{itemize}
-  \item
-    If \iMbox{m<n} then let \iMbox{B = A^{T}}
 
-    \begin{itemize}
-    
-    \item
-      apply above method to \iMbox{B} =\textgreater{}
-      \iMbox{B = A^T = USV^{T}}
-    \item
-      \iMbox{A = B^T = V S^{T} U^{T}}
-    \end{itemize}
-  \end{itemize}
+          \item
+                {[}{[}tutorial 1\#Orthogonality concepts\textbar Orthogonal{]}{]}
+                \iMbox{U = [\mathbf{u}_{1}|\dots|\mathbf{u}_{m}] \in \mathbb{R}^{m \times m}}
+                and
+                \iMbox{V = [\mathbf{v}_{1}|\dots|\mathbf{v}_{n}] \in \mathbb{R}^{n \times n}}
+          \item
+                \iMbox{\ds S = \mathrm{diag}_{m \times n}(\sigma_{1},\dots,\sigma_{p})}
+                where \iMbox{p = \min(m,n)} and
+                \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{p} \geq 0}
+          \item
+                \iMbox{\ds\sigma_{1},\dots,\sigma_{p}} are \textbf{singular values}
+                of \iMbox{A},
+
+                \begin{itemize}
+
+                  \item
+                        \emph{(Positive)} \textbf{singular values} are \emph{(positive)}
+                        \textbf{square-roots of eigenvalues} of \iMbox{AA^T} or
+                        \iMbox{A^{T}A}
+                  \item
+                        i.e.~\iMbox{\ds\sigma_{1}^2,\dots,\sigma_{p}^2} are
+                        \textbf{eigenvalues} of \iMbox{AA^T} or \iMbox{A^{T}A}
+                  \item
+                        \iMbox{\ds\lVert A \rVert_{2} = \sigma_{1}} \emph{(link to
+                        {[}{[}tutorial 1\#Matrix norms\textbar matrix norms{]}{]})}
+                \end{itemize}
+        \end{itemize}
+  \item
+        Let \iMbox{r = \mathrm{rk}(A)}, then number of strictly positive
+        \textbf{singular values} is \iMbox{r}
+
+        \begin{itemize}
+
+          \item
+                i.e.~\iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{r} > 0} and
+                \iMbox{\ds\sigma_{r+1}=\dots=\sigma_{p} = 0}
+          \item
+                \iMbox{\ds\ds A = \sum_{i = 1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{T}}
+        \end{itemize}
+  \item
+        \textbf{SVD} is \emph{similar} to {[}{[}tutorial
+        1\#Eigen-values/vectors\textbar spectral decomposition{]}{]}, except
+        it always exists
+
+        \begin{itemize}
+
+          \item
+                If \iMbox{n \leq m} then work with
+                \iMbox{A^T A \in \mathbb{R}^{n \times n}}:
+
+                \begin{itemize}
+
+                  \item
+                        Obtain eigenvalues
+                        \iMbox{\ds\sigma_{1}^2\geq\dots\geq\sigma_{n}^2 \geq 0} of
+                        \iMbox{A^T A}
+                  \item
+                        Obtain \textbf{orthonormal} eigenvectors
+                        \iMbox{\mathbf{v}_{1},\dots,\mathbf{v}_{n} \in \mathbb{R}^{n}} of
+                        \iMbox{A^{T}A} (apply \textbf{normalization}
+                        e.g.~\textbf{Gram-Schmidt}!!!! to \textbf{eigenspaces}
+                        \iMbox{\ds E_{\sigma_{i}}})
+                  \item
+                        \iMbox{V = [\mathbf{v}_{1}|\dots|\mathbf{v}_{n}] \in \mathbb{R}^{n \times n}}
+                        is {[}{[}tutorial 1\#Orthogonality
+                        concepts\textbar orthogonal{]}{]} so \iMbox{V^{T} = V^{-1}}
+                  \item
+                        \iMbox{r = \mathrm{rk}(A) = \text{no. of strictly +ve} \ \ \sigma_{i}}
+                  \item
+                        Let
+                        \iMbox{\ds \mathbf{u}_{i} = \frac{1}{\sigma_{i}}A \mathbf{v}_{i}}
+                        then
+                        \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r} \in \mathbb{R}^{m}} are
+                        \textbf{orthonormal} \emph{(therefore linearly independent)}
+
+                        \begin{itemize}
+
+                          \item
+                                The {[}{[}tutorial 1\#Orthogonality concepts\textbar orthogonal
+                                compliment{]}{]} of
+                                \iMbox{\ds\mathrm{span} \{ \mathbf{u}_{1},\dots,\mathbf{u}_{r} \}}
+                                =\textgreater{}
+                                \iMbox{\ds\mathrm{span} \{ \mathbf{u}_{1},\dots,\mathbf{u}_{r} \}^{\perp} = \mathrm{span} \{ \mathbf{u}_{r + 1},\dots,\mathbf{u}_{m} \}}
+
+                                \begin{itemize}
+
+                                  \item
+                                        Solve for unit-vector \iMbox{\mathbf{u}_{r+1}} s.t. it is
+                                        orthogonal to \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r}}
+                                  \item
+                                        Then solve for unit-vector \iMbox{\mathbf{u}_{r+2}} s.t. it is
+                                        orthogonal to \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r+1}}
+                                  \item
+                                        And so on\ldots{} {[}{[}\#Tricks Computing orthonormal
+                                        vector-set extensions\textbar see this for better
+                                        methods{]}{]}
+                                \end{itemize}
+                          \item
+                                \iMbox{U = [\mathbf{u}_{1}|\dots|\mathbf{u}_{m}] \in \mathbb{R}^{m \times m}}
+                                is {[}{[}tutorial 1\#Orthogonality
+                                concepts\textbar orthogonal{]}{]} so \iMbox{U^{T} = U^{-1}}
+                        \end{itemize}
+                  \item
+                        \iMbox{\ds S = \mathrm{diag}_{m \times n}(\sigma_{1},\dots,\sigma_{n})},
+                        \textbf{AND DONE!!!}
+                \end{itemize}
+          \item
+                If \iMbox{m<n} then let \iMbox{B = A^{T}}
+
+                \begin{itemize}
+
+                  \item
+                        apply above method to \iMbox{B} =\textgreater{}
+                        \iMbox{B = A^T = USV^{T}}
+                  \item
+                        \iMbox{A = B^T = V S^{T} U^{T}}
+                \end{itemize}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{Tricks: Computing orthonormal vector-set
-extensions}
+  extensions}
 
 \begin{itemize}
 
-\item
-  You have \textbf{orthonormal} vectors
-  \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{r} \in \mathbb{R}^{m}}
-  =\textgreater{} need to \textbf{extend} to \textbf{orthonormal}
-  vectors
-  \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{m} \in \mathbb{R}^{m}}
-\item
-  Special case =\textgreater{} two 3D vectors =\textgreater{} use
-  \textbf{cross-product} =\textgreater{} \iMbox{a \times b \perp a,b}
-\item
-  Extension via standard basis
-  \iMbox{\ds\mathbf{I}_{m} = [\mathbf{e}_{1}|\dots|\mathbf{e}_{m}]}
-  using {[}{[}tutorial 1\#Gram-Schmidt method to generate orthonormal
-  basis from any linearly independent vectors\textbar(tweaked) GS{]}{]}:
+  \item
+        You have \textbf{orthonormal} vectors
+        \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{r} \in \mathbb{R}^{m}}
+        =\textgreater{} need to \textbf{extend} to \textbf{orthonormal}
+        vectors
+        \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{m} \in \mathbb{R}^{m}}
+  \item
+        Special case =\textgreater{} two 3D vectors =\textgreater{} use
+        \textbf{cross-product} =\textgreater{} \iMbox{a \times b \perp a,b}
+  \item
+        Extension via standard basis
+        \iMbox{\ds\mathbf{I}_{m} = [\mathbf{e}_{1}|\dots|\mathbf{e}_{m}]}
+        using {[}{[}tutorial 1\#Gram-Schmidt method to generate orthonormal
+        basis from any linearly independent vectors\textbar(tweaked) GS{]}{]}:
 
-  \begin{itemize}
-  
-  \item
-    \textbf{Choose candidate vector}: just work through
-    \iMbox{\mathbf{e}_{1},\dots,\mathbf{e}_{m}} sequentially starting
-    from \iMbox{\mathbf{e}_{1}} =\textgreater{} denote the current
-    candidate \iMbox{\mathbf{e}_{k}}
-  \item
-    \textbf{Orthogonalize}: Starting from \iMbox{j = r} going to
-    \iMbox{j=m} with each iteration =\textgreater{} with current
-    orthonormal vectors \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{j}}
+        \begin{itemize}
 
-    \begin{itemize}
-    
-    \item
-      Notice
-      \iMbox{\ds \langle \mathbf{u}_{1},\dots,\mathbf{u}_{j} \rangle} is
-    \item
-      Compute
-      \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{e}_{k} - \sum_{i=1}^{j} (\mathbf{e}_{k} \cdot \mathbf{u}_{i})\mathbf{u}_{i} = \mathbf{e}_{k} - \sum_{i=1}^{j} (\mathbf{u}_{i})_{k} \mathbf{u}_{i}}
-    \item
-    \item
-      \textbf{NOTE:}
-      \iMbox{\ds\mathbf{e}_{k} \cdot \mathbf{u}_{i} = (\mathbf{u}_{i})_{k}}
-      i.e.~\iMbox{k}-th component of \iMbox{\mathbf{u}_{i}}
+          \item
+                \textbf{Choose candidate vector}: just work through
+                \iMbox{\mathbf{e}_{1},\dots,\mathbf{e}_{m}} sequentially starting
+                from \iMbox{\mathbf{e}_{1}} =\textgreater{} denote the current
+                candidate \iMbox{\mathbf{e}_{k}}
+          \item
+                \textbf{Orthogonalize}: Starting from \iMbox{j = r} going to
+                \iMbox{j=m} with each iteration =\textgreater{} with current
+                orthonormal vectors \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{j}}
 
-      \begin{itemize}
-      
-      \item
-        Can rewrite as
-        \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{e}_{k} - U_{j}[(\mathbf{u}_{1})_{k},\dots,(\mathbf{u}_{j})_{k}]^{T} = \mathbf{e}_{k} - [\mathbf{u}_{1}|\dots|\mathbf{u}_{j}][(\mathbf{u}_{1})_{k},\dots,(\mathbf{u}_{j})_{k}]^{T}}
-      \item
-        The above matrix form can be more convenient to calculate with
-      \end{itemize}
-    \item
-      If \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{0}} then
-      \iMbox{\ds \mathbf{e}_{k} \in \mathrm{span}\{ \mathbf{u}_{1},\dots,\mathbf{u}_{j} \}}
-      =\textgreater{} discard \iMbox{\mathbf{w}_{j+1}}, choose next
-      candidate \iMbox{\ds \mathbf{e}_{k+1}}, try this step again
-    \end{itemize}
-  \item
-    \textbf{Normalize}: \iMbox{\ds\mathbf{w}_{j+1} \neq \mathbf{0}} so
-    compute unit vector
-    \iMbox{\ds\mathbf{u}_{j+1} = \hat{\mathbf{w}}_{j+1}}
-  \item
-    \textbf{Repeat:} keep repeating the above steps, now with
-    \textbf{new} orthonormal vectors
-    \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{j+1}}
-  \end{itemize}
+                \begin{itemize}
+
+                  \item
+                        Notice
+                        \iMbox{\ds \langle \mathbf{u}_{1},\dots,\mathbf{u}_{j} \rangle} is
+                  \item
+                        Compute
+                        \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{e}_{k} - \sum_{i=1}^{j} (\mathbf{e}_{k} \cdot \mathbf{u}_{i})\mathbf{u}_{i} = \mathbf{e}_{k} - \sum_{i=1}^{j} (\mathbf{u}_{i})_{k} \mathbf{u}_{i}}
+                  \item
+                  \item
+                        \textbf{NOTE:}
+                        \iMbox{\ds\mathbf{e}_{k} \cdot \mathbf{u}_{i} = (\mathbf{u}_{i})_{k}}
+                        i.e.~\iMbox{k}-th component of \iMbox{\mathbf{u}_{i}}
+
+                        \begin{itemize}
+
+                          \item
+                                Can rewrite as
+                                \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{e}_{k} - U_{j}[(\mathbf{u}_{1})_{k},\dots,(\mathbf{u}_{j})_{k}]^{T} = \mathbf{e}_{k} - [\mathbf{u}_{1}|\dots|\mathbf{u}_{j}][(\mathbf{u}_{1})_{k},\dots,(\mathbf{u}_{j})_{k}]^{T}}
+                          \item
+                                The above matrix form can be more convenient to calculate with
+                        \end{itemize}
+                  \item
+                        If \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{0}} then
+                        \iMbox{\ds \mathbf{e}_{k} \in \mathrm{span}\{ \mathbf{u}_{1},\dots,\mathbf{u}_{j} \}}
+                        =\textgreater{} discard \iMbox{\mathbf{w}_{j+1}}, choose next
+                        candidate \iMbox{\ds \mathbf{e}_{k+1}}, try this step again
+                \end{itemize}
+          \item
+                \textbf{Normalize}: \iMbox{\ds\mathbf{w}_{j+1} \neq \mathbf{0}} so
+                compute unit vector
+                \iMbox{\ds\mathbf{u}_{j+1} = \hat{\mathbf{w}}_{j+1}}
+          \item
+                \textbf{Repeat:} keep repeating the above steps, now with
+                \textbf{new} orthonormal vectors
+                \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{j+1}}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{SVD Application: Principal Component Analysis
-(PCA)}
+  (PCA)}
 
 \begin{itemize}
 
-\item
-  Assume \iMbox{\ds A_{\mathrm{uncentered}} \in \mathbb{R}^{m \times n}}
-  represent \textbf{\iMbox{m} samples} of \textbf{\iMbox{n}-dimensional
-  data} \emph{(with \iMbox{m \geq n})}
+  \item
+        Assume \iMbox{\ds A_{\mathrm{uncentered}} \in \mathbb{R}^{m \times n}}
+        represent \textbf{\iMbox{m} samples} of \textbf{\iMbox{n}-dimensional
+          data} \emph{(with \iMbox{m \geq n})}
 
-  \begin{itemize}
-  
-  \item
-    \textbf{Data centering}: subtract mean of each column from that
-    column's elements
-  \item
-    Let the \textbf{resulting matrix} be
-    \iMbox{A \in \mathbb{R}^{m \times n}}, who's \textbf{columns} have
-    \textbf{mean zero}
-  \end{itemize}
-\item
-  \textbf{PCA} is done on \textbf{centered} data-matrices like
-  \iMbox{A}:
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                \textbf{Data centering}: subtract mean of each column from that
+                column's elements
+          \item
+                Let the \textbf{resulting matrix} be
+                \iMbox{A \in \mathbb{R}^{m \times n}}, who's \textbf{columns} have
+                \textbf{mean zero}
+        \end{itemize}
   \item
-    SVD exists i.e.~\iMbox{A = USV^{T}} and \iMbox{r = \mathrm{rk}(A)}
-  \item
-    Let \iMbox{A = [\mathbf{r}_{1}; \ \dots; \ \mathbf{r}_{m}]} be rows
-    \iMbox{\ds \mathbf{r}_{1},\dots,\mathbf{r}_{m} \in \mathbb{R}^{n}}
-    =\textgreater{} each row \emph{corresponds to} a sample
-  \item
-    Let \iMbox{A = [\mathbf{c}_{1} | \dots | \mathbf{c}_{n}]} be columns
-    \iMbox{\ds \mathbf{c}_{1},\dots,\mathbf{c}_{n} \in \mathbb{R}^{m}}
-    =\textgreater{} each column \emph{corresponds to} one dimension of
-    the data
-  \end{itemize}
-\item
-  Let \iMbox{\ds X_{1},\dots,X_{n}} be \textbf{random variables} where
-  each \iMbox{X_{i}} \emph{corresponds} to column \iMbox{\mathbf{c}_{i}}
+        \textbf{PCA} is done on \textbf{centered} data-matrices like
+        \iMbox{A}:
 
-  \begin{itemize}
-  
-  \item
-    i.e.~each \iMbox{X_{i}} \emph{corresponds} to \iMbox{i}-th component
-    of data
-  \item
-    i.e.~random vector \iMbox{X = [X_{1}, \dots, X_{n}]^{T}} models the
-    data \iMbox{\ds \mathbf{r}_{1},\dots,\mathbf{r}_{m}}
-  \item
-    \textbf{Co-variance matrix} of \iMbox{X} is
-    \iMbox{\ds \mathrm{Cov}(A) = \frac{1}{m-1}A^{T}A} =\textgreater{}
-    \iMbox{\ds (A^{T}A)_{ij} = (A^{T}A)_{ji} = \mathrm{Cov}(X_{i}, X_{j})}
-  \end{itemize}
-\item
-  \iMbox{\mathbf{v}_{1},\dots,\mathbf{v}_{r}} \emph{(columns of
-  \iMbox{V})} are \textbf{principal axes} of \iMbox{A}
-\item
-  Let \iMbox{\ds\boldsymbol{w} \in \mathbb{R}^{n}} be some unit-vector
-  =\textgreater{} let
-  \iMbox{\alpha_{j} = \mathbf{r}_{j} \cdot \boldsymbol{w}} be the
-  \textbf{projection/coordinate} of sample \iMbox{\mathbf{r}_{j}} onto
-  \iMbox{\boldsymbol{w}}
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                SVD exists i.e.~\iMbox{A = USV^{T}} and \iMbox{r = \mathrm{rk}(A)}
+          \item
+                Let \iMbox{A = [\mathbf{r}_{1}; \ \dots; \ \mathbf{r}_{m}]} be rows
+                \iMbox{\ds \mathbf{r}_{1},\dots,\mathbf{r}_{m} \in \mathbb{R}^{n}}
+                =\textgreater{} each row \emph{corresponds to} a sample
+          \item
+                Let \iMbox{A = [\mathbf{c}_{1} | \dots | \mathbf{c}_{n}]} be columns
+                \iMbox{\ds \mathbf{c}_{1},\dots,\mathbf{c}_{n} \in \mathbb{R}^{m}}
+                =\textgreater{} each column \emph{corresponds to} one dimension of
+                the data
+        \end{itemize}
   \item
-    \textbf{Variance (Bessel's correction)} of
-    \iMbox{\alpha_{1},\dots,\alpha_{m}} is
-    \iMbox{\ds \mathrm{Var}_{\boldsymbol{w}} = \frac{1}{m-1} \sum_{j} \alpha_{j}^2 = \frac{1}{m-1}\boldsymbol{w}^T \left(\sum_{j} \mathbf{r}_{j}^{T} \mathbf{r}_{j} \right) \boldsymbol{w} = \frac{1}{m-1}\boldsymbol{w}^T {A}^T {A} \boldsymbol{w}}
-  \item
-    \textbf{First (principal) axis defined} =\textgreater{}
-    \iMbox{\ds\boldsymbol{w}_{(1)}={\arg\max}_{\|\boldsymbol{w}\|=1} \boldsymbol{w}^T {A}^T {A} \boldsymbol{w} = {\arg\max}_{\|\boldsymbol{w}\|=1} (m-1)\mathrm{Var}_{\boldsymbol{w}} = \mathbf{v}_{1}}
-  \item
-    i.e.~\iMbox{\ds\boldsymbol{w}_{(1)}} the direction that maximizes
-    variance \iMbox{\mathrm{Var}_{\boldsymbol{w}}}, i.e.~maximizes
-    variance of **projections on line
-    \iMbox{\ds\mathbb{R}\boldsymbol{w}_{(1)}}
-  \end{itemize}
-\item
-  \iMbox{\ds\sigma_{1} \mathbf{u}_{1},\dots,\sigma_{r} \mathbf{u}_{r}}
-  \emph{(columns of \iMbox{US})} are \textbf{principal
-  components/scores} of \iMbox{A}
+        Let \iMbox{\ds X_{1},\dots,X_{n}} be \textbf{random variables} where
+        each \iMbox{X_{i}} \emph{corresponds} to column \iMbox{\mathbf{c}_{i}}
 
-  \begin{itemize}
-  
+        \begin{itemize}
+
+          \item
+                i.e.~each \iMbox{X_{i}} \emph{corresponds} to \iMbox{i}-th component
+                of data
+          \item
+                i.e.~random vector \iMbox{X = [X_{1}, \dots, X_{n}]^{T}} models the
+                data \iMbox{\ds \mathbf{r}_{1},\dots,\mathbf{r}_{m}}
+          \item
+                \textbf{Co-variance matrix} of \iMbox{X} is
+                \iMbox{\ds \mathrm{Cov}(A) = \frac{1}{m-1}A^{T}A} =\textgreater{}
+                \iMbox{\ds (A^{T}A)_{ij} = (A^{T}A)_{ji} = \mathrm{Cov}(X_{i}, X_{j})}
+        \end{itemize}
   \item
-    Recall:
-    \iMbox{\ds\ds A = \sum_{i = 1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{T}}
-    with \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{r} > 0}, so that
-    relates principal axes and principal components
+        \iMbox{\mathbf{v}_{1},\dots,\mathbf{v}_{r}} \emph{(columns of
+          \iMbox{V})} are \textbf{principal axes} of \iMbox{A}
   \item
-    \textbf{Data compression}: If \iMbox{\ds \sigma_{1} \gg \sigma_{2}}
-    then \textbf{compress} \iMbox{A} by projecting in direction of
-    principal component =\textgreater{}
-    \iMbox{\ds A \approx \sigma_{1} \mathbf{u}_{1} \mathbf{v}_{1}^{T}}
-  \end{itemize}
+        Let \iMbox{\ds\boldsymbol{w} \in \mathbb{R}^{n}} be some unit-vector
+        =\textgreater{} let
+        \iMbox{\alpha_{j} = \mathbf{r}_{j} \cdot \boldsymbol{w}} be the
+        \textbf{projection/coordinate} of sample \iMbox{\mathbf{r}_{j}} onto
+        \iMbox{\boldsymbol{w}}
+
+        \begin{itemize}
+
+          \item
+                \textbf{Variance (Bessel's correction)} of
+                \iMbox{\alpha_{1},\dots,\alpha_{m}} is
+                \iMbox{\ds \mathrm{Var}_{\boldsymbol{w}} = \frac{1}{m-1} \sum_{j} \alpha_{j}^2 = \frac{1}{m-1}\boldsymbol{w}^T \left(\sum_{j} \mathbf{r}_{j}^{T} \mathbf{r}_{j} \right) \boldsymbol{w} = \frac{1}{m-1}\boldsymbol{w}^T {A}^T {A} \boldsymbol{w}}
+          \item
+                \textbf{First (principal) axis defined} =\textgreater{}
+                \iMbox{\ds\boldsymbol{w}_{(1)}={\arg\max}_{\|\boldsymbol{w}\|=1} \boldsymbol{w}^T {A}^T {A} \boldsymbol{w} = {\arg\max}_{\|\boldsymbol{w}\|=1} (m-1)\mathrm{Var}_{\boldsymbol{w}} = \mathbf{v}_{1}}
+          \item
+                i.e.~\iMbox{\ds\boldsymbol{w}_{(1)}} the direction that maximizes
+                variance \iMbox{\mathrm{Var}_{\boldsymbol{w}}}, i.e.~maximizes
+                variance of **projections on line
+                \iMbox{\ds\mathbb{R}\boldsymbol{w}_{(1)}}
+        \end{itemize}
+  \item
+        \iMbox{\ds\sigma_{1} \mathbf{u}_{1},\dots,\sigma_{r} \mathbf{u}_{r}}
+        \emph{(columns of \iMbox{US})} are \textbf{principal
+          components/scores} of \iMbox{A}
+
+        \begin{itemize}
+
+          \item
+                Recall:
+                \iMbox{\ds\ds A = \sum_{i = 1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{T}}
+                with \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{r} > 0}, so that
+                relates principal axes and principal components
+          \item
+                \textbf{Data compression}: If \iMbox{\ds \sigma_{1} \gg \sigma_{2}}
+                then \textbf{compress} \iMbox{A} by projecting in direction of
+                principal component =\textgreater{}
+                \iMbox{\ds A \approx \sigma_{1} \mathbf{u}_{1} \mathbf{v}_{1}^{T}}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{Generalised Eigenvectors}
 
 \begin{itemize}
 
-\item
-  \textbf{TODO: this seems low-priority, do when have time}
-\item
-  gen-eigenvectors
-\item
-  jordan chains (common cases)
-  https://www.youtube.com/watch?v=aTh6peJfAQQ\&list=PLJMXXdEk8kMDgnR\_BxcMpo5p1J-gQ0RW5\&index=3
-\item
-  JNF, form
-\item
-  some tips on how to solve common cases
-\item
-  JNF decomposition and basis of generalized eigenvectors
+  \item
+        \textbf{TODO: this seems low-priority, do when have time}
+  \item
+        gen-eigenvectors
+  \item
+        jordan chains (common cases)
+        https://www.youtube.com/watch?v=aTh6peJfAQQ\&list=PLJMXXdEk8kMDgnR\_BxcMpo5p1J-gQ0RW5\&index=3
+  \item
+        JNF, form
+  \item
+        some tips on how to solve common cases
+  \item
+        JNF decomposition and basis of generalized eigenvectors
 \end{itemize}
 
 \subsection*{General: visualizing transformations of
-matrices}
+  matrices}
 
 \begin{itemize}
 
-\item
-  TODO: do when have time -\textgreater{} where standard basis-vectors
-  map to
-\item
-  TODO: rotations, reflections, scaling, shearing, etc
+  \item
+        TODO: do when have time -\textgreater{} where standard basis-vectors
+        map to
+  \item
+        TODO: rotations, reflections, scaling, shearing, etc
 \end{itemize}

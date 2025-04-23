@@ -2,321 +2,321 @@
 
 \begin{itemize}
 
-\item
-  Identity
-  \iMbox{\ds \mathbf{I}_{n} = [\mathbf{e}_{1}|\dots|\mathbf{e}_{n}] = [\mathbf{e}_{1};\dots;\mathbf{e}_{n}]}
-  has elementary vectors \iMbox{\ds\mathbf{e}_{1},\dots,\mathbf{e}_{n}}
-  for rows/columns
-\item
-  \textbf{Row/column switching}: permutation matrix \iMbox{\ds P_{ij}}
-  obtained by switching \iMbox{\ds\mathbf{e}_{i}} and
-  \iMbox{\mathbf{e}_{j}} in \iMbox{\mathbf{I}_{n}} \emph{(same for
-  rows/columns)}
+  \item
+        Identity
+        \iMbox{\ds \mathbf{I}_{n} = [\mathbf{e}_{1}|\dots|\mathbf{e}_{n}] = [\mathbf{e}_{1};\dots;\mathbf{e}_{n}]}
+        has elementary vectors \iMbox{\ds\mathbf{e}_{1},\dots,\mathbf{e}_{n}}
+        for rows/columns
+  \item
+        \textbf{Row/column switching}: permutation matrix \iMbox{\ds P_{ij}}
+        obtained by switching \iMbox{\ds\mathbf{e}_{i}} and
+        \iMbox{\mathbf{e}_{j}} in \iMbox{\mathbf{I}_{n}} \emph{(same for
+          rows/columns)}
 
-  \begin{itemize}
-  
-  \item
-    Applying \iMbox{\ds P_{ij}} \textbf{from left} will switch rows,
-    \textbf{from right} will swap columns
-  \item
-    \iMbox{\ds P_{ij} = P_{ij}^{T} = P_{ij}^{-1}}, i.e.~applying twice
-    will \textbf{undo} it
-  \end{itemize}
-\item
-  \textbf{Row/column scaling}: \iMbox{\ds D_{i}(\lambda)} obtained by
-  scaling \iMbox{\ds\mathbf{e}_{i}} by \iMbox{\lambda} in
-  \iMbox{\mathbf{I}_{n}} \emph{(same for rows/columns)}
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                Applying \iMbox{\ds P_{ij}} \textbf{from left} will switch rows,
+                \textbf{from right} will swap columns
+          \item
+                \iMbox{\ds P_{ij} = P_{ij}^{T} = P_{ij}^{-1}}, i.e.~applying twice
+                will \textbf{undo} it
+        \end{itemize}
   \item
-    Applying \iMbox{\ds P_{ij}} \textbf{from left} will scale rows,
-    \textbf{from right} will scale columns
-  \item
-    \iMbox{\ds D_{i}(\lambda) = \mathrm{diag}(1,\dots,\lambda,\dots,1)}
-    so all \textbf{diagonal} properties apply,
-    e.g.~\iMbox{\ds D_{i}(\lambda)^{-1} = D_{i}(\lambda^{-1})}
-  \end{itemize}
-\item
-  \textbf{Row addition}:
-  \iMbox{\ds L_{ij}(\lambda) = \mathbf{I}_{n} + \lambda\mathbf{e}_{i}\mathbf{e}_{j}^{T}}
-  performs \iMbox{\ds R_{i} \leftarrow R_{i} + \lambda R_{j}} when
-  applying \textbf{from left}
+        \textbf{Row/column scaling}: \iMbox{\ds D_{i}(\lambda)} obtained by
+        scaling \iMbox{\ds\mathbf{e}_{i}} by \iMbox{\lambda} in
+        \iMbox{\mathbf{I}_{n}} \emph{(same for rows/columns)}
 
-  \begin{itemize}
-  
+        \begin{itemize}
+
+          \item
+                Applying \iMbox{\ds P_{ij}} \textbf{from left} will scale rows,
+                \textbf{from right} will scale columns
+          \item
+                \iMbox{\ds D_{i}(\lambda) = \mathrm{diag}(1,\dots,\lambda,\dots,1)}
+                so all \textbf{diagonal} properties apply,
+                e.g.~\iMbox{\ds D_{i}(\lambda)^{-1} = D_{i}(\lambda^{-1})}
+        \end{itemize}
   \item
-    \iMbox{\ds\lambda\mathbf{e}_{i}\mathbf{e}_{j}^{T}} is zeros except
-    for \textbf{\iMbox{\lambda} in \iMbox{\ds(i,j)}-th entry}
-  \item
-    \iMbox{L_{ij}(\lambda)^{-1} = L_{ij}(-\lambda)} both triangular
-    matrices
-  \end{itemize}
+        \textbf{Row addition}:
+        \iMbox{\ds L_{ij}(\lambda) = \mathbf{I}_{n} + \lambda\mathbf{e}_{i}\mathbf{e}_{j}^{T}}
+        performs \iMbox{\ds R_{i} \leftarrow R_{i} + \lambda R_{j}} when
+        applying \textbf{from left}
+
+        \begin{itemize}
+
+          \item
+                \iMbox{\ds\lambda\mathbf{e}_{i}\mathbf{e}_{j}^{T}} is zeros except
+                for \textbf{\iMbox{\lambda} in \iMbox{\ds(i,j)}-th entry}
+          \item
+                \iMbox{L_{ij}(\lambda)^{-1} = L_{ij}(-\lambda)} both triangular
+                matrices
+        \end{itemize}
 \end{itemize}
 
 \subsection*{LU factorization w/ Gaussian
-elimination}
+  elimination}
 
 \begin{itemize}
 
-\item
-  {[}{[}tutorial 1\#Representing EROs/ECOs as transformation
-  matrices\textbar Recall that{]}{]} you can represent \textbf{EROs} and
-  \textbf{ECOs} as transformation matrices \iMbox{R,C}
-  \emph{respectively}
-\item
-  \textbf{\iMbox{LU} factorization} =\textgreater{} finds \iMbox{A = LU}
-  where \iMbox{L,U} are lower/upper triangular \emph{respectively}
-\item
-  \textbf{Naive Gaussian Elimination} performs
-  \iMbox{\ds [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R^{-1} \ | \ U \ | \ I_{n}]}
-  to get \iMbox{AI_{n} = R^{-1}U} using only row addition
+  \item
+        {[}{[}tutorial 1\#Representing EROs/ECOs as transformation
+        matrices\textbar Recall that{]}{]} you can represent \textbf{EROs} and
+        \textbf{ECOs} as transformation matrices \iMbox{R,C}
+        \emph{respectively}
+  \item
+        \textbf{\iMbox{LU} factorization} =\textgreater{} finds \iMbox{A = LU}
+        where \iMbox{L,U} are lower/upper triangular \emph{respectively}
+  \item
+        \textbf{Naive Gaussian Elimination} performs
+        \iMbox{\ds [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R^{-1} \ | \ U \ | \ I_{n}]}
+        to get \iMbox{AI_{n} = R^{-1}U} using only row addition
 
-  \begin{itemize}
-  
-  \item
-    \iMbox{R^{-1}}, i.e.~\textbf{inverse EROs} in reversed order, is
-    \textbf{lower-triangular} so \iMbox{L = R^{-1}}
-  \item
-    !{[}{[}Pasted image 20250419051217.png\textbar400{]}{]}
-  \item
-    The \textbf{pivot element} is simply diagonal entry
-    \iMbox{\ds u_{kk}^{(k-1)}}; fails if
-    \iMbox{\ds u_{kk}^{(k-1)} \approx 0}
-  \item
-    \iMbox{\ds\tilde{L} \tilde{U}=A+\delta A},
-    \iMbox{\ds \frac{\|\delta A\|}{\|L\| \cdot\|U\|}= O\left(\epsilon_{ \mathrm{mach}}\right)};
-    only \textbf{backwards stable} if
-    \iMbox{\|L\| \cdot\|U\| \approx\|A\|}
-  \item
-    Work required: \iMbox{{\sim}\frac{2}{3} m^3} flops
-    \iMbox{{\sim}O\left(m^3\right)}
-  \item
-    Solving \iMbox{Ax = LUx} is \iMbox{{\sim}\frac{2}{3} m^3} flops
-    \emph{(back substitution is \iMbox{O(m^2)})}
-  \item
-    \textbf{NOTE:} Householder triangularisation requires
-    \iMbox{{\sim}\frac{4}{3} m^3}
-  \end{itemize}
-\item
-  \textbf{Partial pivoting} computes \iMbox{PA = LU} where \iMbox{P} is
-  a permutation matrix =\textgreater{} \iMbox{PP^{T} = I}, i.e.~its
-  orthogonal
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                \iMbox{R^{-1}}, i.e.~\textbf{inverse EROs} in reversed order, is
+                \textbf{lower-triangular} so \iMbox{L = R^{-1}}
+          \item
+                !{[}{[}Pasted image 20250419051217.png\textbar400{]}{]}
+          \item
+                The \textbf{pivot element} is simply diagonal entry
+                \iMbox{\ds u_{kk}^{(k-1)}}; fails if
+                \iMbox{\ds u_{kk}^{(k-1)} \approx 0}
+          \item
+                \iMbox{\ds\tilde{L} \tilde{U}=A+\delta A},
+                \iMbox{\ds \frac{\|\delta A\|}{\|L\| \cdot\|U\|}= O\left(\epsilon_{ \mathrm{mach}}\right)};
+                only \textbf{backwards stable} if
+                \iMbox{\|L\| \cdot\|U\| \approx\|A\|}
+          \item
+                Work required: \iMbox{{\sim}\frac{2}{3} m^3} flops
+                \iMbox{{\sim}O\left(m^3\right)}
+          \item
+                Solving \iMbox{Ax = LUx} is \iMbox{{\sim}\frac{2}{3} m^3} flops
+                \emph{(back substitution is \iMbox{O(m^2)})}
+          \item
+                \textbf{NOTE:} Householder triangularisation requires
+                \iMbox{{\sim}\frac{4}{3} m^3}
+        \end{itemize}
   \item
-    For each column \iMbox{j}, finds largest entry and row-swaps to make
-    it new pivot =\textgreater{} \iMbox{\ds P_{j}}
-  \item
-    Then performs normal elimination on that column =\textgreater{}
-    \iMbox{\ds L_{j}}
-  \item
-    Result is \iMbox{\ds L_{m-1} P_{m-1} \ldots L_2 P_2 L_1 P_1 A = U},
-    where
-    \iMbox{\ds L_{m-1} P_{m-1} \ldots L_2 P_2 L_1 P_1=L_{m-1}^{\prime} \ldots L_1^{\prime} P_{m-1} \ldots P_1}
-  \item
-    Setting
-    \iMbox{\ds L=\left(L_{m-1}^{\prime} \ldots L_1^{\prime}\right)^{-1}},
-    \iMbox{\ds P=P_{m-1} \ldots P_1} gives \iMbox{P A=L U}
-  \item
-    !{[}{[}Pasted image 20250420092322.png\textbar450{]}{]}
-  \item
-    Work required: \iMbox{{\sim}\frac{2}{3} m^3} flops
-    \iMbox{{\sim}O\left(m^3\right)}; results in
-    \iMbox{\ds L_{ij} \leq 1} so \iMbox{\ds \lVert L \rVert = O(1)}
-  \item
-    Stability depends on \textbf{growth-factor}
-    \iMbox{\ds\rho=\frac{\max _{i, j}\left|u_{i, j}\right|}{\max _{i, j}\left|a_{i, j}\right|}}
-    =\textgreater{} for partial pivoting \iMbox{\rho \leq 2^{m-1}}
-  \item
-    \iMbox{\lVert U \rVert = O(\rho \lVert A \rVert)} =\textgreater{}
-    \iMbox{\ds \tilde{L} \tilde{U}=\tilde{P} A+\delta A},
-    \iMbox{\ds\frac{\|\delta A\|}{\|A\|}=O\left(\rho \epsilon_{\text {machine }}\right)}
-    =\textgreater{} only \textbf{backwards stable} if \iMbox{\rho=O(1)}
-  \end{itemize}
-\item
-  \textbf{Full pivoting} is \iMbox{PAQ = LU} finds largest entry in
-  \textbf{bottom-right submatrix}
+        \textbf{Partial pivoting} computes \iMbox{PA = LU} where \iMbox{P} is
+        a permutation matrix =\textgreater{} \iMbox{PP^{T} = I}, i.e.~its
+        orthogonal
 
-  \begin{itemize}
-  
+        \begin{itemize}
+
+          \item
+                For each column \iMbox{j}, finds largest entry and row-swaps to make
+                it new pivot =\textgreater{} \iMbox{\ds P_{j}}
+          \item
+                Then performs normal elimination on that column =\textgreater{}
+                \iMbox{\ds L_{j}}
+          \item
+                Result is \iMbox{\ds L_{m-1} P_{m-1} \ldots L_2 P_2 L_1 P_1 A = U},
+                where
+                \iMbox{\ds L_{m-1} P_{m-1} \ldots L_2 P_2 L_1 P_1=L_{m-1}^{\prime} \ldots L_1^{\prime} P_{m-1} \ldots P_1}
+          \item
+                Setting
+                \iMbox{\ds L=\left(L_{m-1}^{\prime} \ldots L_1^{\prime}\right)^{-1}},
+                \iMbox{\ds P=P_{m-1} \ldots P_1} gives \iMbox{P A=L U}
+          \item
+                !{[}{[}Pasted image 20250420092322.png\textbar450{]}{]}
+          \item
+                Work required: \iMbox{{\sim}\frac{2}{3} m^3} flops
+                \iMbox{{\sim}O\left(m^3\right)}; results in
+                \iMbox{\ds L_{ij} \leq 1} so \iMbox{\ds \lVert L \rVert = O(1)}
+          \item
+                Stability depends on \textbf{growth-factor}
+                \iMbox{\ds\rho=\frac{\max _{i, j}\left|u_{i, j}\right|}{\max _{i, j}\left|a_{i, j}\right|}}
+                =\textgreater{} for partial pivoting \iMbox{\rho \leq 2^{m-1}}
+          \item
+                \iMbox{\lVert U \rVert = O(\rho \lVert A \rVert)} =\textgreater{}
+                \iMbox{\ds \tilde{L} \tilde{U}=\tilde{P} A+\delta A},
+                \iMbox{\ds\frac{\|\delta A\|}{\|A\|}=O\left(\rho \epsilon_{\text {machine }}\right)}
+                =\textgreater{} only \textbf{backwards stable} if \iMbox{\rho=O(1)}
+        \end{itemize}
   \item
-    Makes it \textbf{pivot} with row/column swaps before normal
-    elimination
-  \item
-    Very expensive \iMbox{O(m^3)} search-ops, \textbf{partial pivoting}
-    only needs \iMbox{O(m^2)}
-  \end{itemize}
+        \textbf{Full pivoting} is \iMbox{PAQ = LU} finds largest entry in
+        \textbf{bottom-right submatrix}
+
+        \begin{itemize}
+
+          \item
+                Makes it \textbf{pivot} with row/column swaps before normal
+                elimination
+          \item
+                Very expensive \iMbox{O(m^3)} search-ops, \textbf{partial pivoting}
+                only needs \iMbox{O(m^2)}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{Systems of Equations: Iterative
-Techniques}
+  Techniques}
 
 \begin{itemize}
 
-\item
-  Let \iMbox{A,R,G \in \mathbb{R}^{n \times n}} where \iMbox{G^{-1}}
-  exists =\textgreater{} \textbf{splitting} \iMbox{A = G + R} helps
-  iteration
+  \item
+        Let \iMbox{A,R,G \in \mathbb{R}^{n \times n}} where \iMbox{G^{-1}}
+        exists =\textgreater{} \textbf{splitting} \iMbox{A = G + R} helps
+        iteration
 
-  \begin{itemize}
-  
-  \item
-    \iMbox{A\mathbf{x}=\mathbf{b}} rewritten as
-    \iMbox{\mathbf{x} = M \mathbf{x} + \mathbf{c}} where
-    \iMbox{M = - G^{-1}R; \ \mathbf{c} = -G^{-1}\mathbf{b}}
-  \item
-    Define \iMbox{\ds f(\mathbf{x}) = M \mathbf{x} + \mathbf{c}} and
-    sequence
-    \iMbox{\ds \mathbf{x}^{(k+1)} = f(\mathbf{x}^{(k)}) = M \mathbf{x}^{(k)} + \mathbf{c}}
-    with starting point \iMbox{\ds\mathbf{x}^{(0)}}
-  \item
-    \textbf{Limit} of \iMbox{\ds\langle\mathbf{x}_{k}\rangle} is fixed
-    point of \iMbox{f} =\textgreater{} unique fixed point of \iMbox{f}
-    is \textbf{solution} to \iMbox{A\mathbf{x}=\mathbf{b}}
-  \item
-    If \iMbox{\lVert - \rVert} is consistent norm and
-    \iMbox{\lVert M \rVert < 1} then
-    \iMbox{\ds\langle\mathbf{x}_{k}\rangle} converges for any
-    \iMbox{\ds\mathbf{x}^{(0)}} \emph{(because Cauchy-completeness)}
+        \begin{itemize}
 
-    \begin{itemize}
-    
-    \item
-      For splitting, we want \iMbox{\lVert M \rVert < 1} and easy to
-      compute \iMbox{M; \mathbf{c}}
-    \item
-      \textbf{Stopping criterion} usually the relative residual
-      \iMbox{\ds\frac{\left\|\mathbf{b}-A \mathbf{x}^{(k)}\right\|}{\|\mathbf{b}\|} \leq \epsilon}
-    \end{itemize}
-  \end{itemize}
-\item
-  Assume \iMbox{A}'s \textbf{diagonal is non-zero} \emph{(w.l.o.g.
-  permute/change basis if isn't)} then \iMbox{A = D + L + U}
+          \item
+                \iMbox{A\mathbf{x}=\mathbf{b}} rewritten as
+                \iMbox{\mathbf{x} = M \mathbf{x} + \mathbf{c}} where
+                \iMbox{M = - G^{-1}R; \ \mathbf{c} = -G^{-1}\mathbf{b}}
+          \item
+                Define \iMbox{\ds f(\mathbf{x}) = M \mathbf{x} + \mathbf{c}} and
+                sequence
+                \iMbox{\ds \mathbf{x}^{(k+1)} = f(\mathbf{x}^{(k)}) = M \mathbf{x}^{(k)} + \mathbf{c}}
+                with starting point \iMbox{\ds\mathbf{x}^{(0)}}
+          \item
+                \textbf{Limit} of \iMbox{\ds\langle\mathbf{x}_{k}\rangle} is fixed
+                point of \iMbox{f} =\textgreater{} unique fixed point of \iMbox{f}
+                is \textbf{solution} to \iMbox{A\mathbf{x}=\mathbf{b}}
+          \item
+                If \iMbox{\lVert - \rVert} is consistent norm and
+                \iMbox{\lVert M \rVert < 1} then
+                \iMbox{\ds\langle\mathbf{x}_{k}\rangle} converges for any
+                \iMbox{\ds\mathbf{x}^{(0)}} \emph{(because Cauchy-completeness)}
 
-  \begin{itemize}
-  
-  \item
-    Where \iMbox{D} is \textbf{diagonal} of \iMbox{A}, \iMbox{L,U} are
-    strict \textbf{lower/upper triangular} parts of \iMbox{A}
-  \end{itemize}
-\item
-  \textbf{Jacobi Method}: \iMbox{G = D;R = L + U} =\textgreater{}
-  \iMbox{M = -D^{-1}(L + U); \mathbf{c} = D^{-1}\mathbf{b}}
+                \begin{itemize}
 
-  \begin{itemize}
-  
+                  \item
+                        For splitting, we want \iMbox{\lVert M \rVert < 1} and easy to
+                        compute \iMbox{M; \mathbf{c}}
+                  \item
+                        \textbf{Stopping criterion} usually the relative residual
+                        \iMbox{\ds\frac{\left\|\mathbf{b}-A \mathbf{x}^{(k)}\right\|}{\|\mathbf{b}\|} \leq \epsilon}
+                \end{itemize}
+        \end{itemize}
   \item
-    \iMbox{\ds \mathbf{x}_i^{(k+1)}=\frac{1}{A_{ii}}\left(\mathbf{b}_i-\sum_{j \neq i} A_{ij} \mathbf{x}_j^{(k)}\right)}
-    =\textgreater{} \iMbox{\ds \mathbf{x}_i^{(k+1)}} only needs
-    \iMbox{\ds\mathbf{b}_i; \ \mathbf{x}^{(k)}; \ A_{i \ast}}
-    =\textgreater{} row-wise parallelization
-  \end{itemize}
-\item
-  \textbf{Gauss-Seidel (G-S) Method}: \iMbox{G = D + L;R = U}
-  =\textgreater{}
-  \iMbox{M = -(D + L)^{-1}U; \mathbf{c} = (D + L)^{-1}\mathbf{b}}
+        Assume \iMbox{A}'s \textbf{diagonal is non-zero} \emph{(w.l.o.g.
+          permute/change basis if isn't)} then \iMbox{A = D + L + U}
 
-  \begin{itemize}
-  
-  \item
-    \iMbox{\ds \mathbf{x}_i^{(k+1)}=\frac{1}{A_{ii}}\left(\mathbf{b}_i - \sum_{j=1}^{i-1} A_{ij} \mathbf{x}_j^{(k+1)}-\sum_{j=i+1}^n A_{ij} \mathbf{x}_j^{(k)}\right)}
-  \item
-    Computing \iMbox{\ds \mathbf{x}_i^{(k+1)}} needs
-    \iMbox{\ds\mathbf{b}_i; \ \mathbf{x}^{(k)}; \ A_{i \ast}} and
-    \iMbox{\ds \mathbf{x}_{j}^{(k+1)}} for \iMbox{j<i} =\textgreater{}
-    lower storage requirements
-  \end{itemize}
-\item
-  \textbf{Successive over-relaxation (SOR)}:
-  \iMbox{G = \omega^{-1} D + L;R = (1-\omega^{-1})D + U} =\textgreater{}
-  \iMbox{M = - (\omega^{-1} D + L)^{-1}((1-\omega^{-1})D + U); \ \mathbf{c} = -(\omega^{-1} D + L)^{-1}\mathbf{b}}
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                Where \iMbox{D} is \textbf{diagonal} of \iMbox{A}, \iMbox{L,U} are
+                strict \textbf{lower/upper triangular} parts of \iMbox{A}
+        \end{itemize}
   \item
-    \iMbox{\ds \mathbf{x}_i^{(k+1)}=\frac{\omega}{A_{ii}}\left(\mathbf{b}_i-\sum_{j=1}^{i-1} A_{ij} \mathbf{x}_j^{(k+1)}-\sum_{j=i+1}^n A_{ij} \mathbf{x}_j^{(k)}\right)+(1-\omega) \mathbf{x}_i^{(k)}}
-    for \textbf{relaxation factor} \iMbox{\omega>1}\\
-  \end{itemize}
-\item
-  If \iMbox{A} is \textbf{strictly row diagonally dominant} then
-  Jacobi/Gauss-Seidel methods converge
+        \textbf{Jacobi Method}: \iMbox{G = D;R = L + U} =\textgreater{}
+        \iMbox{M = -D^{-1}(L + U); \mathbf{c} = D^{-1}\mathbf{b}}
 
-  \begin{itemize}
-  
+        \begin{itemize}
+
+          \item
+                \iMbox{\ds \mathbf{x}_i^{(k+1)}=\frac{1}{A_{ii}}\left(\mathbf{b}_i-\sum_{j \neq i} A_{ij} \mathbf{x}_j^{(k)}\right)}
+                =\textgreater{} \iMbox{\ds \mathbf{x}_i^{(k+1)}} only needs
+                \iMbox{\ds\mathbf{b}_i; \ \mathbf{x}^{(k)}; \ A_{i \ast}}
+                =\textgreater{} row-wise parallelization
+        \end{itemize}
   \item
-    \iMbox{A} is \textbf{strictly row diagonally dominant} if
-    \iMbox{\ds\left|A_{ii}\right|>\sum_{j \neq i}\left|A_{ij}\right|}
-  \end{itemize}
-\item
-  If \iMbox{A} is positive-definite then \textbf{G-S} and \textbf{SOR}
-  (\iMbox{\omega \in (0,2)}) converge
+        \textbf{Gauss-Seidel (G-S) Method}: \iMbox{G = D + L;R = U}
+        =\textgreater{}
+        \iMbox{M = -(D + L)^{-1}U; \mathbf{c} = (D + L)^{-1}\mathbf{b}}
+
+        \begin{itemize}
+
+          \item
+                \iMbox{\ds \mathbf{x}_i^{(k+1)}=\frac{1}{A_{ii}}\left(\mathbf{b}_i - \sum_{j=1}^{i-1} A_{ij} \mathbf{x}_j^{(k+1)}-\sum_{j=i+1}^n A_{ij} \mathbf{x}_j^{(k)}\right)}
+          \item
+                Computing \iMbox{\ds \mathbf{x}_i^{(k+1)}} needs
+                \iMbox{\ds\mathbf{b}_i; \ \mathbf{x}^{(k)}; \ A_{i \ast}} and
+                \iMbox{\ds \mathbf{x}_{j}^{(k+1)}} for \iMbox{j<i} =\textgreater{}
+                lower storage requirements
+        \end{itemize}
+  \item
+        \textbf{Successive over-relaxation (SOR)}:
+        \iMbox{G = \omega^{-1} D + L;R = (1-\omega^{-1})D + U} =\textgreater{}
+        \iMbox{M = - (\omega^{-1} D + L)^{-1}((1-\omega^{-1})D + U); \ \mathbf{c} = -(\omega^{-1} D + L)^{-1}\mathbf{b}}
+
+        \begin{itemize}
+
+          \item
+                \iMbox{\ds \mathbf{x}_i^{(k+1)}=\frac{\omega}{A_{ii}}\left(\mathbf{b}_i-\sum_{j=1}^{i-1} A_{ij} \mathbf{x}_j^{(k+1)}-\sum_{j=i+1}^n A_{ij} \mathbf{x}_j^{(k)}\right)+(1-\omega) \mathbf{x}_i^{(k)}}
+                for \textbf{relaxation factor} \iMbox{\omega>1}\\
+        \end{itemize}
+  \item
+        If \iMbox{A} is \textbf{strictly row diagonally dominant} then
+        Jacobi/Gauss-Seidel methods converge
+
+        \begin{itemize}
+
+          \item
+                \iMbox{A} is \textbf{strictly row diagonally dominant} if
+                \iMbox{\ds\left|A_{ii}\right|>\sum_{j \neq i}\left|A_{ij}\right|}
+        \end{itemize}
+  \item
+        If \iMbox{A} is positive-definite then \textbf{G-S} and \textbf{SOR}
+        (\iMbox{\omega \in (0,2)}) converge
 \end{itemize}
 
 \subsection*{Break up matrices into (uneven
-blocks)}
+  blocks)}
 
 \begin{itemize}
 
-\item
-  e.g.~symmetric \iMbox{A \in \mathbb{R}^{n \times n }} can become
-  \iMbox{A=\left[\begin{array}{c|c}a_{1,1} & b \\ \hline b^T & C\end{array}\right]},
-  then perform proofs on that
+  \item
+        e.g.~symmetric \iMbox{A \in \mathbb{R}^{n \times n }} can become
+        \iMbox{A=\left[\begin{array}{c|c}a_{1,1} & b \\ \hline b^T & C\end{array}\right]},
+        then perform proofs on that
 \end{itemize}
 
 \subsection*{Catchup: metric spaces and
-limits}
+  limits}
 
 \begin{itemize}
 
-\item
-  Metrics obey these axioms
+  \item
+        Metrics obey these axioms
 
-  \begin{itemize}
-  
-  \item
-    \iMbox{d(x,x) = 0}
-  \item
-    \iMbox{x \neq y \implies d(x,y) > 0}
-  \item
-    \iMbox{d(x,y) = d(y,x)}
-  \item
-    \iMbox{d(x,z) \leq d(x,y) + d(y,z)}
-  \end{itemize}
-\item
-  For metric spaces, \textbf{mix-and-match} these infinite/finite limit
-  definitions:
+        \begin{itemize}
 
-  \begin{itemize}
-  
+          \item
+                \iMbox{d(x,x) = 0}
+          \item
+                \iMbox{x \neq y \implies d(x,y) > 0}
+          \item
+                \iMbox{d(x,y) = d(y,x)}
+          \item
+                \iMbox{d(x,z) \leq d(x,y) + d(y,z)}
+        \end{itemize}
   \item
-    \iMbox{\ds \lim_{ x \to + \infty } f(x) = +\infty \iff \forall r \in \mathbb{R}, \exists N \in \mathbb{N}, \forall x > N: \ \  f(x)>r}
-  \item
-    \iMbox{\ds \lim_{ x \to p } f(x) = L \iff \forall \varepsilon >0,\exists \delta > 0, \forall x \in A: \ \ 0 < d_{X}(x,p) < \delta \implies d_{Y}(f(x),L) < \varepsilon}
-  \item
-    \textbf{Cauchy sequences},
-    i.e.~\iMbox{\ds\forall \varepsilon >0, \exists N \in \mathbb{N}, \forall m,n\geq N: \ \ d(a_{m}, a_{n})<\varepsilon},
-    converge in \textbf{complete spaces}
-  \end{itemize}
-\item
-  You can manipulate matrix limits much \textbf{like in real analysis},
-  e.g.~\iMbox{\ds \lim_{ n \to \infty }(A^{n}B+C) = \left(\lim_{ n \to \infty }A^{n} \right)B+C}
-\item
-  Turn \textbf{metric limit} \iMbox{\ds\lim_{ n \to \infty } x_{n} = L}
-  into \textbf{real limit}
-  \iMbox{\ds\lim_{ n \to \infty } d(x_{n},L) = 0} to leverage real
-  analysis
+        For metric spaces, \textbf{mix-and-match} these infinite/finite limit
+        definitions:
 
-  \begin{itemize}
-  
+        \begin{itemize}
+
+          \item
+                \iMbox{\ds \lim_{ x \to + \infty } f(x) = +\infty \iff \forall r \in \mathbb{R}, \exists N \in \mathbb{N}, \forall x > N: \ \  f(x)>r}
+          \item
+                \iMbox{\ds \lim_{ x \to p } f(x) = L \iff \forall \varepsilon >0,\exists \delta > 0, \forall x \in A: \ \ 0 < d_{X}(x,p) < \delta \implies d_{Y}(f(x),L) < \varepsilon}
+          \item
+                \textbf{Cauchy sequences},
+                i.e.~\iMbox{\ds\forall \varepsilon >0, \exists N \in \mathbb{N}, \forall m,n\geq N: \ \ d(a_{m}, a_{n})<\varepsilon},
+                converge in \textbf{complete spaces}
+        \end{itemize}
   \item
-    Bounded \textbf{monotone sequences} converge in \iMbox{\mathbb{R}}
+        You can manipulate matrix limits much \textbf{like in real analysis},
+        e.g.~\iMbox{\ds \lim_{ n \to \infty }(A^{n}B+C) = \left(\lim_{ n \to \infty }A^{n} \right)B+C}
   \item
-    Sandwich theorem for limits in \iMbox{\mathbb{R}} =\textgreater{}
-    pick easy upper/lower bounds
-  \item
-    \iMbox{\ds\lim_{ n \to \infty }  r^n = 0 \iff |r| < 1} and
-    \iMbox{\ds \lim_{ n \to \infty } \sum_{i=0}^{n} ar^{i} = \frac{a}{1-r} \iff |r| < 1}
-  \end{itemize}
+        Turn \textbf{metric limit} \iMbox{\ds\lim_{ n \to \infty } x_{n} = L}
+        into \textbf{real limit}
+        \iMbox{\ds\lim_{ n \to \infty } d(x_{n},L) = 0} to leverage real
+        analysis
+
+        \begin{itemize}
+
+          \item
+                Bounded \textbf{monotone sequences} converge in \iMbox{\mathbb{R}}
+          \item
+                Sandwich theorem for limits in \iMbox{\mathbb{R}} =\textgreater{}
+                pick easy upper/lower bounds
+          \item
+                \iMbox{\ds\lim_{ n \to \infty }  r^n = 0 \iff |r| < 1} and
+                \iMbox{\ds \lim_{ n \to \infty } \sum_{i=0}^{n} ar^{i} = \frac{a}{1-r} \iff |r| < 1}
+        \end{itemize}
 \end{itemize}
