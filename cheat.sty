@@ -1,0 +1,173 @@
+% --- Cheatsheet styling package ---
+%
+% Engine: LuaLaTeX or XeLaTeX
+% Text font: Source Sans Pro
+% Math font: Fira Math + STIX Two Text
+% Layout: 
+%   - geometry => landscape A4, and margins
+%   - multicol => column layout
+%   - enumitem => style lists
+% Customizing:
+%   - microtype => improves text justification and spacing
+%   - tilesec => for customizing section headings
+%   - etoolbox => for patching commands
+% 
+\NeedsTeXFormat{LaTeX2e} % Specify LaTeX format requirement
+\ProvidesPackage{cheat}[2025/04/22 v1.0 My Cheatsheet Style]
+
+% --- Load Required Packages ---
+\RequirePackage{fontenc} % Input/output encoding
+\RequirePackage[mathrm=sym]{unicode-math}
+
+\RequirePackage{geometry}
+\RequirePackage{graphicx} % Needed for scalebox if used, good to have
+\RequirePackage{multicol}
+\RequirePackage{enumitem}
+\RequirePackage[dvipsnames]{xcolor} % Provides colors
+\RequirePackage{etoolbox}
+
+\RequirePackage{tcolorbox} % Boxes
+\tcbuselibrary{skins}
+
+\RequirePackage{amsmath} % Math packages
+\RequirePackage{hyperref}
+% \RequirePackage{breqn} % For breaking equations if needed; keep commented unless essential
+
+\RequirePackage[calcwidth]{titlesec} % Text-related customization
+\RequirePackage{microtype}
+
+% --- Colors ---
+\definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+\definecolor{cornellred}{rgb}{0.7, 0.11, 0.11}
+\definecolor{darkmagenta}{rgb}{0.55, 0.0, 0.55}
+\definecolor{deepjunglegreen}{rgb}{0.0, 0.29, 0.29}
+
+% --- Page Layout Settings (Handled by multicol package options usually) ---
+\geometry{landscape, a4paper, margin=0.01in} % Landscape A4, and small margin
+\AtBeginDocument{
+  \setlength{\columnsep}{0.15cm} % Adjust column separation
+  \setlength{\parindent}{0pt} % No offset on new paragraph
+  
+  \setlength{\columnseprule}{0.4pt} % Border between columns 
+  \patchcmd{\columnseprulecolor}{\normalcolor}{\color{deepjunglegreen}}{}{} % Patch command to set color
+    
+  \pagestyle{empty} % No page numbers/headers
+}
+
+% --- Global text settings ---
+\defaultfontfeatures{ Scale = MatchLowercase, Ligatures = TeX }
+\setsansfont{Source Sans Pro} % Set text font => Source Sans Pro
+\setmainfont{Source Serif Pro}
+\setmonofont{Source Code Pro}
+
+\setmathfont{Fira Math} % Set math fonts => Fira Math + STIX Two Text
+\setmathrm{STIX Two Text}[BoldFeatures = {Color = cornellred}] % Color bold as red
+\setmathfont{Fira Math}[range={it/{greek,Greek}->up},Colour=darkmagenta] % Color greek letters as purple
+\setmathfont{STIX Two Math}[range={\vdots,\ddots}] % Provide fallback for missing glyphs, and replace some
+\setmathfont{Fira Math}[range=]
+
+%\microtypesetup{tracking=true, letterspace=-50} % Agressive line-spacing
+
+\AtBeginDocument{ % Math spacing
+  \setlength{\medmuskip}{1.5mu plus 1.0mu minus 1.0mu}
+  \setlength{\thickmuskip}{2.5mu plus 1.5mu minus 1.0mu}
+}
+
+\setlist{ % Configure list spacing
+  nosep,                % MOST IMPORTANT: Removes vertical space within and around list items
+                        % (sets itemsep, parsep, topsep, partopsep to zero or minimal values)
+  leftmargin=1em,       % Controls the primary indentation from the left margin. Adjust '1em' as needed.
+                        % Try smaller values like 0.8em, or even '!' for minimum calculated indent.
+  labelsep=0.25em,       % Space between the label (bullet, number) and the item text. Adjust '0.5em'.
+  labelwidth=*,        % Let enumitem determine the width needed for the label automatically.
+  itemindent=0pt,       % Indentation of subsequent lines within the same item (usually 0pt or !).
+  listparindent=0pt     % Indentation of new paragraphs within the same item.
+}
+% --- Optional: Fine-tuning specific list types ---
+% If you only wanted to affect itemize, you'd use:
+% \setlist[itemize]{nosep, leftmargin=1em, labelsep=0.5em}
+% And you could define different settings for enumerate:
+% \setlist[enumerate]{nosep, leftmargin=1.5em, labelsep=0.4em}
+
+% --- Customize \subsection for cheat sheet sections ---
+\newcommand{\mkTitleFormat}[2]{
+\titleformat{name=#1, numberless} % Command: starred version for unnumbered sections
+  {\normalfont\sffamily#2} % Format: sizae, weight, color
+  {} % Label: leave empty
+  {0em} % Sep: space between label & title body
+  {} % Code before title body
+  [\titleline*{\titlerule}] % Code after title body
+\titlespacing*{name=#1, numberless}
+  {0pt} % Left indent
+  {1.25ex plus 0.5ex minus .2ex} % Space BEFORE heading
+  {0.5ex plus .2ex} % Space AFTER heading (before text/rule)
+}
+\mkTitleFormat{\section}{\fontsize{8}{3}\bfseries\color{ceruleanblue}}
+\mkTitleFormat{\subsection}{\fontsize{7}{3}\bfseries\color{ceruleanblue}}
+\mkTitleFormat{\subsubsection}{\fontsize{6}{2}\bfseries\color{ceruleanblue}}
+\mkTitleFormat{\paragraph}{\fontsize{5.5}{1}\bfseries\color{black}}
+\mkTitleFormat{\subparagraph}{\fontsize{5}{1}\bfseries\color{black}}
+
+% --- Typography & Structure Commands ---
+\newcommand{\hSep}{\textcolor{deepjunglegreen}{\hrulefill}} % Horizontal separator bar 
+
+\newtcbox{\inlinebox}{ % Inline box
+    nobeforeafter,     % Prevent extra vertical space
+    enhanced,        % Often useful with overlay
+    box align=base,    % Align box with text baseline vertically
+    boxrule=0pt,       % Ensure no default frame is drawn
+    colback=white,     % Background color (or opacityback=0)
+    sharp corners,
+    boxsep=0pt,
+    left=0pt,          % Inner padding left (creates space for line)
+    right=1pt,         % Inner padding right (creates space for line)
+    top=0pt,           % Inner padding top
+    bottom=1pt,        % Inner padding bottom
+    % --- Use overlay to draw lines manually ---
+    overlay={
+      \draw[deepjunglegreen, line width=0.5pt] % Set line color and width
+        (frame.south east) -- (frame.north east); % Draw right lineh
+      \draw[deepjunglegreen, line width=0.5pt] % Set line color and width
+        (frame.south east) -- (frame.south west); % Draw bottom line
+    }
+}
+
+\newcommand{\iMbox}[1]{\inlinebox{\({\ensuremath{#1}}\)}} % Inline math box
+
+\newenvironment{MiniPage}{
+  \noindent % Prevent paragraph indentation before the minipage
+  \begin{minipage}{\columnwidth}
+}{
+  \hSep % horizontal bar
+  \end{minipage}
+}
+
+\newenvironment{CheatSheet}{ % Main cheat-sheet environment
+  \begin{multicols}{8} % Define 8 columns
+    
+  \fontfamily{\sfdefault}\selectfont  % Set font family/font-size
+  \fontsize{5}{6}\selectfont
+  \raggedright
+}{\end{multicols}}
+
+% --- Math Macros ---
+\newcommand{\ds}{\displaystyle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\inner}[2]{\langle #1, #2 \rangle}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\T}{\top}
+\newcommand{\tp}{\top}
+\newcommand{\conjT}{\dagger}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\spanv}{span}
+
+\endinput % End of the style file

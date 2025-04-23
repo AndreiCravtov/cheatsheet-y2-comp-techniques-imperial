@@ -1,0 +1,1269 @@
+\subsection*{Basic identities of matrix/vector ops}
+
+\iMbox{(A+B)^{T} = A^{T} + B^{T}}  \iMbox{(AB)^{T} = B^{T}A^{T}}
+\iMbox{(A^{-1})^{T}=(A^{T})^{-1}} \iMbox{(AB)^{-1} = B^{-1}A^{-1}}
+
+\hSep % --- Next section ---
+
+For \iMbox{A \in \mathbb{R}^{m \times n}}, \iMbox{\ds A_{ij}} is the \iMbox{i}-th \textbf{ROW} then \iMbox{j}-th \textbf{COLUMN} \\
+\iMbox{\ds (A^T)_{ij} = A_{ji}}
+\iMbox{\ds (AB)_{ij} = A_{i\ast} \cdot B_{\ast j} = \sum_{k} A_{ik}B_{kj}}
+\iMbox{\ds (Ax)_{i} = A_{i\ast} \cdot x = \sum_{j} A_{ij} x_{j}}
+\iMbox{\ds x^Ty = y^Tx = x \cdot y = \sum_{i} x_{i} y_{i}}
+\iMbox{\ds x^TAx = \sum_{i} \sum_{j} A_{ij}x_{i}x_{j}}
+
+\hSep % --- Next section ---
+
+Scalar-multiplication distributes over:
+\begin{itemize}
+  \item
+    \textbf{column-blocks} =\textgreater{}
+    \iMbox{\lambda A = \lambda [A_{1}|A_{2}|\dots] = [\lambda A_{1}|\lambda A_{2}|\dots]}
+  \item
+    \textbf{row-blocks} =\textgreater{}
+    \iMbox{\lambda A = \lambda [A_{1};A_{2};\dots] = [\lambda A_{1};\lambda A_{2};\dots]}
+\end{itemize}
+
+Consider \iMbox{A,B \in \mathbb{R}^{m \times n}} \textbf{partitioned  column/row-wise} in the same way => matrix-addition distributes over:
+\begin{itemize}
+  \item
+    \textbf{column-blocks} =>
+    \iMbox{A+B = [A_{1}|A_{2}|\dots] + [B_{1}|B_{2}|\dots] = [A_{1}+B_{1}|A_{2}+B_{2}|\dots]}
+  \item
+    \textbf{row-blocks} =>
+    \iMbox{A+B = [A_{1};A_{2};\dots] + [B_{1};B_{2};\dots] = [A_{1}+B_{1};A_{2}+B_{2};\dots]}
+  \end{itemize}
+
+Consider \iMbox{A = [A_{1};A_{2},\dots]\in \mathbb{R}^{m \times k}, B = [B_{1}|B_{2}|\dots] \in \mathbb{R}^{k \times n}}
+  => matrix-multiplication distributes over:
+\begin{itemize}
+  \item
+    \textbf{column-blocks} =\textgreater{}
+    \iMbox{\ds AB = A[B_{1}|B_{2}|\dots] = [AB_{1}|AB_{2}|\dots]}
+  \item
+    \textbf{row-blocks} =\textgreater{}
+    \iMbox{AB = [A_{1};A_{2};\dots]B = [A_{1}B;A_{2}B;\dots]}
+\end{itemize}
+
+Consider
+  \iMbox{\ds A = [A_{1}|\dots|A_{p}]\in \mathbb{R}^{m \times k}, 
+  \ds B = [B_{1};\dots; B_{p}] \in \mathbb{R}^{k \times n}}
+  => \textbf{\emph{outer-product sum}} equivalence:
+\begin{itemize}
+  \item
+    If partition-sizes match =\textgreater{}
+    \iMbox{\ds AB = \sum_{i=1}^{p} A_{i}B_{i}}
+  \item
+    e.g.~for \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}]},
+    \iMbox{B=[\mathbf{b}_{1}; \dots; \mathbf{b}_{n}]} =\textgreater{}
+    \iMbox{AB = \sum_{i} \mathbf{a}_{i}\mathbf{b}_{i}}
+\end{itemize}
+
+\subsection*{What is a projection}
+
+\begin{itemize}
+
+\item
+  A \textbf{projection} \iMbox{\pi: V \to V} is a \textbf{endomorphism}
+  such that \iMbox{\pi \circ \pi = \pi}, i.e.~it leaves its image
+  unchanged (its idempotent)
+\item
+  A \textbf{square matrix} \iMbox{P} such that \iMbox{P^2 = P} is called
+  a \textbf{projection matrix}
+
+  \begin{itemize}
+  
+  \item
+    It is called an \textbf{orthogonal projection matrix} if
+    \iMbox{P^2 = P = P^{\dagger}} (conjugate-transpose)
+  \item
+    Eigenvalues of a \textbf{projection matrix} must be 0 or 1
+  \end{itemize}
+\item
+  Because \iMbox{\pi: V \to V} is a \textbf{linear map}, its
+  \textbf{image space} \iMbox{U = \mathrm{im}(\pi)} and \textbf{null
+  space} \iMbox{W = \mathrm{ker}(\pi)} are \textbf{subspaces} of
+  \iMbox{V}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\pi} is the \textbf{identity operator} on \iMbox{U}
+  \item
+    The \textbf{linear map} \iMbox{\pi^{*} = \mathrm{I}_{V} - \pi} is
+    \textbf{also} a projection with
+    \iMbox{W = \mathrm{im}(\pi^{*}) = \mathrm{ker}(\pi)} and
+    \iMbox{U = \mathrm{ker}(\pi^{*}) = \mathrm{im}(\pi)}, i.e.~they
+    swapped
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\pi} is a projection \textbf{along} \iMbox{W} \textbf{onto}
+      \iMbox{U}
+    \item
+      \iMbox{\pi^{*}} is a projection \textbf{along} \iMbox{U}
+      \textbf{onto} \iMbox{W}
+    \item
+      \iMbox{\pi^{*}} is the \textbf{identity operator} on \iMbox{W}
+    \end{itemize}
+  \item
+    \iMbox{V} can be decomposed as \iMbox{V = U \oplus W} meaning every
+    vector \iMbox{x \in V} can be uniquely written as \iMbox{x = u + w}
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{u \in U} and \iMbox{u = \pi(x)}
+    \item
+      \iMbox{w \in W} and
+      \iMbox{w = x - \pi(x) = (I_{V}-\pi )(x) = \pi^{*}(x)}
+    \end{itemize}
+  \end{itemize}
+\item
+  An \textbf{orthogonal projection} further satisfies \iMbox{U \bot W}
+  i.e.~the \textbf{image} and \textbf{kernel} of \iMbox{\pi} are
+  \textbf{orthogonal subspaces}
+
+  \begin{itemize}
+  
+  \item
+    infact they are eachother's \textbf{orthogonal compliments},
+    i.e.~\iMbox{U^{\perp} = W, W^{\perp} = U} \emph{(because
+    finite-dimensional vectorspaces)}
+  \item
+    so we have
+    \iMbox{\pi(x) \cdot y = \pi(x) \cdot \pi(y) = x \cdot \pi(y)}
+  \item
+    or equivalently,
+    \iMbox{\pi(x) \cdot (y - \pi(y)) = (x - \pi(x)) \cdot \pi(y) = 0}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Projection properties}
+
+\begin{itemize}
+
+\item
+  By
+  Cauchy--Schwarz inequality we have \iMbox{\lVert \pi(x) \rVert \leq \lVert x \rVert}
+\item
+  The \textbf{orthogonal projection onto the line} containing vector
+  \iMbox{u} is \iMbox{\ds \mathrm{proj}_{u} = \hat{u} \hat{u}^{T}},
+  which can also be written as
+  \iMbox{\ds\mathrm{proj}_{u}(v) = \frac{u \cdot v}{u \cdot u} u}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds \hat{u} = \frac{u}{\lVert u \rVert}} so \iMbox{\hat{u}} a
+    \textbf{unit vector on the line} containing \iMbox{\hat{u}}
+  \item
+    So we get
+    \iMbox{\ds \mathrm{proj}_{u}(v) = \hat{u} \hat{u}^{T}v = \frac{1}{\lVert u \rVert\lVert u \rVert}u u^{T} v =\frac{1}{\lVert u \rVert^{2}} u (u \cdot v) = \frac{u \cdot v}{u \cdot u} u}
+  \item
+    A special case of \iMbox{\pi(x) \cdot (y - \pi(y)) = 0} is
+    \iMbox{u \cdot(v - \mathrm{proj}_{u}v) = 0}, since
+    \iMbox{\ds\mathrm{proj}_{u}(u) = u}
+  \end{itemize}
+\item
+  If \iMbox{U \subseteq \mathbb{R}^{n}} is a \iMbox{k}-dimensional
+  subspace with \textbf{orthonormal basis (ONB)}
+  \iMbox{\langle \mathbf{u}_{1},\dots,\mathbf{u}_{k} \rangle \in \mathbb{R}^m}
+
+  \begin{itemize}
+  
+  \item
+    Let
+    \iMbox{\ds \mathbf{U} = [ \mathbf{u}_{1}|\dots|\mathbf{u}_{k} ] \in \mathbb{R}^{m \times k}}
+    be the matrix of columns \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{k}}
+  \item
+    Then \textbf{orthogonal projection onto the subspace} \iMbox{U} is
+    \iMbox{\ds \pi_{U} = \mathbf{U} \mathbf{U}^{T}}
+  \item
+    Can be rewritten as
+    \iMbox{\ds\pi_{U}(v) = \sum_{i} (\mathbf{u}_{i} \cdot v) \mathbf{u}_{i}}
+  \item
+    If \iMbox{\langle \mathbf{u}_{1},\dots,\mathbf{u}_{k} \rangle} is
+    \textbf{not orthonormal}, then ``normalizing factor''
+    \iMbox{(\mathbf{U}^{T}\mathbf{U})^{-1}} is added =\textgreater{}
+    \iMbox{\ds \pi_{U} = \mathbf{U}(\mathbf{U}^{T}\mathbf{U})^{-1}\mathbf{U}^{T}}
+
+    \begin{itemize}
+    
+    \item
+      For \textbf{line subspaces} \iMbox{U = \mathrm{span} \{ u \}}, we
+      have
+      \iMbox{\ds(\mathbf{U}^{T}\mathbf{U})^{-1} = \ds(u^{T}u)^{-1} = 1 / (u \cdot u) = 1 / \lVert u \rVert}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Gram-Schmidt method to generate orthonormal basis from any
+linearly independent
+vectors}
+
+\begin{itemize}
+
+\item
+  Gram-Schmidt is \textbf{iterative} {[}{[}\#What is a
+  projection\textbar projection{]}{]} =\textgreater{} we use
+  \textbf{\emph{current} \iMbox{j}-dim subspace}, to get
+  \textbf{\emph{next} \iMbox{(j+1)}-dim subspace}
+
+  \begin{itemize}
+  
+  \item
+    Assume \textbf{orthonormal basis (ONB)}
+    \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{j} \rangle \in \mathbb{R}^m}
+    for \textbf{\iMbox{j}-dim subspace
+    \iMbox{\ds U_{j} \subset \mathbb{R}^{m}}}
+
+    \begin{itemize}
+    
+    \item
+      Let
+      \iMbox{\ds Q_{j} = [ \mathbf{q}_{1}|\dots|\mathbf{q}_{j} ] \in \mathbb{R}^{m \times j}}
+      be the matrix of columns
+      \iMbox{\mathbf{q}_{1},\dots,\mathbf{q}_{j}}
+    \item
+      \iMbox{\ds \mathrm{P}_{j} = Q_{j}Q_{j}^{T}} is {[}{[}\#Projection
+      properties\textbar orthogonal projection{]}{]} \textbf{onto
+      \iMbox{\ds U_{j}}}
+    \item
+      \iMbox{\ds \mathrm{P}_{\perp j} = \mathbf{I}_{m} - Q_{j}Q_{j}^{T}}
+      is {[}{[}\#Projection properties\textbar orthogonal
+      projection{]}{]} \textbf{onto
+      \iMbox{\ds \left(U_{j}\right)^{\perp}}} \emph{(orthogonal
+      compliment)}
+    \end{itemize}
+  \item
+    Assume \iMbox{\mathbf{a}_{j+1} \not\in U_{j}} =\textgreater{} unique
+    decomposition
+    \iMbox{\ds \mathbf{a}_{j+1} = \mathbf{v}_{j+1} + \mathbf{u}_{j+1}}
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\ds\mathbf{v}_{j+1} = \mathrm{P}_{j}\left(\mathbf{a}_{j+1}\right) \in U_{j}}
+      =\textgreater{} discard it!!
+    \item
+      \iMbox{\ds\mathbf{u}_{j+1} = \mathrm{P}_{\perp j}\left(\mathbf{a}_{j+1}\right) \in \left(U_{j}\right)^{\perp}}
+      =\textgreater{} we're after this!!
+    \end{itemize}
+  \item
+    Let \iMbox{\ds\mathbf{q}_{j+1} = \widehat{\mathbf{u}}_{j+1}}
+    =\textgreater{} we have \textbf{\emph{next ONB}}
+    \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{j+1} \rangle} for
+    \iMbox{\ds U_{j+1}} =\textgreater{} start next iteration
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\ds \mathbf{u}_{j+1} = \left(\mathbf{I}_{m} - Q_{j}Q_{j}^{T} \right)\mathbf{a}_{j+1} = \mathbf{a}_{j+1} - Q_{j}\mathbf{c}_{j}}
+      where
+      \iMbox{\ds \mathbf{c}_{j} = [\mathbf{q}_{1} \cdot \mathbf{a}_{j+1}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j+1}]^{T}}
+    \item
+      \textbf{Notice:}
+      \iMbox{\ds  Q_{j}\mathbf{c}_{j} = \sum_{i=1}^{j} (\mathbf{q}_{i} \cdot \mathbf{a}_{j+1})\mathbf{q}_{i} = \sum_{i=1}^{j} \mathrm{proj}_{\ds \mathbf{q}_{i}}(\mathbf{a}_{j+1})},
+      so rewrite as
+      \iMbox{\ds \mathbf{u}_{j+1} = \mathbf{a}_{j+1} - \sum_{i=1}^{j} (\mathbf{q}_{i} \cdot \mathbf{a}_{j+1})\mathbf{q}_{i} = \mathbf{a}_{j+1} - \sum_{i=1}^{j} \mathrm{proj}_{\ds \mathbf{q}_{i}}(\mathbf{a}_{j+1})}
+    \end{itemize}
+  \end{itemize}
+\item
+  Let \iMbox{\ds\mathbf{a}_{1},\dots,\mathbf{a}_{n} \in \mathbb{R}^m}
+  \emph{(\iMbox{m \geq n})} be linearly independent, i.e.~basis of
+  \textbf{\iMbox{n}-dim subspace}
+  \iMbox{\ds U_{n} = \mathrm{span} \{ \mathbf{a}_{1},\dots,\mathbf{a}_{n}  \}}
+
+  \begin{itemize}
+  
+  \item
+    We apply Gram-Schmidt to build \textbf{ONB}
+    \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
+    for \iMbox{\ds U_{n} \subset \mathbb{R}^{m}}
+  \item
+    \iMbox{j=1} =\textgreater{}
+    \iMbox{\ds\mathbf{u}_{1} = \mathbf{a}_{1}} and
+    \iMbox{\ds\mathbf{q}_{1} = \widehat{\mathbf{u}}_{1}},
+    i.e.~\textbf{\emph{start of iteration}}
+  \item
+    \iMbox{j=2} =\textgreater{}
+    \iMbox{\ds\mathbf{u}_{2} = \mathbf{a}_{2} - (\mathbf{q}_{1} \cdot \mathbf{a}_{2})\mathbf{q}_{1}}
+    and \iMbox{\ds\mathbf{q}_{2} = \widehat{\mathbf{u}}_{2}},
+    \textbf{\emph{and so on\ldots{}}}
+  \item
+    Linear independence \textbf{\emph{guarantees}} that
+    \iMbox{\ds \mathbf{a}_{j+1} \not\in U_{j}}
+  \item
+    \textbf{For exams}: more efficient to compute as
+    \iMbox{\ds \mathbf{u}_{j+1} = \mathbf{a}_{j+1} - Q_{j}\mathbf{c}_{j}}
+
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi})}
+    
+    \item
+      Gather
+      \iMbox{\ds Q_{j} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{j}] \in \mathbb{R}^{m \times j}}
+      \textbf{all-at-once}
+    \item
+      Compute
+      \iMbox{\ds \mathbf{c}_{j} = [\mathbf{q}_{1} \cdot \mathbf{a}_{j+1}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j+1}]^{T} \in \mathbb{R}^{j}}
+      \textbf{all-at-once}
+    \item
+      Compute \iMbox{\ds Q_{j}\mathbf{c}_{j} \in \mathbb{R}^{m}}, and
+      subtract from \iMbox{\mathbf{a}_{j+1}} \textbf{all-at-once}
+    \end{enumerate}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Properties of dot product \& (induced)
+norm}
+
+\begin{itemize}
+
+\item
+  \iMbox{\ds x^Ty = y^Tx = x \cdot y = \sum_{i} x_{i} y_{i}}
+\item
+  \iMbox{x \cdot y = \lVert a \rVert \lVert b \rVert \cos \widehat{xy}}
+\item
+  \iMbox{x \cdot y = y \cdot x}
+\item
+  \iMbox{x \cdot (y + z) = x \cdot y + x \cdot z}
+\item
+  \iMbox{\alpha x \cdot y = \alpha(x \cdot y)}
+\item
+  \iMbox{x \cdot x = \lVert x \rVert^{2}= 0 \iff x = \mathbf{0}}
+\item
+  for \iMbox{x \neq \mathbf{0}}, we have
+  \iMbox{x \cdot y = x \cdot z \implies x \cdot (y-z) = 0}
+\item
+  \iMbox{\lvert x \cdot y \rvert \leq \lVert x \rVert \lVert y \rVert}
+  (\textbf{Cauchy-Schwartz inequality})
+\item
+  \iMbox{\ds\lVert u + v \rVert^{2} + \lVert u - v \rVert^{2} = 2 \lVert u \rVert^{2} + 2 \lVert v \rVert^{2}}
+  (\textbf{parallelogram law})
+\item
+  \iMbox{\lVert u+v \rVert \leq \lVert u \rVert + \lVert v \rVert}
+  (\textbf{triangle inequality})
+\item
+  \iMbox{u \perp v \iff \lVert u + v \rVert^{2} = \lVert u \rVert^{2} + \lVert v \rVert^{2}}
+  (\textbf{pythagorean theorem})
+\item
+  \iMbox{\lVert c \rVert^2 = \lVert a \rVert^2 + \lVert b \rVert^2 - 2\lVert a \rVert \lVert b \rVert \cos \widehat {ba}}
+  (\textbf{law of cosines})
+\end{itemize}
+
+\subsection*{Properties of linear
+independence}
+
+\begin{itemize}
+
+\item
+  Let \iMbox{\mathbf{v}_{1},\dots,\mathbf{v}_{k} \in \mathbb{R}^m} be
+  linearly independent
+\item
+  \iMbox{\mathbf{v}_{i} \neq 0} (proof by contradiction)
+\end{itemize}
+
+\subsection*{Transformation matrix of linear map w.r.t.
+bases}
+
+\begin{itemize}
+
+\item
+  For linear map \iMbox{f: \mathbb{R}^n \to \mathbb{R}^m}, ordered bases
+  \iMbox{\langle \mathbf{b}_{1},\dots,\mathbf{b}_{n} \rangle \in \mathbb{R}^n}
+  and
+  \iMbox{\langle \mathbf{c}_{1},\dots,\mathbf{c}_{m} \rangle \in \mathbb{R}^m}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds A = \mathbf{F}_{CB} \in \mathbb{R}^{m \times n}} is the
+    \textbf{transformation-matrix} of \iMbox{f} w.r.t to bases \iMbox{B}
+    and \iMbox{C}
+  \item
+    \iMbox{\ds f(\mathbf{b}_{j}) = \sum_{i=1}^{m} A_{ij} \mathbf{c}_{i}}
+    --\textgreater{} each \iMbox{\mathbf{b}_{j}} basis gets mapped to a
+    linear combination of \iMbox{\ds \sum_{i} a_{i}\mathbf{c}_{i}} bases
+  \item
+    If \iMbox{f^{-1}} exists \emph{(i.e.~its bijective and \iMbox{m=n})}
+    then \iMbox{(\mathbf{F}_{CB})^{-1} = {\mathbf{F}^{-1}}_{BC}}
+    \emph{(where \iMbox{{\mathbf{F}^{-1}}_{BC}} is the
+    \textbf{transformation-matrix} of \iMbox{f^{-1}})}
+  \end{itemize}
+\item
+  The transformation matrix of the identity map is called
+  change-in-basis matrix
+
+  \begin{itemize}
+  
+  \item
+    The identity matrix \iMbox{\mathrm{I}_{m}} represents
+    \iMbox{\ds \mathrm{id}_{\ds\mathbb{R}^{m}}} w.r.t. the standard
+    basis
+    \iMbox{E_{m} = \langle \mathbf{e}_{1},\dots,\mathbf{e}_{m} \rangle}
+    =\textgreater{} i.e.~\iMbox{\mathrm{I}_{m} = \mathbf{I}_{EE}}
+  \item
+    If \iMbox{B = \langle \mathbf{b}_{1},\dots,\mathbf{b}_{m} \rangle}
+    is a basis of \iMbox{\mathbb{R}^m}, then
+    \iMbox{\mathbf{I}_{EB} = [\mathbf{b}_{1}|\dots|\mathbf{b}_{m}]} is
+    the transformation matrix from \iMbox{B} to \iMbox{E}
+  \item
+    \iMbox{\mathbf{I}_{BE} = (\mathbf{I}_{EB})^{-1}}, so =\textgreater{}
+    \iMbox{\mathbf{F}_{CB} = \mathbf{I}_{CE}\mathbf{F}_{EE}\mathbf{I}_{EB}}
+  \end{itemize}
+\item
+  Dot-product uniquely determines a vector w.r.t. to basis
+
+  \begin{itemize}
+  
+  \item
+    If \iMbox{a_{i} = x \cdot \mathbf{b}_{i}} then
+    \iMbox{\ds x = \sum_{i} a_{i} \mathbf{b}_{i}}, we call \iMbox{a} the
+    coordinate-vector of \iMbox{x} w.r.t. to \iMbox{B}
+  \end{itemize}
+\item
+  \textbf{Rank-nullity theorem}:
+  \iMbox{\operatorname{dim}(\operatorname{im}(f))+\operatorname{dim}(\operatorname{ker}(f))=\operatorname{rk}(A)+\operatorname{dim}(\operatorname{ker}(A))=n},
+  i.e.~properties of transformation-matrices/liner maps correspond
+\item
+  \iMbox{f} is injective/monomorphism \textbf{iff}
+  \iMbox{\ker(f) = \{ \mathbf{0} \}} \textbf{iff} \iMbox{A} is full-rank
+\end{itemize}
+
+\subsection*{Orthogonality concepts}
+
+\begin{itemize}
+
+\item
+  \iMbox{u \perp v \iff u \cdot v = 0}, i.e.~\iMbox{u} and \iMbox{v} are
+  orthogonal
+\item
+  \iMbox{u} and \iMbox{v} are orthonormal \textbf{iff}
+  \iMbox{u \perp v, \lVert u \rVert = 1 = \lVert v \rVert}
+\item
+  \iMbox{A \in \mathbb{R}^{n \times n}} is orthogonal \textbf{iff}
+  \iMbox{A^{-1}=A^{T}}
+
+  \begin{itemize}
+  
+  \item
+    Columns of \iMbox{A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}]} are
+    orthonormal basis (ONB)
+    \iMbox{C = \langle \mathbf{a}_{1},\dots,\mathbf{a}_{n} \rangle \in \mathbb{R}^n},
+    so \iMbox{A = \mathbf{I}_{EC}} is change-in-basis matrix
+  \item
+    Orthogonal transformations preserve lengths/angles/distances
+    =\textgreater{}
+    \iMbox{\lVert Ax \rVert_{2} = \lVert x \rVert_{2}, \ \widehat{{Ax} {Ay}} = \widehat{xy}}
+
+    \begin{itemize}
+    
+    \item
+      Therefore can be seen as a succession of reflections and planar
+      rotations
+    \end{itemize}
+  \item
+    \iMbox{\det(A) = 1} or \iMbox{\det(A) = -1}, and all
+    \textbf{eigenvalues} of \iMbox{A} are s.t.
+    \iMbox{\lvert \lambda \rvert = 1}
+  \end{itemize}
+\item
+  \iMbox{A \in \mathbb{R}^{m \times n}} is semi-orthogonal \textbf{iff}
+  \iMbox{A^T A = I \ \ \text{or} \ \ AA^{T} = I}
+
+  \begin{itemize}
+  
+  \item
+    If \iMbox{n > m} then \textbf{all \iMbox{m} rows} are orthonormal
+    vectors
+  \item
+    If \iMbox{m > n} then \textbf{all \iMbox{n} columns} are orthonormal
+    vectors
+  \end{itemize}
+\item
+  \iMbox{U \perp V \subset \mathbb{R}^n \iff \mathbf{u} \cdot \mathbf{v} = 0}
+  for all \iMbox{\mathbf{u}\in U,\mathbf{v}\in V}, i.e.~they are
+  \textbf{orthogonal subspaces}
+\item
+  \textbf{Orthogonal compliment} of \iMbox{U \subset \mathbb{R}^{n}} is
+  the subspace
+  \iMbox{\ds U^{\perp} = \left\{ \ x \in \mathbb{R} ^{n} \ \middle| \ \forall y\in \mathbb{R}^{n}:x \perp y \ \right\} = \left\{ \ x \in \mathbb{R} ^{n} \ \middle| \ \forall y\in \mathbb{R}^{n}: \lVert x \rVert \leq \lVert x +y \rVert \ \right\}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\mathbb{R}^{n} = U \oplus U^{\perp}} and
+    \iMbox{(U^{\perp})^{\perp} = U} \emph{(because finite dimensional)}
+  \item
+    \iMbox{U \perp V \iff U^{\perp} = V} and vice-versa \emph{(because
+    finite dimensional)}
+  \item
+    \iMbox{Y \subseteq X \implies X^{\perp} \subseteq Y^{\perp}} and
+    \iMbox{X \cap X^{\perp} = \{ \mathbf{0} \}}
+  \item
+    Any \iMbox{\mathbf{x} \in \mathbb{R}^{n}} can be uniquely decomposed
+    into \iMbox{\mathbf{x} = \mathbf{x}_{i} + \mathbf{x}_{k}}, where
+    \iMbox{\mathbf{x}_{i} \in U} and
+    \iMbox{\mathbf{x}_{k} \in U^{\perp}}
+  \end{itemize}
+\item
+  For matrix \iMbox{A \in  \mathbb{R}^{m \times n}} and for row-space
+  \iMbox{\mathrm{R}(A)}, column-space \iMbox{\mathrm{C}(A)} and null
+  space \iMbox{\mathrm{ker}(A)}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds\mathrm{R}(A)^{\perp} = \mathrm{ker}(A)} and
+    \iMbox{\ds\mathrm{C}(A)^{\perp} = \mathrm{ker}(A^{T})}
+  \item
+    Any \iMbox{\mathbf{b} \in \mathbb{R}^{m}} can be uniquely decomposed
+    into
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\mathbf{b} = \mathbf{b}_{i} + \mathbf{b}_{k}}, where
+      \iMbox{\mathbf{b}_{i} \in \mathrm{C}(A)} and
+      \iMbox{\mathbf{b}_{k} \in \mathrm{ker}(A^{T})}
+    \item
+      \iMbox{\mathbf{b} = \mathbf{b}_{i} + \mathbf{b}_{k}}, where
+      \iMbox{\mathbf{b}_{i} \in \mathrm{R}(A)} and
+      \iMbox{\mathbf{b}_{k} \in \mathrm{ker}(A)}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Back-to-basics: revise a-levels
+trigenometry}
+
+\begin{itemize}
+
+\item
+  \iMbox{a^2+b^2=c^2} (\textbf{Pythagorean theorem})
+\item
+  \iMbox{c=\sqrt{a^2+b^2-2 a b \cdot \cos \gamma}} (\textbf{law of
+  cosines})
+\item
+  \iMbox{\ds\frac{\sin A}{a}=\frac{\sin B}{b}=\frac{\sin C}{c}}
+  (\textbf{law of sines})
+\item
+  TODO: angles, triangles, identities, etc.
+\end{itemize}
+
+\subsection*{Vector norms (beyond
+euclidean)}
+
+\begin{itemize}
+
+\item
+  \textbf{vector norms} are such that:
+  \iMbox{\lVert x \rVert = 0 \iff x = \mathbf{0}},
+  \iMbox{|\lambda x|=|\lambda| \lVert x \rVert},
+  \iMbox{\|x+y\| \leq\|x\|+\|y\|}
+\item
+  \iMbox{\ell_{p}} norms:
+  \iMbox{\ds \|\boldsymbol{x}\|_p=\left(\sum_{i=1}^n\left|x_i\right|^p\right)^{1 / p}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{p=1}:
+    \iMbox{\ds\|\boldsymbol{x}\|_1=\sum_{i=1}^n\left|x_i\right|}
+  \item
+    \iMbox{p=2}:
+    \iMbox{\ds \|\boldsymbol{x}\|_2=\sqrt{\sum_{i=1}^n x_i^2} = \sqrt{ \boldsymbol{x} \cdot \boldsymbol{x} }}
+  \item
+    \iMbox{p=\infty}:
+    \iMbox{\ds \|\boldsymbol{x}\|_{\infty} = \lim _{p \rightarrow \infty}\|\boldsymbol{x}\|_p =\max _{1 \leq i \leq n}\left|x_i\right|}
+  \end{itemize}
+\item
+  Any two norms in \iMbox{\mathbb{R}^n} are equivalent, meaning there
+  exist \iMbox{r>0,s>0} such that:
+  \iMbox{\ds\forall \boldsymbol{x} \in \mathbb{R}^n, r\|\boldsymbol{x}\|_a \leq\|\boldsymbol{x}\|_b \leq s\|\boldsymbol{x}\|_a}
+
+  \begin{itemize}
+  
+  \item
+    Equivalence of \iMbox{\ell_1, \ell_2} and \iMbox{\ell_{\infty}}
+    =\textgreater{}
+    \iMbox{\begin{aligned} & \|\boldsymbol{x}\|_{\infty} \leq\|\boldsymbol{x}\|_2 \leq\|\boldsymbol{x}\|_1 \\ & \|\boldsymbol{x}\|_2 \leq \sqrt{n}\|\boldsymbol{x}\|_{\infty} \\ & \|\boldsymbol{x}\|_1 \leq \sqrt{n}\|\boldsymbol{x}\|_2\end{aligned}}
+  \end{itemize}
+\item
+  Induce \textbf{metric} \iMbox{d(x,y) = \lVert y - x \rVert}, has
+  additional properties:
+
+  \begin{itemize}
+  
+  \item
+    Translation invariance: \iMbox{d(x+w,y+w) = d(x,y)}
+  \item
+    Scaling: \iMbox{d(\lambda x,\lambda y) = |\lambda|d(x,y)}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Matrix norms}
+
+\begin{itemize}
+
+\item
+  \textbf{Matrix norms} are such that:
+  \iMbox{\lVert A \rVert = 0 \iff A = \mathbf{0}},
+  \iMbox{|\lambda A|=|\lambda| \lVert A \rVert},
+  \iMbox{\|A+B\| \leq\|A\|+\|B\|}
+
+  \begin{itemize}
+  
+  \item
+    Matrices \iMbox{\mathbb{F}^{m \times n}} are a vector space so
+    \textbf{matrix norms \emph{are} vector norms}, all results apply
+  \end{itemize}
+\item
+  \textbf{Sub-multiplicative matrix norm} (assumed by default) is also
+  such that
+  \iMbox{\lVert AB \rVert \leq \lVert A \rVert \lVert B \rVert}
+\item
+  Common matrix norms, for some
+  \iMbox{\boldsymbol{A} \in \mathbb{R}^{m \times n}}:
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds\|\boldsymbol{A}\|_1=\max _j\left\|\boldsymbol{A}_{\ast j}\right\|_1}
+  \item
+    \iMbox{\ds \|\boldsymbol{A}\|_2=\sigma_1(\boldsymbol{A})}
+    i.e.~largest singular value of \iMbox{A} \emph{(square-root of
+    {[}{[}tutorial 3\#Singular Value Decomposition (SVD) \& Singular
+    Values\textbar largest eigenvalue{]}{]} of \iMbox{A^TA} or
+    \iMbox{AA^T})}
+  \item
+    \iMbox{\ds\|\boldsymbol{A}\|_{\infty} =\max_i \left\|\boldsymbol{A}_{i\ast}\right\|_1},
+    note that
+    \iMbox{\ds \|\boldsymbol{A}\|_1=\left\|\boldsymbol{A}^T\right\|_{\infty}}
+  \item
+    \textbf{Frobenius norm}:
+    \iMbox{\ds \|\boldsymbol{A}\|_F=\sqrt{\sum_{i=1}^m \sum_{j=1}^n\left|\boldsymbol{A}_{i j}\right|^2}}
+  \end{itemize}
+\item
+  A matrix norm \iMbox{\|\cdot\|} on \iMbox{\mathbb{R}^{m \times n}} is
+  \textbf{consistent} with the vector norms \iMbox{\|\cdot\|_a} on
+  \iMbox{\mathbb{R}^n} and \iMbox{\|\cdot\|_b} on \iMbox{\mathbb{R}^m}
+  if
+
+  \begin{itemize}
+  
+  \item
+    for all \iMbox{\boldsymbol{A} \in \mathbb{R}^{m \times n}} and
+    \iMbox{\boldsymbol{x} \in \mathbb{R}^n} =\textgreater{}
+    \iMbox{\|\boldsymbol{A} \boldsymbol{x}\|_b \leq\|\boldsymbol{A}\|\|\boldsymbol{x}\|_a}
+  \item
+    If \iMbox{a=b,\|\cdot\|} is \textbf{compatible} with
+    \iMbox{\|\cdot\|_a}
+  \item
+    Frobenius norm is \textbf{consistent} with \iMbox{\ell_{2}} norm
+    =\textgreater{} \iMbox{\ds \|A v\|_2 \leq\|A\|_F\|v\|_2}.
+  \end{itemize}
+\item
+  For a vector norm \iMbox{\|\cdot\|} on \iMbox{\mathbb{R}^n}, the
+  \textbf{subordinate matrix norm} \iMbox{\|\cdot\|} on
+  \iMbox{\mathbb{R}^{m \times n}} is
+  \iMbox{\|\boldsymbol{A}\|=\max \left\{\|\boldsymbol{A} \boldsymbol{x}\|: \boldsymbol{x} \in \mathbb{R}^n,\|\boldsymbol{x}\|=1\right\}}
+
+  \begin{itemize}
+  
+  \item
+    Alternative expressions:
+    \iMbox{\begin{aligned}\|\boldsymbol{A}\| & =\max \left\{\|\boldsymbol{A} \boldsymbol{x}\|: \boldsymbol{x} \in \mathbb{R}^n,\|\boldsymbol{x}\|=1\right\} \\ & =\max \left\{\frac{\|\boldsymbol{A} \boldsymbol{x}\|}{\|\boldsymbol{x}\|}: \boldsymbol{x} \in \mathbb{R}^n, \boldsymbol{x} \neq 0\right\} \\ & =\max \left\{\|\boldsymbol{A} \boldsymbol{x}\|: \boldsymbol{x} \in \mathbb{R}^n,\|\boldsymbol{x}\| \leq 1\right\}\end{aligned}}
+  \end{itemize}
+\item
+  Vector norms are \textbf{compatible} with their \textbf{subordinate
+  matrix norms}
+\item
+  For \iMbox{p=1,2,\infty} \textbf{matrix norm} \iMbox{\|\cdot\|_p} is
+  \textbf{subordinate} to the vector norm \iMbox{\|\cdot\|_p} \emph{(and
+  thus \textbf{compatible} with)}
+\end{itemize}
+
+\subsection*{Trick for proofs: ``picking a
+vector''}
+
+Often times you might want to pick a vector to \textbf{prove a bound}:
+say the index \iMbox{M} is special (e.g.~maybe
+\iMbox{\ds\left\|\boldsymbol{A}_{M \ast}\right\|_1 = \max_i \left\|\boldsymbol{A}_{i \ast}\right\|_1})
+- Then you could pick a vector \iMbox{\ds x_{M}} based \textbf{on a
+function of \iMbox{M}} -
+e.g.~\iMbox{\ds (x_{M})_{j} = \mathrm{sgn}(\boldsymbol{A}_{M j})} can
+help prove
+\iMbox{\ds x_{M} \cdot \boldsymbol{A}_{M \ast} = \lVert \boldsymbol{A}_{M \ast} \rVert_{1}}
+-
+e.g.~\iMbox{\ds (x_{M})_{j} = \begin{cases} 1 & j=M, \\ 0 & j \neq M \end{cases}}
+can help prove other properties
+
+\subsection*{Properties of matrices}
+
+\begin{itemize}
+
+\item
+  Consider \iMbox{A \in \mathbb{R}^{m \times n}}
+\item
+  If \iMbox{Ax = x} for all \iMbox{x} then \iMbox{A = I}
+\item
+  \iMbox{A} is symmetric \textbf{iff} \iMbox{A = A^{T}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{A} is Hermitian, iff \iMbox{A = A^{\dagger}}, i.e.~its equal
+    to its conjugate-transpose
+  \item
+    \iMbox{AA^{T}} and \iMbox{A^{T}A} are \textbf{symmetric} \emph{(and
+    \textbf{positive semi-definite})}
+  \item
+    For real matrices, \textbf{Hermitian/symmetric} are equivalent
+    conditions
+  \item
+    Every eigenvalue \iMbox{\lambda_{i}} of \textbf{Hermitian} matrices
+    is real
+
+    \begin{itemize}
+    
+    \item
+      and
+      \iMbox{\text{geometric multiplicity of} \ \lambda_{i} = \text{geometric multiplicity of} \ \lambda_{i}}
+    \item
+      and eigenvectors \iMbox{\mathbf{x}_{1},\mathbf{x}_{2}} associated
+      to distinct eigenvalues \iMbox{\lambda_{1},\lambda_{2}} are
+      \textbf{orthogonal},
+      i.e.~\iMbox{\mathbf{x}_{1} \perp \mathbf{x}_{2}}
+    \end{itemize}
+  \end{itemize}
+\item
+  \iMbox{A} is triangular \textbf{iff} all entries~above
+  \emph{(\textbf{lower-triangular})} or below
+  \emph{(\textbf{upper-triangular})} the main diagonal are \textbf{zero}
+
+  \begin{itemize}
+  
+  \item
+    \textbf{Triangular matrices} =\textgreater{}
+    \iMbox{\ds \left|A\right| = \prod_{i}a_{ii}}, i.e.~the product of
+    diagonal elements
+  \end{itemize}
+\item
+  \iMbox{A} is diagonal \textbf{iff} \iMbox{A_{ij} = 0, i \neq j},
+  i.e.~if all off-diagonal entries are zero
+
+  \begin{itemize}
+  
+  \item
+    \emph{Sometimes refers to rectangular matrices}, but most often
+    \textbf{square matrices}
+  \item
+    Written as
+    \iMbox{\mathrm{diag}_{m \times n}(\mathbf{a}) = \mathrm{diag}_{m \times n}(a_{1},\dots,a_{p}), p = \min(m,n)},
+    where
+    \iMbox{\mathbf{a} = [a_{1},\dots,a_{p}]^{T} \in \mathbb{R}^{p}}
+    diagonal entries of \iMbox{A}
+  \item
+    For \iMbox{x \in \mathbb{R}^{n}},
+    \iMbox{Ax = \mathrm{diag}_{m \times n}(a_{1},\dots,a_{p})[x_{1} \dots x_{n}]^{T} = [a_{1}x_{1} \dots a_{p}x_{p} \ \ 0 \dots 0]^{T} \in \mathbb{R}^{m}}
+    \emph{(if \iMbox{p=m} those tail-zeros don't exist)}
+  \item
+    Consider \iMbox{\mathrm{diag}_{m \times n}(\mathbf{b})}, then
+    \iMbox{\mathrm{diag}_{m \times n}(\mathbf{a}) + \mathrm{diag}_{m \times n}(\mathbf{b}) = \mathrm{diag}_{m \times n}(\mathbf{a}+\mathbf{b})}
+  \item
+    Consider
+    \iMbox{\mathrm{diag}_{n \times k}(c_{1},\dots,c_{q}), q = \min(n,k)},
+    then
+    \iMbox{\mathrm{diag}_{m \times n}(a_{1},\dots,a_{p})\mathrm{diag}_{n \times k}(c_{1},\dots,c_{q}) = \mathrm{diag}_{m \times k}(a_{1}c_{1},\dots,a_{r}c_{r}, 0,\dots,0) = \mathrm{diag}(\mathbf{s})}
+
+    \begin{itemize}
+    
+    \item
+      Where \iMbox{r = \min(p,q) = \min(m,n,k)}, and
+      \iMbox{\mathbf{s} \in \mathbb{R}^{s}, s = \min(m,k)}
+    \end{itemize}
+  \item
+    \textbf{Inverse of square-diagonals} =\textgreater{}
+    \iMbox{\mathrm{diag}(a_{1},\dots,a_{n})^{-1} = \mathrm{diag}(a_{1}^{-1},\dots,a_{n}^{-1})},
+    i.e.~diagonals \textbf{cannot be zero} \emph{(division by zero
+    undefined)}
+  \item
+    \textbf{Determinant of square-diagonals} =\textgreater{}
+    \iMbox{\ds \left|\mathrm{diag}(a_{1},\dots,a_{n})\right| = \prod_{i}a_{i}}
+    \emph{(since they are technically triangular matrices)}
+  \end{itemize}
+\item
+  For square \iMbox{A}, the \textbf{trace of \iMbox{A}} is the
+  \textbf{sum if its diagonals}, i.e.~\iMbox{\mathrm{tr}(A)}
+\item
+  The \textbf{(column) rank} of \iMbox{A} is number of linearly
+  independent columns, i.e.~\iMbox{\mathrm{rk}(A)}
+
+  \begin{itemize}
+  
+  \item
+    I.e. its the \textbf{number of pivots} in \textbf{row-echelon-form}
+
+    \begin{itemize}
+    
+    \item
+      I.e. its the \textbf{dimension} of the \textbf{column-space}
+      \iMbox{\mathrm{rk}(A) = \dim(\mathrm{C}(A))}
+    \item
+      I.e. its the \textbf{dimension} of the \textbf{image-space}
+      \iMbox{\mathrm{rk}(A) = \dim(\mathrm{im}(f_{A}))} of linear map
+      \iMbox{f_{A}(x) = Ax}
+    \end{itemize}
+  \item
+    The \textbf{(row) rank} of \iMbox{A} is number of linearly
+    independent rows
+  \item
+    The \textbf{row/column ranks} are \textbf{always the same}, hence
+    \iMbox{\mathrm{rk}(A) = \dim(\mathrm{C}(A)) = \dim(\mathrm{R}(A)) =  \dim(\mathrm{C}(A^{T})) = \mathrm{rk}(A^{T})}
+  \item
+    \iMbox{A} is full-rank \textbf{iff}
+    \iMbox{\mathrm{rk}(A) = \min(m,n)}, i.e.~its as linearly independent
+    as possible
+  \end{itemize}
+\item
+  Two matrices
+  \iMbox{\boldsymbol{A}, \widetilde{\boldsymbol{A}} \in \mathbb{R}^{m \times n}}
+  are \textbf{equivalent} if there exist two invertible matrices
+  \iMbox{\boldsymbol{P} \in} \iMbox{\mathbb{R}^{m \times m}} and
+  \iMbox{\boldsymbol{Q} \in \mathbb{R}^{n \times n}} such that
+  \iMbox{\boldsymbol{A}=\boldsymbol{P} \widetilde{\boldsymbol{A}} \boldsymbol{Q}^{-1}}
+\item
+  Two matrices
+  \iMbox{\boldsymbol{A}, \widetilde{\boldsymbol{A}} \in \mathbb{R}^{n \times n}}
+  are \textbf{similar} if there exists an invertible matrix
+  \iMbox{\boldsymbol{P} \in} \iMbox{\mathbb{R}^{n \times n}} such that
+  \iMbox{\boldsymbol{A}=\boldsymbol{P} \widetilde{\boldsymbol{A}} \boldsymbol{P}^{-1}}
+
+  \begin{itemize}
+  
+  \item
+    \textbf{Similar} matrices are equivalent, with
+    \iMbox{\boldsymbol{Q} = \boldsymbol{P}}
+  \end{itemize}
+\item
+  \iMbox{A} is diagonalisable \textbf{iff} \iMbox{A} is similar to some
+  diagonal matrix \iMbox{D}
+\end{itemize}
+
+\subsection*{Properties of
+determinants}
+
+\begin{itemize}
+
+\item
+  Consider \iMbox{A \in \mathbb{R}^{n \times n}}, then
+  \iMbox{{A_{ij}}' \in \mathbb{R}^{(n-1) \times (n-1)}} the
+  \textbf{\iMbox{(i,j)}-minor matrix} of \iMbox{A}, obtained by deleting
+  \textbf{\iMbox{i}-th row} and \textbf{\iMbox{j}-th column} from
+  \iMbox{A}
+\item
+  Then we define \textbf{determinant} of \iMbox{A},
+  i.e.~\iMbox{\det(A)=\lvert A \rvert}, as
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds \det(A) = \sum_{k=1}^{n} (-1)^{i+k} A_{ik} \det({A_{ik}}')},
+    i.e.~expansion along \textbf{\iMbox{i}-th row} *(for any \iMbox{i})
+  \item
+    \iMbox{\ds \det(A) = \sum_{k=1}^{n} (-1)^{k+j} A_{kj} \det({A_{kj}}')},
+    i.e.~expansion along \textbf{\iMbox{j}-th column} \emph{(for any
+    \iMbox{j})}
+  \end{itemize}
+\item
+  When \iMbox{\det(A) = 0} we call \iMbox{A} a \textbf{singular matrix}
+\item
+  Common determinants
+
+  \begin{itemize}
+  
+  \item
+    For \iMbox{n=1}, \iMbox{\det(A) = A_{11}}
+  \item
+    For \iMbox{n=2}, \iMbox{\det(A) = A_{11}A_{22}- A_{12}A_{21}}
+  \item
+    \iMbox{\det(\mathbf{I}_{n}) = 1}
+  \end{itemize}
+\item
+  \textbf{Multi-linearity in columns/rows}: if
+  \iMbox{\ds A = [a_{1}|\dots| a_{j} | \dots|a_{n}] = [a_{1}|\dots| \lambda x_{i} + \mu y_{i}| \dots|a_{n}]}
+  then
+  \iMbox{\ds \det(A) = \lambda \det\left( [a_{1}|\dots| x_{i} | \dots|a_{n}] \right) + \mu \det\left( [a_{1}|\dots| y_{i} | \dots|a_{n}] \right)}
+
+  \begin{itemize}
+  
+  \item
+    And the exact same linearity property for \textbf{rows}
+    \iMbox{A=[a_{1};\dots;a_{n}]}
+  \item
+    \emph{Immediately} leads to: \iMbox{|A| = |A^{T}|},
+    \iMbox{|\lambda A| = \lambda^{n}|A|}, and \iMbox{|AB|=|BA| = |A||B|}
+    \emph{(for any \iMbox{B \in \mathbb{R}^{n \times n}})}
+  \end{itemize}
+\item
+  \textbf{Alternating}: if any \textbf{two columns} of \iMbox{A} are
+  \textbf{equal} \emph{(or any \textbf{two rows} of \iMbox{A} are
+  \textbf{equal})}, then \iMbox{|A| = 0} (its singular)
+
+  \begin{itemize}
+  
+  \item
+    \emph{Immediately} from this (and \textbf{multi-linearity})
+    =\textgreater{} if \textbf{columns} \emph{(or \textbf{rows})} are
+    linearly-dependent (\emph{some} are linear combinations of
+    \emph{others}) then \iMbox{|A| = 0}
+  \item
+    Stated in other terms =\textgreater{}
+    \iMbox{\mathrm{rk}(A) < n \iff |A| = 0} \textless=\textgreater{}
+    \iMbox{\mathrm{RREF}(A) \neq I_{n} \iff |A| = 0} \emph{(reduced
+    row-echelon-form)} \textless=\textgreater{}
+    \iMbox{\mathrm{C}(A) \neq \mathbb{R}^n \iff |A| = 0}
+    \emph{(column-space)}
+  \item
+    For more equivalence to the above, see invertible matrix theorem
+  \end{itemize}
+\item
+  Interaction with \textbf{EROs}/\textbf{ECOs}:
+
+  \begin{itemize}
+  
+  \item
+    \textbf{Swapping} rows/columns \textbf{flips the sign},
+    e.g.~\iMbox{\ds \det\left( [a_{1}|\dots| a_{i} | \dots | a_{j} | \dots |a_{n}] \right) = -\det\left( [a_{1}|\dots| a_{j} | \dots | a_{i} | \dots |a_{n}] \right)}
+  \item
+    \textbf{Scaling} a row/column by \iMbox{\lambda \neq 0} will
+    \textbf{scale the determinant} by \iMbox{\lambda} \emph{(by
+    multi-linearity)}
+
+    \begin{itemize}
+    
+    \item
+      Remember to \textbf{scale by \iMbox{\lambda^{-1}}} to
+      \textbf{maintain equality},
+      i.e.~\iMbox{\ds \det(A) = \lambda^{-1} \det\left( [a_{1}|\dots| \lambda a_{i} | \dots|a_{n}] \right)}
+    \end{itemize}
+  \item
+    \textbf{Addition} of rows/columns does \textbf{not change
+    determinant}
+  \end{itemize}
+\item
+  \textbf{Link to invertable matrices} =\textgreater{}
+  \iMbox{|A^{-1}| = |A|^{-1}} which means
+  \iMbox{A \ \text{is invertible} \iff |A| \neq 0} \emph{(because
+  division by zero undefined)}, i.e.~\textbf{singular matrices} are
+  \textbf{not invertible}
+\item
+  For block-matrices:
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\det \begin{pmatrix}A & B \\ 0 & D\end{pmatrix} = \det(A)\det(B) = \det \begin{pmatrix}A & 0 \\ C & D\end{pmatrix}}
+  \item
+    \iMbox{\det \begin{pmatrix}A & B \\ C & D\end{pmatrix} = \det(A)\det(D - CA^{-1}B) = \det(D)\det(A - BD^{-1}C)}
+    if \iMbox{A} or \iMbox{D} are invertible, \emph{respectively}
+  \end{itemize}
+\item
+  \textbf{Sylvester's determinant theorem:}
+  \iMbox{\operatorname{det}\left(I_m+A B\right)=\operatorname{det}\left(I_n+B A\right)}
+\item
+  \textbf{Matrix determinant lemma}:
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\operatorname{det}\left(\mathbf{A}+\mathbf{u} \mathbf{v}^{T}\right)=\left(1+\mathbf{v}^{T} \mathbf{A}^{-1} \mathbf{u}\right) \operatorname{det}(\mathbf{A})}
+  \item
+    \iMbox{\operatorname{det}\left(\mathbf{A}+\mathbf{U} \mathbf{V}^{T}\right)=\operatorname{det}\left(\mathbf{I}_{m}+\mathbf{V}^{T} \mathbf{A}^{-1} \mathbf{U}\right) \operatorname{det}(\mathbf{A})}
+  \item
+    \iMbox{\operatorname{det}\left(\mathbf{A}+\mathbf{U} \mathbf{W} \mathbf{V}^{T}\right)=\operatorname{det}\left(\mathbf{W}^{-1}+\mathbf{V}^{T} \mathbf{A}^{-1} \mathbf{U}\right) \operatorname{det}(\mathbf{W}) \operatorname{det}(\mathbf{A})}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Tricks for computing
+determinant}
+
+\begin{itemize}
+
+\item
+  If block-triangular matrix then apply
+  \iMbox{\det \begin{pmatrix}A & B \\ 0 & D\end{pmatrix} = \det(A)\det(B)}
+\item
+  If \emph{close} to triangular matrix apply \textbf{EROs}/\textbf{ECOs}
+  to get it there, then its just product of diagonals
+\item
+  If \textbf{Cholesky/LU/QR} is possible and cheap then do it, then
+  apply \iMbox{\lvert AB \rvert = |A||B|}
+\item
+  If all else fails, try to find row/column with \textbf{MOST} zeros
+
+  \begin{itemize}
+  
+  \item
+    Perform minimal \textbf{EROs}/\textbf{ECOs} to get that row/column
+    to be \textbf{all-but-one} zeros
+
+    \begin{itemize}
+    
+    \item
+      Don't forget to keep track of sign-flipping \& scaling-factors
+    \end{itemize}
+  \item
+    Do Laplace expansion along \emph{that} row/column =\textgreater{}
+    notice \textbf{all-but-one} minor matrix determinants \textbf{go to
+    zero}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Representing EROs/ECOs as transformation
+matrices}
+
+\begin{itemize}
+
+\item
+  For \iMbox{A \in \mathbb{R}^{m \times n}}, suppose a sequence of:
+
+  \begin{itemize}
+  
+  \item
+    \textbf{EROs} transform
+    \iMbox{\ds A \rightsquigarrow_{\mathrm{EROs}} A'} =\textgreater{}
+    there is matrix \iMbox{R} s.t. \iMbox{RA = A'}
+  \item
+    \textbf{ECOs} transform
+    \iMbox{\ds A \rightsquigarrow_{\mathrm{ECOs}} A'} =\textgreater{}
+    there is matrix \iMbox{C} s.t. \iMbox{AC = A'}
+  \item
+    Both transform
+    \iMbox{\ds A \rightsquigarrow_{\mathrm{EROs+ECOs}} A'}
+    =\textgreater{} there are matrices \iMbox{R,C} s.t. \iMbox{RAC = A'}
+  \end{itemize}
+\item
+  \textbf{FORWARD:} to compute these \textbf{transformation matrices}:
+
+  \begin{itemize}
+  
+  \item
+    Start with \iMbox{[I_{m} \ | \ A \ | \ I_{n}]}, i.e.~\iMbox{A} and
+    identity matrices
+  \item
+    For every \textbf{ERO} on \iMbox{A}, do the same to \textbf{LHS}
+    (i.e.~\iMbox{I_{m}})
+  \item
+    For every \textbf{ECO} on \iMbox{A}, do the same to \textbf{RHS}
+    (i.e.~\iMbox{I_{n}})
+  \item
+    Once done, you should get
+    \iMbox{\ds [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R \ | \ A' \ | \ C]}
+    with \iMbox{RAC = A'}
+  \end{itemize}
+\item
+  If the sequences of \textbf{EROs} and \textbf{ECOs} were
+  \iMbox{\ds R_{1},\dots,R_{\lambda}} and
+  \iMbox{\ds C_{1},\dots,C_{\mu}} \emph{respectively}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds R = R_{\lambda} \cdots R_{1}} and
+    \iMbox{\ds C = C_{1} \cdots C_{\mu}}, so
+    \iMbox{\ds (R_{\lambda} \cdots R_{1})A(C_{1} \cdots C_{\mu}) = A'}
+  \item
+    \iMbox{\ds R^{-1} = R_{1}^{-1} \cdots R_{\lambda}^{-1}} and
+    \iMbox{\ds C^{-1} = C_{\mu}^{-1} \cdots C_{1}^{-1}}, where
+    \iMbox{\ds R_{i}^{-1},  C_{j}^{-1}} are \textbf{inverse EROs/ECOs}
+    \emph{respectively}
+  \end{itemize}
+\item
+  \textbf{BACKWARD:} once \iMbox{\ds R_{1},\dots,R_{\lambda}} and
+  \iMbox{\ds C_{1},\dots,C_{\mu}} for which \iMbox{RAC = A'} are
+  \textbf{known}, starting with \iMbox{[I_{m} \ | \ A \ | \ I_{n}]}
+
+  \begin{itemize}
+  
+  \item
+    For \iMbox{i = 1 \to \lambda} perform \iMbox{\ds R_{i}} on
+    \iMbox{A}, perform \iMbox{\ds R_{\lambda -i+1}^{-1}} on \textbf{LHS}
+    (i.e.~\iMbox{I_{m}})
+  \item
+    For \iMbox{j = 1 \to \mu} perform \iMbox{\ds C_{j}} on \iMbox{A},
+    perform \iMbox{\ds C_{\mu -j + 1}^{-1}} on \textbf{RHS}
+    (i.e.~\iMbox{I_{n}})
+  \item
+    You should get
+    \iMbox{\ds [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R^{-1} \ | \ A' \ | \ C^{-1}]}
+    with \iMbox{\ds A = R^{-1} {A'} C^{-1}}
+  \end{itemize}
+\item
+  You can mix-and-match the \textbf{forward/backward} modes
+
+  \begin{itemize}
+  
+  \item
+    i.e.~inverse operations in inverse order for one, and operations in
+    normal order for the other
+  \item
+    e.g.~you can do
+    \iMbox{\ds [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R^{-1} \ | \ A' \ | \ C]}
+    to get \iMbox{AC = R^{-1}A'} =\textgreater{} useful for LU
+    factorization
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Eigen-values/vectors}
+
+\begin{itemize}
+
+\item
+  Consider \iMbox{A \in \mathbb{R}^{n \times n}}, non-zero
+  \iMbox{\mathbf{x} \in \mathbb{C}^{n}} is an \textbf{eigenvector} with
+  \textbf{eigenvalue} \iMbox{\lambda \in \mathbb{C}} for \iMbox{A} if
+  \iMbox{A \mathbf{x} = \lambda \mathbf{x}}
+
+  \begin{itemize}
+  
+  \item
+    If \iMbox{A \mathbf{x} = \lambda \mathbf{x}} then
+    \iMbox{A (k\mathbf{x}) = \lambda (k\mathbf{x})} for
+    \iMbox{k \neq 0}, i.e.~\iMbox{k \mathbf{x}} is also an
+    \textbf{eigenvector}
+  \item
+    \iMbox{A} has at most \iMbox{n} distinct \textbf{eigenvalues}
+  \end{itemize}
+\item
+  The set of all eigenvectors associated with eigenvalue \iMbox{\lambda}
+  is called \textbf{eigenspace} \iMbox{E_{\lambda}} of \iMbox{A}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{E_{\lambda} = \ker(A - \lambda I)}
+  \item
+    The \textbf{geometric multiplicity} of \iMbox{\lambda} is
+    \iMbox{\dim(E_{\lambda}) = \dim(\ker(A - \lambda I))}
+  \end{itemize}
+\item
+  The \textbf{spectrum}
+  \iMbox{Sp(A) = \{ \lambda_{1},\dots,\lambda_{n} \}} of \iMbox{A} is
+  the set of all eigenvalues of \iMbox{A}
+\item
+  The \textbf{characteristic polynomial} of \iMbox{A} is
+  \iMbox{\ds P(\lambda) = \lvert A - \lambda I \rvert = \sum_{i=0}^{n} a_{i}\lambda^{i}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{a_{0} = |A|}, \iMbox{a_{n-1} = (-1)^{n-1} \mathrm{tr}(A)},
+    \iMbox{a_{n} = (-1)^{n}}
+  \item
+    \iMbox{\lambda \in \mathbb{C}} is eigenvalue of \iMbox{A}
+    \textbf{iff} \iMbox{\lambda} is a root of \iMbox{P(\lambda)}
+  \item
+    The \textbf{algebraic multiplicity} of \iMbox{\lambda} is the
+    \textbf{number of times} it is \textbf{repeated as root} of
+    \iMbox{P(\lambda)}
+  \item
+    \iMbox{1 \leq \text{geometric multiplicity of} \ \lambda \leq \text{algebraic multiplicity of} \ \lambda}
+  \end{itemize}
+\item
+  Let \iMbox{\lambda_{1},\dots,\lambda_{n} \in \mathbb{C}} be
+  \emph{(potentially non-distinct)} \textbf{eigenvalues} of \iMbox{A},
+  with \iMbox{\mathbf{x}_{1},\dots, \mathbf{x}_{n} \in \mathbb{C}^{n}}
+  their \textbf{eigenvectors}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds \mathrm{tr}(A) = \sum_{i} \lambda_{i}} and
+    \iMbox{\ds \mathrm{\det}(A) = \prod_{i} \lambda_{ij}}
+  \item
+    \iMbox{A} is diagonalisable \textbf{iff} there exist a basis of
+    \iMbox{\mathbb{R}^{n}} consisting of
+    \iMbox{\mathbf{x}_{1},\dots, \mathbf{x}_{n}}
+  \item
+    \iMbox{A} is diagonalisable \textbf{iff} \iMbox{r_{i} = g_{i}},
+    where \iMbox{r_{i} = \text{geometric multiplicity of} \ \lambda_{i}}
+    and \iMbox{g_{i} = \text{geometric multiplicity of} \ \lambda_{i}}
+  \item
+    \textbf{Eigenvalues} of \iMbox{A^{k}} are
+    \iMbox{\lambda_{1},\dots,\lambda_{n}}
+  \end{itemize}
+\item
+  Let \iMbox{P = [\mathbf{x}_{1}|\dots|\mathbf{x}_{n}]}, then
+  \iMbox{AP = [\lambda_{1}\mathbf{x}_{1}|\dots|\lambda_{n}\mathbf{x}_{n}] = [\mathbf{x}_{1}|\dots|\mathbf{x}_{n}] \mathrm{diag}(\lambda_{1},\dots,\lambda_{n}) = PD}
+  =\textgreater{} if \iMbox{P^{-1}} exists then
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{A = PDP^{-1}}, i.e.~\iMbox{A} is diagonalisable
+  \item
+    \iMbox{P = \mathbf{I}_{EB}} is \textbf{change-in-basis} matrix for
+    basis
+    \iMbox{B = \langle \mathbf{x}_{1},\dots,\mathbf{x}_{n} \rangle} of
+    eigenvectors
+  \item
+    If \iMbox{A = \mathbf{F}_{EE}} is transformation-matrix of linear
+    map \iMbox{f}, then
+    \iMbox{\mathbf{F}_{EE} = \mathbf{I}_{EB} \mathbf{F}_{BB} \mathbf{I}_{BE}}
+  \end{itemize}
+\item
+  \textbf{Spectral theorem}: if \iMbox{A} is Hermitian then
+  \iMbox{P^{-1}} exists, so:
+
+  \begin{itemize}
+  
+  \item
+    If \iMbox{\ds \mathbf{x}_{i},\mathbf{x}_{j}} associated to different
+    eigenvalues then \iMbox{\ds \mathbf{x}_{i} \perp \mathbf{x}_{j}}
+  \item
+    If associated to same eigenvalue \iMbox{\lambda} then
+    \textbf{eigenspace} \iMbox{E_{\lambda}} has spanning-set
+    \iMbox{\ds \{ \mathbf{x}_{\lambda_{i}},\dots \}}
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\mathbf{x}_{1},\dots,\mathbf{x}_{n}} are linearly
+      independent =\textgreater{} apply Gram-Schmidt
+      \iMbox{\ds \mathbf{q}_{\lambda_{i}},\dots \leftarrow \mathbf{x}_{\lambda_{i}},\dots}
+    \item
+      Then \iMbox{\ds \{ \mathbf{q}_{\lambda_{i}},\dots \}} is
+      orthonormal basis (ONB) of \iMbox{E_{\lambda}}
+    \end{itemize}
+  \item
+    \iMbox{Q = \langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle} is
+    an ONB of \iMbox{\mathbb{R}^{n}} =\textgreater{}
+    \iMbox{\mathbf{Q} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}]} is
+    orthogonal matrix i.e.~\iMbox{\mathbf{Q}^{-1} = \mathbf{Q}^{T}}
+  \item
+    \iMbox{\mathbf{q}_{1},\dots,\mathbf{q}_{n}} are still eigenvectors
+    of \iMbox{A} =\textgreater{} \iMbox{A = \mathbf{Q}D\mathbf{Q}^{T}}
+    \emph{(\textbf{spectral decomposition})}
+  \item
+    \iMbox{A = \mathbf{Q}D\mathbf{Q}^{T}} can be interpreted as scaling
+    in direction of its eigenvectors:
+
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi})}
+    
+    \item
+      Perform a succession of reflections/planar rotations to change
+      coordinate-system
+    \item
+      Apply scaling by \iMbox{\lambda_{i}} to each dimension
+      \iMbox{\mathbf{q}_{i}}
+    \item
+      Undo those reflections/planar rotations
+    \end{enumerate}
+  \end{itemize}
+\end{itemize}

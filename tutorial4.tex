@@ -1,0 +1,108 @@
+\subsection*{Cholesky Decomposition}
+
+\begin{itemize}
+
+\item
+  Consider \textbf{positive (semi-)definite}
+  \iMbox{A \in \mathbb{R}^{n \times n}}
+\item
+  \textbf{Cholesky Decomposition} is \iMbox{A = LL^{T}} where \iMbox{L}
+  is lower-triangular
+
+  \begin{itemize}
+  
+  \item
+    For positive semi-definite =\textgreater{} \textbf{always exists},
+    but \textbf{non-unique}
+  \item
+    For positive-definite =\textgreater{} \textbf{always \emph{uniquely}
+    exists} s.t. diagonals of \iMbox{L} are positive
+  \end{itemize}
+\item
+  Finding a Cholesky Decomposition:
+
+  \begin{itemize}
+  
+  \item
+    Compute \iMbox{LL^{T}} and solve \iMbox{A = LL^T} by matching terms
+  \item
+    For square roots always pick positive
+  \item
+    If there is \textbf{exact solution} then \textbf{positive-definite}
+  \item
+    If there are \textbf{free variables} at the end, then
+    \textbf{positive semi-definite}
+
+    \begin{itemize}
+    
+    \item
+      i.e.~the decomposition is a \textbf{solution-set} parameterized on
+      \textbf{free variables}
+    \item
+      e.g.~\iMbox{\begin{bmatrix}1&1&1\\1&1&1\\1&1&2\end{bmatrix} = LL^{T}}
+      where
+      \iMbox{L = \begin{bmatrix}1&0&0\\1&0&0\\1&c&\sqrt{ 1-c^2 }\end{bmatrix}, c \in [0,1]}
+    \end{itemize}
+  \end{itemize}
+\item
+  If \iMbox{A = LL^T} you can use {[}{[}\#Forward/backward
+  substitution\textbar forward/backward substitution{]}{]} to
+  \textbf{solve equations}
+
+  \begin{itemize}
+  
+  \item
+    For \iMbox{Ax = b} =\textgreater{} let \iMbox{y = L^Tx}
+  \item
+    Solve \iMbox{Ly = b} by forward substitution to \textbf{find
+    \iMbox{y}}
+  \item
+    Solve \iMbox{L^{T}x = y} by backward substitution to \textbf{find
+    \iMbox{x}}
+  \end{itemize}
+\item
+  For \iMbox{n=3} =\textgreater{}
+  \iMbox{L = \left[\begin{array}{ccc}l_{11} & 0 & 0 \\ l_{21} & l_{22} & 0 \\ l_{31} & l_{32} & l_{33}\end{array}\right]},
+  \iMbox{LL^{T} = \left[\begin{array}{ccc}l_{11}^2 & l_{11} l_{21} & l_{11} l_{31} \\ l_{11} l_{21} & l_{21}^2+l_{22}^2 & l_{21} l_{31}+l_{22} l_{32} \\ l_{11} l_{31} & l_{21} l_{31}+l_{22} l_{32} & l_{31}^2+l_{32}^2+l_{33}^2\end{array}\right]}
+\end{itemize}
+
+\subsection*{Forward/backward
+substitution}
+
+\begin{itemize}
+
+\item
+  \textbf{Forward substitution}: for lower-triangular
+  \iMbox{L = \left[\begin{array}{ccccc}\ell_{1,1} & & 0 \\ \vdots & \ddots & \\ \ell_{n, 1} & \ldots & \ell_{n, n}\end{array}\right]}
+
+  \begin{itemize}
+  
+  \item
+    For \iMbox{Lx = b}, just \textbf{solve} the first row
+    \iMbox{\ds\ell_{1,1} x_{1} = b_{1} \implies x_{1} = \frac{b_{1}}{\ell_{1,1}}}
+    and \textbf{substitute down}
+  \item
+    Then \textbf{solve} the second row
+    \iMbox{\ds\ell_{2,1}x_{1} + \ell_{2,2}x_{2} = b_{2} \implies x_{2} = \frac{b_{2} - \ell_{2,1}x_{1}}{\ell_{2,2}}}
+    and \textbf{substitute down}
+  \item
+    \ldots and so on until all \iMbox{x_{i}} are solved
+  \end{itemize}
+\item
+  \textbf{Backward substitution}: for upper-triangular
+  \iMbox{U = \left[\begin{array}{ccccc}u_{1,1} & \dots & u_{1,n} \\ & \ddots & \vdots \\ 0 & & u_{n, n}\end{array}\right]}
+
+  \begin{itemize}
+  
+  \item
+    For \iMbox{Ux = b}, just \textbf{solve} the last row
+    \iMbox{\ds u_{n,n} x_{n} = b_{n} \implies x_{n} = \frac{b_{n}}{u_{n,n}}}
+    and \textbf{substitute up}
+  \item
+    Then \textbf{solve} the second-to-last row
+    \iMbox{\ds u_{n-1,n-1}x_{n-1} + u_{n-1,n}x_{n} = b_{n-1} \implies x_{n-1} = \frac{b_{n-1} - u_{n-1,n-1}x_{n-1}}{u_{n-1,n}}}
+    and \textbf{substitute up}
+  \item
+    \ldots and so on until all \iMbox{x_{i}} are solved
+  \end{itemize}
+\end{itemize}

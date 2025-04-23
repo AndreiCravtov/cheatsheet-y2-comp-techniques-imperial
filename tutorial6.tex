@@ -1,0 +1,690 @@
+\subsection*{Modified Gram-Schmidt}
+
+\begin{itemize}
+
+\item
+  Go check {[}{[}tutorial 1\#Gram-Schmidt method to generate orthonormal
+  basis from any linearly independent vectors\textbar Classical GM{]}{]}
+  first, as this is just an alternative computation method
+\item
+  Let
+  \iMbox{\ds \mathrm{P}_{\perp \ds\mathbf{q}_{j}} = \mathbf{I}_{m} - \mathbf{q}_{j}\mathbf{q}_{j}^{T}}
+  be \textbf{\emph{projector}} onto {[}{[}tutorial 5\#Lines and
+  hyperplanes in Euclidean space \$ mathbb\{E\} \{n\}(\{=\} mathbb\{R\}
+  \{n\})\$\textbar hyperplane{]}{]}
+  \iMbox{\ds (\mathbb{R}\mathbf{q}_{j})^{\perp}}, i.e.~{[}{[}tutorial
+  5\#Lines and hyperplanes in Euclidean space \$ mathbb\{E\} \{n\}(\{=\}
+  mathbb\{R\} \{n\})\$\textbar orthogonal compliment{]}{]} of line
+  \iMbox{\ds \mathbb{R}\mathbf{q}_{j}}
+
+  \begin{itemize}
+  
+  \item
+    Notice:
+    \iMbox{\ds \mathrm{P}_{\perp j} = \mathbf{I}_{m} - Q_{j}Q_{j}^{T} = \prod_{i=1}^{j}\left( \mathbf{I}_{m} - \mathbf{q}_{i}\mathbf{q}_{i}^{T}\right) = \prod_{i=1}^{j}\mathrm{P}_{\perp \ds\mathbf{q}_{i}}}
+
+    \begin{itemize}
+    
+    \item
+      {[}{[}tutorial 1\#Column-wise \& row-wise matrix/vector
+      ops\textbar Outer-product sum equivalence{]}{]} =\textgreater{}
+      \iMbox{\ds Q_{j}Q_{j}^{T} =  [ \mathbf{q}_{1}|\dots|\mathbf{q}_{j} ][ \mathbf{q}_{1}^{T};\dots; \mathbf{q}_{j}^{T} ] = \sum_{i = 1}^{j} \mathbf{q}_{i}\mathbf{q}_{i}^{T}}
+    \item
+      For \iMbox{i \neq k},
+      \iMbox{\ds \begin{align} \left( \mathbf{I}_{m} - \mathbf{q}_{i}\mathbf{q}_{i}^{T}\right)\left( \mathbf{I}_{m} - \mathbf{q}_{j}\mathbf{q}_{j}^{T}\right) \\= \mathbf{I}_{m} - ( \mathbf{q}_{i}\mathbf{q}_{i}^{T} + \mathbf{q}_{k}\mathbf{q}_{k}^{T})\end{align}}
+      =\textgreater{}
+      \iMbox{\ds \prod_{i=1}^{j}\left( \mathbf{I}_{m} - \mathbf{q}_{i}\mathbf{q}_{i}^{T}\right) = \mathbf{I}_{m} - \sum_{i=1}^{j}\mathbf{q}_{i}\mathbf{q}_{i}^{T} = \mathbf{I}_{m} - Q_{j}Q_{j}^{T}}
+    \end{itemize}
+  \item
+    Re-state:
+    \iMbox{\ds\mathbf{u}_{j+1} = \left(\mathbf{I}_{m} - Q_{j}Q_{j}^{T} \right)\mathbf{a}_{j+1}}
+    =\textgreater{}
+    \iMbox{\ds\mathbf{u}_{j+1} =  \left(\prod_{i=1}^{j}\mathrm{P}_{\perp \ds\mathbf{q}_{i}} \right)\mathbf{a}_{j+1} =  \left(\mathrm{P}_{\perp \ds\mathbf{q}_{j}} \cdots \mathrm{P}_{\perp \ds\mathbf{q}_{1}} \right) \mathbf{a}_{j+1}}
+  \item
+    \textbf{Projectors}
+    \iMbox{\ds \mathrm{P}_{\perp \ds\mathbf{q}_{1}},\dots, \mathrm{P}_{\perp \ds\mathbf{q}_{j}}}
+    are iteratively applied to \iMbox{\ds\mathbf{a}_{j+1}}, removing its
+    components along \iMbox{\ds\mathbf{q}_{1}}, then along
+    \iMbox{\ds \mathbf{q}_{2}}, \emph{and so on\ldots{}}
+  \end{itemize}
+\item
+  Let
+  \iMbox{\ds\mathbf{u}^{(j)}_{k} = \left(\prod_{i=1}^{j}\mathrm{P}_{\perp \ds\mathbf{q}_{i}} \right) \mathbf{a}_{k}},
+  i.e.~\iMbox{\ds\mathbf{a}_{k}} \textbf{\emph{without}} its components
+  along \iMbox{\ds \mathbf{q}_{1},\dots,\mathbf{q}_{j}}
+
+  \begin{itemize}
+  
+  \item
+    Notice: \iMbox{\ds \mathbf{u}_{j} = \mathbf{u}^{(j-1)}_{j}}, thus
+    \iMbox{\ds\mathbf{q}_{j} = \widehat{\mathbf{u}}_{j} = \left. {\mathbf{u}^{(j-1)}_{j}} \middle/ r_{jj} \right.}
+    where
+    \iMbox{\ds r_{jj} =\left\lVert \mathbf{u}^{(j-1)}_{j} \right\rVert}
+  \item
+    Iterative step:
+    \iMbox{\ds\mathbf{u}^{(j)}_{k} = \left(\mathrm{P}_{\perp \ds\mathbf{q}_{j}} \right) \mathbf{u}^{(j-1)}_{k} = \mathbf{u}^{(j-1)}_{k} - \left(\mathbf{q}_{j} \cdot \mathbf{u}^{(j-1)}_{k}\right) \mathbf{q}_{j}}
+  \item
+    i.e.~each \textbf{iteration \iMbox{j}} of MGS computes
+    \iMbox{\ds \mathrm{P}_{\perp \ds\mathbf{q}_{j}}} \emph{(and
+    projections under it)} \textbf{in one go}
+  \end{itemize}
+\item
+  At \textbf{\emph{start}} of iteration \iMbox{\ds j \in { 1 {..} n }}
+  we have ONB
+  \iMbox{\ds \mathbf{q}_{1},\dots,\mathbf{q}_{j-1} \in \mathbb{R}^{m}}
+  and residual
+  \iMbox{\ds \mathbf{u}^{(j-1)}_{j},\dots,\mathbf{u}^{(j-1)}_{n} \in \mathbb{R}^{m}}
+
+  \begin{itemize}
+  
+  \item
+    Compute
+    \iMbox{\ds r_{jj} =\left\lVert \mathbf{u}^{(j-1)}_{j} \right\rVert}
+    =\textgreater{}
+    \iMbox{\ds\mathbf{q}_{j} =  \left. {\mathbf{u}^{(j-1)}_{j}} \middle/ r_{jj} \right.}
+  \item
+    For each \iMbox{\ds k \in { (j+1) {..} n }}, compute
+    \iMbox{\ds r_{jk} = \mathbf{q}_{j} \cdot \mathbf{u}^{(j-1)}_{k}}
+    =\textgreater{}
+    \iMbox{\ds \mathbf{u}^{(j)}_{k} = \mathbf{u}^{(j-1)}_{k} - r_{jk} \mathbf{q}_{j}}
+  \item
+    We have \textbf{next ONB}
+    \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{j} \rangle} and
+    \textbf{next residual}
+    \iMbox{\ds \mathbf{u}^{(j)}_{j+1},\dots,\mathbf{u}^{(j)}_{n}}
+  \item
+    NOTE: for \iMbox{j=1} =\textgreater{}
+    \iMbox{\ds \mathbf{q}_{1},\dots,\mathbf{q}_{j-1} = \emptyset},
+    i.e.~we don't have any yet
+  \end{itemize}
+\item
+  By \textbf{\emph{end}} of iteration \iMbox{j=n}, we have \textbf{ONB}
+  \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
+  of \textbf{\iMbox{n}-dim subspace}
+  \iMbox{\ds U_{n} = \mathrm{span} \{ \mathbf{a}_{1},\dots,\mathbf{a}_{n}  \}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}] = [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}]\begin{bmatrix} r_{11} & \dots & r_{1n} \\ & \ddots & \vdots \\ 0 & & r_{nn} \end{bmatrix} = \mathbf{Q}R}
+    corresponds to {[}{[}tutorial 5\#Thin QR Decomposition w/
+    Gram-Schmidt (GS)\textbar thin QR decomposition{]}{]}
+  \item
+    Where \iMbox{A \in \mathbb{R}^{m \times n}} is full-rank,
+    \iMbox{\ds \mathbf{Q} \in \mathbb{R}^{m \times n}} is
+    semi-orthogonal, and \iMbox{R \in \mathbb{R}^{n \times n}} is
+    upper-triangular
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Classical vs.~Modified Gram-Schmidt (for thin
+QR)}
+
+\begin{itemize}
+
+\item
+  These algorithms both compute {[}{[}tutorial 5\#Thin QR Decomposition
+  w/ Gram-Schmidt (GS)\textbar thin QR decomposition{]}{]} !{[}{[}Pasted
+  image 20250418034701.png\textbar400{]}{]} !{[}{[}Pasted image
+  20250418034855.png\textbar400{]}{]}
+\item
+  Computes at \iMbox{j}-th step:
+
+  \begin{itemize}
+  
+  \item
+    \textbf{Classical GS} =\textgreater{} \iMbox{j}-th column of
+    \iMbox{Q} and the \iMbox{j}-th column of \iMbox{R}
+  \item
+    \textbf{Modified GS} =\textgreater{} \iMbox{j}-th column of
+    \iMbox{Q} and the \iMbox{j}-th row of \iMbox{R}
+  \end{itemize}
+\item
+  Both have \textbf{flop (floating-point operation)} count of
+  \iMbox{O(2mn^2)}
+
+  \begin{itemize}
+  
+  \item
+    NOTE: \textbf{Householder method} has
+    \iMbox{2\left(m n^2- {n^3} \middle/ {3}\right)} \textbf{flop} count,
+    but better numerical properties
+  \end{itemize}
+\item
+  Recall: \iMbox{\ds Q^{\dagger} Q = \mathbf{I}_{n}} =\textgreater{}
+  check for loss of orthogonality with
+  \iMbox{\ds \lVert \mathbf{I}_{n} - Q^{\dagger}Q \rVert = \mathrm{loss}}
+
+  \begin{itemize}
+  
+  \item
+    \textbf{Classical GS} =\textgreater{}
+    \iMbox{\ds \lVert \mathbf{I}_{n} - Q^{\dagger}Q \rVert \approx \mathrm{Cond}(A)^2\epsilon_{\mathrm{mach}}}
+  \item
+    \textbf{Modified GS} =\textgreater{}
+    \iMbox{\ds \lVert \mathbf{I}_{n} - Q^{\dagger}Q \rVert \approx \mathrm{Cond}(A)\epsilon_{\mathrm{mach}}}
+  \item
+    NOTE: \textbf{Householder method} has
+    \iMbox{\ds \lVert \mathbf{I}_{n} - Q^{\dagger}Q \rVert \approx \epsilon_{\mathrm{mach}}}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Multivariate Calculus}
+
+\begin{itemize}
+
+\item
+  Consider \iMbox{f: \mathbb{R}^{n} \to \mathbb{R}} =\textgreater{}
+  \textbf{when clear} write \textbf{\iMbox{i}-th component} of input as
+  \iMbox{i} instead of \iMbox{\ds \mathbf{x}_{i}}
+\item
+  \textbf{Level curve} w.r.t. to \iMbox{c \in \mathbb{R}} is all points
+  s.t. \iMbox{f(\mathbf{x}) = c}
+
+  \begin{itemize}
+  
+  \item
+    Projecting level curves onto \iMbox{\mathbb{R}^{n}} gives
+    \textbf{contour-map} of \iMbox{f}
+  \end{itemize}
+\item
+  \textbf{\iMbox{\ds n_{k}}-th order partial derivative} w.r.t
+  \iMbox{\ds i_{k}}, of \ldots, of \textbf{\iMbox{\ds n_{1}}-th order
+  partial derivative} w.r.t \iMbox{\ds i_{1}} of \iMbox{f} is:
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds \dfrac{\partial^{n_{k} + \cdots + n_{1}}}{\partial \mathbf{x}_{i_{k}}^{n_{k}}\cdots\partial \mathbf{x}_{i_{1}}^{n_{1}}} f \ = \ \partial^{n_{k}}_{i_{k}} \cdots \partial^{n_{1}}_{i_{1}} f \ = \  f^{(n_{1},\dots,n_{k})}_{\large i_{1} \cdots  i_{k}} = \left(f^{(n_{1},\dots,n_{k-1})}_{\large i_{1} \cdots  i_{k-1}} \right)^{(n_{k})}_{\large i_{k}}}
+  \item
+    Overall, its an \textbf{\iMbox{N}-th order partial derivative} where
+    \iMbox{N = \sum_{k} n_{k}}
+  \end{itemize}
+\item
+  \iMbox{\ds \nabla f = \left[ \partial_{1} f, \dots, \partial_{n} f \right]^{T}}
+  is gradient of \iMbox{f} =\textgreater{}
+  \iMbox{\ds (\nabla f)_{i} = \dfrac{\partial f}{\partial \mathbf{x}_{i}}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds\nabla^{T} f = (\nabla f)^{T}} is transpose of
+    \iMbox{\ds \nabla f}, i.e.~\iMbox{\nabla^{T}f} is row vector
+  \end{itemize}
+\item
+  \iMbox{\ds D_{\mathbf{u}}f(\mathbf{x}) = \lim_{ \delta \to 0 } \frac{f(\mathbf{x} + \delta \mathbf{u}) - f(\mathbf{x})}{\delta}}
+  \textbf{\emph{directional-derivative}} of \iMbox{f}
+
+  \begin{itemize}
+  
+  \item
+    It is rate-of-change in direction \iMbox{\mathbf{u}}, where
+    \iMbox{\mathbf{u} \in \mathbb{R}^{n}} is unit-vector
+  \item
+    \iMbox{\ds D_{\mathbf{u}}f(\mathbf{x}) = \nabla f(\mathbf{x}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{x}) \rVert \lVert \mathbf{u} \rVert \cos(\theta)}
+    =\textgreater{} \iMbox{\ds D_{\mathbf{u}}f(\mathbf{x})}
+    \textbf{maximized} when \iMbox{\cos\theta = 1}
+  \item
+    i.e.~when \iMbox{\mathbf{x},\mathbf{u}} are parallel =\textgreater{}
+    hence \iMbox{\nabla f(\mathbf{x})} is direction of \textbf{max.}
+    rate-of-change
+  \end{itemize}
+\item
+  \iMbox{\ds\mathbf{H}(f) = \nabla^2 f = \mathbf{J}(\nabla f)^{T}} is
+  the \textbf{\emph{Hessian}} of \iMbox{f} =\textgreater{}
+  \iMbox{\ds \mathbf{H}(f)_{ij} = \dfrac{\partial^2 f}{\partial \mathbf{x}_{i}\partial \mathbf{x}_{j}}}
+\item
+  \iMbox{f} has \textbf{local minimum} at
+  \iMbox{\ds \mathbf{x}_{\mathrm{loc}}} if there's radius \iMbox{r>0}
+  s.t. \iMbox{\forall \mathbf{x} \in B[r;\mathbf{x}_{\mathrm{loc}}]} we
+  have \iMbox{f(\mathbf{x}_{\mathrm{loc}}) \leq f(\mathbf{x})}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{f} has \textbf{global minimum}
+    \iMbox{\ds \mathbf{x}_{\mathrm{glob}}} if
+    \iMbox{\forall \mathbf{x} \in \mathbb{R}^{n}} we have
+    \iMbox{f(\mathbf{x}_{\mathrm{glob}}) \leq f(\mathbf{x})}
+  \item
+    A local minimum satisfies optimality conditions:
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\nabla f(\mathbf{x}) = \mathbf{0}}, e.g.~for \iMbox{n=1}
+      its \iMbox{f'(x) = 0}
+    \item
+      \iMbox{\nabla^2 f(\mathbf{x})} is positive-definite, e.g.~for
+      \iMbox{n=2} its \iMbox{f''(x) > 0}
+    \end{itemize}
+  \end{itemize}
+\item
+  Interpret \iMbox{\ds F: \mathbb{R}^n \to \mathbb{R}^{m}} as \iMbox{m}
+  functions \iMbox{\ds F_{i}: \mathbb{R}^{n} \to \mathbb{R}} \emph{(one
+  per output-component)}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds \mathbf{J}(F) = \left[ \nabla^{T} F_{1}; \ \dots; \ \nabla^{T} F_{m} \right]}
+    is \textbf{\emph{Jacobian matrix}} of \iMbox{F} =\textgreater{}
+    \iMbox{\ds \mathbf{J}(F)_{ij} = \dfrac{\partial F_i}{\partial \mathbf{x}_j}}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Conditioning}
+
+\begin{itemize}
+
+\item
+  A \textbf{\emph{problem}} is some \iMbox{f:X \to Y} where \iMbox{X,Y}
+  are normed vector-spaces
+
+  \begin{itemize}
+  
+  \item
+    A problem \textbf{\emph{instance}} is \iMbox{f} with fixed input
+    \iMbox{x \in X}, shortened to \textbf{\emph{just}} ``problem''
+    *(with \iMbox{x \in X} implied)
+  \item
+    \iMbox{\ds\delta x} is \textbf{small perturbation} of \iMbox{x}
+    =\textgreater{} \iMbox{\ds \delta f = f(x+\delta x)-f(x)}
+  \item
+    A problem (instance) is:
+
+    \begin{itemize}
+    
+    \item
+      \textbf{Well-conditioned} if all \textbf{small} \iMbox{\delta x}
+      lead to \textbf{small} \iMbox{\delta f}, i.e.~if \iMbox{\kappa} is
+      \textbf{small} \emph{(e.g.~\iMbox{1}, \iMbox{10}, \iMbox{10^{2}})}
+    \item
+      \textbf{Ill-conditioned} if some \textbf{small} \iMbox{\delta x}
+      lead to \textbf{large} \iMbox{\delta f}, i.e.~if \iMbox{\kappa} is
+      \textbf{large} *(e.g.~\iMbox{10^6}, \iMbox{10^{16}})
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{\emph{Absolute} condition number}
+  \iMbox{\ds\mathrm{cond}(x) = \hat{\kappa}(x) = \hat{\kappa}} of
+  \textbf{\iMbox{f} at \iMbox{x}} is
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds \hat{\kappa}=\lim _{\delta \rightarrow 0} \sup _{\|\delta x\| \leq \delta} \frac{\|\delta f\|}{\|\delta x\|}}
+    =\textgreater{} for most problems simplified to
+    \iMbox{\ds\hat{\kappa}=\sup _{\delta x} \frac{\|\delta f\|}{\|\delta x\|}}
+  \item
+    If Jacobian \iMbox{\ds\mathbf{J}_{f}(x)} exists then
+    \iMbox{\ds\hat{\kappa} = \lVert \mathbf{J}_{f}(x) \rVert}, where
+    matrix norm \iMbox{\lVert - \rVert} induced by norms on \iMbox{X}
+    and \iMbox{Y}
+  \end{itemize}
+\item
+  \textbf{\emph{Relative} condition number}
+  \iMbox{\ds \kappa(x) = \kappa} of \textbf{\iMbox{f} at \iMbox{x}} is
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds\kappa=\lim _{\delta \rightarrow 0} \sup _{\|\delta x\| \leq \delta}\left(\frac{\|\delta f\|}{\|f(x)\|} \middle/ \frac{\|\delta x\|}{\|x\|}\right)}
+    =\textgreater{} for most problems simplified to
+    \iMbox{\ds \kappa=\sup _{\delta x}\left(\frac{\|\delta f\|}{\|f(x)\|} \middle/ \frac{\|\delta x\|}{\|x\|}\right)}
+  \item
+    If Jacobian \iMbox{\ds\mathbf{J}_{f}(x)} exists then
+    \iMbox{\ds\kappa=\frac{\|\mathbf{J}_{f}(x)\|}{\|f(x)\| /\|x\|}}
+  \item
+    More important than \iMbox{\hat{\kappa}} for \emph{numerical
+    analysis}
+  \end{itemize}
+\item
+  \textbf{\emph{Matrix} condition number}
+  \iMbox{\mathrm{Cond}(A) = \kappa(A) = \lVert A \rVert \lVert A^{-1} \rVert}
+  =\textgreater{} comes up so often that has its own name
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{A \in \mathbb{C}^{m \times m}} is well-conditioned if
+    \iMbox{\kappa(A)} is \textbf{small}, ill-conditioned if
+    \textbf{large}
+  \item
+    \iMbox{\kappa(A) = \kappa(A^{-1})} and
+    \iMbox{\kappa(A) = \kappa(\gamma A)}
+  \item
+    If \iMbox{\lVert \cdot \rVert = {\lVert \cdot \rVert}_{2}} then
+    \iMbox{\ds\kappa(A) = \frac{\sigma_{1}}{\sigma_{m}}}
+  \end{itemize}
+\item
+  For \iMbox{A \in \mathbb{C}^{m \times n}}, the problem
+  \iMbox{\ds f_{A}(x) = Ax} has
+  \iMbox{\ds \kappa=\|A\| \frac{\|x\|}{\|A x\|}} =\textgreater{} if
+  \iMbox{A^{-1}} exists then \iMbox{\ds\kappa \leq \mathrm{Cond}(A)}
+
+  \begin{itemize}
+  
+  \item
+    If \iMbox{Ax = b}, problem of finding \iMbox{x} given \iMbox{b} is
+    just \iMbox{\ds f_{A^{-1}}(b) = A^{-1}b} =\textgreater{}
+    \iMbox{\ds\kappa=\left\|A^{-1}\right\| \frac{\|b\|}{\|x\|} \leq \mathrm{Cond}(A)}
+  \end{itemize}
+\item
+  For \iMbox{\mathbf{b} \in \mathbb{C}^{m}}, the problem
+  \iMbox{f_{\mathbf{b}}(A) = A^{-1}\mathbf{b}} \emph{(i.e.~finding
+  \iMbox{x} in \iMbox{Ax = \mathbf{b}})} has
+  \iMbox{\ds\kappa=\|A\|\left\|A^{-1}\right\|=\mathrm{Cond}(A)}
+\end{itemize}
+
+\subsection*{Stability}
+
+\begin{itemize}
+
+\item
+  Given a problem \iMbox{f: X \to Y}, an \textbf{algorithm} for
+  \iMbox{f} is \iMbox{\tilde{f}: X  \to Y}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\tilde{f}} is \textbf{computer implementation}, so
+    inputs/outputs are \textbf{FP}
+  \item
+    Input \iMbox{x \in X} is first rounded to \iMbox{\mathrm{fl}(x)},
+    i.e.~\iMbox{\ds\tilde{f}(x) = \tilde{f}\left(\mathrm{fl}\left(x \right) \right)}
+  \item
+    \iMbox{\tilde{f}} cannot be \textbf{continuous} \emph{(for the most
+    part)}
+  \item
+    \textbf{Absolute error} =\textgreater{}
+    \iMbox{\ds\|\tilde{f}(x)-f(x)\|}; \textbf{relative error}
+    =\textgreater{} \iMbox{\ds\frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|}}
+  \end{itemize}
+\item
+  \iMbox{\ds \tilde{f}} is \textbf{accurate} if \iMbox{\forall x \in X},
+  \iMbox{\ds \frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|}=O\left(\epsilon_{\mathrm{mach}}\right)}
+\item
+  \iMbox{\ds \tilde{f}} is \textbf{stable} if \iMbox{\forall x \in X},
+  \iMbox{\exists \tilde{x} \in X} s.t.
+  \iMbox{\ds \frac{\|\tilde{f}(x)-f( \tilde{x})\|}{\|f( \tilde{x})\|}=O\left(\epsilon_{\mathrm{mach}}\right)}
+  and
+  \iMbox{\ds \frac{\|\tilde{x}-x\|}{\|x\|}=O\left(\epsilon_{\mathrm{mach}}\right)}
+
+  \begin{itemize}
+  
+  \item
+    i.e.~nearly the right answer to nearly the right question
+  \item
+    \textbf{outer-product} is stable
+  \end{itemize}
+\item
+  \iMbox{\ds \tilde{f}} is \textbf{backwards stable} if
+  \iMbox{\forall x \in X}, \iMbox{\exists \tilde{x} \in X} s.t.
+  \iMbox{\ds \tilde{f}(x) = f(\tilde{x})} and
+  \iMbox{\ds \frac{\|\tilde{x}-x\|}{\|x\|}=O\left(\epsilon_{\mathrm{mach}}\right)}
+
+  \begin{itemize}
+  
+  \item
+    i.e.~exactly the right answer to nearly the right question, a
+    \textbf{subset of stability}
+  \item
+    \iMbox{\oplus, \ominus, \otimes, \oslash}, \textbf{inner-product},
+    back-substitution w/ triangular systems, are backwards stable
+  \item
+    If \textbf{backwards stable} \iMbox{\tilde{f}} and \iMbox{f} has
+    condition number \iMbox{\ds \kappa(x)} then relative error
+    \iMbox{\ds\frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|} = O\left(\kappa(x)\epsilon_{\mathrm{mach}}\right)}
+  \end{itemize}
+\item
+  Accuracy, stability, backwards stability are \textbf{norm-independent}
+  for fin-dim \iMbox{X,Y}
+\end{itemize}
+
+\subsection*{Big-O meaning for numerical
+analysis}
+
+\begin{itemize}
+
+\item
+  In complexity analysis \iMbox{f(n)=O(g(n))} as \iMbox{n \to \infty}
+\item
+  But in numerical analysis \iMbox{f(\epsilon)=O(g(\epsilon))} as
+  \iMbox{\epsilon \to 0},
+  i.e.~\iMbox{\limsup_{\epsilon \to 0} \left. {\lVert f(\epsilon) \rVert} \ \middle/ \ {\lVert g(\epsilon) \rVert} \right. < \infty}
+
+  \begin{itemize}
+  
+  \item
+    i.e.~\iMbox{\exists C,\delta>0} s.t. \iMbox{\forall \epsilon}, we
+    have
+    \iMbox{0 < \lVert \epsilon \rVert<\delta \implies \lVert f(\epsilon) \rVert \leq C \lVert g(\epsilon) \rVert}
+  \item
+    \iMbox{O(g)} is set of functions
+    \iMbox{\left\{ f \ \ : \ \ \limsup_{\epsilon \to 0} \left. {\lVert f(\epsilon) \rVert} \ \middle/ \ {\lVert g(\epsilon) \rVert} \right. < \infty \right\}}
+  \end{itemize}
+\item
+  \textbf{Smallness} partial order \iMbox{\ds O(g_{1}) \preceq O(g_{2})}
+  defined by set-inclusion \iMbox{\ds O(g_{1}) \subseteq O(g_{2})}
+
+  \begin{itemize}
+  
+  \item
+    i.e.~as \iMbox{\epsilon \to 0}, \iMbox{g_{1}(\epsilon)} goes to zero
+    \textbf{\emph{faster}} than \iMbox{g_{2}(\epsilon)}
+  \item
+    \emph{Roughly} same hierarchy as complexity analysis but
+    \textbf{flipped} \emph{(some break pattern)}
+
+    \begin{itemize}
+    
+    \item
+      e.g.~\iMbox{\ds \dots, O(\epsilon^3) \prec O(\epsilon^2) \prec O(\epsilon) \prec O(1)}
+    \end{itemize}
+  \item
+    \textbf{Maximum}:
+    \iMbox{\ds O(\max(\lvert g_{1} \rvert, \lvert g_{2} \rvert))=O(g_{2}) \iff \ds O(g_{1}) \preceq O(g_{2})}
+
+    \begin{itemize}
+    
+    \item
+      e.g.~\iMbox{\ds O(\max(\epsilon^{k}, \epsilon))=O(\epsilon)}
+    \end{itemize}
+  \end{itemize}
+\item
+  Using functions \iMbox{\ds f_{1},\dots,f_{n}}, let
+  \iMbox{\ds\mathbf{\Phi}(f_{1},\dots,f_{n})} be formula
+  \textbf{defining some function}
+
+  \begin{itemize}
+  
+  \item
+    Then \iMbox{\ds \mathbf{\Phi}(O(g_{1}),\dots,O(g_{n}))} is the class
+    of functions
+    \iMbox{\ds\left\{ \mathbf{\Phi}(f_{1},\dots,f_{n}) \ \ : \ \ f_{1} \in O(g_{1}),\dots,f_{n} \in O(g_{n}) \right\}}
+
+    \begin{itemize}
+    
+    \item
+      e.g.~\iMbox{\ds \epsilon^{O(1)} = \{ \epsilon^{f(\epsilon)} : f \in O(1) \}}
+    \end{itemize}
+  \item
+    General case:
+    \iMbox{\ds \mathbf{\Phi}_{1}(O(f_{1}),\dots,O(f_{m})) = \mathbf{\Phi}_{2}(O(g_{1}),\dots,O(g_{n}))}
+    means
+    \iMbox{\ds \mathbf{\Phi}_{1}(O(f_{1}),\dots,O(f_{m})) \subseteq \mathbf{\Phi}_{2}(O(g_{1}),\dots,O(g_{n}))}
+
+    \begin{itemize}
+    
+    \item
+      e.g.~\iMbox{\ds \epsilon^{O(1)} = O\left(k^{\ds\epsilon}\right)}
+      means
+      \iMbox{\{ \epsilon^{f(\epsilon)} : f \in O(1) \} \subseteq O\left(k^{\ds\epsilon}\right)};
+      \emph{not necessarily true}
+    \end{itemize}
+  \item
+    Special case: \iMbox{\ds f = \mathbf{\Phi}(O(g_{1}),\dots,O(g_{n}))}
+    means \iMbox{\ds f \in \mathbf{\Phi}(O(g_{1}),\dots,O(g_{n}))}
+
+    \begin{itemize}
+    
+    \item
+      e.g.~\iMbox{\ds (\epsilon+1)^2 = \epsilon^2 + O(\epsilon)} means
+      \iMbox{\ds {\epsilon \mapsto (\epsilon+1)^2} \ \in \ \{ \epsilon^2 + f(\epsilon) : f \in O(\epsilon) \}};
+      \emph{not necessarily true}
+    \end{itemize}
+  \end{itemize}
+\item
+  Let \iMbox{f_{1} = O(g_{1}), \ f_{2} = O(g_{2})} and let
+  \iMbox{k \neq 0} be a constant
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{f_{1}f_{2} = O(g_{1}g_{2})} and \iMbox{f \cdot O(g) = O(fg)}
+  \item
+    \iMbox{f_{1} + f_{2} = O(\max(\lvert g_{1} \rvert, \lvert g_{2} \rvert))}
+    =\textgreater{} \textbf{if} \iMbox{g_{1} = g = g_{2}} \textbf{then}
+    \iMbox{f_{1}+f_{2} = O(g)}
+  \item
+    \iMbox{O(\lvert k \rvert \cdot g) = O(g)}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Floating-point numbers}
+
+\begin{itemize}
+
+\item
+  Consider \textbf{base/radix} \iMbox{\beta\geq 2} \emph{(typically
+  \iMbox{2})} and \textbf{precision} \iMbox{t\geq 1} \emph{(\iMbox{24}
+  or \iMbox{53} for IEEE single/double precisions)}
+\item
+  \textbf{Floating-point numbers} are discrete subset
+  \iMbox{\ds \mathbf{F} = \left\{ \ (-1)^{s} \left(m \middle/ \beta^t\right) \beta^e \ \middle| \ 1 \leq m \leq \beta^t, \ s \in \mathbb{B}, m,e \in \mathbb{Z} \ \right\}}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{s} is \textbf{sign-bit}, \iMbox{m / \beta^t} is
+    \textbf{mantissa}, \iMbox{e} is \textbf{exponent}
+    \emph{(\iMbox{8}-bit for single, \iMbox{11}-bit for double)}
+  \item
+    Equivalently, can restrict to
+    \iMbox{\beta^{t-1} \leq m \leq \beta^t-1} for unique \iMbox{m} and
+    \iMbox{e}
+  \item
+    \iMbox{\mathbf{F}\subset \mathbb{R}} is idealized \emph{(ignores
+    over/underflow)}, so is countably infinite and self-similar
+    \emph{(i.e.~\iMbox{\mathbf{F} = \beta \mathbf{F}})}
+  \item
+    For all \iMbox{x \in \mathbb{R}} there exists
+    \iMbox{\mathrm{fl}(x) \in \mathbf{F}} s.t.
+    \iMbox{\lvert x - \mathrm{fl}(x) \rvert \leq \epsilon_{\mathrm{mach}} \lvert x \rvert}
+
+    \begin{itemize}
+    
+    \item
+      Equivalently
+      \iMbox{\mathrm{fl}(x) = x(1 + \delta), \lvert \delta \rvert \leq \epsilon_{\mathrm{mach}}}
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{Machine epsilon}
+  \iMbox{\epsilon_{\mathrm{machine}} = \epsilon_{\mathrm{mach}} = \frac{1}{2}\beta^{1-t}}
+  is maximum relative gap between FPs
+
+  \begin{itemize}
+  
+  \item
+    Half the gap between \iMbox{1} and next largest FP
+  \item
+    \iMbox{2^{-24} \approx 5.96 \times 10^{-8}} and
+    \iMbox{2^{−53} \approx 10^{-16}} for single/double
+  \end{itemize}
+\item
+  \textbf{FP arithmetic}: let \iMbox{\ast, \circledast} be real and
+  floating counterparts of arithmetic operation
+
+  \begin{itemize}
+  
+  \item
+    For \iMbox{x,y \in \mathbf{F}} we have
+    \iMbox{x \circledast y = \mathrm{fl}(x \ast y) = (x * y)(1+\epsilon), \lvert \delta \rvert \leq \epsilon_{\mathrm{mach}}}
+
+    \begin{itemize}
+    
+    \item
+      Holds for \textbf{\emph{any}} arithmetic operation
+      \iMbox{\circledast = \oplus, \ominus, \otimes, \oslash}
+    \end{itemize}
+  \item
+    Complex floats implemented pairs of real floats, so above applies
+    complex ops as-well
+
+    \begin{itemize}
+    
+    \item
+      Caveat: \iMbox{\epsilon_{\mathrm{mach}} = \frac{1}{2}\beta^{1-t}}
+      must be scaled by factors on the order of \iMbox{2^{3/2},2^{5/2}}
+      for \iMbox{\otimes, \oslash} \emph{respectively}
+    \end{itemize}
+  \item
+    \iMbox{(x_{1} \oplus \dots \oplus x_{n}) \approx (x_{1} + \dots +x_{n}) + \sum_{i=1}^{n} x_{i}\left( \sum_{j=i}^{n} \delta_{j} \right), \lvert \delta_{j} \rvert \leq \epsilon_{\mathrm{mach}}}
+  \item
+    \iMbox{(x_{1} \otimes \dots \otimes x_{n}) \approx (x_{1} \times \dots \times x_{n})(1+\epsilon), \epsilon \leq 1.06(n-1)\epsilon_{\mathrm{mach}}}
+  \item
+    \iMbox{\ds\mathrm{fl}\left( \sum x_{i} y_{i} \right) = \sum x_{i}y_{i}(1 + \epsilon_{i})}
+    where
+    \iMbox{\ds 1+ \epsilon_{i} = (1+ \delta_{i}) \times(1 + \eta_{i}) \cdots (1 + \eta_{n})}
+    and
+    \iMbox{\lvert \delta_{j} \rvert, \lvert \eta_{i} \rvert \leq \epsilon_{\mathrm{mach}}}
+
+    \begin{itemize}
+    
+    \item
+      \iMbox{\ds 1+ \epsilon_{i} \approx 1 + \delta_{i} + (\eta_{i} + \dots + \eta_{n})}
+    \item
+      \iMbox{\ds |\mathrm{fl}(x^T y) - x^T y| \leq \sum \lvert x_{i} y_{i} \rvert \lvert \epsilon_{i} \rvert}
+    \item
+      Assuming \iMbox{n \epsilon_{\mathrm{mach}} \leq 0.1}
+      =\textgreater{}
+      \iMbox{\ds |\mathrm{fl}(x^T y) - x^T y| \leq \phi(n) \epsilon_{\mathrm{mach}} \lvert x \rvert^T \lvert y \rvert},
+      where \iMbox{\lvert x \rvert_{i} = \lvert x_{i} \rvert} is vector
+      and \iMbox{\phi(n)} is small function of \iMbox{n}
+    \end{itemize}
+  \item
+    \textbf{Summing a series} is more stable if terms added in order of
+    increasing magnitude
+  \end{itemize}
+\item
+  For \textbf{FP matrices}, let
+  \iMbox{\lvert M \rvert_{ij} = \lvert M_{ij} \rvert}, i.e.~matrix
+  \iMbox{\lvert M \rvert} of absolute values of \iMbox{M}
+
+  \begin{itemize}
+  
+  \item
+    \iMbox{\ds\mathrm{fl}(\lambda \mathbf{A}) = \lambda \mathbf{A} + E, \lvert E \rvert_{ij} \leq \lvert \lambda \mathbf{A} \rvert_{ij} \epsilon_{\mathrm{mach}}}
+  \item
+    \iMbox{\ds\mathrm{fl}(\mathbf{A} + \mathbf{B}) = (\mathbf{A} + \mathbf{B}) + E, \lvert E \rvert_{ij} \leq \lvert \mathbf{A} + \mathbf{B} \rvert_{ij} \epsilon_{\mathrm{mach}}}
+  \item
+    \iMbox{\ds\mathrm{fl}(\mathbf{A}\mathbf{B}) = \mathbf{A}\mathbf{B} + E, \lvert E \rvert_{ij} \leq n \epsilon_{\mathrm{mach}}(\lvert \mathbf{A} \rvert \lvert \mathbf{B} \rvert)_{ij} + O\left({\epsilon_{\mathrm{mach}}}^{2} \right)}
+  \end{itemize}
+\item
+  \textbf{\emph{Taylor series}} about \iMbox{a\in \mathbb{R}} is
+  \iMbox{\ds f(x)=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k + O\left((x-a)^{n+1}\right)}
+  as \iMbox{x \to a}
+
+  \begin{itemize}
+  
+  \item
+    Need \iMbox{a=0} =\textgreater{}
+    \iMbox{\ds f(x)=\sum_{k=0}^n \frac{f^{(k)}(0)}{k!}x^k + O\left(x^{n+1}\right)}
+    as \iMbox{x \to 0}
+  \item
+    e.g.~\iMbox{\ds (1+\epsilon)^p = \sum_{k=0}^n {\binom{p}{k}\epsilon^{k}} + O\left(\epsilon^{n+1}\right) = \sum_{k=0}^n \frac{p!}{k!(p-k)!}\epsilon^{k} + O\left(\epsilon^{n+1}\right)}
+    as \iMbox{\epsilon \to 0}
+  \end{itemize}
+\end{itemize}
