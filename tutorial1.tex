@@ -14,50 +14,38 @@ For \iMbox{A \in \mathbb{R}^{m \times n}}, \iMbox{\ds A_{ij}} is the \iMbox{i}-t
 
 \hSep % --- Next section ---
 
-Scalar-multiplication distributes over:
+Scalar-multiplication + addition distributes over:
 \begin{itemize}
-  \item
-        \textbf{column-blocks} =\textgreater{}
-        \iMbox{\lambda A = \lambda [A_{1}|A_{2}|\dots] = [\lambda A_{1}|\lambda A_{2}|\dots]}
-  \item
-        \textbf{row-blocks} =\textgreater{}
-        \iMbox{\lambda A = \lambda [A_{1};A_{2};\dots] = [\lambda A_{1};\lambda A_{2};\dots]}
-\end{itemize}
-
-Consider \iMbox{A,B \in \mathbb{R}^{m \times n}} \textbf{partitioned  column/row-wise} in the same way => matrix-addition distributes over:
-\begin{itemize}
-  \item
+  \vItem
         \textbf{column-blocks} =>
-        \iMbox{A+B = [A_{1}|A_{2}|\dots] + [B_{1}|B_{2}|\dots] = [A_{1}+B_{1}|A_{2}+B_{2}|\dots]}
-  \item
+        \iMbox{\lambda A+B = \lambda [A_{1}|\dots|A_{c}] + [B_{1}|\dots|B_{c}] = [\lambda A_{1}+B_{1}|\dots|\lambda A_{c}+B_{c}]}
+  \vItem
         \textbf{row-blocks} =>
-        \iMbox{A+B = [A_{1};A_{2};\dots] + [B_{1};B_{2};\dots] = [A_{1}+B_{1};A_{2}+B_{2};\dots]}
+        \iMbox{\lambda A+B = \lambda [A_{1}; \dots; A_{r}] + [B_{1};\dots; B_{r}] = [\lambda A_{1}+B_{1}; \dots; \lambda A_{r}+B_{r}]}
 \end{itemize}
 
-Consider \iMbox{A = [A_{1};A_{2},\dots]\in \mathbb{R}^{m \times k}, B = [B_{1}|B_{2}|\dots] \in \mathbb{R}^{k \times n}}
-=> matrix-multiplication distributes over:
+Matrix-multiplication distributes over:
 \begin{itemize}
-  \item
-        \textbf{column-blocks} =\textgreater{}
-        \iMbox{\ds AB = A[B_{1}|B_{2}|\dots] = [AB_{1}|AB_{2}|\dots]}
-  \item
-        \textbf{row-blocks} =\textgreater{}
-        \iMbox{AB = [A_{1};A_{2};\dots]B = [A_{1}B;A_{2}B;\dots]}
+  \vItem
+        \textbf{column-blocks} =>
+        \iMbox{\ds AB = A[B_{1}|\dots|B_{p}] = [AB_{1}|\dots|AB_{p}]}
+  \vItem
+        \textbf{row-blocks} =>
+        \iMbox{AB = [A_{1};\dots;A_{p}]B = [A_{1}B;\dots;A_{p}B]}
+  \vItem 
+        \textbf{\emph{outer-product sum}} =>
+        \iMbox{AB = [A_{1}|\dots|A_{p}][B_{1};\dots; B_{p}] = \sum_{i=1}^{p} A_{i}B_{i}}
+        \begin{itemize}
+          \vItem
+                e.g.~for \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}]},
+                \iMbox{B=[\mathbf{b}_{1}; \dots; \mathbf{b}_{n}]} =>
+                \iMbox{AB = \sum_{i} \mathbf{a}_{i}\mathbf{b}_{i}}
+        \end{itemize}
 \end{itemize}
 
-Consider
-\iMbox{\ds A = [A_{1}|\dots|A_{p}]\in \mathbb{R}^{m \times k},
-\ds B = [B_{1};\dots; B_{p}] \in \mathbb{R}^{k \times n}}
-=> \textbf{\emph{outer-product sum}} equivalence:
-\begin{itemize}
-  \item
-        If partition-sizes match =\textgreater{}
-        \iMbox{\ds AB = \sum_{i=1}^{p} A_{i}B_{i}}
-  \item
-        e.g.~for \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}]},
-        \iMbox{B=[\mathbf{b}_{1}; \dots; \mathbf{b}_{n}]} =\textgreater{}
-        \iMbox{AB = \sum_{i} \mathbf{a}_{i}\mathbf{b}_{i}}
-\end{itemize}
+
+
+
 
 \subsection*{What is a projection}
 
@@ -186,7 +174,7 @@ Consider
           \item
                 If \iMbox{\langle \mathbf{u}_{1},\dots,\mathbf{u}_{k} \rangle} is
                 \textbf{not orthonormal}, then ``normalizing factor''
-                \iMbox{(\mathbf{U}^{T}\mathbf{U})^{-1}} is added =\textgreater{}
+                \iMbox{(\mathbf{U}^{T}\mathbf{U})^{-1}} is added =>
                 \iMbox{\ds \pi_{U} = \mathbf{U}(\mathbf{U}^{T}\mathbf{U})^{-1}\mathbf{U}^{T}}
 
                 \begin{itemize}
@@ -207,7 +195,7 @@ Consider
 
   \item
         Gram-Schmidt is \textbf{iterative} {[}{[}\#What is a
-        projection\textbar projection{]}{]} =\textgreater{} we use
+        projection\textbar projection{]}{]} => we use
         \textbf{\emph{current} \iMbox{j}-dim subspace}, to get
         \textbf{\emph{next} \iMbox{(j+1)}-dim subspace}
 
@@ -238,7 +226,7 @@ Consider
                           compliment)}
                 \end{itemize}
           \item
-                Assume \iMbox{\mathbf{a}_{j+1} \not\in U_{j}} =\textgreater{} unique
+                Assume \iMbox{\mathbf{a}_{j+1} \not\in U_{j}} => unique
                 decomposition
                 \iMbox{\ds \mathbf{a}_{j+1} = \mathbf{v}_{j+1} + \mathbf{u}_{j+1}}
 
@@ -246,16 +234,16 @@ Consider
 
                   \item
                         \iMbox{\ds\mathbf{v}_{j+1} = \mathrm{P}_{j}\left(\mathbf{a}_{j+1}\right) \in U_{j}}
-                        =\textgreater{} discard it!!
+                        => discard it!!
                   \item
                         \iMbox{\ds\mathbf{u}_{j+1} = \mathrm{P}_{\perp j}\left(\mathbf{a}_{j+1}\right) \in \left(U_{j}\right)^{\perp}}
-                        =\textgreater{} we're after this!!
+                        => we're after this!!
                 \end{itemize}
           \item
                 Let \iMbox{\ds\mathbf{q}_{j+1} = \widehat{\mathbf{u}}_{j+1}}
-                =\textgreater{} we have \textbf{\emph{next ONB}}
+                => we have \textbf{\emph{next ONB}}
                 \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{j+1} \rangle} for
-                \iMbox{\ds U_{j+1}} =\textgreater{} start next iteration
+                \iMbox{\ds U_{j+1}} => start next iteration
 
                 \begin{itemize}
 
@@ -283,12 +271,12 @@ Consider
                 \iMbox{\ds\langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle \in \mathbb{R}^m}
                 for \iMbox{\ds U_{n} \subset \mathbb{R}^{m}}
           \item
-                \iMbox{j=1} =\textgreater{}
+                \iMbox{j=1} =>
                 \iMbox{\ds\mathbf{u}_{1} = \mathbf{a}_{1}} and
                 \iMbox{\ds\mathbf{q}_{1} = \widehat{\mathbf{u}}_{1}},
                 i.e.~\textbf{\emph{start of iteration}}
           \item
-                \iMbox{j=2} =\textgreater{}
+                \iMbox{j=2} =>
                 \iMbox{\ds\mathbf{u}_{2} = \mathbf{a}_{2} - (\mathbf{q}_{1} \cdot \mathbf{a}_{2})\mathbf{q}_{1}}
                 and \iMbox{\ds\mathbf{q}_{2} = \widehat{\mathbf{u}}_{2}},
                 \textbf{\emph{and so on\ldots{}}}
@@ -385,7 +373,7 @@ Consider
                 and \iMbox{C}
           \item
                 \iMbox{\ds f(\mathbf{b}_{j}) = \sum_{i=1}^{m} A_{ij} \mathbf{c}_{i}}
-                --\textgreater{} each \iMbox{\mathbf{b}_{j}} basis gets mapped to a
+                --> each \iMbox{\mathbf{b}_{j}} basis gets mapped to a
                 linear combination of \iMbox{\ds \sum_{i} a_{i}\mathbf{c}_{i}} bases
           \item
                 If \iMbox{f^{-1}} exists \emph{(i.e.~its bijective and \iMbox{m=n})}
@@ -404,14 +392,14 @@ Consider
                 \iMbox{\ds \mathrm{id}_{\ds\mathbb{R}^{m}}} w.r.t. the standard
                 basis
                 \iMbox{E_{m} = \langle \mathbf{e}_{1},\dots,\mathbf{e}_{m} \rangle}
-                =\textgreater{} i.e.~\iMbox{\mathrm{I}_{m} = \mathbf{I}_{EE}}
+                => i.e.~\iMbox{\mathrm{I}_{m} = \mathbf{I}_{EE}}
           \item
                 If \iMbox{B = \langle \mathbf{b}_{1},\dots,\mathbf{b}_{m} \rangle}
                 is a basis of \iMbox{\mathbb{R}^m}, then
                 \iMbox{\mathbf{I}_{EB} = [\mathbf{b}_{1}|\dots|\mathbf{b}_{m}]} is
                 the transformation matrix from \iMbox{B} to \iMbox{E}
           \item
-                \iMbox{\mathbf{I}_{BE} = (\mathbf{I}_{EB})^{-1}}, so =\textgreater{}
+                \iMbox{\mathbf{I}_{BE} = (\mathbf{I}_{EB})^{-1}}, so =>
                 \iMbox{\mathbf{F}_{CB} = \mathbf{I}_{CE}\mathbf{F}_{EE}\mathbf{I}_{EB}}
         \end{itemize}
   \item
@@ -456,7 +444,7 @@ Consider
                 so \iMbox{A = \mathbf{I}_{EC}} is change-in-basis matrix
           \item
                 Orthogonal transformations preserve lengths/angles/distances
-                =\textgreater{}
+                =>
                 \iMbox{\lVert Ax \rVert_{2} = \lVert x \rVert_{2}, \ \widehat{{Ax} {Ay}} = \widehat{xy}}
 
                 \begin{itemize}
@@ -589,7 +577,7 @@ Consider
 
           \item
                 Equivalence of \iMbox{\ell_1, \ell_2} and \iMbox{\ell_{\infty}}
-                =\textgreater{}
+                =>
                 \iMbox{\begin{aligned} & \|\boldsymbol{x}\|_{\infty} \leq\|\boldsymbol{x}\|_2 \leq\|\boldsymbol{x}\|_1 \\ & \|\boldsymbol{x}\|_2 \leq \sqrt{n}\|\boldsymbol{x}\|_{\infty} \\ & \|\boldsymbol{x}\|_1 \leq \sqrt{n}\|\boldsymbol{x}\|_2\end{aligned}}
         \end{itemize}
   \item
@@ -657,14 +645,14 @@ Consider
 
           \item
                 for all \iMbox{\boldsymbol{A} \in \mathbb{R}^{m \times n}} and
-                \iMbox{\boldsymbol{x} \in \mathbb{R}^n} =\textgreater{}
+                \iMbox{\boldsymbol{x} \in \mathbb{R}^n} =>
                 \iMbox{\|\boldsymbol{A} \boldsymbol{x}\|_b \leq\|\boldsymbol{A}\|\|\boldsymbol{x}\|_a}
           \item
                 If \iMbox{a=b,\|\cdot\|} is \textbf{compatible} with
                 \iMbox{\|\cdot\|_a}
           \item
                 Frobenius norm is \textbf{consistent} with \iMbox{\ell_{2}} norm
-                =\textgreater{} \iMbox{\ds \|A v\|_2 \leq\|A\|_F\|v\|_2}.
+                => \iMbox{\ds \|A v\|_2 \leq\|A\|_F\|v\|_2}.
         \end{itemize}
   \item
         For a vector norm \iMbox{\|\cdot\|} on \iMbox{\mathbb{R}^n}, the
@@ -748,7 +736,7 @@ can help prove other properties
         \begin{itemize}
 
           \item
-                \textbf{Triangular matrices} =\textgreater{}
+                \textbf{Triangular matrices} =>
                 \iMbox{\ds \left|A\right| = \prod_{i}a_{ii}}, i.e.~the product of
                 diagonal elements
         \end{itemize}
@@ -787,12 +775,12 @@ can help prove other properties
                         \iMbox{\mathbf{s} \in \mathbb{R}^{s}, s = \min(m,k)}
                 \end{itemize}
           \item
-                \textbf{Inverse of square-diagonals} =\textgreater{}
+                \textbf{Inverse of square-diagonals} =>
                 \iMbox{\mathrm{diag}(a_{1},\dots,a_{n})^{-1} = \mathrm{diag}(a_{1}^{-1},\dots,a_{n}^{-1})},
                 i.e.~diagonals \textbf{cannot be zero} \emph{(division by zero
                   undefined)}
           \item
-                \textbf{Determinant of square-diagonals} =\textgreater{}
+                \textbf{Determinant of square-diagonals} =>
                 \iMbox{\ds \left|\mathrm{diag}(a_{1},\dots,a_{n})\right| = \prod_{i}a_{i}}
                 \emph{(since they are technically triangular matrices)}
         \end{itemize}
@@ -918,14 +906,14 @@ can help prove other properties
 
           \item
                 \emph{Immediately} from this (and \textbf{multi-linearity})
-                =\textgreater{} if \textbf{columns} \emph{(or \textbf{rows})} are
+                => if \textbf{columns} \emph{(or \textbf{rows})} are
                 linearly-dependent (\emph{some} are linear combinations of
                 \emph{others}) then \iMbox{|A| = 0}
           \item
-                Stated in other terms =\textgreater{}
-                \iMbox{\mathrm{rk}(A) < n \iff |A| = 0} \textless=\textgreater{}
+                Stated in other terms =>
+                \iMbox{\mathrm{rk}(A) < n \iff |A| = 0} \textless=>
                 \iMbox{\mathrm{RREF}(A) \neq I_{n} \iff |A| = 0} \emph{(reduced
-                  row-echelon-form)} \textless=\textgreater{}
+                  row-echelon-form)} \textless=>
                 \iMbox{\mathrm{C}(A) \neq \mathbb{R}^n \iff |A| = 0}
                 \emph{(column-space)}
           \item
@@ -956,7 +944,7 @@ can help prove other properties
                   determinant}
         \end{itemize}
   \item
-        \textbf{Link to invertable matrices} =\textgreater{}
+        \textbf{Link to invertable matrices} =>
         \iMbox{|A^{-1}| = |A|^{-1}} which means
         \iMbox{A \ \text{is invertible} \iff |A| \neq 0} \emph{(because
           division by zero undefined)}, i.e.~\textbf{singular matrices} are
@@ -1018,7 +1006,7 @@ can help prove other properties
                         Don't forget to keep track of sign-flipping \& scaling-factors
                 \end{itemize}
           \item
-                Do Laplace expansion along \emph{that} row/column =\textgreater{}
+                Do Laplace expansion along \emph{that} row/column =>
                 notice \textbf{all-but-one} minor matrix determinants \textbf{go to
                   zero}
         \end{itemize}
@@ -1036,16 +1024,16 @@ can help prove other properties
 
           \item
                 \textbf{EROs} transform
-                \iMbox{\ds A \rightsquigarrow_{\mathrm{EROs}} A'} =\textgreater{}
+                \iMbox{\ds A \rightsquigarrow_{\mathrm{EROs}} A'} =>
                 there is matrix \iMbox{R} s.t. \iMbox{RA = A'}
           \item
                 \textbf{ECOs} transform
-                \iMbox{\ds A \rightsquigarrow_{\mathrm{ECOs}} A'} =\textgreater{}
+                \iMbox{\ds A \rightsquigarrow_{\mathrm{ECOs}} A'} =>
                 there is matrix \iMbox{C} s.t. \iMbox{AC = A'}
           \item
                 Both transform
                 \iMbox{\ds A \rightsquigarrow_{\mathrm{EROs+ECOs}} A'}
-                =\textgreater{} there are matrices \iMbox{R,C} s.t. \iMbox{RAC = A'}
+                => there are matrices \iMbox{R,C} s.t. \iMbox{RAC = A'}
         \end{itemize}
   \item
         \textbf{FORWARD:} to compute these \textbf{transformation matrices}:
@@ -1114,7 +1102,7 @@ can help prove other properties
           \item
                 e.g.~you can do
                 \iMbox{\ds [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R^{-1} \ | \ A' \ | \ C]}
-                to get \iMbox{AC = R^{-1}A'} =\textgreater{} useful for LU
+                to get \iMbox{AC = R^{-1}A'} => useful for LU
                 factorization
         \end{itemize}
 \end{itemize}
@@ -1200,7 +1188,7 @@ can help prove other properties
   \item
         Let \iMbox{P = [\mathbf{x}_{1}|\dots|\mathbf{x}_{n}]}, then
         \iMbox{AP = [\lambda_{1}\mathbf{x}_{1}|\dots|\lambda_{n}\mathbf{x}_{n}] = [\mathbf{x}_{1}|\dots|\mathbf{x}_{n}] \mathrm{diag}(\lambda_{1},\dots,\lambda_{n}) = PD}
-        =\textgreater{} if \iMbox{P^{-1}} exists then
+        => if \iMbox{P^{-1}} exists then
 
         \begin{itemize}
 
@@ -1234,7 +1222,7 @@ can help prove other properties
 
                   \item
                         \iMbox{\mathbf{x}_{1},\dots,\mathbf{x}_{n}} are linearly
-                        independent =\textgreater{} apply Gram-Schmidt
+                        independent => apply Gram-Schmidt
                         \iMbox{\ds \mathbf{q}_{\lambda_{i}},\dots \leftarrow \mathbf{x}_{\lambda_{i}},\dots}
                   \item
                         Then \iMbox{\ds \{ \mathbf{q}_{\lambda_{i}},\dots \}} is
@@ -1242,12 +1230,12 @@ can help prove other properties
                 \end{itemize}
           \item
                 \iMbox{Q = \langle \mathbf{q}_{1},\dots,\mathbf{q}_{n} \rangle} is
-                an ONB of \iMbox{\mathbb{R}^{n}} =\textgreater{}
+                an ONB of \iMbox{\mathbb{R}^{n}} =>
                 \iMbox{\mathbf{Q} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}]} is
                 orthogonal matrix i.e.~\iMbox{\mathbf{Q}^{-1} = \mathbf{Q}^{T}}
           \item
                 \iMbox{\mathbf{q}_{1},\dots,\mathbf{q}_{n}} are still eigenvectors
-                of \iMbox{A} =\textgreater{} \iMbox{A = \mathbf{Q}D\mathbf{Q}^{T}}
+                of \iMbox{A} => \iMbox{A = \mathbf{Q}D\mathbf{Q}^{T}}
                 \emph{(\textbf{spectral decomposition})}
           \item
                 \iMbox{A = \mathbf{Q}D\mathbf{Q}^{T}} can be interpreted as scaling

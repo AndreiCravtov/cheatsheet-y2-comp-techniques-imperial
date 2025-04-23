@@ -7,6 +7,7 @@
 %   - geometry => landscape A4, and margins
 %   - multicol => column layout
 %   - enumitem => style lists
+%   - tikz => drawing complex shapes
 % Customizing:
 %   - microtype => improves text justification and spacing
 %   - tilesec => for customizing section headings
@@ -25,13 +26,17 @@
 \RequirePackage{enumitem}
 \RequirePackage[dvipsnames]{xcolor} % Provides colors
 \RequirePackage{etoolbox}
+\RequirePackage{environ}
 
 \RequirePackage{tcolorbox} % Boxes
-\tcbuselibrary{skins}
+\tcbuselibrary{skins, breakable}
 
 \RequirePackage{amsmath} % Math packages
 \RequirePackage{hyperref}
 % \RequirePackage{breqn} % For breaking equations if needed; keep commented unless essential
+
+\RequirePackage{tikz}
+\usetikzlibrary{tikzmark, calc}
 
 \RequirePackage[calcwidth]{titlesec} % Text-related customization
 \RequirePackage{microtype}
@@ -45,12 +50,17 @@
 % --- Page Layout Settings (Handled by multicol package options usually) ---
 \geometry{landscape, a4paper, margin=0.01in} % Landscape A4, and small margin
 \AtBeginDocument{
-  \setlength{\columnsep}{0.15cm} % Adjust column separation
+  \setlength{\topskip}{0pt} % No top offset
   \setlength{\parindent}{0pt} % No offset on new paragraph
-  
+
+
+  \setlength{\columnsep}{0.15cm} % Adjust column separation
+
+
+
   \setlength{\columnseprule}{0.4pt} % Border between columns 
   \patchcmd{\columnseprulecolor}{\normalcolor}{\color{deepjunglegreen}}{}{} % Patch command to set color
-    
+
   \pagestyle{empty} % No page numbers/headers
 }
 
@@ -63,43 +73,55 @@
 \setmathfont{Fira Math} % Set math fonts => Fira Math + STIX Two Text
 \setmathrm{STIX Two Text}[BoldFeatures = {Color = cornellred}] % Color bold as red
 \setmathfont{Fira Math}[range={it/{greek,Greek}->up},Colour=darkmagenta] % Color greek letters as purple
-\setmathfont{STIX Two Math}[range={\vdots,\ddots}] % Provide fallback for missing glyphs, and replace some
+\setmathfont{STIX Two Math}[range={
+  \vdots,\ddots,\bot,\triangleright}] % Provide fallback for missing glyphs, and replace some
 \setmathfont{Fira Math}[range=]
 
 %\microtypesetup{tracking=true, letterspace=-50} % Agressive line-spacing
-
 \AtBeginDocument{ % Math spacing
   \setlength{\medmuskip}{1.5mu plus 1.0mu minus 1.0mu}
   \setlength{\thickmuskip}{2.5mu plus 1.5mu minus 1.0mu}
 }
 
+% --- Global list/enumeration settings ---
 \setlist{ % Configure list spacing
   nosep,                % MOST IMPORTANT: Removes vertical space within and around list items
-                        % (sets itemsep, parsep, topsep, partopsep to zero or minimal values)
-  leftmargin=1em,       % Controls the primary indentation from the left margin. Adjust '1em' as needed.
-                        % Try smaller values like 0.8em, or even '!' for minimum calculated indent.
-  labelsep=0.25em,       % Space between the label (bullet, number) and the item text. Adjust '0.5em'.
-  labelwidth=*,        % Let enumitem determine the width needed for the label automatically.
+  % (sets itemsep, parsep, topsep, partopsep to zero or minimal values)
+  labelsep=0.25pt,     % Space between the label (bullet, number) and the item text.
+  labelwidth=*,
   itemindent=0pt,       % Indentation of subsequent lines within the same item (usually 0pt or !).
-  listparindent=0pt     % Indentation of new paragraphs within the same item.
+  listparindent=0pt,    % Indentation of new paragraphs within the same item.
+  leftmargin=1.25pt,
 }
-% --- Optional: Fine-tuning specific list types ---
+% Optional: Fine-tuning specific list types
 % If you only wanted to affect itemize, you'd use:
 % \setlist[itemize]{nosep, leftmargin=1em, labelsep=0.5em}
 % And you could define different settings for enumerate:
 % \setlist[enumerate]{nosep, leftmargin=1.5em, labelsep=0.4em}
 
+% Create new environment with item labels replaced by vertical lines
+\newtcolorbox{vLineItem}{
+  breakable, blanker, nobeforeafter,
+  borderline west={0.3pt}{0pt}{ceruleanblue}
+}
+
+% Create patched vertical list environment variants
+\newcommand{\vItem}{\item[\textcolor{ceruleanblue}{\(\circ\)}]}
+\newenvironment{vItemize}
+  {\begin{vLineItem}\raggedright\begin{itemize}}
+  {\end{itemize}\end{vLineItem}}
+
 % --- Customize \subsection for cheat sheet sections ---
 \newcommand{\mkTitleFormat}[2]{
-\titleformat{name=#1, numberless} % Command: starred version for unnumbered sections
+  \titleformat{name=#1, numberless} % Command: starred version for unnumbered sections
   {\normalfont\sffamily#2} % Format: sizae, weight, color
   {} % Label: leave empty
   {0em} % Sep: space between label & title body
   {} % Code before title body
   [\titleline*{\titlerule}] % Code after title body
-\titlespacing*{name=#1, numberless}
+  \titlespacing*{name=#1, numberless}
   {0pt} % Left indent
-  {1.25ex plus 0.5ex minus .2ex} % Space BEFORE heading
+  {0ex plus 0ex minus .2ex} % Space BEFORE heading
   {0.5ex plus .2ex} % Space AFTER heading (before text/rule)
 }
 \mkTitleFormat{\section}{\fontsize{8}{3}\bfseries\color{ceruleanblue}}
@@ -111,24 +133,24 @@
 % --- Typography & Structure Commands ---
 \newcommand{\hSep}{\textcolor{deepjunglegreen}{\hrulefill}} % Horizontal separator bar 
 
-\newtcbox{\inlinebox}{ % Inline box
-    nobeforeafter,     % Prevent extra vertical space
-    enhanced,        % Often useful with overlay
-    box align=base,    % Align box with text baseline vertically
-    boxrule=0pt,       % Ensure no default frame is drawn
-    colback=white,     % Background color (or opacityback=0)
-    sharp corners,
-    boxsep=0pt,
-    left=0pt,          % Inner padding left (creates space for line)
-    right=1pt,         % Inner padding right (creates space for line)
-    top=0pt,           % Inner padding top
-    bottom=1pt,        % Inner padding bottom
-    % --- Use overlay to draw lines manually ---
-    overlay={
+\newtcbox{\inlinebox}{ % Inline box for inexpensively seperating text
+  nobeforeafter,     % Prevent extra vertical space
+  enhanced,        % Often useful with overlay
+  box align=base,    % Align box with text baseline vertically
+  boxrule=0pt,       % Ensure no default frame is drawn
+  colback=white,     % Background color (or opacityback=0)
+  sharp corners,
+  boxsep=0pt,
+  left=0pt,          % Inner padding left (creates space for line)
+  right=1pt,         % Inner padding right (creates space for line)
+  top=0pt,           % Inner padding top
+  bottom=1pt,        % Inner padding bottom
+  % --- Use overlay to draw lines manually ---
+  overlay={
       \draw[deepjunglegreen, line width=0.5pt] % Set line color and width
-        (frame.south east) -- (frame.north east); % Draw right lineh
+      (frame.south east) -- (frame.north east); % Draw right lineh
       \draw[deepjunglegreen, line width=0.5pt] % Set line color and width
-        (frame.south east) -- (frame.south west); % Draw bottom line
+      (frame.south east) -- (frame.south west); % Draw bottom line
     }
 }
 
@@ -136,19 +158,22 @@
 
 \newenvironment{MiniPage}{
   \noindent % Prevent paragraph indentation before the minipage
-  \begin{minipage}{\columnwidth}
-}{
-  \hSep % horizontal bar
+  \begin{minipage}{\columnwidth} 
+  \raggedright % Justify to the right
+    }{
+    \hSep % horizontal bar
   \end{minipage}
 }
 
 \newenvironment{CheatSheet}{ % Main cheat-sheet environment
   \begin{multicols}{8} % Define 8 columns
-    
-  \fontfamily{\sfdefault}\selectfont  % Set font family/font-size
-  \fontsize{5}{6}\selectfont
-  \raggedright
-}{\end{multicols}}
+    \noindent % Prevent paragraph indentation before the columns
+    \raggedright % Justify to the right
+
+    \fontfamily{\sfdefault}\selectfont  % Set font family/font-size
+    \fontsize{5}{6}\selectfont
+
+    }{\end{multicols}}
 
 % --- Math Macros ---
 \newcommand{\ds}{\displaystyle}
