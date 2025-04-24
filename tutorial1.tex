@@ -229,6 +229,7 @@ Matrix-multiplication distributes over:
                                     \iMbox{\ds \mathbf{u}_{j+1} = \left(\mathbf{I}_{m} - Q_{j}Q_{j}^{T} \right)\mathbf{a}_{j+1} = \mathbf{a}_{j+1} - Q_{j}\mathbf{c}_{j}}
                                     where
                                     \iMbox{\ds \mathbf{c}_{j} = [\mathbf{q}_{1} \cdot \mathbf{a}_{j+1}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j+1}]^{T}}
+                                    \tcbbreak
                               \item
                                     \textbf{Notice:}
                                     \iMbox{\ds  Q_{j}\mathbf{c}_{j} = \sum_{i=1}^{j} (\mathbf{q}_{i} \cdot \mathbf{a}_{j+1})\mathbf{q}_{i} = \sum_{i=1}^{j} \mathrm{proj}_{\ds \mathbf{q}_{i}}(\mathbf{a}_{j+1})},
@@ -637,7 +638,7 @@ to its conjugate-transpose
                         eigenvectors \iMbox{\mathbf{x}_{1},\mathbf{x}_{2}} associated
                         to distinct eigenvalues \iMbox{\lambda_{1},\lambda_{2}} are
                         \textbf{orthogonal},
-                        i.e.~\iMbox{\mathbf{x}_{1} \perp \mathbf{x}_{2}}
+                        i.e. \iMbox{\mathbf{x}_{1} \perp \mathbf{x}_{2}}
             \end{itemize}
 \end{itemize}
 
@@ -694,6 +695,7 @@ i.e. if all off-diagonal entries are zero
             \textbf{Inverse of square-diagonals} =>
             \iMbox{\mathrm{diag}(a_{1},\dots,a_{n})^{-1} = \mathrm{diag}(a_{1}^{-1},\dots,a_{n}^{-1})},
             i.e. diagonals \textbf{cannot be zero} \emph{(division by zero undefined)}
+            \tcbbreak
       \item
             \textbf{Determinant of square-diagonals} =>
             \iMbox{\left|\mathrm{diag}(a_{1},\dots,a_{n})\right| = \prod_{i}a_{i}}
@@ -907,6 +909,7 @@ diagonal matrix \iMbox{D}
       \item
             If \textbf{Cholesky/LU/QR} is possible and cheap then do it, then
             apply \iMbox{\lvert AB \rvert = |A||B|}
+            \tcbbreak
       \item
             If all else fails, try to find row/column with \textbf{MOST} zeros
 
@@ -1134,6 +1137,7 @@ You can mix-and-match the \textbf{forward/backward} modes
                   \item
                         If \iMbox{\mathbf{x}_{i},\mathbf{x}_{j}} associated to different
                         eigenvalues then \iMbox{\mathbf{x}_{i} \perp \mathbf{x}_{j}}
+                        \tcbbreak
                   \item
                         If associated to same eigenvalue \iMbox{\lambda} then
                         \textbf{eigenspace} \iMbox{E_{\lambda}} has spanning-set

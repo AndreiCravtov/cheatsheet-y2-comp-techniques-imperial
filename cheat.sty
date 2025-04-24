@@ -126,12 +126,12 @@
 
 % Patch 'itemize' environment
 \newcommand{\vItem}{\item[\textcolor{ceruleanblue}{\(\circ\)}]}
-% \tcolorboxenvironment{itemize}{
-%   breakable, blanker, nobeforeafter, 
-%   borderline west={0.3pt}{0pt}{ceruleanblue},
-%   left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
-%   before upper={\noindent\raggedright}
-% }
+\tcolorboxenvironment{itemize}{
+  enforce breakable, blanker, nobeforeafter, 
+  borderline west={0.3pt}{0pt}{ceruleanblue},
+  left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
+  before upper={\noindent\raggedright},
+}
 
 % --- Customize \subsection for cheat sheet sections ---
 \newcommand{\mkTitleFormat}[2]{
@@ -194,7 +194,7 @@
     \fontfamily{\sfdefault}\selectfont  % Set font family/font-size
     \fontsize{5}{6}\selectfont
     \raggedright % Justify to the right
-    }{\end{multicols}}
+    }{\end{multicols*}}
 
 % --- Math Macros ---
 \newcommand{\ds}{\displaystyle}

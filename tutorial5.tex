@@ -272,8 +272,6 @@ Notice \iMbox{L = \mathbb{R}\mathbf{n}} and \iMbox{P = (\mathbb{R}\mathbf{n})^{\
             \iMbox{\ds P = (\mathbb{R}\mathbf{n})^{\bot} + \mathbf{c}} if:
 
             \begin{enumerate}
-                  \def\labelenumi{\arabic{enumi})}
-
                   \item
                         The translation
                         \iMbox{\ds \overrightarrow{\mathbf{x}\mathbf{y}} = \mathbf{y} - \mathbf{x}}
@@ -295,9 +293,12 @@ Notice \iMbox{L = \mathbb{R}\mathbf{n}} and \iMbox{P = (\mathbb{R}\mathbf{n})^{\
                         \textbf{Householder matrix}
                         \iMbox{\ds H_{\mathbfit{u}} = \mathbf{I}_{n}-2\mathbfit{u}\mathbfit{u}^{T}}
                         is reflection w.r.t. hyperplane \iMbox{\ds P_{\mathbfit{u}}}
+
                   \item
                         Recall: let
                         \iMbox{\ds L_{\mathbfit{u}} = \mathbb{R}\mathbfit{u}}
+
+                        \tcbbreak
 
                         \begin{itemize}
 
@@ -307,6 +308,7 @@ Notice \iMbox{L = \mathbb{R}\mathbf{n}} and \iMbox{P = (\mathbb{R}\mathbf{n})^{\
                                     \iMbox{\ds\mathrm{proj}_{P_{\mathbfit{u}}} = \mathbf{I}_{n} - \mathbfit{u}\mathbfit{u}^{T}}
                                     =>
                                     \iMbox{\ds H_{\mathbfit{u}} = \mathrm{proj}_{P_{\mathbfit{u}}} - \mathrm{proj}_{L_{\mathbfit{u}}}}
+                                    
                               \item
                                     \textbf{Visualize} as preserving component in
                                     \iMbox{\ds P_{\mathbfit{u}}}, then flipping component in \iMbox{\ds L_{\mathbfit{u}}}
