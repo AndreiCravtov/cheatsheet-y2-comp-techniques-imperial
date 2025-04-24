@@ -266,13 +266,13 @@ Matrix-multiplication distributes over:
                         \textbf{For exams}: compute \iMbox{\ds \mathbf{u}_{j+1} = \mathbf{a}_{j+1} - Q_{j}\mathbf{c}_{j}}
 
                         \begin{enumerate}
-                              \vItem
+                              \vItem 1)
                                     Gather
                                     \iMbox{\ds Q_{j} = [\mathbf{q}_{1}|\dots|\mathbf{q}_{j}] \in \mathbb{R}^{m \times j}}
-                              \vItem
+                              \vItem 2)
                                     Compute
                                     \iMbox{\ds \mathbf{c}_{j} = [\mathbf{q}_{1} \cdot \mathbf{a}_{j+1}, \dots, \mathbf{q}_{j} \cdot \mathbf{a}_{j+1}]^{T} \in \mathbb{R}^{j}}
-                              \vItem
+                              \vItem 3)
                                     Compute \iMbox{\ds Q_{j}\mathbf{c}_{j} \in \mathbb{R}^{m}}, and
                                     subtract from \iMbox{\mathbf{a}_{j+1}}
                         \end{enumerate}
@@ -1167,10 +1167,10 @@ You can mix-and-match the \textbf{forward/backward} modes
                         in direction of its eigenvectors:
 
                         \begin{enumerate}
-                              \vItem
+                              \vItem 1)
                                     Perform a succession of reflections/planar rotations to change
                                     coordinate-system
-                              \vItem
+                              \vItem 2)
                                     Apply scaling by \iMbox{\lambda_{i}} to each dimension
                                     \iMbox{\mathbf{q}_{i}}
                               \vItem
