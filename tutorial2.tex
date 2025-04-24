@@ -3,20 +3,20 @@
 
 \begin{itemize}
 
-      \item
+      \vItem
             Standard inner product:
             \iMbox{\langle x, y \rangle = x^{\dagger} y = \sum_{i} \overline{x_{i}}y_{i}}
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         \textbf{Conjugate-symmetric}:
                         \iMbox{\langle x, y \rangle = \overline{\langle y,x \rangle}}
             \end{itemize}
-      \item
+      \vItem
             Standard \emph{(induced)} norm:
             \iMbox{\lVert x \rVert = \sqrt{ \langle x, y \rangle } = \sqrt{ x^{\dagger} y }}
-      \item
+      \vItem
             We can \underline{diagonalise} real matrices in
             \iMbox{\mathbb{C}} which lets us \underline{diagonalise more matrices than before}
 \end{itemize}
@@ -30,21 +30,21 @@ then \textbf{Least Square Method} is:
 
 \begin{itemize}
 
-      \item
+      \vItem
             Finding \iMbox{\mathbf{x}} which \textbf{minimizes}
             \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2}}
-      \item
+      \vItem
             Recall for \iMbox{A \in \mathbb{R}^{m \times n}} we have unique decomposition for
             any \iMbox{\mathbf{b} \in \mathbb{R}^{m}}:
             \iMbox{\mathbf{b} = \mathbf{b}_{i} + \mathbf{b}_{k}}
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         where \iMbox{\mathbf{b}_{i} \in \mathrm{C}(A)} and
                         \iMbox{\mathbf{b}_{k} \in \mathrm{ker}(A^{T})}
             \end{itemize}
-      \item
+      \vItem
             \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2} \ \text{is minimized} \iff \lVert A \mathbf{x} - \mathbf{b}_{i} \rVert_{2} = 0 \iff A \mathbf{x} = \mathbf{b}_{i}}
 \end{itemize}
 
@@ -58,11 +58,11 @@ then \textbf{Least Square Method} is:
 
 \begin{itemize}
 
-      \item
+      \vItem
             Let \iMbox{y = f(t) = \sum_{j=1}^{n} s_{j}f_{j}(t)} be a
             \textbf{mathematical model}, where \iMbox{f_{j}} are \textbf{basis
                   functions} and \iMbox{s_{j}} are \textbf{parameters}
-      \item
+      \vItem
             Let \iMbox{\ds (t_{i},y_{i})}, \iMbox{1 \leq i \leq m, m \gg n} be a
             set of \textbf{observations}, and
             \iMbox{\mathbf{t},\mathbf{y} \in \mathbb{R}^{m}} are vectors
@@ -70,16 +70,16 @@ then \textbf{Least Square Method} is:
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         \iMbox{f_{j}(\mathbf{t}) = [f_{j}(t_{1}),\dots,f_{j}(t_{m})]^{T}} is \textbf{transformed vector}
-                  \item
+                  \vItem
                         \iMbox{A = [f_{1}(\mathbf{t})|\dots|f_{n}(\mathbf{t})] \in \mathbb{R}^{m \times n}}
                         is a matrix of columns
-                  \item
+                  \vItem
                         \iMbox{\mathbf{z} = [s_{1},\dots, s_{n}]^{T}} is vector of
                         parameters
             \end{itemize}
-      \item
+      \vItem
             Then we get equation \iMbox{A \mathbf{z} = \mathbf{y}} =\textgreater{}
             \textbf{minimizing}
             \iMbox{\ds \lVert A \mathbf{z} - \mathbf{y} \rVert_{2}} is the
@@ -87,14 +87,14 @@ then \textbf{Least Square Method} is:
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         So applying \textbf{LSM} to \iMbox{A \mathbf{z} = \mathbf{y}} is
                         \emph{precisely} what \textbf{Linear Regression} is
-                  \item
+                  \vItem
                         We can use normal equations for this =\textgreater{}
                         \iMbox{\ds \lVert A \mathbf{z} - \mathbf{y} \rVert_{2} \ \text{is minimized} \iff A^{T}A \mathbf{z} = A^{T}\mathbf{y}}
             \end{itemize}
-      \item
+      \vItem
             Solution to \textbf{normal equations} unique \textbf{iff} \iMbox{A} is
             full-rank, i.e.~it has linearly-independent columns
 \end{itemize}

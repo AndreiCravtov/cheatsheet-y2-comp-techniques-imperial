@@ -8,10 +8,10 @@ Consider \textbf{positive (semi-)definite}
 is lower-triangular
 \begin{itemize}
 
-      \item
+      \vItem
             For positive semi-definite => \textbf{always exists},
             but \textbf{non-unique}
-      \item
+      \vItem
             For positive-definite => \textbf{always \emph{uniquely}
                   exists} s.t. diagonals of \iMbox{L} are positive
 \end{itemize}
@@ -21,22 +21,22 @@ is lower-triangular
 Finding a Cholesky Decomposition:
 \begin{itemize}
 
-      \item
+      \vItem
             Compute \iMbox{LL^{T}} and solve \iMbox{A = LL^T} by matching terms
-      \item
+      \vItem
             For square roots always pick positive
-      \item
+      \vItem
             If there is \textbf{exact solution} then \textbf{positive-definite}
-      \item
+      \vItem
             If there are \textbf{free variables} at the end, then
             \textbf{positive semi-definite}
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         i.e.~the decomposition is a \textbf{solution-set} parameterized on
                         \textbf{free variables}
-                  \item
+                  \vItem
                         e.g.~\iMbox{\begin{bmatrix}1&1&1\\1&1&1\\1&1&2\end{bmatrix} = LL^{T}}
                         where
                         \iMbox{L = \begin{bmatrix}1&0&0\\1&0&0\\1&c&\sqrt{ 1-c^2 }\end{bmatrix}, c \in [0,1]}
@@ -50,12 +50,12 @@ If \iMbox{A = LL^T} you can use \underline{forward/backward substitution} to
 
 \begin{itemize}
 
-      \item
+      \vItem
             For \iMbox{Ax = b} => let \iMbox{y = L^Tx}
-      \item
+      \vItem
             Solve \iMbox{Ly = b} by forward substitution to \textbf{find
                   \iMbox{y}}
-      \item
+      \vItem
             Solve \iMbox{L^{T}x = y} by backward substitution to \textbf{find
                   \iMbox{x}}
 \end{itemize}
@@ -69,36 +69,36 @@ For \iMbox{n=3} =>
 
 \begin{itemize}
 
-      \item
+      \vItem
             \textbf{Forward substitution}: for lower-triangular
             \iMbox{L = \begin{bmatrix}\ell_{1,1} & & 0 \\ \vdots & \ddots & \\ \ell_{n, 1} & \ldots & \ell_{n, n}\end{bmatrix}}
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         For \iMbox{Lx = b}, just \textbf{solve} the first row
                         \iMbox{\ell_{1,1} x_{1} = b_{1} \implies x_{1} = \frac{b_{1}}{\ell_{1,1}}}
                         and \textbf{substitute down}
-                  \item
+                  \vItem
                         Then \textbf{solve} the second row
                         \iMbox{
                               \ell_{2,1}x_{1} + \ell_{2,2}x_{2} = b_{2} \implies x_{2} = \frac{b_{2} - \ell_{2,1}x_{1}}{\ell_{2,2}}
                         }
                         and \textbf{substitute down}
-                  \item
+                  \vItem
                         \ldots and so on until all \iMbox{x_{i}} are solved
             \end{itemize}
-      \item
+      \vItem
             \textbf{Backward substitution}: for upper-triangular
             \iMbox{U = \begin{bmatrix}u_{1,1} & \dots & u_{1,n} \\ & \ddots & \vdots \\ 0 & & u_{n, n}\end{bmatrix}}
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         For \iMbox{Ux = b}, just \textbf{solve} the last row
                         \iMbox{u_{n,n} x_{n} = b_{n} \implies x_{n} = \frac{b_{n}}{u_{n,n}}}
                         and \textbf{substitute up}
-                  \item
+                  \vItem
                         Then \textbf{solve} the second-to-last row
                         \iMbox{
                               \begin{aligned}
@@ -106,7 +106,7 @@ For \iMbox{n=3} =>
                               \end{aligned}
                         }
                         and \textbf{substitute up}
-                  \item
+                  \vItem
                         \ldots and so on until all \iMbox{x_{i}} are solved
             \end{itemize}
 \end{itemize}

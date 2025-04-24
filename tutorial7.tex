@@ -10,10 +10,10 @@ obtained by \underline{switching} \iMbox{\mathbf{e}_{i}} and
 \iMbox{\mathbf{e}_{j}} in \iMbox{\mathbf{I}_{n}} \emph{(same for rows/columns)}
 \begin{itemize}
 
-      \item
+      \vItem
             Applying \iMbox{ P_{ij}} \textbf{from left} will \underline{swap rows},
             \textbf{from right} will \underline{swap columns}
-      \item
+      \vItem
             \iMbox{ P_{ij} = P_{ij}^{T} = P_{ij}^{-1}}, i.e. \underline{applying twice}
             will \textbf{undo} it
 \end{itemize}
@@ -21,10 +21,10 @@ obtained by \underline{switching} \iMbox{\mathbf{e}_{i}} and
 \textbf{Row/column scaling}: \iMbox{ D_{i}(\lambda)} obtained by \underline{scaling} \iMbox{\mathbf{e}_{i}} by \iMbox{\lambda} in
 \iMbox{\mathbf{I}_{n}} \emph{(same for rows/columns)}
 \begin{itemize}
-      \item
+      \vItem
             Applying \iMbox{ P_{ij}} \textbf{from left} will \underline{scale rows},
             \textbf{from right} will \underline{scale columns}
-      \item
+      \vItem
             \iMbox{ D_{i}(\lambda) = \mathrm{diag}(1,\dots,\lambda,\dots,1)}
             so all \textbf{diagonal} \underline{properties} apply,
             e.g. \iMbox{ D_{i}(\lambda)^{-1} = D_{i}(\lambda^{-1})}
@@ -36,10 +36,10 @@ performs \iMbox{ R_{i} \leftarrow R_{i} + \lambda R_{j}} when
 applying \textbf{from left}
 \begin{itemize}
 
-      \item
+      \vItem
             \iMbox{\lambda\mathbf{e}_{i}\mathbf{e}_{j}^{T}} is \underline{zeros} except
             for \textbf{\iMbox{\lambda} in \iMbox{(i,j)}-th entry}
-      \item
+      \vItem
             \iMbox{L_{ij}(\lambda)^{-1} = L_{ij}(-\lambda)} both \underline{triangular matrices}
 \end{itemize}
 
@@ -59,27 +59,27 @@ where \iMbox{L,U} are \underline{lower/upper triangular} \emph{respectively}
 \iMbox{ [I_{m} \ | \ A \ | \ I_{n}] \rightsquigarrow [R^{-1} \ | \ U \ | \ I_{n}]}
 to get \iMbox{AI_{n} = R^{-1}U} using \underline{only row addition}
 \begin{itemize}
-      \item
+      \vItem
             \iMbox{R^{-1}}, i.e. \textbf{inverse EROs} in \underline{reversed order}, is
             \textbf{lower-triangular} so \iMbox{L = R^{-1}}
 
             \includegraphics[width=75pt]{gausselim}
-      \item
+      \vItem
             The \textbf{pivot element} is simply \underline{diagonal entry}
             \iMbox{ u_{kk}^{(k-1)}}; fails if
             \iMbox{ u_{kk}^{(k-1)} \approx 0}
-      \item
+      \vItem
             \iMbox{\tilde{L} \tilde{U}=A+\delta A},
             \iMbox{ \frac{\|\delta A\|}{\|L\| \cdot\|U\|}= O\left(\epsilon_{ \mathrm{mach}}\right)};
             only \textbf{backwards stable} if
             \iMbox{\|L\| \cdot\|U\| \approx\|A\|}
-      \item
+      \vItem
             \underline{Work required:} \iMbox{{\sim}\frac{2}{3} m^3} flops
             \iMbox{{\sim}O\left(m^3\right)}
-      \item
+      \vItem
             Solving \iMbox{Ax = LUx} is \iMbox{{\sim}\frac{2}{3} m^3} flops
             \emph{(back substitution is \iMbox{O(m^2)})}
-      \item
+      \vItem
             \textbf{NOTE:} \underline{Householder triangularisation} requires
             \iMbox{{\sim}\frac{4}{3} m^3}
 \end{itemize}
@@ -91,28 +91,28 @@ a \underline{permutation matrix} => \iMbox{PP^{T} = I}, i.e. its \underline{orth
 
 \begin{itemize}
 
-      \item
+      \vItem
             For \underline{each column} \iMbox{j}, finds \underline{largest entry} and {row-swaps} to make
             it \underline{new pivot} => \iMbox{ P_{j}}
-      \item
+      \vItem
             Then performs \underline{normal elimination} on that column => \iMbox{ L_{j}}
-      \item
+      \vItem
             Result is \iMbox{ L_{m-1} P_{m-1} \ldots L_2 P_2 L_1 P_1 A = U},
             where \iMbox{ L_{m-1} P_{m-1} \ldots L_2 P_2 L_1 P_1=L_{m-1}^{\prime} \ldots L_1^{\prime} P_{m-1} \ldots P_1}
-      \item
+      \vItem
             Setting
             \iMbox{ L=\left(L_{m-1}^{\prime} \ldots L_1^{\prime}\right)^{-1}},
             \iMbox{ P=P_{m-1} \ldots P_1} gives \iMbox{P A=L U}
 
             \includegraphics[width=100pt]{parpivot}
-      \item
+      \vItem
             \underline{Work required:} \iMbox{{\sim}\frac{2}{3} m^3} flops
             \iMbox{{\sim}O\left(m^3\right)}; results in \iMbox{ L_{ij} \leq 1} so \iMbox{ \lVert L \rVert = O(1)}
-      \item
+      \vItem
             \underline{Stability} depends on \textbf{growth-factor}
             \iMbox{\rho=\frac{\max _{i, j}\left|u_{i, j}\right|}{\max _{i, j}\left|a_{i, j}\right|}}
             => for \underline{partial pivoting} \iMbox{\rho \leq 2^{m-1}}
-      \item
+      \vItem
             \iMbox{\lVert U \rVert = O(\rho \lVert A \rVert)} =>
             \iMbox{ \tilde{L} \tilde{U}=\tilde{P} A+\delta A},
             \iMbox{\frac{\|\delta A\|}{\|A\|}=O\left(\rho \epsilon_{\text {machine }}\right)}
@@ -123,9 +123,9 @@ a \underline{permutation matrix} => \iMbox{PP^{T} = I}, i.e. its \underline{orth
 
 \textbf{Full pivoting} is \iMbox{PAQ = LU} finds largest entry in \textbf{bottom-right submatrix}
 \begin{itemize}
-      \item
+      \vItem
             Makes it \textbf{pivot} with \underline{row/column swaps} before \underline{normal elimination}
-      \item
+      \vItem
             Very expensive \iMbox{O(m^3)} \underline{search-ops}, \textbf{partial pivoting} only needs \iMbox{O(m^2)}
 \end{itemize}
 
@@ -144,9 +144,9 @@ a \underline{permutation matrix} => \iMbox{PP^{T} = I}, i.e. its \underline{orth
 For \underline{metric spaces}, \textbf{mix-and-match} these \underline{infinite/finite limit}
 definitions:
 \begin{itemize}
-      \item
+      \vItem
             \iMbox{ \lim_{ x \to + \infty } f(x) = +\infty \iff \forall r \in \mathbb{R}, \exists N \in \mathbb{N}, \forall x > N: \ \  f(x)>r}
-      \item
+      \vItem
             \iMbox{
                   \lim_{ x \to p } f(x) = L \iff
                   \begin{aligned}
@@ -154,7 +154,7 @@ definitions:
                   \\ &0 < d_{X}(x,p) < \delta \implies d_{Y}(f(x),L) < \varepsilon
                   \end{aligned}
             }
-      \item
+      \vItem
             \textbf{Cauchy sequences},
             i.e. \iMbox{\forall \varepsilon >0, \exists N \in \mathbb{N}, \forall m,n\geq N: \ \ d(a_{m}, a_{n})<\varepsilon},
             converge in \textbf{complete spaces}
@@ -167,12 +167,12 @@ e.g. \iMbox{ \lim_{ n \to \infty }(A^{n}B+C) = \left(\lim_{ n \to \infty }A^{n} 
 Turn \textbf{metric limit} \iMbox{\lim_{ n \to \infty } x_{n} = L} into \textbf{real limit}
 \iMbox{\lim_{ n \to \infty } d(x_{n},L) = 0} to \underline{leverage real analysis}
 \begin{itemize}
-      \item
+      \vItem
             \underline{Bounded} \textbf{monotone sequences} converge in \iMbox{\mathbb{R}}
-      \item
+      \vItem
             \underline{Sandwich theorem} for limits in \iMbox{\mathbb{R}} =>
             pick easy \underline{upper/lower} bounds
-      \item
+      \vItem
             \iMbox{\lim_{ n \to \infty }  r^n = 0 \iff |r| < 1} and
             \iMbox{\lim_{ n \to \infty } \sum_{i=0}^{n} ar^{i} = \frac{a}{1-r} \iff |r| < 1}
 \end{itemize}
@@ -185,26 +185,26 @@ Let \iMbox{A,R,G \in \mathbb{R}^{n \times n}} where \iMbox{G^{-1}}
 exists => \textbf{splitting} \iMbox{A = G + R} helps iteration
 \begin{itemize}
 
-      \item
+      \vItem
             \iMbox{A\mathbf{x}=\mathbf{b}} \underline{rewritten as}
             \iMbox{\mathbf{x} = M \mathbf{x} + \mathbf{c}} where
             \iMbox{M = - G^{-1}R; \ \mathbf{c} = -G^{-1}\mathbf{b}}
-      \item
+      \vItem
             Define \iMbox{ f(\mathbf{x}) = M \mathbf{x} + \mathbf{c}} and \underline{sequence}
             \iMbox{ \mathbf{x}^{(k+1)} = f(\mathbf{x}^{(k)}) = M \mathbf{x}^{(k)} + \mathbf{c}}
             with \underline{starting point} \iMbox{\mathbf{x}^{(0)}}
-      \item
+      \vItem
             \textbf{Limit} of \iMbox{\langle\mathbf{x}_{k}\rangle} is \underline{fixed point} of \iMbox{f} => \underline{unique fixed point} of \iMbox{f}
             is \textbf{solution} to \iMbox{A\mathbf{x}=\mathbf{b}}
-      \item
+      \vItem
             If \iMbox{\lVert - \rVert} is \underline{consistent norm} and
             \iMbox{\lVert M \rVert < 1} then \iMbox{\langle\mathbf{x}_{k}\rangle} \underline{converges} for any
             \iMbox{\mathbf{x}^{(0)}} \emph{(because Cauchy-completeness)}
             \begin{itemize}
 
-                  \item
+                  \vItem
                         We want to find \iMbox{\lVert M \rVert < 1} and \underline{easy to compute} \iMbox{M; \mathbf{c}}
-                  \item
+                  \vItem
                         \textbf{Stopping criterion} usually the \underline{relative residual}
                         \iMbox{\frac{\left\|\mathbf{b}-A \mathbf{x}^{(k)}\right\|}{\|\mathbf{b}\|} \leq \epsilon}
             \end{itemize}
@@ -221,7 +221,7 @@ where \iMbox{D} is \textbf{diagonal} of \iMbox{A}, \iMbox{L,U} are strict \textb
 
 \iMbox{G = D;R = L + U} => \iMbox{M = -D^{-1}(L + U); \mathbf{c} = D^{-1}\mathbf{b}}
 \begin{itemize}
-      \item
+      \vItem
             \iMbox{ \mathbf{x}_i^{(k+1)}=\frac{1}{A_{ii}}\left(\mathbf{b}_i-\sum_{j \neq i} A_{ij} \mathbf{x}_j^{(k)}\right)}
             => \iMbox{ \mathbf{x}_i^{(k+1)}} only needs
             \iMbox{\mathbf{b}_i; \ \mathbf{x}^{(k)}; \ A_{i \ast}}
@@ -234,9 +234,9 @@ where \iMbox{D} is \textbf{diagonal} of \iMbox{A}, \iMbox{L,U} are strict \textb
 
 \iMbox{G = D + L;R = U} => \iMbox{M = -(D + L)^{-1}U; \mathbf{c} = (D + L)^{-1}\mathbf{b}}
 \begin{itemize}
-      \item
+      \vItem
             \iMbox{ \mathbf{x}_i^{(k+1)}=\frac{1}{A_{ii}}\left(\mathbf{b}_i - \sum_{j=1}^{i-1} A_{ij} \mathbf{x}_j^{(k+1)}-\sum_{j=i+1}^n A_{ij} \mathbf{x}_j^{(k)}\right)}
-      \item
+      \vItem
             Computing \iMbox{ \mathbf{x}_i^{(k+1)}} needs
             \iMbox{\mathbf{b}_i; \ \mathbf{x}^{(k)}; \ A_{i \ast}} and
             \iMbox{ \mathbf{x}_{j}^{(k+1)}} for \iMbox{j<i} =>
@@ -251,7 +251,7 @@ where \iMbox{D} is \textbf{diagonal} of \iMbox{A}, \iMbox{L,U} are strict \textb
 \iMbox{M = - (\omega^{-1} D + L)^{-1}((1-\omega^{-1})D + U); \ \mathbf{c} = -(\omega^{-1} D + L)^{-1}\mathbf{b}}
 \begin{itemize}
 
-      \item
+      \vItem
             \iMbox{
             \mathbf{x}_i^{(k+1)}=
             \begin{aligned}

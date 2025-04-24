@@ -9,20 +9,20 @@ i.e. \iMbox{A = A^{T}}
 
 \begin{itemize}
 
-      \item
+      \vItem
             \iMbox{A} is positive-definite \textbf{iff} all its eigenvalues are
             \textbf{strictly positive}
-      \item
+      \vItem
             \iMbox{A} is positive-definite =\textgreater{} all its diagonals are
             \textbf{strictly positive}
-      \item
+      \vItem
             \iMbox{A} is positive-definite =\textgreater{}
             \iMbox{\ds\max(A_{ii},A_{jj}) > |A_{ij}|}, i.e.~\textbf{strictly
                   larger coefficient} on the diagonals
-      \item
+      \vItem
             \iMbox{A} is positive-definite =\textgreater{} all
             \textbf{upper-left submatrices} are \emph{also} positive-definite
-      \item
+      \vItem
             \textbf{Sylvester's criterion}: \iMbox{A} is positive-definite
             \textbf{iff} all \textbf{upper-left submatrices} have strictly
             positive determinant
@@ -35,21 +35,21 @@ for all \iMbox{x}
 
 \begin{itemize}
 
-      \item
+      \vItem
             \iMbox{A} is positive semi-definite \textbf{iff} all its eigenvalues
             are \textbf{non-negative}
-      \item
+      \vItem
             \iMbox{A} is positive semi-definite =\textgreater{} all its
             diagonals are \textbf{non-negative}
-      \item
+      \vItem
             \iMbox{A} is positive semi-definite =\textgreater{}
             \iMbox{\ds\max(A_{ii},A_{jj}) \geq |A_{ij}|}, i.e.~\textbf{no
                   coefficient larger} than on the diagonals
-      \item
+      \vItem
             \iMbox{A} is positive semi-definite =\textgreater{} all
             \textbf{upper-left submatrices} are \emph{also} positive
             semi-definite
-      \item
+      \vItem
             \iMbox{A} is positive semi-definite =\textgreater{} it has a
             Cholesky Decomposition
 \end{itemize}
@@ -68,28 +68,28 @@ the form \iMbox{A = USV^{T}}, where
 
 \begin{itemize}
 
-      \item
+      \vItem
             Orthogonal \iMbox{U = [\mathbf{u}_{1}|\dots|\mathbf{u}_{m}] \in \mathbb{R}^{m \times m}}
             and \iMbox{V = [\mathbf{v}_{1}|\dots|\mathbf{v}_{n}] \in \mathbb{R}^{n \times n}}
-      \item
+      \vItem
             \iMbox{\ds S = \mathrm{diag}_{m \times n}(\sigma_{1},\dots,\sigma_{p})}
             where \iMbox{p = \min(m,n)} and
             \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{p} \geq 0}
             \tcbbreak
-      \item
+      \vItem
             \iMbox{\ds\sigma_{1},\dots,\sigma_{p}} are \textbf{singular values}
             of \iMbox{A},
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         \emph{(Positive)} \textbf{singular values} are \emph{(positive)}
                         \textbf{square-roots of eigenvalues} of \iMbox{AA^T} or
                         \iMbox{A^{T}A}
-                  \item
+                  \vItem
                         i.e.~\iMbox{\ds\sigma_{1}^2,\dots,\sigma_{p}^2} are
                         \textbf{eigenvalues} of \iMbox{AA^T} or \iMbox{A^{T}A}
-                  \item
+                  \vItem
                         \iMbox{\ds\lVert A \rVert_{2} = \sigma_{1}} \emph{(link to
                               \underline{matrix norms}}
             \end{itemize}
@@ -100,10 +100,10 @@ Let \iMbox{r = \mathrm{rk}(A)}, then number of strictly positive
 
 \begin{itemize}
 
-      \item
+      \vItem
             i.e. \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{r} > 0} and
             \iMbox{\ds\sigma_{r+1}=\dots=\sigma_{p} = 0}
-      \item
+      \vItem
             \iMbox{A = \sum_{i = 1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{T}}
 \end{itemize}
 
@@ -113,22 +113,22 @@ Let \iMbox{r = \mathrm{rk}(A)}, then number of strictly positive
 
 If \iMbox{n \leq m} then work with \iMbox{A^T A \in \mathbb{R}^{n \times n}}:
 \begin{itemize}
-      \item
+      \vItem
             Obtain eigenvalues
             \iMbox{\ds\sigma_{1}^2\geq\dots\geq\sigma_{n}^2 \geq 0} of
             \iMbox{A^T A}
-      \item
+      \vItem
             Obtain \textbf{orthonormal} eigenvectors
             \iMbox{\mathbf{v}_{1},\dots,\mathbf{v}_{n} \in \mathbb{R}^{n}} of
             \iMbox{A^{T}A} (apply \textbf{normalization}
             e.g.~\textbf{Gram-Schmidt}!!!! to \textbf{eigenspaces}
             \iMbox{\ds E_{\sigma_{i}}})
-      \item
+      \vItem
             \iMbox{V = [\mathbf{v}_{1}|\dots|\mathbf{v}_{n}] \in \mathbb{R}^{n \times n}}
             is \underline{orthogonal} so \iMbox{V^{T} = V^{-1}}
-      \item
+      \vItem
             \iMbox{r = \mathrm{rk}(A) = \text{no. of strictly +ve} \ \ \sigma_{i}}
-      \item
+      \vItem
             Let
             \iMbox{\ds \mathbf{u}_{i} = \frac{1}{\sigma_{i}}A \mathbf{v}_{i}}
             then
@@ -137,7 +137,7 @@ If \iMbox{n \leq m} then work with \iMbox{A^T A \in \mathbb{R}^{n \times n}}:
 
             \begin{itemize}
 
-                  \item
+                  \vItem
                         The \underline{orthogonal compliment} of
                         \iMbox{\ds\mathrm{span} \{ \mathbf{u}_{1},\dots,\mathbf{u}_{r} \}}
                         =\textgreater{}
@@ -145,20 +145,20 @@ If \iMbox{n \leq m} then work with \iMbox{A^T A \in \mathbb{R}^{n \times n}}:
 
                         \begin{itemize}
 
-                              \item
+                              \vItem
                                     Solve for unit-vector \iMbox{\mathbf{u}_{r+1}} s.t. it is
                                     orthogonal to \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r}}
-                              \item
+                              \vItem
                                     Then solve for unit-vector \iMbox{\mathbf{u}_{r+2}} s.t. it is
                                     orthogonal to \iMbox{\mathbf{u}_{1},\dots,\mathbf{u}_{r+1}}
-                              \item
+                              \vItem
                                     And so on\ldots{}
                         \end{itemize}
-                  \item
+                  \vItem
                         \iMbox{U = [\mathbf{u}_{1}|\dots|\mathbf{u}_{m}] \in \mathbb{R}^{m \times m}}
                         is \underline{orthogonal} so \iMbox{U^{T} = U^{-1}}
             \end{itemize}
-      \item
+      \vItem
             \iMbox{\ds S = \mathrm{diag}_{m \times n}(\sigma_{1},\dots,\sigma_{n})},
             \textbf{AND DONE!!!}
 \end{itemize}
@@ -166,10 +166,10 @@ If \iMbox{n \leq m} then work with \iMbox{A^T A \in \mathbb{R}^{n \times n}}:
 If \iMbox{m<n} then let \iMbox{B = A^{T}}
 \begin{itemize}
 
-      \item
+      \vItem
             apply above method to \iMbox{B} =\textgreater{}
             \iMbox{B = A^T = USV^{T}}
-      \item
+      \vItem
             \iMbox{A = B^T = V S^{T} U^{T}}
 \end{itemize}
 
@@ -194,18 +194,18 @@ using \underline{\textbar(tweaked) GS}:
 
 \begin{itemize}
 
-      \item
+      \vItem
             \textbf{Choose candidate vector}: just work through
             \iMbox{\mathbf{e}_{1},\dots,\mathbf{e}_{m}} sequentially starting
             from \iMbox{\mathbf{e}_{1}} =\textgreater{} denote the current
             candidate \iMbox{\mathbf{e}_{k}}
-      \item
+      \vItem
             \textbf{Orthogonalize}: Starting from \iMbox{j = r} going to
             \iMbox{j=m} with each iteration =\textgreater{} with current
             orthonormal vectors \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{j}}
 
             \begin{itemize}
-                  \item
+                  \vItem
                         Compute
                         \iMbox{
                               \begin{aligned}
@@ -213,23 +213,23 @@ using \underline{\textbar(tweaked) GS}:
                                     = \mathbf{e}_{k} - \sum_{i=1}^{j} (\mathbf{u}_{i})_{k} \mathbf{u}_{i}                                    \\ &= \mathbf{e}_{k} - U_{j}\mathbf{c}_{j}
                               \end{aligned}
                         }
-                  \item Where \iMbox{\ds U_{j} = [\mathbf{u}_{1}|\dots|\mathbf{u}_{j}]} and
+                  \vItem Where \iMbox{\ds U_{j} = [\mathbf{u}_{1}|\dots|\mathbf{u}_{j}]} and
                         \iMbox{\ds \mathbf{c}_{j} =[(\mathbf{u}_{1})_{k},\dots,(\mathbf{u}_{j})_{k}]^{T}}
-                  \item
+                  \vItem
                         \textbf{NOTE:}
                         \iMbox{\ds\mathbf{e}_{k} \cdot \mathbf{u}_{i} = (\mathbf{u}_{i})_{k}}
                         i.e. \iMbox{k}-th component of \iMbox{\mathbf{u}_{i}}
-                  \item
+                  \vItem
                         If \iMbox{\ds\mathbf{w}_{j+1} = \mathbf{0}} then
                         \iMbox{\ds \mathbf{e}_{k} \in \mathrm{span}\{ \mathbf{u}_{1},\dots,\mathbf{u}_{j} \}}
                         =\textgreater{} discard \iMbox{\mathbf{w}_{j+1}}, choose next
                         candidate \iMbox{\ds \mathbf{e}_{k+1}}, try this step again
             \end{itemize}
-      \item
+      \vItem
             \textbf{Normalize}: \iMbox{\ds\mathbf{w}_{j+1} \neq \mathbf{0}} so
             compute unit vector
             \iMbox{\ds\mathbf{u}_{j+1} = \hat{\mathbf{w}}_{j+1}}
-      \item
+      \vItem
             \textbf{Repeat:} keep repeating the above steps, now with
             \textbf{new} orthonormal vectors
             \iMbox{\ds\mathbf{u}_{1},\dots,\mathbf{u}_{j+1}}
@@ -244,10 +244,10 @@ represent \textbf{\iMbox{m} samples} of \textbf{\iMbox{n}-dimensional
 
 \begin{itemize}
 
-      \item
+      \vItem
             \textbf{Data centering}: subtract mean of each column from that
             column's elements
-      \item
+      \vItem
             Let the \textbf{resulting matrix} be
             \iMbox{A \in \mathbb{R}^{m \times n}}, who's \textbf{columns} have
             \textbf{mean zero}
@@ -258,13 +258,13 @@ represent \textbf{\iMbox{m} samples} of \textbf{\iMbox{n}-dimensional
 
 \begin{itemize}
 
-      \item
+      \vItem
             SVD exists i.e.~\iMbox{A = USV^{T}} and \iMbox{r = \mathrm{rk}(A)}
-      \item
+      \vItem
             Let \iMbox{A = [\mathbf{r}_{1}; \ \dots; \ \mathbf{r}_{m}]} be rows
             \iMbox{\ds \mathbf{r}_{1},\dots,\mathbf{r}_{m} \in \mathbb{R}^{n}}
             =\textgreater{} each row \emph{corresponds to} a sample
-      \item
+      \vItem
             Let \iMbox{A = [\mathbf{c}_{1} | \dots | \mathbf{c}_{n}]} be columns
             \iMbox{\ds \mathbf{c}_{1},\dots,\mathbf{c}_{n} \in \mathbb{R}^{m}}
             =\textgreater{} each column \emph{corresponds to} one dimension of
@@ -276,13 +276,13 @@ each \iMbox{X_{i}} \emph{corresponds} to column \iMbox{\mathbf{c}_{i}}
 
 \begin{itemize}
 
-      \item
+      \vItem
             i.e.~each \iMbox{X_{i}} \emph{corresponds} to \iMbox{i}-th component
             of data
-      \item
+      \vItem
             i.e.~random vector \iMbox{X = [X_{1}, \dots, X_{n}]^{T}} models the
             data \iMbox{\ds \mathbf{r}_{1},\dots,\mathbf{r}_{m}}
-      \item
+      \vItem
             \textbf{Co-variance matrix} of \iMbox{X} is
             \iMbox{\ds \mathrm{Cov}(A) = \frac{1}{m-1}A^{T}A} =\textgreater{}
             \iMbox{\ds (A^{T}A)_{ij} = (A^{T}A)_{ji} = \mathrm{Cov}(X_{i}, X_{j})}
@@ -299,7 +299,7 @@ Let \iMbox{\ds\mathbfit{w} \in \mathbb{R}^{n}} be some unit-vector => let
 
 \begin{itemize}
 
-      \item
+      \vItem
             \textbf{Variance (Bessel's correction)} of
             \iMbox{\alpha_{1},\dots,\alpha_{m}} is
             \iMbox{
@@ -308,7 +308,7 @@ Let \iMbox{\ds\mathbfit{w} \in \mathbb{R}^{n}} be some unit-vector => let
                         \\ &= \frac{1}{m-1}\mathbfit{w}^T {A}^T {A} \mathbfit{w}
                   \end{aligned}
             }
-      \item
+      \vItem
             \textbf{First (principal) axis defined} =\textgreater{}
             \iMbox{
                   \begin{aligned}
@@ -316,7 +316,7 @@ Let \iMbox{\ds\mathbfit{w} \in \mathbb{R}^{n}} be some unit-vector => let
                         \\ &= {\arg\max}_{\|\mathbfit{w}\|=1} (m-1)\mathrm{Var}_{\mathbfit{w}} = \mathbf{v}_{1}
                   \end{aligned}
             }
-      \item
+      \vItem
             i.e. \iMbox{\ds\mathbfit{w}_{(1)}} the direction that maximizes
             variance \iMbox{\mathrm{Var}_{\mathbfit{w}}}, i.e. maximizes
             variance of \textbf{projections on line}
@@ -329,12 +329,12 @@ Let \iMbox{\ds\mathbfit{w} \in \mathbb{R}^{n}} be some unit-vector => let
 
 \begin{itemize}
 
-      \item
+      \vItem
             Recall:
             \iMbox{A = \sum_{i = 1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{T}}
             with \iMbox{\ds\sigma_{1}\geq\dots\geq\sigma_{r} > 0}, so that
             relates principal axes and principal components
-      \item
+      \vItem
             \textbf{Data compression}: If \iMbox{\ds \sigma_{1} \gg \sigma_{2}}
             then \textbf{compress} \iMbox{A} by projecting in direction of
             principal component =\textgreater{}
