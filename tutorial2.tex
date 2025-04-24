@@ -1,151 +1,100 @@
 \subsection*{\texorpdfstring{Extension to
-    \iMbox{\mathbb{C}^n}}{Extension to }}
+            \iMbox{\mathbb{C}^n}}{Extension to }}
 
 \begin{itemize}
 
-  \item
-        Standard inner product:
-        \iMbox{\langle x, y \rangle = x^{\dagger} y = \sum_{i} \overline{x_{i}}y_{i}}
+      \item
+            Standard inner product:
+            \iMbox{\langle x, y \rangle = x^{\dagger} y = \sum_{i} \overline{x_{i}}y_{i}}
 
-        \begin{itemize}
+            \begin{itemize}
 
-          \item
-                \textbf{Conjugate-symmetric}:
-                \iMbox{\langle x, y \rangle = \overline{\langle y,x \rangle}}
-        \end{itemize}
-  \item
-        Standard \emph{(induced)} norm:
-        \iMbox{\lVert x \rVert = \sqrt{ \langle x, y \rangle } = \sqrt{ x^{\dagger} y }}
-  \item
-        We can {[}{[}tutorial
-        1\#Eigen-values/vectors\textbar diagonalise{]}{]} real matrices in
-        \iMbox{\mathbb{C}} which lets us diagonalise more matrices than before
+                  \item
+                        \textbf{Conjugate-symmetric}:
+                        \iMbox{\langle x, y \rangle = \overline{\langle y,x \rangle}}
+            \end{itemize}
+      \item
+            Standard \emph{(induced)} norm:
+            \iMbox{\lVert x \rVert = \sqrt{ \langle x, y \rangle } = \sqrt{ x^{\dagger} y }}
+      \item
+            We can \underline{diagonalise} real matrices in
+            \iMbox{\mathbb{C}} which lets us \underline{diagonalise more matrices than before}
 \end{itemize}
 
 \subsection*{Least Square Method}
 
+
+If we are solving \iMbox{A \mathbf{x} = \mathbf{b}} and
+\iMbox{\mathbf{b} \not\in \mathrm{C}(A)}, \emph{i.e.~no solution},
+then \textbf{Least Square Method} is:
+
 \begin{itemize}
 
-  \item
-        If we are solving \iMbox{A \mathbf{x} = \mathbf{b}} and
-        \iMbox{\mathbf{b} \not\in \mathrm{C}(A)}, \emph{i.e.~no solution},
-        then \textbf{Least Square Method} is:
+      \item
+            Finding \iMbox{\mathbf{x}} which \textbf{minimizes}
+            \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2}}
+      \item
+            Recall for \iMbox{A \in \mathbb{R}^{m \times n}} we have unique decomposition for
+            any \iMbox{\mathbf{b} \in \mathbb{R}^{m}}:
+            \iMbox{\mathbf{b} = \mathbf{b}_{i} + \mathbf{b}_{k}}
 
-        \begin{itemize}
-
-          \item
-                Finding \iMbox{\mathbf{x}} which \textbf{minimizes}
-                \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2}}
-          \item
-                Recall for \iMbox{A \in \mathbb{R}^{m \times n}} {[}{[}tutorial
-                1\#Orthogonality concepts\textbar we have unique decomposition for
-                any \iMbox{\mathbf{b} \in \mathbb{R}^{m}}{]}{]}:
-                \iMbox{\mathbf{b} = \mathbf{b}_{i} + \mathbf{b}_{k}}
-
-                \begin{itemize}
+            \begin{itemize}
 
                   \item
                         where \iMbox{\mathbf{b}_{i} \in \mathrm{C}(A)} and
                         \iMbox{\mathbf{b}_{k} \in \mathrm{ker}(A^{T})}
-                \end{itemize}
-          \item
-                \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2} \ \text{is minimized} \iff \lVert A \mathbf{x} - \mathbf{b}_{i} \rVert_{2} = 0 \iff A \mathbf{x} = \mathbf{b}_{i}}
-        \end{itemize}
-  \item
-        \iMbox{A^{T}A \mathbf{x} = A^{T}\mathbf{b}} is the \textbf{normal
-          equation} which gives solution to least square problem:
-        \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2} \ \text{is minimized} \iff A \mathbf{x} = \mathbf{b}_{i} \iff A^{T}A \mathbf{x} = A^{T}\mathbf{b}}
+            \end{itemize}
+      \item
+            \iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2} \ \text{is minimized} \iff \lVert A \mathbf{x} - \mathbf{b}_{i} \rVert_{2} = 0 \iff A \mathbf{x} = \mathbf{b}_{i}}
 \end{itemize}
+
+\hSep % ---
+
+\iMbox{A^{T}A \mathbf{x} = A^{T}\mathbf{b}} is the \textbf{normal
+      equation} which gives solution to least square problem:
+\iMbox{\ds \lVert A \mathbf{x} - \mathbf{b} \rVert_{2} \ \text{is minimized} \iff A \mathbf{x} = \mathbf{b}_{i} \iff A^{T}A \mathbf{x} = A^{T}\mathbf{b}}
 
 \subsection*{Linear Regression}
 
 \begin{itemize}
 
-  \item
-        Let \iMbox{\ds y = f(t) = \sum_{j=1}^{n} s_{j}f_{j}(t)} be a
-        \textbf{mathematical model}, where \iMbox{f_{j}} are \textbf{basis
-          functions} and \iMbox{s_{j}} are \textbf{parameters}
-  \item
-        Let \iMbox{\ds (t_{i},y_{i})}, \iMbox{1 \leq i \leq m, m \gg n} be a
-        set of \textbf{observations}, and
-        \iMbox{\mathbf{t},\mathbf{y} \in \mathbb{R}^{m}} are vectors
-        representing those \textbf{observations}
+      \item
+            Let \iMbox{y = f(t) = \sum_{j=1}^{n} s_{j}f_{j}(t)} be a
+            \textbf{mathematical model}, where \iMbox{f_{j}} are \textbf{basis
+                  functions} and \iMbox{s_{j}} are \textbf{parameters}
+      \item
+            Let \iMbox{\ds (t_{i},y_{i})}, \iMbox{1 \leq i \leq m, m \gg n} be a
+            set of \textbf{observations}, and
+            \iMbox{\mathbf{t},\mathbf{y} \in \mathbb{R}^{m}} are vectors
+            representing those \textbf{observations}
 
-        \begin{itemize}
+            \begin{itemize}
 
-          \item
-                \iMbox{f_{j}(\mathbf{t}) = [f_{j}(t_{1}),\dots,f_{j}(t_{m})]^{T}} is
-                a vector \textbf{transformed under} \iMbox{f_{j}}
-          \item
-                \iMbox{A = [f_{1}(\mathbf{t})|\dots|f_{n}(\mathbf{t})] \in \mathbb{R}^{m \times n}}
-                is a matrix of columns
-          \item
-                \iMbox{\mathbf{z} = [s_{1},\dots, s_{n}]^{T}} is vector of
-                parameters
-        \end{itemize}
-  \item
-        Then we get equation \iMbox{A \mathbf{z} = \mathbf{y}} =\textgreater{}
-        \textbf{minimizing}
-        \iMbox{\ds \lVert A \mathbf{z} - \mathbf{y} \rVert_{2}} is the
-        solution to Linear Regression
+                  \item
+                        \iMbox{f_{j}(\mathbf{t}) = [f_{j}(t_{1}),\dots,f_{j}(t_{m})]^{T}} is \textbf{transformed vector}
+                  \item
+                        \iMbox{A = [f_{1}(\mathbf{t})|\dots|f_{n}(\mathbf{t})] \in \mathbb{R}^{m \times n}}
+                        is a matrix of columns
+                  \item
+                        \iMbox{\mathbf{z} = [s_{1},\dots, s_{n}]^{T}} is vector of
+                        parameters
+            \end{itemize}
+      \item
+            Then we get equation \iMbox{A \mathbf{z} = \mathbf{y}} =\textgreater{}
+            \textbf{minimizing}
+            \iMbox{\ds \lVert A \mathbf{z} - \mathbf{y} \rVert_{2}} is the
+            solution to Linear Regression
 
-        \begin{itemize}
+            \begin{itemize}
 
-          \item
-                So applying \textbf{LSM} to \iMbox{A \mathbf{z} = \mathbf{y}} is
-                \emph{precisely} what \textbf{Linear Regression} is
-          \item
-                We can use normal equations for this =\textgreater{}
-                \iMbox{\ds \lVert A \mathbf{z} - \mathbf{y} \rVert_{2} \ \text{is minimized} \iff A^{T}A \mathbf{z} = A^{T}\mathbf{y}}
-        \end{itemize}
-  \item
-        Solution to \textbf{normal equations} unique \textbf{iff} \iMbox{A} is
-        full-rank, i.e.~it has linearly-independent columns
-\end{itemize}
-
-\subsection*{\texorpdfstring{Back to basics: multinomial expansion +
-    manipulations on
-    \iMbox{\sum/\prod}}{Back to basics: multinomial expansion + manipulations on }}
-
-\begin{itemize}
-
-  \item
-        \iMbox{\ds \left(x_1+x_2+\cdots+x_m\right)^n=\sum_{\substack{k_1+k_2+\cdots+k_m=n \\ k_1, k_2, \cdots, k_m \geq 0}}\binom{n}{k_1, k_2, \ldots, k_m} x_1^{k_1} \cdot x_2^{k_2} \cdots x_m^{k_m}}
-  \item
-        where
-        \iMbox{\ds \binom{n}{k_1, k_2, \ldots, k_m}=\frac{n!}{k_{1}!k_{2}!\cdots k_{m}!}}
-  \item
-        TODO: figure out wtf going on here !{[}{[}Pasted image
-        20250414122252.png\textbar500{]}{]} in 2nd tutorial
-\end{itemize}
-
-\subsection*{Express recursive sequence as non-recursive using
-  eigenvalues}
-
-\begin{itemize}
-
-  \item
-        For \iMbox{\ds x_{n}} recursive
-        \emph{(e.g.~\iMbox{\ds x_{n+1}=x_{n} + x_{n-1}}, \iMbox{x_{0}=0},
-        \iMbox{x_{1}=1})}
-
-        \begin{itemize}
-
-          \item
-                Find \iMbox{A} such that
-                \iMbox{\ds [x_{n+1},x_{n},\dots]^{T} = A[x_{n},x_{n-1},\dots]^{T}}
-                \emph{(e.g.~\iMbox{\ds [x_{n+1},x_{n}]^{T} = \begin{bmatrix}1 & 1 \\ 1 & 0 \end{bmatrix}[x_{n},x_{n-1}]^{T}})}
-          \item
-                Find \textbf{initial vector}
-                \iMbox{\ds \mathcal{I} = [\dots,x_{1},x_{0}]^{T}} such that
-                \iMbox{\ds [x_{n+1},x_{n},\dots]^{T} = A^{n} \mathcal{I}}
-                *(e.g.~\iMbox{\ds [x_{n+1},x_{n}]^{T} = A^{n}[1,0]^{T}})
-          \item
-                Find \textbf{eigenvalues/eigenvectors} of \iMbox{A}, and use
-                \iMbox{A\mathbf{u} = \lambda \mathbf{u} \implies A^{n}\mathbf{u} = \lambda^{n} \mathbf{u}}
-                to write \iMbox{\mathcal{I}} as linear combination of eigenvectors
-          \item
-                Substitute that linear combination to get \iMbox{\ds x_{n}} as
-                function of \iMbox{n} alone
-        \end{itemize}
+                  \item
+                        So applying \textbf{LSM} to \iMbox{A \mathbf{z} = \mathbf{y}} is
+                        \emph{precisely} what \textbf{Linear Regression} is
+                  \item
+                        We can use normal equations for this =\textgreater{}
+                        \iMbox{\ds \lVert A \mathbf{z} - \mathbf{y} \rVert_{2} \ \text{is minimized} \iff A^{T}A \mathbf{z} = A^{T}\mathbf{y}}
+            \end{itemize}
+      \item
+            Solution to \textbf{normal equations} unique \textbf{iff} \iMbox{A} is
+            full-rank, i.e.~it has linearly-independent columns
 \end{itemize}

@@ -48,8 +48,9 @@
 \definecolor{cornellred}{rgb}{0.7, 0.11, 0.11}
 \definecolor{darkmagenta}{rgb}{0.55, 0.0, 0.55}
 \definecolor{deepjunglegreen}{rgb}{0.0, 0.29, 0.29}
+\definecolor{electricultramarine}{rgb}{0.25, 0.0, 1.0}
 
-% --- Page Layout Settings (Handled by multicol package options usually) ---
+% --- Page Layout Settings ---
 \geometry{landscape, a4paper, margin=0.01in} % Landscape A4, and small margin
 \AtBeginDocument{
   \setlength{\topskip}{0pt} % No top offset
@@ -62,6 +63,12 @@
 
   \pagestyle{empty} % No page numbers/headers
 }
+\AtBeginEnvironment{aligned}{
+  \addtolength{\jot}{-3pt}
+}
+\AtBeginEnvironment{pmatrix}{
+  \setlength{\arraycolsep}{1pt}
+}
 
 % --- Global text settings ---
 \defaultfontfeatures{ Scale = MatchLowercase, Ligatures = TeX }
@@ -73,7 +80,14 @@
 \setmathrm{STIX Two Text}[BoldFeatures = {Color = cornellred}] % Color bold as red
 \setmathfont{Fira Math}[range={it/{greek,Greek}->up},Colour=darkmagenta] % Color greek letters as purple
 \setmathfont{STIX Two Math}[range={
-  \vdots,\ddots,\bot,\triangleright}] % Provide fallback for missing glyphs, and replace some
+  \dagger,
+  "2218-"2218, % Ring operator i.e. \circ
+  "2AAF-"2AAF, % ⪯ symbol
+  \vdots,\ddots,\bot}] % Provide fallback for missing glyphs, and replace some
+\setmathfont{TeX Gyre Bonum Math}[range={
+  "0001D6F7-"0001D6F7, % 𝛷 symbol
+}]
+\setmathfont{STIX Two Math}[range={\cdot},Colour=electricultramarine] % Color certain operators as orange
 \setmathfont{Fira Math}[range=]
 
 %\microtypesetup{tracking=true, letterspace=-50} % Agressive line-spacing
