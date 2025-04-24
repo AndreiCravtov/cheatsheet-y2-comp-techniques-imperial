@@ -130,6 +130,53 @@ a \underline{permutation matrix} => \iMbox{PP^{T} = I}, i.e. its \underline{orth
 \end{itemize}
 
 
+\subsection*{Metric spaces \& limits}
+
+\underline{Metrics} obey these axioms
+
+\iMbox{d(x,x) = 0}
+\iMbox{x \neq y \implies d(x,y) > 0}
+\iMbox{d(x,y) = d(y,x)}
+\iMbox{d(x,z) \leq d(x,y) + d(y,z)}
+
+\hSep % ---
+
+For \underline{metric spaces}, \textbf{mix-and-match} these \underline{infinite/finite limit}
+definitions:
+\begin{itemize}
+      \item
+            \iMbox{ \lim_{ x \to + \infty } f(x) = +\infty \iff \forall r \in \mathbb{R}, \exists N \in \mathbb{N}, \forall x > N: \ \  f(x)>r}
+      \item
+            \iMbox{
+                  \lim_{ x \to p } f(x) = L \iff
+                  \begin{aligned}
+                  &\forall \varepsilon >0,\exists \delta > 0, \forall x \in X:
+                  \\ &0 < d_{X}(x,p) < \delta \implies d_{Y}(f(x),L) < \varepsilon
+                  \end{aligned}
+            }
+      \item
+            \textbf{Cauchy sequences},
+            i.e. \iMbox{\forall \varepsilon >0, \exists N \in \mathbb{N}, \forall m,n\geq N: \ \ d(a_{m}, a_{n})<\varepsilon},
+            converge in \textbf{complete spaces}
+\end{itemize}
+You can manipulate \underline{matrix limits} much \textbf{like in real analysis},
+e.g. \iMbox{ \lim_{ n \to \infty }(A^{n}B+C) = \left(\lim_{ n \to \infty }A^{n} \right)B+C}
+
+\hSep % ---
+
+Turn \textbf{metric limit} \iMbox{\lim_{ n \to \infty } x_{n} = L} into \textbf{real limit}
+\iMbox{\lim_{ n \to \infty } d(x_{n},L) = 0} to \underline{leverage real analysis}
+\begin{itemize}
+      \item
+            \underline{Bounded} \textbf{monotone sequences} converge in \iMbox{\mathbb{R}}
+      \item
+            \underline{Sandwich theorem} for limits in \iMbox{\mathbb{R}} =>
+            pick easy \underline{upper/lower} bounds
+      \item
+            \iMbox{\lim_{ n \to \infty }  r^n = 0 \iff |r| < 1} and
+            \iMbox{\lim_{ n \to \infty } \sum_{i=0}^{n} ar^{i} = \frac{a}{1-r} \iff |r| < 1}
+\end{itemize}
+
 \section*{Iterative Techniques}
 
 \subsection*{Systems of Equations}
@@ -221,50 +268,3 @@ If \iMbox{A} is \textbf{strictly row diagonally dominant} then \underline{Jacobi
 \iMbox{A} is \textbf{strictly row diagonally dominant} if \iMbox{\left|A_{ii}\right|>\sum_{j \neq i}\left|A_{ij}\right|}
 
 If \iMbox{A} is \underline{positive-definite} then \textbf{G-S} and \textbf{SOR} (\iMbox{\omega \in (0,2)}) converge
-
-\subsection*{Metric spaces \& limits}
-
-\underline{Metrics} obey these axioms
-
-\iMbox{d(x,x) = 0}
-\iMbox{x \neq y \implies d(x,y) > 0}
-\iMbox{d(x,y) = d(y,x)}
-\iMbox{d(x,z) \leq d(x,y) + d(y,z)}
-
-\hSep % ---
-
-For \underline{metric spaces}, \textbf{mix-and-match} these \underline{infinite/finite limit}
-definitions:
-\begin{itemize}
-      \item
-            \iMbox{ \lim_{ x \to + \infty } f(x) = +\infty \iff \forall r \in \mathbb{R}, \exists N \in \mathbb{N}, \forall x > N: \ \  f(x)>r}
-      \item
-            \iMbox{
-                  \lim_{ x \to p } f(x) = L \iff
-                  \begin{aligned}
-                  &\forall \varepsilon >0,\exists \delta > 0, \forall x \in X:
-                  \\ &0 < d_{X}(x,p) < \delta \implies d_{Y}(f(x),L) < \varepsilon
-                  \end{aligned}
-            }
-      \item
-            \textbf{Cauchy sequences},
-            i.e. \iMbox{\forall \varepsilon >0, \exists N \in \mathbb{N}, \forall m,n\geq N: \ \ d(a_{m}, a_{n})<\varepsilon},
-            converge in \textbf{complete spaces}
-\end{itemize}
-You can manipulate \underline{matrix limits} much \textbf{like in real analysis},
-e.g. \iMbox{ \lim_{ n \to \infty }(A^{n}B+C) = \left(\lim_{ n \to \infty }A^{n} \right)B+C}
-
-\hSep % ---
-
-Turn \textbf{metric limit} \iMbox{\lim_{ n \to \infty } x_{n} = L} into \textbf{real limit}
-\iMbox{\lim_{ n \to \infty } d(x_{n},L) = 0} to \underline{leverage real analysis}
-\begin{itemize}
-      \item
-            \underline{Bounded} \textbf{monotone sequences} converge in \iMbox{\mathbb{R}}
-      \item
-            \underline{Sandwich theorem} for limits in \iMbox{\mathbb{R}} =>
-            pick easy \underline{upper/lower} bounds
-      \item
-            \iMbox{\lim_{ n \to \infty }  r^n = 0 \iff |r| < 1} and
-            \iMbox{\lim_{ n \to \infty } \sum_{i=0}^{n} ar^{i} = \frac{a}{1-r} \iff |r| < 1}
-\end{itemize}
