@@ -8,6 +8,7 @@
 %   - multicol => column layout
 %   - enumitem => style lists
 %   - tikz => drawing complex shapes
+%   - algpseudocode => algorithm pseudocode
 % Customizing:
 %   - microtype => improves text justification and spacing
 %   - tilesec => for customizing section headings
@@ -35,6 +36,8 @@
 
 \RequirePackage{amsmath} % Math packages
 \RequirePackage{hyperref}
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
 % \RequirePackage{breqn} % For breaking equations if needed; keep commented unless essential
 
 \RequirePackage{tikz}
@@ -65,6 +68,9 @@
 }
 \AtBeginEnvironment{aligned}{
   \addtolength{\jot}{-3pt}
+  \let\alignedDs\displaystyle % save displaystyle, and override with textstyle
+  \let\ds\alignedDs
+  \let\displaystyle\textstyle
 }
 \AtBeginEnvironment{pmatrix}{
   \setlength{\arraycolsep}{1pt}
@@ -86,11 +92,14 @@
   \dagger,
   "2218-"2218, % Ring operator i.e. \circ
   "2AAF-"2AAF, % ⪯ symbol
-  \vdots,\ddots,\bot}] % Provide fallback for missing glyphs, and replace some
+  \vdots,\ddots,\bot,\circledast
+}] % Provide fallback for missing glyphs, and replace some
 \setmathfont{TeX Gyre Bonum Math}[range={
   "0001D6F7-"0001D6F7, % 𝛷 symbol
 }]
-\setmathfont{STIX Two Math}[range={\cdot},Colour=electricultramarine] % Color certain operators as orange
+\setmathfont{STIX Two Math}[range={
+  \cdot,
+},Colour=electricultramarine] % Color certain operators as orange
 \setmathfont{Fira Math}[range=]
 
 %\microtypesetup{tracking=true, letterspace=-50} % Agressive line-spacing
