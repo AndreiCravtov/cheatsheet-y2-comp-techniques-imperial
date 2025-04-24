@@ -5,12 +5,14 @@
 
 \hSep % --- Next section ---
 
-For \iMbox{A \in \mathbb{R}^{m \times n}}, \iMbox{\ds A_{ij}} is the \iMbox{i}-th \textbf{ROW} then \iMbox{j}-th \textbf{COLUMN} \\
-\iMbox{\ds (A^T)_{ij} = A_{ji}}
+For \iMbox{A \in \mathbb{R}^{m \times n}}, \iMbox{A_{ij}} is the \iMbox{i}-th \textbf{ROW} then \iMbox{j}-th \textbf{COLUMN} \\
+\iMbox{(A^T)_{ij} = A_{ji}}
 \iMbox{\ds (AB)_{ij} = A_{i\ast} \cdot B_{\ast j} = \sum_{k} A_{ik}B_{kj}}
-\iMbox{\ds (Ax)_{i} = A_{i\ast} \cdot x = \sum_{j} A_{ij} x_{j}}
-\iMbox{\ds x^Ty = y^Tx = x \cdot y = \sum_{i} x_{i} y_{i}}
-\iMbox{\ds x^TAx = \sum_{i} \sum_{j} A_{ij}x_{i}x_{j}}
+\iMbox{(Ax)_{i} = A_{i\ast} \cdot x = \sum_{j} A_{ij} x_{j}}
+\iMbox{x^Ty = y^Tx = x \cdot y = \sum_{i} x_{i} y_{i}}
+\iMbox{x^TAx = \sum_{i} \sum_{j} A_{ij}x_{i}x_{j}}
+\iMbox{\mathbfit{x} \mathbf{e}_{k}^{T} = [\mathbf{0}|\dots | \mathbfit{x} | \dots |\mathbf{0}]}
+\iMbox{\mathbf{e}_{k} \mathbfit{x}^{T} = [\mathbf{0}^{T}; \dots ; \mathbfit{x}^{T} ; \dots ; \mathbf{0}^{T}]}
 
 \hSep % --- Next section ---
 
@@ -37,7 +39,7 @@ Matrix-multiplication distributes over:
       \iMbox{AB = [A_{1}|\dots|A_{p}][B_{1};\dots; B_{p}] = \sum_{i=1}^{p} A_{i}B_{i}}
       \begin{itemize}
             \vItem
-            e.g.~for \iMbox{\ds A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}]},
+            e.g. for \iMbox{A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}]},
             \iMbox{B=[\mathbf{b}_{1}; \dots; \mathbf{b}_{n}]} =>
             \iMbox{AB = \sum_{i} \mathbf{a}_{i}\mathbf{b}_{i}}
       \end{itemize}
