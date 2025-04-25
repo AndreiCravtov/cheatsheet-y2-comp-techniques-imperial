@@ -3,12 +3,12 @@
 \begin{itemize}
 
       \vItem
-            Go check \underline{Classical GM} first, as this is just an alternative computation method
+            Go check \ul{Classical GM} first, as this is just an alternative computation method
       \vItem
             Let
             \iMbox{\ds \mathrm{P}_{\perp \ds\mathbf{q}_{j}} = \mathbf{I}_{m} - \mathbf{q}_{j}\mathbf{q}_{j}^{T}}
-            be \textbf{\emph{projector}} onto \underline{hyperplane} \iMbox{(\mathbb{R}\mathbf{q}_{j})^{\perp}},
-            i.e. \underline{orthogonal compliment} of line \iMbox{\mathbb{R}\mathbf{q}_{j}}
+            be \textbf{\emph{projector}} onto \ul{hyperplane} \iMbox{(\mathbb{R}\mathbf{q}_{j})^{\perp}},
+            i.e. \ul{orthogonal compliment} of line \iMbox{\mathbb{R}\mathbf{q}_{j}}
 
             \begin{itemize}
 
@@ -22,12 +22,12 @@
                         \iMbox{\mathbf{u}_{j+1} =  \left(\prod_{i=1}^{j}\mathrm{P}_{\perp \ds\mathbf{q}_{i}} \right)\mathbf{a}_{j+1} =  \left(\mathrm{P}_{\perp \ds\mathbf{q}_{j}} \cdots \mathrm{P}_{\perp \mathbf{q}_{1}} \right) \mathbf{a}_{j+1}}
                   \vItem
                         \textbf{Projectors} \iMbox{\mathrm{P}_{\perp \ds\mathbf{q}_{1}},\dots, \mathrm{P}_{\perp \ds\mathbf{q}_{j}}}
-                        are iteratively applied to \iMbox{\ds\mathbf{a}_{j+1}}, removing its \underline{components along} \iMbox{\mathbf{q}_{1}},
-                        then \underline{along} \iMbox{\mathbf{q}_{2}}, \emph{and so on\ldots{}}
+                        are iteratively applied to \iMbox{\ds\mathbf{a}_{j+1}}, removing its \ul{components along} \iMbox{\mathbf{q}_{1}},
+                        then \ul{along} \iMbox{\mathbf{q}_{2}}, \emph{and so on\ldots{}}
             \end{itemize}
       \vItem
             Let \iMbox{\mathbf{u}^{(j)}_{k} = \left(\prod_{i=1}^{j}\mathrm{P}_{\perp \ds\mathbf{q}_{i}} \right) \mathbf{a}_{k}},
-            i.e. \iMbox{\ds\mathbf{a}_{k}} \textbf{\emph{without}} its \underline{components along} \iMbox{\mathbf{q}_{1},\dots,\mathbf{q}_{j}}
+            i.e. \iMbox{\ds\mathbf{a}_{k}} \textbf{\emph{without}} its \ul{components along} \iMbox{\mathbf{q}_{1},\dots,\mathbf{q}_{j}}
 
             \begin{itemize}
 
@@ -76,9 +76,9 @@
 
                   \vItem
                         \iMbox{A = [\mathbf{a}_{1}|\dots|\mathbf{a}_{n}] = [\mathbf{q}_{1}|\dots|\mathbf{q}_{n}]\begin{bmatrix} r_{11} & \dots & r_{1n} \\ & \ddots & \vdots \\ 0 & & r_{nn} \end{bmatrix} = \mathbf{Q}R}
-                        corresponds to \underline{thin QR decomposition}
+                        corresponds to \ul{thin QR decomposition}
                   \vItem
-                        Where \iMbox{A \in \mathbb{R}^{m \times n}} is \underline{full-rank},
+                        Where \iMbox{A \in \mathbb{R}^{m \times n}} is \ul{full-rank},
                         \iMbox{\mathbf{Q} \in \mathbb{R}^{m \times n}} is semi-orthogonal,
                         and \iMbox{R \in \mathbb{R}^{n \times n}} is upper-triangular
             \end{itemize}
@@ -89,7 +89,7 @@
 \begin{itemize}
 
       \vItem
-            These algorithms both compute thin \underline{thin QR decomposition}
+            These algorithms both compute thin \ul{thin QR decomposition}
 
             \includegraphics[width=45pt]{classicgm}
             \includegraphics[width=45pt]{modifiedgm}
@@ -148,7 +148,7 @@ Consider \iMbox{f: \mathbb{R}^{n} \to \mathbb{R}}:
             s.t. \iMbox{f(\mathbf{x}) = c}
 
       \vItem
-            Projecting \underline{level curves} onto \iMbox{\mathbb{R}^{n}} gives \iMbox{f}'s \textbf{contour-map}
+            Projecting \ul{level curves} onto \iMbox{\mathbb{R}^{n}} gives \iMbox{f}'s \textbf{contour-map}
 \end{itemize}
 
 \hSep % ---
@@ -167,9 +167,9 @@ w.r.t \iMbox{i_{1}} of \iMbox{f} is:
             Its an \textbf{\iMbox{N}-th order partial derivative} where \iMbox{N = \sum_{k} n_{k}}
 
       \vItem \iMbox{\nabla f = \left[ \partial_{1} f, \dots, \partial_{n} f \right]^{T}}
-            is \underline{gradient} of \iMbox{f} => \iMbox{(\nabla f)_{i} = \frac{\partial f}{\partial \mathbf{x}_{i}}}
+            is \ul{gradient} of \iMbox{f} => \iMbox{(\nabla f)_{i} = \frac{\partial f}{\partial \mathbf{x}_{i}}}
 
-      \vItem \iMbox{\nabla^{T} f = (\nabla f)^{T}} is \underline{transpose} of \iMbox{\nabla f}, i.e. \iMbox{\nabla^{T}f} is \underline{row vector}
+      \vItem \iMbox{\nabla^{T} f = (\nabla f)^{T}} is \ul{transpose} of \iMbox{\nabla f}, i.e. \iMbox{\nabla^{T}f} is \ul{row vector}
 \end{itemize}
 
 \hSep % ---
@@ -179,13 +179,13 @@ is \textbf{directional-derivative} of \iMbox{f}
 \begin{itemize}
 
       \vItem
-            It is \underline{rate-of-change} in direction \iMbox{\mathbf{u}}, where \iMbox{\mathbf{u} \in \mathbb{R}^{n}} is \underline{unit-vector}
+            It is \ul{rate-of-change} in direction \iMbox{\mathbf{u}}, where \iMbox{\mathbf{u} \in \mathbb{R}^{n}} is \ul{unit-vector}
       \vItem
             \iMbox{D_{\mathbf{u}}f(\mathbf{x}) = \nabla f(\mathbf{x}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{x}) \rVert \lVert \mathbf{u} \rVert \cos(\theta)}
             => \iMbox{D_{\mathbf{u}}f(\mathbf{x})} \textbf{maximized} when \iMbox{\cos\theta = 1}
       \vItem
-            i.e. when \iMbox{\mathbf{x},\mathbf{u}} are \underline{parallel} => hence \iMbox{\nabla f(\mathbf{x})} is
-            \underline{direction} of \textbf{max.} \underline{rate-of-change}
+            i.e. when \iMbox{\mathbf{x},\mathbf{u}} are \ul{parallel} => hence \iMbox{\nabla f(\mathbf{x})} is
+            \ul{direction} of \textbf{max.} \ul{rate-of-change}
 \end{itemize}
 
 \hSep % ---
@@ -196,13 +196,13 @@ s.t. \iMbox{\forall \mathbf{x} \in B[r;\mathbf{x}_{\mathrm{loc}}]} we have \iMbo
 \iMbox{f} has \textbf{global minimum} \iMbox{\mathbf{x}_{\mathrm{glob}}} if \iMbox{\forall \mathbf{x} \in \mathbb{R}^{n}}
 we have \iMbox{f(\mathbf{x}_{\mathrm{glob}}) \leq f(\mathbf{x})}
 
-A \textbf{local minimum} satisfies \underline{optimality conditions}:
+A \textbf{local minimum} satisfies \ul{optimality conditions}:
 \begin{itemize}
       \vItem
             \iMbox{\nabla f(\mathbf{x}) = \mathbf{0}}, e.g.~for \iMbox{n=1}
             its \iMbox{f'(x) = 0}
       \vItem
-            \iMbox{\nabla^2 f(\mathbf{x})} is \underline{positive-definite},
+            \iMbox{\nabla^2 f(\mathbf{x})} is \ul{positive-definite},
             e.g. for \iMbox{n=1} its \iMbox{f''(x) > 0}
 \end{itemize}
 
@@ -230,22 +230,22 @@ are normed vector-spaces
 
       \vItem
             A problem \textbf{\emph{instance}} is \iMbox{f} with fixed input
-            \iMbox{x \in X}, shortened to \textbf{\emph{just}} \underline{``problem''}
+            \iMbox{x \in X}, shortened to \textbf{\emph{just}} \ul{``problem''}
             (with \iMbox{x \in X} implied)
       \vItem
             \iMbox{\delta x} is \textbf{small perturbation} of \iMbox{x}
             => \iMbox{\delta f = f(x+\delta x)-f(x)}
 \end{itemize}
 
-A \underline{problem (instance)} is:
+A \ul{problem (instance)} is:
 \begin{itemize}
 
       \vItem
-            \textbf{Well-conditioned} if \underline{all} \textbf{small} \iMbox{\delta x}
+            \textbf{Well-conditioned} if \ul{all} \textbf{small} \iMbox{\delta x}
             lead to \textbf{small} \iMbox{\delta f}, i.e. if \iMbox{\kappa} is
             \textbf{small} \emph{(e.g. \iMbox{1}, \iMbox{10}, \iMbox{10^{2}})}
       \vItem
-            \textbf{Ill-conditioned} if \underline{some} \textbf{small} \iMbox{\delta x}
+            \textbf{Ill-conditioned} if \ul{some} \textbf{small} \iMbox{\delta x}
             lead to \textbf{large} \iMbox{\delta f}, i.e. if \iMbox{\kappa} is
             \textbf{large} \emph{(e.g. \iMbox{10^6}, \iMbox{10^{16}})}
 \end{itemize}
@@ -259,11 +259,11 @@ of \textbf{\iMbox{f} at \iMbox{x}}:
       \vItem
             \iMbox{ \hat{\kappa}=\lim _{\delta \rightarrow 0} \sup _{\|\delta x\| \leq \delta} \frac{\|\delta f\|}{\|\delta x\|}}
 
-            => for \underline{most problems} simplified to
+            => for \ul{most problems} simplified to
             \iMbox{\hat{\kappa}=\sup _{\delta x} \frac{\|\delta f\|}{\|\delta x\|}}
       \vItem
-            If \underline{Jacobian} \iMbox{\mathbf{J}_{f}(x)} exists then \iMbox{\hat{\kappa} = \lVert \mathbf{J}_{f}(x) \rVert},
-            where \underline{matrix norm} \iMbox{\lVert - \rVert} induced by \underline{norms} on \iMbox{X} and \iMbox{Y}
+            If \ul{Jacobian} \iMbox{\mathbf{J}_{f}(x)} exists then \iMbox{\hat{\kappa} = \lVert \mathbf{J}_{f}(x) \rVert},
+            where \ul{matrix norm} \iMbox{\lVert - \rVert} induced by \ul{norms} on \iMbox{X} and \iMbox{Y}
 \end{itemize}
 
 \textbf{\emph{Relative} condition number} \iMbox{\kappa(x) = \kappa} of \textbf{\iMbox{f} at \iMbox{x}} is
@@ -272,21 +272,21 @@ of \textbf{\iMbox{f} at \iMbox{x}}:
       \vItem
             \iMbox{\kappa=\lim _{\delta \rightarrow 0} \sup _{\|\delta x\| \leq \delta}\left(\frac{\|\delta f\|}{\|f(x)\|} \middle/ \frac{\|\delta x\|}{\|x\|}\right)}
 
-            => for \underline{most problems} simplified to
+            => for \ul{most problems} simplified to
             \iMbox{\kappa=\sup _{\delta x}\left(\frac{\|\delta f\|}{\|f(x)\|} \middle/ \frac{\|\delta x\|}{\|x\|}\right)}
       \vItem
-            If \underline{Jacobian} \iMbox{\mathbf{J}_{f}(x)} exists then
+            If \ul{Jacobian} \iMbox{\mathbf{J}_{f}(x)} exists then
             \iMbox{\kappa=\frac{\|\mathbf{J}_{f}(x)\|}{\|f(x)\| /\|x\|}}
       \vItem
-            \underline{More important} than \iMbox{\hat{\kappa}} for \emph{numerical analysis}
+            \ul{More important} than \iMbox{\hat{\kappa}} for \emph{numerical analysis}
 \end{itemize}
 
 \textbf{\emph{Matrix} condition number} \iMbox{\mathrm{Cond}(\mathbf{A}) = \kappa(\mathbf{A}) = \lVert \mathbf{A} \rVert \lVert \mathbf{A}^{-1} \rVert}
-=> comes up \underline{so often} that has \underline{its own name}
+=> comes up \ul{so often} that has \ul{its own name}
 \begin{itemize}
       \vItem
-            \iMbox{\mathbf{A} \in \mathbb{C}^{m \times m}} is \underline{well-conditioned} if
-            \iMbox{\kappa(\mathbf{A})} is \textbf{small}, \underline{ill-conditioned} if
+            \iMbox{\mathbf{A} \in \mathbb{C}^{m \times m}} is \ul{well-conditioned} if
+            \iMbox{\kappa(\mathbf{A})} is \textbf{small}, \ul{ill-conditioned} if
             \textbf{large}
       \vItem
             \iMbox{\kappa(\mathbf{A}) = \kappa(\mathbf{A}^{-1})}
@@ -317,12 +317,12 @@ For \iMbox{\mathbf{b} \in \mathbb{C}^{m}}, the problem
 
 \subsection*{Stability}
 
-Given a \underline{problem} \iMbox{f: X \to Y}, an \textbf{algorithm} for
+Given a \ul{problem} \iMbox{f: X \to Y}, an \textbf{algorithm} for
 \iMbox{f} is \iMbox{\tilde{f}: X  \to Y}
 
 \begin{itemize}
       \vItem
-            Input \iMbox{x \in X} is first \underline{rounded} to \iMbox{\mathrm{fl}(x)},
+            Input \iMbox{x \in X} is first \ul{rounded} to \iMbox{\mathrm{fl}(x)},
             i.e. \iMbox{\tilde{f}(x) = \tilde{f}\left(\mathrm{fl}\left(x \right) \right)}
       \vItem
             \textbf{Absolute error} => \iMbox{\|\tilde{f}(x)-f(x)\|};
@@ -342,10 +342,12 @@ and
 \begin{itemize}
 
       \vItem
-            i.e. \underline{nearly} the right answer to \underline{nearly} the right question
+            i.e. \ul{nearly} the right answer to \ul{nearly} the right question
       \vItem
             \textbf{outer-product} is stable
 \end{itemize}
+
+\columnbreak
 
 \iMbox{\tilde{f}} is \textbf{backwards stable} if
 \iMbox{\forall x \in X}, \iMbox{\exists \tilde{x} \in X} s.t.
@@ -355,24 +357,24 @@ and
 \begin{itemize}
 
       \vItem
-            i.e. \underline{exactly} the right answer to \underline{nearly} the right question,
+            i.e. \ul{exactly} the right answer to \ul{nearly} the right question,
             a \textbf{subset of stability}
       \vItem
             \iMbox{\oplus, \ominus, \otimes, \oslash}, \textbf{inner-product},
-            back-substitution w/ triangular systems, are \underline{backwards stable}
+            back-substitution w/ triangular systems, are \ul{backwards stable}
       \vItem
             If \textbf{backwards stable} \iMbox{\tilde{f}} and \iMbox{f} has
-            \underline{condition number} \iMbox{\kappa(x)} then \underline{relative error}
+            \ul{condition number} \iMbox{\kappa(x)} then \ul{relative error}
             \iMbox{\frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|} = O\left(\kappa(x)\epsilon_{\mathrm{mach}}\right)}
 \end{itemize}
 
-\underline{Accuracy, stability, backwards stability} are \textbf{norm-independent} for fin-dim \iMbox{X,Y}
+\ul{Accuracy, stability, backwards stability} are \textbf{norm-independent} for fin-dim \iMbox{X,Y}
 
 \subsection*{Big-O meaning for numerical analysis}
 
-In \underline{complexity analysis} \iMbox{f(n)=O(g(n))} as \iMbox{n \to \infty}
+In \ul{complexity analysis} \iMbox{f(n)=O(g(n))} as \iMbox{n \to \infty}
 
-But in \underline{numerical analysis} \iMbox{f(\epsilon)=O(g(\epsilon))} as \iMbox{\epsilon \to 0},
+But in \ul{numerical analysis} \iMbox{f(\epsilon)=O(g(\epsilon))} as \iMbox{\epsilon \to 0},
 i.e. \iMbox{\limsup_{\epsilon \to 0} \left. {\lVert f(\epsilon) \rVert} \ \middle/ \ {\lVert g(\epsilon) \rVert} \right. < \infty}
 
 \begin{itemize}
@@ -380,22 +382,22 @@ i.e. \iMbox{\limsup_{\epsilon \to 0} \left. {\lVert f(\epsilon) \rVert} \ \middl
             i.e. \iMbox{\exists C,\delta>0} s.t. \iMbox{\forall \epsilon}, we have
             \iMbox{0 < \lVert \epsilon \rVert<\delta \implies \lVert f(\epsilon) \rVert \leq C \lVert g(\epsilon) \rVert}
       \vItem
-            \iMbox{O(g)} is \underline{set of functions}
+            \iMbox{O(g)} is \ul{set of functions}
             \iMbox{\{ f \ \ : \ \ \limsup_{\epsilon \to 0} \left. {\lVert f(\epsilon) \rVert} \ \middle/ \ {\lVert g(\epsilon) \rVert} \right. < \infty \}}
 \end{itemize}
 
 \hSep % ---
 
-\textbf{Smallness} \underline{partial order} \iMbox{\ds O(g_{1}) \preceq O(g_{2})}
-defined by \underline{set-inclusion} \iMbox{\ds O(g_{1}) \subseteq O(g_{2})}
+\textbf{Smallness} \ul{partial order} \iMbox{\ds O(g_{1}) \preceq O(g_{2})}
+defined by \ul{set-inclusion} \iMbox{\ds O(g_{1}) \subseteq O(g_{2})}
 
 \begin{itemize}
 
       \vItem
-            i.e. as \iMbox{\epsilon \to 0}, \iMbox{g_{1}(\epsilon)} \underline{goes to zero}
+            i.e. as \iMbox{\epsilon \to 0}, \iMbox{g_{1}(\epsilon)} \ul{goes to zero}
             \textbf{\emph{faster}} than \iMbox{g_{2}(\epsilon)}
       \vItem
-            \emph{Roughly} same \underline{hierarchy} as \underline{complexity analysis} but
+            \emph{Roughly} same \ul{hierarchy} as \ul{complexity analysis} but
             \textbf{flipped} \emph{(some don't fit the pattern)}
 
             \begin{itemize}
@@ -412,20 +414,20 @@ defined by \underline{set-inclusion} \iMbox{\ds O(g_{1}) \subseteq O(g_{2})}
 
 \hSep % ---
 
-Using \underline{functions} \iMbox{f_{1},\dots,f_{n}}, let \iMbox{\mathbfit{\Phi}(f_{1},\dots,f_{n})}
-be \underline{formula} \textbf{defining some function}
+Using \ul{functions} \iMbox{f_{1},\dots,f_{n}}, let \iMbox{\mathbfit{\Phi}(f_{1},\dots,f_{n})}
+be \ul{formula} \textbf{defining some function}
 
 \begin{itemize}
 
       \vItem
-            Then \iMbox{\mathbfit{\Phi}(O(g_{1}),\dots,O(g_{n}))} is the \underline{class of functions}
+            Then \iMbox{\mathbfit{\Phi}(O(g_{1}),\dots,O(g_{n}))} is the \ul{class of functions}
             \iMbox{\left\{ \mathbfit{\Phi}(f_{1},\dots,f_{n}) \ \ : \ \ f_{1} \in O(g_{1}),\dots,f_{n} \in O(g_{n}) \right\}}
             \begin{itemize}
                   \vItem
                         e.g. \iMbox{\epsilon^{O(1)} = \{ \epsilon^{f(\epsilon)} : f \in O(1) \}}
             \end{itemize}
       \vItem
-            \underline{General case}:
+            \ul{General case}:
             \iMbox{\mathbfit{\Phi}_{1}(O(f_{1}),\dots,O(f_{m})) = \mathbfit{\Phi}_{2}(O(g_{1}),\dots,O(g_{n}))}
             means
             \iMbox{\mathbfit{\Phi}_{1}(O(f_{1}),\dots,O(f_{m})) \subseteq \mathbfit{\Phi}_{2}(O(g_{1}),\dots,O(g_{n}))}
@@ -438,7 +440,7 @@ be \underline{formula} \textbf{defining some function}
                         \emph{not necessarily true}
             \end{itemize}
       \vItem
-            \underline{Special case}: \iMbox{f = \mathbfit{\Phi}(O(g_{1}),\dots,O(g_{n}))}
+            \ul{Special case}: \iMbox{f = \mathbfit{\Phi}(O(g_{1}),\dots,O(g_{n}))}
             means \iMbox{f \in \mathbfit{\Phi}(O(g_{1}),\dots,O(g_{n}))}
             \begin{itemize}
                   \vItem
@@ -450,7 +452,7 @@ be \underline{formula} \textbf{defining some function}
 
 \hSep % ---
 
-Let \iMbox{f_{1} = O(g_{1}), \ f_{2} = O(g_{2})} and let \iMbox{k \neq 0} be a \underline{constant}
+Let \iMbox{f_{1} = O(g_{1}), \ f_{2} = O(g_{2})} and let \iMbox{k \neq 0} be a \ul{constant}
 
 \begin{itemize}
 
@@ -479,11 +481,11 @@ Consider \textbf{base/radix} \iMbox{\beta\geq 2} \emph{(typically
             \emph{(\iMbox{8}-bit for single, \iMbox{11}-bit for double)}
       \vItem
             Equivalently, can restrict to
-            \iMbox{\beta^{t-1} \leq m \leq \beta^t-1} for \underline{unique} \iMbox{m} and
+            \iMbox{\beta^{t-1} \leq m \leq \beta^t-1} for \ul{unique} \iMbox{m} and
             \iMbox{e}
       \vItem
-            \iMbox{\mathbf{F}\subset \mathbb{R}} is \underline{idealized} 
-            \emph{(ignores over/underflow)}, so is \underline{countably infinite} and \underline{self-similar}
+            \iMbox{\mathbf{F}\subset \mathbb{R}} is \ul{idealized} 
+            \emph{(ignores over/underflow)}, so is \ul{countably infinite} and \ul{self-similar}
             \emph{(i.e. \iMbox{\mathbf{F} = \beta \mathbf{F}})}
       \vItem
             For all \iMbox{x \in \mathbb{R}} there exists \iMbox{\mathrm{fl}(x) \in \mathbf{F}} s.t.
@@ -498,10 +500,10 @@ Consider \textbf{base/radix} \iMbox{\beta\geq 2} \emph{(typically
 
 \textbf{Machine epsilon}
 \iMbox{\epsilon_{\mathrm{machine}} = \epsilon_{\mathrm{mach}} = \frac{1}{2}\beta^{1-t}}
-\underline{is maximum relative gap between FPs}
+\ul{is maximum relative gap between FPs}
 \begin{itemize}
       \vItem
-            \underline{Half the gap} between \iMbox{1} and \underline{next largest FP}
+            \ul{Half the gap} between \iMbox{1} and \ul{next largest FP}
       \vItem
             \iMbox{2^{-24} \approx 5.96 \times 10^{-8}} and
             \iMbox{2^{-53} \approx 10^{-16}} for single/double
@@ -509,8 +511,8 @@ Consider \textbf{base/radix} \iMbox{\beta\geq 2} \emph{(typically
 
 \hSep % ---
 
-\textbf{FP arithmetic}: let \iMbox{\ast, \circledast} be \underline{real} and
-\underline{floating} counterparts of \underline{arithmetic operation}
+\textbf{FP arithmetic}: let \iMbox{\ast, \circledast} be \ul{real} and
+\ul{floating} counterparts of \ul{arithmetic operation}
 
 \begin{itemize}
       \vItem
@@ -519,17 +521,17 @@ Consider \textbf{base/radix} \iMbox{\beta\geq 2} \emph{(typically
 
             \begin{itemize}
                   \vItem
-                        Holds for \textbf{\emph{any}} \underline{arithmetic operation}
+                        Holds for \textbf{\emph{any}} \ul{arithmetic operation}
                         \iMbox{\circledast = \oplus, \ominus, \otimes, \oslash}
             \end{itemize}
       \vItem
-            \underline{Complex floats} implemented \underline{pairs of real floats}, so above applies
-            to \underline{complex ops} as-well
+            \ul{Complex floats} implemented \ul{pairs of real floats}, so above applies
+            to \ul{complex ops} as-well
 
             \begin{itemize}
                   \vItem
-                        \underline{Caveat:} \iMbox{\epsilon_{\mathrm{mach}} = \frac{1}{2}\beta^{1-t}}
-                        must be \underline{scaled} by factors \underline{on the order of} \iMbox{2^{3/2},2^{5/2}}
+                        \ul{Caveat:} \iMbox{\epsilon_{\mathrm{mach}} = \frac{1}{2}\beta^{1-t}}
+                        must be \ul{scaled} by factors \ul{on the order of} \iMbox{2^{3/2},2^{5/2}}
                         for \iMbox{\otimes, \oslash} \emph{respectively}
             \end{itemize}
       \vItem
@@ -559,16 +561,18 @@ Consider \textbf{base/radix} \iMbox{\beta\geq 2} \emph{(typically
                         Assuming \iMbox{n \epsilon_{\mathrm{mach}} \leq 0.1}
                         =>
                         \iMbox{|\mathrm{fl}(x^T y) - x^T y| \leq \phi(n) \epsilon_{\mathrm{mach}} \lvert x \rvert^T \lvert y \rvert},
-                        where \iMbox{\lvert x \rvert_{i} = \lvert x_{i} \rvert} is \underline{vector}
-                        and \iMbox{\phi(n)} is \underline{small function} of \iMbox{n}
+                        where \iMbox{\lvert x \rvert_{i} = \lvert x_{i} \rvert} is \ul{vector}
+                        and \iMbox{\phi(n)} is \ul{small function} of \iMbox{n}
             \end{itemize}
       \vItem
-            \textbf{Summing a series} is \underline{more stable} if terms \underline{added in order of increasing magnitude}
+            \textbf{Summing a series} is \ul{more stable} if terms \ul{added in order of increasing magnitude}
 \end{itemize}
+
+\columnbreak
 
 For \textbf{FP matrices}, let
 \iMbox{\lvert M \rvert_{ij} = \lvert M_{ij} \rvert}, i.e. matrix
-\iMbox{\lvert M \rvert} of \underline{absolute values} of \iMbox{M}
+\iMbox{\lvert M \rvert} of \ul{absolute values} of \iMbox{M}
 \begin{itemize}
 
       \vItem

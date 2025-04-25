@@ -29,6 +29,7 @@
 \RequirePackage{fifo-stack}
 \RequirePackage{etoolbox}
 \RequirePackage{environ}
+\RequirePackage{soul}
 
 
 \RequirePackage{tcolorbox} % Boxes
@@ -65,6 +66,8 @@
   \patchcmd{\columnseprulecolor}{\normalcolor}{\color{deepjunglegreen}}{}{} % Patch command to set color
 
   \pagestyle{empty} % No page numbers/headers
+
+  \setul{.5pt}{.4pt} % Configure underline
 }
 \AtBeginEnvironment{aligned}{
   \addtolength{\jot}{-3pt}
