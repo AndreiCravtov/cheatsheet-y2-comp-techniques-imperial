@@ -128,14 +128,16 @@
 % And you could define different settings for enumerate:
 % \setlist[enumerate]{nosep, leftmargin=1.5em, labelsep=0.4em}
 
-% Patch 'itemize' environment
+% Patch 'itemize' & 'enumerate' environment
 \newcommand{\vItem}{\item[\textcolor{ceruleanblue}{\(\cdot\)}]}
-\tcolorboxenvironment{itemize}{
+\newcommand{\mkPatchEnv}[1]{\tcolorboxenvironment{#1}{
   enforce breakable, blanker, nobeforeafter, 
   borderline west={0.3pt}{0pt}{ceruleanblue},
   left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
   before upper={\noindent\raggedright},
-}
+}}
+\mkPatchEnv{itemize}
+\mkPatchEnv{enumerate}
 
 % --- Customize \subsection for cheat sheet sections ---
 \newcommand{\mkTitleFormat}[2]{
