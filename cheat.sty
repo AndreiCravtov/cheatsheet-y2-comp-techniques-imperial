@@ -29,7 +29,7 @@
 \RequirePackage{fifo-stack}
 \RequirePackage{etoolbox}
 \RequirePackage{environ}
-\RequirePackage{soul}
+\RequirePackage{ulem}
 
 
 \RequirePackage{tcolorbox} % Boxes
@@ -67,7 +67,8 @@
 
   \pagestyle{empty} % No page numbers/headers
 
-  \setul{.5pt}{.4pt} % Configure underline
+  \setlength{\ULdepth}{.5pt} % Set underline depth
+  \renewcommand{\ULthickness}{.3pt} % Set underline thickness
 }
 \AtBeginEnvironment{aligned}{
   \addtolength{\jot}{-3pt}
@@ -159,6 +160,7 @@
 \mkTitleFormat{\subparagraph}{\fontsize{5}{1}\bfseries\color{black}}
 
 % --- Typography & Structure Commands ---
+\newcommand{\ul}{\uline}
 \newcommand{\hSep}{\textcolor{deepjunglegreen}{\hrulefill}} % Horizontal separator bar 
 
 \newtcbox{\inlinebox}{ % Inline box for inexpensively seperating text
