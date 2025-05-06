@@ -1,0 +1,39 @@
+\mkImg{image copy 31}
+
+\textbf{RESOURCE ALLOCATION GRAPH} — directed graph models resource allocation =>
+\ul{resource-to-process edge} means process currently owns that resource =>
+\ul{process-to-resource edge} means process blocked waiting for that resource =>
+\ul{cycle means deadlock}
+
+\hSep
+
+\textit{How to deal with deadlocks?}
+
+\textbf{Ignore it} — If contention fore resources is low, then deadlocks are infrequent
+
+\textbf{Detection \& Recovery:}
+\begin{enumerate}
+    \vItem After system deadlocked, dynamically build resource ownership graph and look for cycles
+    => e.g. DFS search to look for cycles: when an edge has been inspected, it is marked and not visited again.
+
+    \vItem Recover from deadlock by preemption \textit{(temporarily take resource from owner and give to another)}
+    => rollback \textit{(periodic checkpoints are made for process state)} => kill random process :)))
+\end{enumerate}
+
+\mkImg{image copy 32}
+
+\textbf{Prevention} — Ensure $\geq 1$ conditions cannot hold:
+\begin{enumerate}
+    \vItem \ul{Mutual exclusion} => share the resource, use atomic operations, non-blocking algorithms??
+    \vItem \ul{Hold and wait} => 
+    require all processes to request resources before start; if not all available then wait - can
+    be enforced by protecting lock acquisition w/ global lock; \ul{issues:}
+    need to know what you need in advance; often lead to starvation
+    \vItem \ul{No preemption} => allow processes to be preempted, i.e. temporarily lose locks they own
+    \vItem \ul{Circular wait} => e.g by \ul{acquiring resources} in a \ul{total order}
+\end{enumerate}
+
+\mkImg{image copy 33}
+\^{} \textbf{livelocks} are \ul{special type} of starvation, related to \ul{priority inversion problem}
+
+\hSep
