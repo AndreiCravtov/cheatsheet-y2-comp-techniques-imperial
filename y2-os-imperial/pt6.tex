@@ -1,0 +1,101 @@
+\mkImg{image copy 21}
+
+\textbf{Race condition} occurs when multiple threads read and
+write shared data within \ul{critical section} =>
+their execution \ul{interleaved non-deterministically}.
+
+\mkImg{image copy 22}
+
+\hSep
+
+\textbf{Synchronisation mechanism} required at entry/exit of
+critical section => \ul{mediate} concurrent access \& prevent race conditions.
+
+\mkImg{image copy 23}
+
+\textbf{TEST \& SET LOCK} is an atomic instruction $\mathrm{TSL}(L)$
+provided by most CPUs. Sets memory location $L$ to 1 and returns old value;
+\ul{locks} using \ul{busy waiting} (e.g. \(\textcolor{cornellred}{\textrm{while (TSL($L$) != 0) $/* wait */$; }}\))
+are \textbf{spin locks}.
+
+\mkImg{image copy 24}
+
+\textbf{STRICT ALTERNATION} fails to meet rules of mutual exclusion =>
+if $T_0$'s non-crit. section is \ul{long enough}, it will prevent $T_1$
+from entering crit. section. $\Downarrow \Downarrow \Downarrow$
+\mkImg{image copy 26-pdf}
+
+\textbf{PETERSON'S SOLUTION} fixes issues w/ strict alternation; thread $T_k$ calls
+\(\textrm{enter/leave\_critical($k$)}\); $\Downarrow \Downarrow$
+\mkImg{image copy 27-pdf}
+
+\hSep
+
+\textbf{Busy waiting} => synch. mechanism for which the
+\ul{waiting thread} remains in \ul{running state} \textit{(e.g. spin locks)} which wastes CPU cycles,
+and runs into \textbf{Priority Inversion Problem} => if \ul{higher-priority} $H$ is busy-waiting
+on lock held by \ul{lower-priority} $L$, then $H$ is \ul{always scheduled} meaning $L$
+cannot make progress, i.e. \ul{neither can make progress}.
+
+\mkImg{image copy 25}
+\^{} a commonly desired feature of \ul{synchronisation mechanisms}.
+
+\textbf{Example implementations} => disabling interrupts, strict alternation, Peterson's solution,
+spin locks, binary semaphores w/ init. $counter{=}1$.
+
+\hSep
+
+\textbf{LOCK/MUTEX} => \ul{mutual exclusion} mechanism \ul{owned} by \ul{actively excluding thread};
+\textbf{lock} is usually \ul{user/process object} while
+\textbf{mutex} is same thing but \ul{OS/Kernel object}.
+
+\textbf{Lock granularity} => the amount of data a lock is protecting.
+
+\textbf{Lock overhead} => \ul{cost} of using locks, e.g. memory space, initialization,
+time required to acquire/release locks.
+
+\textbf{Lock contention} =>  number of processes \ul{waiting} for lock; more contention => less parallelism.
+
+\textbf{Read/Write Locks} can be used to \ul{minimize lock contention} \& \ul{maximize concurrency}  => exclusive access
+in write mode but multiple threads can acquire in read mode.
+
+\hSep
+
+\mkImg{image copy 29}
+\mkImg{image copy 28-pdf}
+
+\hSep
+
+\textbf{MONITORS on COND-VARS:}
+
+\begin{enumerate}
+    \vItem \textbf{Monitors} regulate access to shared data \& consist of (implicit) \textit{\textbf{monitor lock}}
+    and $\geq 1$ \textit{\textbf{cond-vars}};
+    \textit{\textbf{entry}} procedures called from outside the monitor, \textit{\textbf{internal}}
+    procedures only callable from \ul{monitor procedures}, processes can only call entry procedures — only one
+    process can be in the monitor at one time
+    \vItem \textbf{Cond-vars} associated with high-level conditions; if \textit{\textbf{cond-var}}
+    signalled w/ no one waiting for it then the signal is \ul{lost}; has operations:
+    
+    \begin{enumerate}
+        \vItem \textcolor{cornellred}{\textit{wait(c)}} => 
+        release monitor lock \& wait for $c$ to be signalled
+        \vItem \textcolor{cornellred}{\textit{signal(c)}} => 
+        wake up one process waiting for $c$
+        \vItem \textcolor{cornellred}{\textit{broadcast(c)}} => 
+        wake up all processes waiting for $c$
+    \end{enumerate}
+
+    \vItem \textbf{Monitors} are a \textit{language construct} and \textit{not supported by C}
+    \textit{(supported by PintOS via \ul{explicit} monitor locks)}. Java supports \ul{variant} of monitors
+    via $\mathbf{synchronized}$ methods, but they \ul{lack condition variables},
+    i.e. no wait()/notify()
+\end{enumerate}
+
+\textbf{Producer/consumer example w/ monitors} $\Downarrow \Downarrow$
+\mkImg[90pt]{image copy 30}
+
+\^{} producer inserts \& consumer removes items w/ max. capacity $N$ => only insert/remove if mutual exclusion achieved
+=> only insert if non-full \& remove if non-empty.
+
+\hSep
