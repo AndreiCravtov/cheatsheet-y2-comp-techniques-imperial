@@ -1,0 +1,49 @@
+\mkImg{image copy 13}
+\mkImg{image copy 12}
+
+\textcolor{cornellred}{\textbf{Goals of Scheduling Algorithms}} => 
+\textbf{Ensure fairness}: Comparable processes should get comparable services;
+\textbf{Avoid indefinite postponement}: No process should starve;
+\textbf{Enforce policy}: E.g. priorities;
+\textbf{Maximize resource utilization}: CPU, I/O devices;
+\textbf{Minimize overhead}: From context switches, scheduling decisions
+
+\textcolor{cornellred}{\textbf{For Batch Systems}} => 
+\textbf{Throughput}: Jobs per unit of time;
+\textbf{Turnaround time}: Time between job submission \& completion
+
+
+\textcolor{cornellred}{\textbf{For Interactive Systems}} => 
+\textbf{Response time}: Time between request issued and first response
+
+\mkImg{image copy 14}
+
+\hSep
+
+\mkImg{image copy 15}
+\^{} Good avg. turnaround time when different runtimes.
+
+\textit{\textbf{RR quantum (time slice)}} => should be larger than context switch cost,
+but still provide decent response time;
+\textit{\textbf{RR overhead}} =>
+\(\textrm{RR quantum} / (\textrm{RR quantum} + \textrm{ctx. switch time})\).
+
+\mkImg{image copy 16}
+\mkImg{image copy 17}
+\mkImg{image copy 18}
+\^{} within each user can use RR to schedule.
+
+\mkImg{image copy 19}
+
+\textbf{MULTILEVEL FEEDBACK QUEUES} — Form of priority
+scheduling. One queue for each priority level. Within each
+queue, can use diff. scheduling (usually RR). Need to
+determine current nature of job, worry about starvation of
+lower-priority jobs. \textit{Feedback} comes from periodically
+recomputing priorities => e.g. based on how much CPU they
+used recently, increase job's priority as it ages, exponentially weighed
+moving average. Not very flexible, does not react quickly to changes, cheating is a concern.
+
+\mkImg{image copy 20}
+
+\hSep
