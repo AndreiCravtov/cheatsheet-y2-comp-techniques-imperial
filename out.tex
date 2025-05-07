@@ -45,14 +45,15 @@ memory. \textbf{\textit{Overview:}}
 \item
   No knowledge of what the memory address holds \textit{(memory
   vs.~data)} should be required The computer has \ul{CPU registers} and
-  \ul{main memory}: \includegraphics{Pasted image 20241119212829.png}
+  \ul{main memory}:
+  \textcolor{red}{\textbf{Pasted image 20241119212829.png}}
 \item
   \ul{Register} access = one cycle
 \item
   \ul{Main memory} = many cycles
 \item
   \ul{L1, L2, L3 cache} is between \ul{register} and \ul{main memory}
-  \includegraphics{Pasted image 20241119213521.png}\includegraphics{Pasted image 20241119213547.png}\includegraphics{Pasted image 20241119213613.png}
+  \textcolor{red}{\textbf{Pasted image 20241119213521.png}}\textcolor{red}{\textbf{Pasted image 20241119213547.png}}\textcolor{red}{\textbf{Pasted image 20241119213613.png}}
 \end{itemize}
 
 \section*{Basic Concepts}
@@ -89,8 +90,9 @@ memory. \textbf{\textit{Overview:}}
   \end{itemize}
 \item
   \ul{Memory Management Unit (MMU)} maps logical address dynamically
-  \includegraphics{Pasted image 20241120233720.png} \^{}\ul{Base} and
-  \ul{limit registers} define \ul{logical address space}
+  \textcolor{red}{\textbf{Pasted image 20241120233720.png}}
+  \^{}\ul{Base} and \ul{limit registers} define \ul{logical address
+  space}
 \end{itemize}
 
 \paragraph*{Memory Protection in Contiguous Memory Allocation}
@@ -103,25 +105,25 @@ Check memory access valid to protect \ul{user processes}
   from each other
 \item
   from changing \ul{operating-system} code and data
-  \includegraphics{Pasted image 20241120234121.png}
+  \textcolor{red}{\textbf{Pasted image 20241120234121.png}}
 \end{itemize}
 
 \subsubsection*{Multiple-Partition Allocation}
 
-\includegraphics{Pasted image 20241120234217.png}\includegraphics{Pasted image 20241120234301.png}
+\textcolor{red}{\textbf{Pasted image 20241120234217.png}}\textcolor{red}{\textbf{Pasted image 20241120234301.png}}
 
 \subsubsection*{Fragmentation}
 
-\includegraphics{Pasted image 20241120234354.png} \#\# Swapping
-\includegraphics{Pasted image 20241120234424.png}
+\textcolor{red}{\textbf{Pasted image 20241120234354.png}} \#\# Swapping
+\textcolor{red}{\textbf{Pasted image 20241120234424.png}}
 
 \section*{Virtual Memory}
 
-\includegraphics{Pasted image 20241120234652.png}\includegraphics{Pasted image 20241120234731.png}
+\textcolor{red}{\textbf{Pasted image 20241120234652.png}}\textcolor{red}{\textbf{Pasted image 20241120234731.png}}
 
 \subsection*{Paging}
 
-\includegraphics{Pasted image 20241120234802.png}\includegraphics{Pasted image 20241120234958.png}\includegraphics{Pasted image 20241121002233.png}
+\textcolor{red}{\textbf{Pasted image 20241120234802.png}}\textcolor{red}{\textbf{Pasted image 20241120234958.png}}\textcolor{red}{\textbf{Pasted image 20241121002233.png}}
 
 How does page size affect things?
 
@@ -151,7 +153,7 @@ When performing \ul{context switches}, the OS must
 \subsubsection*{\texorpdfstring{Address Translation with \ul{One-Level
 Paging}}{Address Translation with One-Level Paging}}
 
-\includegraphics{Pasted image 20241121001555.png}\includegraphics{Pasted image 20241121001607.png}
+\textcolor{red}{\textbf{Pasted image 20241121001555.png}}\textcolor{red}{\textbf{Pasted image 20241121001607.png}}
 \textbf{\textit{NOTE:}} careful with the \textbf{\textit{bits}}
 vs.~\textbf{\textit{bytes}} units,
 
@@ -170,7 +172,7 @@ vs.~\textbf{\textit{bytes}} units,
 \subsubsection*{\texorpdfstring{Memory Protection with \ul{One-Level
 Paging}}{Memory Protection with One-Level Paging}}
 
-\includegraphics{Pasted image 20241121002445.png}\includegraphics{Pasted image 20241121002517.png}
+\textcolor{red}{\textbf{Pasted image 20241121002445.png}}\textcolor{red}{\textbf{Pasted image 20241121002517.png}}
 
 \subsection*{Page Table Implementations}
 
@@ -215,7 +217,8 @@ So far we've seen basic \textbf{\textit{One-Level Page Tables}} with
 
 We can use special \ul{fast-lookup hardware cache} \textit{(in the CPU)}
 called \textbf{\textit{associative memory}} to store portions of the
-\ul{page table} \includegraphics{Pasted image 20241121014235.png} This
+\ul{page table}
+\textcolor{red}{\textbf{Pasted image 20241121014235.png}} This
 associative memory, when used for the purpose of caching page tables, is
 called \textbf{\textit{Translation Look-aside Buffers (TLBs)}}.
 
@@ -241,16 +244,16 @@ called \textbf{\textit{Translation Look-aside Buffers (TLBs)}}.
     Can lead to substantial overhead
   \item
     What about kernel pages for system calls?
-    \includegraphics{Pasted image 20241121014705.png}
+    \textcolor{red}{\textbf{Pasted image 20241121014705.png}}
   \end{itemize}
 \end{itemize}
 
 \paragraph*{Performance: Effective Access Time}
 
-\includegraphics{Pasted image 20241121014814.png} \^{}this formula is
-for \ul{one-level tables} where \ul{memory cycle time} \iMbox{M} is
-\iMbox{M=1 \mu sec}, but we can generalize to to \ul{\iMbox{n}-level
-tables}
+\textcolor{red}{\textbf{Pasted image 20241121014814.png}} \^{}this
+formula is for \ul{one-level tables} where \ul{memory cycle time}
+\iMbox{M} is \iMbox{M=1 \mu sec}, but we can generalize to to
+\ul{\iMbox{n}-level tables}
 
 \begin{itemize}
 \tightlist
@@ -280,13 +283,13 @@ Break up \ul{logical address space} into \ul{multiple page tables}
 
 \paragraph*{Two-Level Page Tables}
 
-\includegraphics{Pasted image 20241121015119.png}\includegraphics{Pasted image 20241121015142.png}\includegraphics{Pasted image 20241121015202.png}
+\textcolor{red}{\textbf{Pasted image 20241121015119.png}}\textcolor{red}{\textbf{Pasted image 20241121015142.png}}\textcolor{red}{\textbf{Pasted image 20241121015202.png}}
 
 \paragraph*{Three-Level Page Tables}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121015246.png}
+\textcolor{red}{\textbf{Pasted image 20241121015246.png}}
 \caption{400}
 \end{figure}
 
@@ -294,7 +297,7 @@ Break up \ul{logical address space} into \ul{multiple page tables}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121015455.png}
+\textcolor{red}{\textbf{Pasted image 20241121015455.png}}
 \caption{450}
 \end{figure}
 
@@ -302,23 +305,23 @@ Break up \ul{logical address space} into \ul{multiple page tables}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121015511.png}
+\textcolor{red}{\textbf{Pasted image 20241121015511.png}}
 \caption{450}
 \end{figure}
 
 \subsection*{Shared Memory}
 
-\includegraphics{Pasted image 20241121043002.png}\includegraphics{Pasted image 20241121043052.png}
+\textcolor{red}{\textbf{Pasted image 20241121043002.png}}\textcolor{red}{\textbf{Pasted image 20241121043052.png}}
 
 \subsection*{Segmentation \& Hybrid Paging/Segmentation Approaches}
 
-\includegraphics{Pasted image 20241121043422.png}\includegraphics{Pasted image 20241121043557.png}
+\textcolor{red}{\textbf{Pasted image 20241121043422.png}}\textcolor{red}{\textbf{Pasted image 20241121043557.png}}
 
 \subsection*{Virtual Memory Tricks}
 
 \subsubsection*{Copy On Write (COW)}
 
-\includegraphics{Pasted image 20241121051904.png}\includegraphics{Pasted image 20241121051922.png}\includegraphics{Pasted image 20241121051959.png}
+\textcolor{red}{\textbf{Pasted image 20241121051904.png}}\textcolor{red}{\textbf{Pasted image 20241121051922.png}}\textcolor{red}{\textbf{Pasted image 20241121051959.png}}
 
 \subsubsection*{Memory-mapped Files}
 
@@ -332,52 +335,52 @@ Break up \ul{logical address space} into \ul{multiple page tables}
 
 \section*{Demand Paging}
 
-\includegraphics{Pasted image 20241121051008.png}\includegraphics{Pasted image 20241121051024.png}
+\textcolor{red}{\textbf{Pasted image 20241121051008.png}}\textcolor{red}{\textbf{Pasted image 20241121051024.png}}
 
 \subsection*{Page Faults}
 
-\includegraphics{Pasted image 20241121051211.png}\includegraphics{Pasted image 20241121051229.png}
+\textcolor{red}{\textbf{Pasted image 20241121051211.png}}\textcolor{red}{\textbf{Pasted image 20241121051229.png}}
 
 \subsection*{Performance of Demand Paging}
 
-\includegraphics{Pasted image 20241121051359.png}\includegraphics{Pasted image 20241121051441.png}
+\textcolor{red}{\textbf{Pasted image 20241121051359.png}}\textcolor{red}{\textbf{Pasted image 20241121051441.png}}
 
 \subsection*{Page Replacement}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121052234.png}
+\textcolor{red}{\textbf{Pasted image 20241121052234.png}}
 \caption{450}
 \end{figure}
 
 \subsubsection*{Basic Page Replacement Strategy}
 
-\includegraphics{Pasted image 20241121052331.png}\includegraphics{Pasted image 20241121052345.png}
+\textcolor{red}{\textbf{Pasted image 20241121052331.png}}\textcolor{red}{\textbf{Pasted image 20241121052345.png}}
 
 \subsubsection*{Page replacement algorithms}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121052422.png}
+\textcolor{red}{\textbf{Pasted image 20241121052422.png}}
 \caption{450}
 \end{figure}
 
 \paragraph*{First-In-First-Out (FIFO) Algorithm}
 
-\includegraphics{Pasted image 20241121052634.png}\includegraphics{Pasted image 20241121052741.png}\includegraphics{Pasted image 20241121052754.png}
+\textcolor{red}{\textbf{Pasted image 20241121052634.png}}\textcolor{red}{\textbf{Pasted image 20241121052741.png}}\textcolor{red}{\textbf{Pasted image 20241121052754.png}}
 
 \paragraph*{Optimal Algorithm}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121052828.png}
+\textcolor{red}{\textbf{Pasted image 20241121052828.png}}
 \caption{450}
 \end{figure}
 
 \paragraph*{Least Recently Used (LRU) Algorithm and its approximations:
 Reference bit algorithm, Second chance algorithm}
 
-\includegraphics{Pasted image 20241121052855.png}\includegraphics{Pasted image 20241121052941.png}\includegraphics{Pasted image 20241121053003.png}
+\textcolor{red}{\textbf{Pasted image 20241121052855.png}}\textcolor{red}{\textbf{Pasted image 20241121052941.png}}\textcolor{red}{\textbf{Pasted image 20241121053003.png}}
 
 \paragraph*{\texorpdfstring{Counting Algorithms: \ul{LFU (least
 frequently used)} algorithm, \ul{MFU (most frequently used)}
@@ -385,15 +388,15 @@ algorithm}{Counting Algorithms: LFU (least frequently used) algorithm, MFU (most
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121053246.png}
+\textcolor{red}{\textbf{Pasted image 20241121053246.png}}
 \caption{400}
 \end{figure}
 
 \paragraph*{\texorpdfstring{\ul{Working Set (WS)} Clock
 Algorithm}{Working Set (WS) Clock Algorithm}}
 
-\includegraphics{Pasted image 20241121054055.png}
-\includegraphics{Pasted image 20241121054205.png}\includegraphics{Pasted image 20241121054226.png}\includegraphics{Pasted image 20241121054508.png}
+\textcolor{red}{\textbf{Pasted image 20241121054055.png}}
+\textcolor{red}{\textbf{Pasted image 20241121054205.png}}\textcolor{red}{\textbf{Pasted image 20241121054226.png}}\textcolor{red}{\textbf{Pasted image 20241121054508.png}}
 
 \subsection*{Locality of Reference \& Thrashing}
 
@@ -415,7 +418,7 @@ program to run efficiently:
     Excessive paging activity causing low processor utilisation
   \item
     Program repeatedly requests pages from secondary storage
-    \includegraphics{Pasted image 20241121053818.png}
+    \textcolor{red}{\textbf{Pasted image 20241121053818.png}}
   \end{itemize}
 \end{itemize}
 
@@ -423,7 +426,7 @@ program to run efficiently:
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121053938.png}
+\textcolor{red}{\textbf{Pasted image 20241121053938.png}}
 \caption{600}
 \end{figure}
 
@@ -431,26 +434,26 @@ program to run efficiently:
 
 \subsection*{Linux: 32-bit Virtual Memory Layout}
 
-\includegraphics{Pasted image 20241121043955.png}\includegraphics{Pasted image 20241121044018.png}
+\textcolor{red}{\textbf{Pasted image 20241121043955.png}}\textcolor{red}{\textbf{Pasted image 20241121044018.png}}
 
 \subsection*{Linux: Paging}
 
 \begin{figure}
 \centering
-\includegraphics{Pasted image 20241121044109.png}
+\textcolor{red}{\textbf{Pasted image 20241121044109.png}}
 \caption{500}
 \end{figure}
 
 \subsection*{Linux: Page Replacement}
 
-\includegraphics{Pasted image 20241121054602.png}\includegraphics{Pasted image 20241121054630.png}
+\textcolor{red}{\textbf{Pasted image 20241121054602.png}}\textcolor{red}{\textbf{Pasted image 20241121054630.png}}
 
 \section*{\texorpdfstring{Exploiting \ul{cached virtual addresses}:
 Meltdown attack}{Exploiting cached virtual addresses: Meltdown attack}}
 
-\includegraphics{Pasted image 20241121045915.png}\includegraphics{Pasted image 20241121045936.png}\includegraphics{Pasted image 20241121050027.png}
-\includegraphics{Pasted image 20241121050057.png} Essentially you do it
-like this:
+\textcolor{red}{\textbf{Pasted image 20241121045915.png}}\textcolor{red}{\textbf{Pasted image 20241121045936.png}}\textcolor{red}{\textbf{Pasted image 20241121050027.png}}
+\textcolor{red}{\textbf{Pasted image 20241121050057.png}} Essentially
+you do it like this:
 
 \begin{itemize}
 \tightlist

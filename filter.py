@@ -114,6 +114,9 @@ def replace_link_with_ul(el: pf.Link, doc: pf.Doc):
     
     return [mk_raw_inline("\\ul{"), *parsed_content[0].content, mk_raw_inline("}")]
 
+def replace_images_with_placeholder(el: pf.Image, doc: pf.Doc):
+    return mk_raw_inline(f"\\textcolor{{red}}{{\\textbf{{{el.url}}}}}")
+
 def html_tag_polyfill(el: pf.RawInline):
     """
     Provide polyfill parsing for any relevant HTML tags
@@ -187,7 +190,8 @@ def action(el, doc):
         case pf.Math(): return math_actions(el, doc)
         case pf.Emph(): return replace_emph_with_textit(el)
         case pf.Link(): return replace_link_with_ul(el, doc)
-        case pf.RawInline(): return raw_inline_actions(el, doc)
+        case pf.RawInline(): return raw_inline_actions(el, doc) 
+        case pf.Image(): return replace_images_with_placeholder(el, doc)
         
     return el
 
