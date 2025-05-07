@@ -1,0 +1,623 @@
+\subsection*{I/O Devices: Block, Character, Other}
+
+I/O devices can be roughly divided into two categories:
+\textbf{ \textit{block devices}} and \textbf{ \textit{character devices}}:
+
+\begin{itemize}
+    \vItem
+          \textbf{ \textit{Block devices}}: store data in fixed-size blocks, each
+          block one with its own address
+
+          \begin{itemize}
+              \vItem
+                    Transfers in units of  \textit{one or more} entire (consecutive) blocks
+              \vItem
+                    Possible to read/write each block independently of the other blocks
+              \vItem
+                    e.g. HDDs, SSDs, magnetic tape drives, etc.
+          \end{itemize}
+    \vItem
+          \textbf{ \textit{Character devices}}: delivers/accepts a stream of
+          characters, disregarding any block structure
+
+          \begin{itemize}
+
+              \vItem
+                    Not addressable and has no seek operation
+              \vItem
+                    e.g. printers, network interfaces, mice, etc.
+          \end{itemize}
+\end{itemize}
+
+This classification scheme is not perfect. Some devices do not fit in:
+
+\begin{itemize}
+
+    \vItem
+          \textbf{ \textit{Clocks}}:
+
+          \begin{itemize}
+
+              \vItem
+                    not block addressable \& don't generate/accept character streams
+              \vItem
+                    They just cause interrupts at well-defined intervals
+          \end{itemize}
+    \vItem
+          \textbf{ \textit{Memory-mapped screens}}: don't fit into this model
+    \vItem
+          \textbf{ \textit{Touch screens:}} don't fit into this model
+\end{itemize}
+
+\subsection*{Device Controllers/Adapters}
+
+I/O units often consist of a mechanical component and an electronic
+component. The electronic component is called the \textbf{ \textit{device
+        controller}} or \textbf{ \textit{adapter}}.
+
+\begin{itemize}
+
+    \vItem
+          On PCs it is often a chip on the motherboard or a
+          \ul{PCB} which
+          can be inserted into a (PCIe) expansion slot
+    \vItem
+          Controller usually has a connector on it, into which a cable leading
+          to the device itself can be plugged
+    \vItem
+          Many controllers can handle multiple devices
+    \vItem
+          If the interface between the controller \& device is standard,
+          companies make controllers/devices that fit that interface
+
+          \begin{itemize}
+
+              \vItem
+                    e.g. SATA, SCSI, USB, etc.
+          \end{itemize}
+\end{itemize}
+
+Each controller has a few registers that are used for communicating with
+the CPU:
+
+\begin{itemize}
+
+    \vItem
+          Writing into these registers: commands the device to deliver
+          data/accept data/switch itself on or off/etc.
+    \vItem
+          Reading from these registers: learn what the device's state is,
+          e.g. is is prepared to accept a new command, etc
+\end{itemize}
+
+Many \textbf{ \textit{devices}} have a data buffer that can be read+written
+to:
+
+\begin{itemize}
+
+    \vItem
+          e.g. a common way for computers to display pixels on the screen is
+          video RAM
+
+          \begin{itemize}
+
+              \vItem
+                    a data buffer for programs/OS to write into
+          \end{itemize}
+\end{itemize}
+
+\subsection*{Memory-Mapped \& Port-Mapped I/O}
+
+The \textbf{\textit{Port-Mapped I/O}} approach assigns an
+\textbf{\textit{I/O port}} number to \ul{control registers and buffers}:
+
+\begin{itemize}
+
+    \vItem
+          Set of all the \textbf{ \textit{I/O ports}} form the I/O port space
+    \vItem
+          Access to \textbf{ \textit{I/O ports}} is protected
+
+          \begin{itemize}
+
+              \vItem
+                    ordinary user programs cannot access it
+              \vItem
+                    only the operating system can
+          \end{itemize}
+    \vItem
+          Access is done with special I/O instructions,
+          e.g. \texttt{IN\ REG,PORT} and \texttt{OUT\ PORT,REG}
+    \vItem
+          Most early computers worked this way
+\end{itemize}
+
+The \textbf{ \textit{Memory-Mapped I/O}} approach maps all \ul{control registers and buffers} to the
+memory address space:
+
+\begin{itemize}
+
+    \vItem
+          Commonly at/near the top of the address space
+    \vItem
+          \textbf{ \textit{Pros}}:
+
+          \begin{itemize}
+
+              \vItem
+                    no need for special ASM instructions, so \ul{device drivers} can be written entirely in
+                    C/C++
+              \vItem
+                    no special protection to memory-mapped addresses, so the OS can be
+                    flexible with how it delegates device access
+
+                    \begin{itemize}
+
+                        \vItem
+                              e.g. omit memory-mapped addresses from \ul{user's virtual address
+                              space}
+                        \vItem
+                              e.g. give some users control over specific devices but not others,
+                              allowing \ul{device drivers} to
+                              run in User Mode
+
+                              \begin{itemize}
+
+                                  \vItem
+                                        prevents a driver crash from taking down the entire system
+                              \end{itemize}
+                    \end{itemize}
+              \vItem
+                    reuse the same ASM instructions as those used on normal memory
+
+                    \begin{itemize}
+
+                        \vItem
+                              one instruction can do two things, e.g. instead of first reading
+                              an \textbf{ \textit{I/O port}} then doing something with it, you can
+                              just do that thing in one go
+                        \vItem
+                              this reduces the number of instructions needed to be executed,
+                              therefore more efficient
+                    \end{itemize}
+          \end{itemize}
+    \vItem
+          \textbf{ \textit{Cons}}:
+
+          \begin{itemize}
+
+              \vItem
+                    Modern computers often \ul{cache
+                    memory} but caching memory-mapped addresses is
+                    \textbf{ \textit{DISASTEROUS}}
+
+                    \begin{itemize}
+
+                        \vItem
+                              both hardware \& OS have to be designed to selectively disable
+                              caching which can be very complex
+                    \end{itemize}
+              \vItem
+                    Modern systems also have multiple buses (memory, PCIe, SCSI, and
+                    USB)
+
+                    \begin{itemize}
+
+                        \vItem
+                              I/O devices have no way of seeing memory addresses as they go by
+                              on the memory bus
+                        \vItem
+                              Additional hardware/software complexity is needed to resolve this
+                              issue
+
+                              \begin{itemize}
+
+                                  \vItem
+                                        e.g. CPU uses non-memory buses as fallback if memory bus fails
+                                        to respond
+                                  \vItem
+                                        e.g. put a snooping device on memory bus \& pass all addresses
+                                        presented to potentially interested I/O devices
+                                  \vItem
+                                        e.g. preload address-ranges to memory-controller chip at boot
+                                        time \& it will redirect addresses to the appropriate bus
+                                        thereafter
+                              \end{itemize}
+                    \end{itemize}
+          \end{itemize}
+\end{itemize}
+
+\subsection*{Direct Memory Access (DMA)}
+
+The CPU can requesting data from an \ul{I/O controller} one byte at a time
+wastes its time, so \textbf{ \textit{DMA (Direct Memory Access)}} is often
+used:
+
+\begin{itemize}
+
+    \vItem
+          Can only use \textbf{ \textit{DMA}} if hardware has a DMA controller,
+          most systems do
+    \vItem
+          Most commonly its a single DMA controller (e.g. on the motherboard)
+
+          \begin{itemize}
+
+              \vItem
+                    for regulating transfers to multiple devices,
+              \vItem
+                    often concurrently
+          \end{itemize}
+    \vItem
+          DMA controller has access to system bus independent of the CPU
+    \vItem
+          Contains several registers that can be written/read by CPU
+
+          \begin{itemize}
+
+              \vItem
+                    e.g. memory address register, byte count register, control
+                    registers, etc.
+              \vItem
+                    these specify the I/O port to use, direction of transfer, transfer
+                    unit, number of bytes to transfer in one burst, etc.
+          \end{itemize}
+\end{itemize}
+
+The CPU programs the DMA controller and lets it run parallel to the CPUs
+execution:
+
+\begin{itemize}
+
+    \vItem
+          The DMA controller instructs the \ul{device I/O controllers} to perform
+          the appropriate operations
+    \vItem
+          When one unit of work is done, the \ul{device I/O controllers} sends an
+          acknowledgment signal to the DMA controller
+    \vItem
+          For each acknowledgment signal, the DMA controller decrements a
+          counter which keeps track of progress
+    \vItem
+          When the counter reaches 0, the workload is complete and the DMA
+          controller sends an appropriate \ul{interrupt} to the CPU
+\end{itemize}
+
+The above are simple cases of DMA controllers, but ones with more
+complex capabilities exist:
+
+\begin{itemize}
+
+    \vItem
+          Can be programmed to handle multiple transfers at the same time
+
+          \begin{itemize}
+
+              \vItem
+                    multiple sets of control registers internally, one for each channel
+              \vItem
+                    may use round-robin or priority queue internally to decide which
+                    device to service next
+              \vItem
+                    often each \ul{device controller} being serviced gets a separate channel for
+                    acknowledgment signals
+          \end{itemize}
+    \vItem
+          Buses can often operate in two modes: word-at-a-time \& block mode
+
+          \begin{itemize}
+
+              \vItem
+                    Often, DMA controllers can also operate in either mode
+              \vItem
+                    In word-at-a-time mode: the DMA controller requests the transfer of
+                    one word and gets it
+
+                    \begin{itemize}
+
+                        \vItem
+                              If the CPU also wants the bus, it has to wait
+                        \vItem
+                              The mechanism is called cycle stealing
+                    \end{itemize}
+              \vItem
+                    In block mode: DMA controller tells the \ul{device} to acquire the bus, issue
+                    a series of transfers, then release the bus
+
+                    \begin{itemize}
+
+                        \vItem
+                              this is called \textbf{ \textit{burst mode}}
+                        \vItem
+                              multiple words can be transferred for the price of one bus
+                              acquisition
+                        \vItem
+                              can block the CPU and other devices for a substantial period if a
+                              long burst is being transferred
+                    \end{itemize}
+          \end{itemize}
+    \vItem
+          In the above model (fly-by-mode), the the DMA controller tells the
+          device controller to transfer the data directly to main memory
+
+          \begin{itemize}
+
+              \vItem
+                    some DMA controllers have the \ul{device controller} send the word
+                    to the DMA controller,
+
+                    \begin{itemize}
+
+                        \vItem
+                              which then writes the word to wherever it is supposed to go
+                    \end{itemize}
+              \vItem
+                    This scheme requires an extra bus cycle per word transferred,
+
+                    \begin{itemize}
+
+                        \vItem
+                              but is more flexible in that it can also perform device-to-device
+                              copies and even memory-to-memory copies
+                    \end{itemize}
+          \end{itemize}
+\end{itemize}
+
+\subsection*{Interrupt handlers for hardware interrupts}
+
+\begin{itemize}
+
+    \vItem
+          For \ul{block devices}: on transfer completion, signal \ul{device handler}
+    \vItem
+          For \ul{character devices}: when character transferred, process next character
+\end{itemize}
+\mkImg{pastedimg2}
+
+\subsection*{Goals of I/O Software}
+
+\textbf{ \textit{Device independence}}: write programs that can access any
+I/O device without having to specify the device type or device instance
+in advance
+
+\begin{itemize}
+
+    \vItem
+          Some differences which the OS has to abstract are:
+
+          \begin{itemize}
+
+              \vItem
+                    Unit of data transfer: character or block
+              \vItem
+                    Supported operations: e.g. read, write, seek
+              \vItem
+                    Synchronous or asynchronous operation
+              \vItem
+                    Speed differences
+              \vItem
+                    Sharable (e.g. disks) or single user (e.g. printer, DVD-RW)
+              \vItem
+                    Types of error conditions
+    \end{itemize}
+\end{itemize}
+
+\textbf{\textit{Uniform naming}}: name of
+                    file/device should be a string/integer not dependent on device in
+                    any way
+                    
+                    
+\textbf{ \textit{Error handling}}: should be handled as close to the hardware as possible
+\begin{enumerate}
+    \vItem
+    Either the controller or \ul{driver}
+    should handle the error transparently
+\vItem
+    Only if the lower layers are not able to deal with the problem should
+    the upper layers be told about it 
+\end{enumerate}
+          
+\textbf{ \textit{Synchronous (blocking)
+                  vs. asynchronous (interrupt-driven)}}:
+\begin{enumerate}
+    \vItem
+    Most physical I/O is asynchronous
+\vItem
+    Most I/O code is easier to write synchronously
+\vItem
+    The OS must make interrupt-driven operations appear blocking to the
+    user programs
+\vItem
+    The OS must  \textit{still} provide asynchronous API for use in
+    performance-critical user programs 
+\end{enumerate}
+          
+          
+\textbf{ \textit{Buffered
+                  vs. non-buffered I/O}}: often data that come off a device cannot be
+          stored directly in their final destination
+\begin{enumerate}
+    \vItem
+          e.g. packets coming off a network cannot be directed to the right
+          place until they have been stored and inspected for their port number
+    \vItem
+          some destination devices (e.g. digital audio devices) have limitations
+          on data-transfer rates, so a buffer is used to ``normalize'' those
+    \vItem
+          Buffering involves considerable copying and often has a major impact
+          on I/O performance
+\end{enumerate}
+
+\mkImg{image copy 46}
+
+\subsection*{Ways to do I/O}
+
+\begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+
+    \vItem
+          \textbf{ \textit{Programmed I/O}}: CPU programs \ul{I/O control registers} directly and
+          blocks until the operation is done
+
+          \begin{itemize}
+
+              \vItem
+                    This is done via \textbf{ \textit{polling}} the \ul{device} until its done, called
+                    \textbf{ \textit{busy waiting}}
+              \vItem
+                    Wastes CPU time and inefficient
+          \end{itemize}
+    \vItem
+          \textbf{ \textit{Interrupt-Driven I/O}}: The CPU programs
+          \ul{I/O control registers} directly and continues doing other things
+
+          \begin{itemize}
+
+              \vItem
+                    the \ul{device} will
+                    send an \ul{interrupt} to the CPU
+                    once done
+              \vItem
+                    can still be very inefficient with unbuffered \ul{character devices} which will
+                    interrupt on every character
+          \end{itemize}
+    \vItem
+          \textbf{ \textit{I/O using Direct Memory Access (DMA)}}: The CPU programs
+          \ul{a DMA controller} and
+          continues doing other things
+
+          \begin{itemize}
+
+              \vItem
+                    the DMA controller will perform the entire operation and send an
+                    \ul{interrupt} to the CPU once done
+              \vItem
+                    may be inefficient in certain circumstances, because \ul{DMA controllers} are usually much
+                    slower than the CPU
+          \end{itemize}
+\end{enumerate}
+
+\section*{I/O Software Layers}
+
+I/O software is typically organized in four layers. Each layer has a
+well-defined function to perform and a well-defined interface to the
+adjacent layers
+\mkImg{Pasted image 20250106201355}
+
+\subsection*{Interrupt-Handlers in the Software Layers}
+
+\ul{Interrupt handlers} should aim to be as buried as possible, doing as little
+as possible.
+
+\begin{itemize}
+
+    \vItem
+          e.g. have a \ul{driver} start an I/O
+          operation and block (like by \ul{downing a semaphore}) and the
+          interrupt-handler only unblocks it (like by upping that semaphore)
+    \vItem
+          e.g. for others its a \ul{condvar signal} or other kind of message etc. which will make the device
+          driver resume
+    \vItem
+          the above works best if the driver is structured as a \ul{process}
+\end{itemize}
+
+\subsection*{Device Drivers}
+
+Handles one device type, but many devices of that type. 
+Its functions are implementing block read/write, accessing
+device registers, initiating operations, scheduling requests,
+handling errors.
+
+Most operating systems define a \ul{standard interface} that all block drivers must support and a
+\ul{second standard interface} that all character drivers must support.
+
+
+\subsection*{Device-Independent I/O software}
+
+The basic function of the \textbf{ \textit{device-independent software}} is
+to perform the I/O functions that are common to all devices and to
+provide a uniform interface to the user-level software =>
+
+uniform interfacing for device drivers => buffering => error reporting =>
+allocating and releasing dedicated devices => providing a device-independent block size
+
+\subsubsection*{Uniform Interfacing for Device Drivers}
+
+A major issue in an OS is how to make all I/O devices and drivers look
+more or less the same. If they weren't the same, we would have to hack
+on the OS for each new device
+
+Not all devices are absolutely
+identical, but there are only a small number of device types which need
+to be accounted for
+
+\begin{itemize}
+
+    \vItem
+          e.g. classes of device like disks, printers, network stream
+    \vItem
+          OS defines a set of functions that the driver of a specific device
+          type must supply The device-independent software takes care of mapping
+          symbolic device names onto the proper driver:
+    \vItem
+          e.g. for UNIX a device name, such as /dev/disk0, uniquely specifies
+          the i-node for a special file
+
+          \begin{itemize}
+
+              \vItem
+                    this i-node contains the major device number, which is used to
+                    locate the appropriate driver
+              \vItem
+                    The i-node also contains the minor device number, which is passed as
+                    a parameter to the driver in order to specify the unit to be read or
+                    written
+          \end{itemize}
+\end{itemize}
+
+\subsubsection*{Buffering}
+
+\textbf{Buffered I/O} — User data transferred to OS output
+buffer. Process continues, only suspends when buffer full.
+OS reads ahead but process blocks when buffer empty.
+
+\textbf{Unbuffered I/O} — Data transferred directly to/from user
+space from/to device. Device handler used for each
+transfer as each read/write is causing physical I/O. High
+process switching overhead.
+
+\textbf{I/O operations} — open, close, read, write, seek.
+
+
+\subsubsection*{Device-Independent Block Size}
+
+Different SSDs have different flash page sizes, while different disks
+may have different sector sizes. It is up to the device-independent
+software to hide this fact and provide a uniform block size to higher
+layers
+
+\subsection*{User-Space I/O Software}
+
+\subsubsection*{User-Space I/O Libraries}
+
+Most user-space I/O code is library code which simply arranges arguments
+in the right way for a SYSCALL,
+
+\begin{itemize}
+
+    \vItem
+          sometimes more complex logic is done i.e. \texttt{printf} and
+          \texttt{scanf} in C
+\end{itemize}
+
+\subsubsection*{Spooling Daemons}
+
+\mkImg{Pasted image 20250106205848}
+
+\subsection*{Device management on Linux}
+\mkImg{image copy 47}
+\mkImg{image copy 48}
+\mkImg{image copy 49}
+
+\hSep
