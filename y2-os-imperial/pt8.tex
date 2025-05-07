@@ -1,0 +1,179 @@
+\mkImg{image copy 34}
+\^{} They are \ul{same} in compile/load-time, but \ul{different} in execution-time address-binding scheme
+\^{} MMU is hardware-implementation of mapping, i.e. $\mathrm{MMU}(\mathrm{CPU}_{\mathrm{logical}})=\mathrm{Memory}_{\mathrm{physical}}$
+
+\vspace{+1.75pt}
+\hSep
+
+\ul{Main memory} usually split into \textbf{kernel} \textit{(usually lower in memory, along w/ interrupt vector)} and 
+\textbf{user} partitions \textit{(usually higher in memory)}.
+
+\textbf{CONTIGUOUS ALLOCATION} with relocation registers — 
+\textit{\textbf{base register}} contains value of smallest physical address =>
+\textit{\textbf{limit register}} contains range of logical addresses 
+=> together they define the \ul{logical address space}
+=> each logical address must be less than \ul{limit register} => 
+\textit{\textbf{protection}} check \textcolor{cornellred}{$\mathrm{base} \leq \mathrm{addr} < \mathrm{base} + \mathrm{limit}$}
+to protect user processes from each other, and changing OS code/data.
+
+\textbf{MULTIPLE-PARTITION ALLOCATION:}
+\begin{enumerate}
+    \vItem \textbf{Hole} is a block of available memory. When new process arrives, allocate
+    memory from large-enough hole.
+    \vItem OS maintains info on allocated \& free partitions \textit{(holes)}
+    \vItem \textbf{Dynamic Storage Allocation} is satisfying request of size $n$, given \ul{list of free holes} =>
+    \textit{\textbf{First-fit}}: allocate first hole big enough =>
+    \textit{\textbf{Best-fit}}: allocate smallest hole big enough =>
+    \textit{\textbf{Worst-fit}}: allocate largest hole.
+\end{enumerate}
+
+\hSep
+
+\textbf{External fragmentation} — total memory exists to
+satisfy request, but not contiguous. Reduced by \ul{compaction} 
+\textit{(place all free memory in one large block)}, 
+but this does lead to I/O bottlenecks.
+
+\textbf{Internal fragmentation} — allocated memory larger than requested memory.
+
+\textbf{Swapping} process memory temporarily out of memory to disk => transfer time is major part of swap time.
+
+\hSep
+
+\mkImg{image copy 35}
+
+\mkImg{image copy 36}
+\^{} \ul{smaller pages} => less internal fragmentation; 
+\ul{larger pages} => 
+smaller memory map + less address-translation overhead
++ quicker memory access
+
+\^{} when \ul{context switches} => OS locates new process' page table 
+=> sets \ul{base register} in MMU to point to page table
+=> clear cache/TLB
+
+\hSep
+
+\textbf{Address Translation: One-Level Paging}
+
+\begin{enumerate}
+    \vItem For a given \ul{logical address space} $2^m$ and \ul{page size} $2^n$
+
+    \begin{enumerate}
+        \vItem $2^m$ \textbf{bits} of address space, where each address refers to a \textbf{byte} in memory
+        \vItem $2^n$ \textbf{bytes} of page size, spanned by $2^n$ \textbf{bits} of address space
+    \end{enumerate}
+    
+    \vItem First $m-n$ MSBs of \ul{logical address} is \textbf{page number} $p$
+    => used to \ul{index into page table} \textcolor{cornellred}{$\textrm{PT[p]}=f$} to get
+    \ul{frame base address} $f$
+    \vItem Last $n$ LSBs of \ul{logical address} is \textbf{page offset} $d$ => offset into frame $f$ 
+    => combined with \ul{frame base address} $f$ to get \ul{physical address}
+
+    \vItem \textit{\textbf{Protection}} implemented associating \ul{protection bits} with pages
+    => \ul{valid-invalid} bit is attached to each \ul{page table entry} (PTE)
+
+    \vItem Page-tables kept in memory, along w/ \ul{page-table base register (PTBR)} \& \ul{page-table length register (PTLR)}
+
+    \vItem \ul{Entry-per-page} means we \ul{run out of memory} quickly, e.g. 64-bit machine \& 4kB page
+    \& 8B per-entry is ~30,000TB for frame table =>
+    store \ul{entry-per-frame} instead, \textit{e.g. hashed page tables, inverted page tables}
+\end{enumerate}
+
+\hSep
+
+We can use special \ul{fast-lookup hardware cache} \textit{(in the CPU)} called \textbf{associative memory} to store portions 
+of the \ul{page table}. This associative memory, when used for the purpose of caching page tables, is called 
+\textbf{Translation Look-aside Buffers (TLBs):}
+\begin{enumerate}
+    \vItem To translate an address $(p, d)$ — if $p$ found in \ul{TLB} then get cached frame $f$ out,
+    otherwise get $f$ from page table \textit{(the usual way.)}
+    \vItem Some \ul{TLBs} store \textbf{address-space ids (ASIDs)} in entries
+	=> uniquely identifies each process to provide address-space protection for that process
+    \vItem \ul{TLBs} usually \ul{flushed after context switch} => substantial overhead
+\end{enumerate}
+
+\textbf{Performance: Effective Access Time}
+\begin{enumerate}
+    \vItem $\varepsilon = \textrm{Associative Lookup}$; $M = \textrm{Memory Cycle Time}$; $\alpha = \textrm{Hit Ratio}$;
+    for \textbf{$n$-level tables} => \(EAT = (\varepsilon + M) \cdot \alpha + (\varepsilon + M + nM) \cdot (1-\alpha) 
+    = \varepsilon + M\cdot \left[1 + \textcolor{red}{n}\cdot(1-\alpha) \right]\)
+    \vItem e.g. for $n=1$ \& $M = 1 \mu \mathrm{sec}$ => \(EAT = 2 + \varepsilon - \alpha\),
+    \vItem e.g. for $n=4$ \& $M = 1 \mu \mathrm{sec}$ => \(EAT = 5 + \varepsilon - 4\alpha\), etc.
+\end{enumerate}
+
+\hSep
+
+\textbf{Address Translation: $n$-Level Paging} also know as \textbf{Hierarchical Page Tables} =>
+breaks up \textbf{page number} $p$ into $n$ pieces, e.g. \textcolor{cornellred}{$\mathrm{addr}=(p_1,\dots,p_n,d)$} =>
+each $p_i$ corresponds to \ul{page table} $\mathrm{PT}_i$ =>
+each indexing \textcolor{cornellred}{$\mathrm{PT}_i[p_i] = PT_{i+1}$} is pointer to next \ul{page table} $\mathrm{PT}_{i+1}$
+=> the last indexing \textcolor{cornellred}{$\mathrm{PT}_n[p_n] = f$} is \ul{frame base address} $f$.
+
+\textbf{Two-Level Paging} and \textbf{Three-Level Paging} are most common \ul{Hierarchical Page Tables}. 
+
+\hSep
+
+\mkImg{image copy 37}
+\^{} literally just a hash-table with (K,V)=($p$,$f$)
+
+\mkImg{image copy 38}
+\^{} $\mathrm{logical\_addr} = (pid,p,d)$ => search PT to find $i$ s.t. \textcolor{cornellred}{$\mathrm{PT}[i] = (pid,p)$}
+=> $\mathrm{logical\_addr} = (i,d)$
+
+\hSep
+
+\mkImg{image copy 39}
+\mkImg{image copy 40}
+\mkImg{image copy 41}
+
+\hSep
+
+\mkImg{image copy 42}
+\^{} $0 \leq p < 1$
+
+\hSep
+
+\textbf{PAGE REPLACEMENT} strategy needed if no free frame. We want lowest page-fault rate possible.
+A \textbf{basic} strategy is to find location of desired page on disk => find free frame =>
+if not found, read desired page into newly freed frame \textit{(selected using \textbf{replacement algorithm})} =>
+update \ul{page and frame tables} => restart process.
+
+\mkImg{image copy 43}
+
+\textbf{LEAST RECENTLY USED (LRU)} — Each page entry has a counter. When page referenced, copy clock into counter.
+When page needs to be replaced, choose the lowest counter.
+
+Proper LRU is expensive, so use approximations:
+\begin{enumerate}
+    \vItem With each page associate \textbf{reference bit} $r$. When page referenced, set $r = 1$. Periodically reset reference bits.
+    Does not provide proper order for LRU.
+
+    \vItem \textbf{Second chance (or clock) replacement} combines \ul{round-robin} w/ \ul{reference bit} $r$. If page to be replaced has
+    $r = 1$, set $r = 0$, increment RR frame index. Repeat. If $r = 0$, replace page and increment RR index.
+\end{enumerate}
+
+\ul{Counting algorithms} keep a \textbf{counter} of \#references made to each page — 
+\textbf{Least Frequently Used (LFU)} replaces smallest count => never forgets heavy page usage;
+\textbf{Most Frequently Used (MFU)} replaces largest count => accounts for small-count pages being new.
+
+\mkImg{image copy 44}
+
+\hSep
+
+\textbf{Working set} of pages $W(t, w)$ is the set of pages referenced by a process in time interval $[t — w, t]$.
+
+\textbf{WS Clock Algorithm} adds a \ul{time of last use} to the \ul{second-chance algorithm} =>
+On each page fault => if $r=1$ set $r:=0$ move to next page =>
+if $r=0$ calculate age \& if $\mathrm{age} < w$ move to next page (page is in working set) =>
+if $\mathrm{age} >= w$ then 
+\{ if the page is clean, replace, otherwise trigger a write back and move to next page \}
+
+\^{} can choose $w$ based on \textbf{page fault frequency} => if too small then \ul{page fault frequency} will be high =>
+if too large then \ul{working set} won't fit into memory.
+
+\^{} processes transition between working sets, so temporarily maintains in-memory pages outside of current working set.
+
+\mkImg{image copy 45}
+
+\hSep
