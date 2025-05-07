@@ -1,0 +1,496 @@
+\textbf{\textit{Memory}} is a key component of the computer :- in
+the\ul{ ``von Neumann architecture''} model all data/code share the same
+memory. \textbf{\textit{Overview:}}
+
+\begin{itemize}
+\tightlist
+\item
+  \ul{Basic concepts}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \ul{Memory allocation}
+  \item
+    \ul{Swapping}
+  \end{itemize}
+\item
+  \ul{Virtual memory}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \ul{Paging}
+  \end{itemize}
+\item
+  \ul{Demand paging}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \ul{Page replacement algorithms}
+  \item
+    \ul{Working set model}
+  \end{itemize}
+\item
+  \ul{Linux memory management} \textbf{\textit{Memory management}} needs
+  to provide:
+\item
+  \ul{Memory allocation}
+\item
+  \ul{Memory protection}
+\item
+  No knowledge of \textit{how} memory is generated should be required
+  \textit{(e.g.~instruction counter, indexing, indirection\ldots)}
+\item
+  No knowledge of what the memory address holds \textit{(memory
+  vs.~data)} should be required The computer has \ul{CPU registers} and
+  \ul{main memory}: \includegraphics{Pasted image 20241119212829.png}
+\item
+  \ul{Register} access = one cycle
+\item
+  \ul{Main memory} = many cycles
+\item
+  \ul{L1, L2, L3 cache} is between \ul{register} and \ul{main memory}
+  \includegraphics{Pasted image 20241119213521.png}\includegraphics{Pasted image 20241119213547.png}\includegraphics{Pasted image 20241119213613.png}
+\end{itemize}
+
+\section*{Basic Concepts}
+
+\subsection*{Memory Allocation}
+
+\ul{Main memory} usually split into two partitions:
+
+\begin{itemize}
+\tightlist
+\item
+  Resident \ul{operating system (kernel)} :- Usually held in low memory
+  with \ul{interrupt vector}
+\item
+  \ul{User processes (user)} :- Held in high memory
+\end{itemize}
+
+\subsubsection*{Contiguous Memory Allocation}
+
+\textbf{\textit{Contiguous allocation}} with \ul{relocation registers}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\ul{Base register}} contains value of smallest physical
+  address
+\item
+  \ul{Limit register} contains range of logical addresses
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Each logical address must be less than \ul{limit register}
+  \end{itemize}
+\item
+  \ul{Memory Management Unit (MMU)} maps logical address dynamically
+  \includegraphics{Pasted image 20241120233720.png} \^{}\ul{Base} and
+  \ul{limit registers} define \ul{logical address space}
+\end{itemize}
+
+\paragraph*{Memory Protection in Contiguous Memory Allocation}
+
+Check memory access valid to protect \ul{user processes}
+
+\begin{itemize}
+\tightlist
+\item
+  from each other
+\item
+  from changing \ul{operating-system} code and data
+  \includegraphics{Pasted image 20241120234121.png}
+\end{itemize}
+
+\subsubsection*{Multiple-Partition Allocation}
+
+\includegraphics{Pasted image 20241120234217.png}\includegraphics{Pasted image 20241120234301.png}
+
+\subsubsection*{Fragmentation}
+
+\includegraphics{Pasted image 20241120234354.png} \#\# Swapping
+\includegraphics{Pasted image 20241120234424.png}
+
+\section*{Virtual Memory}
+
+\includegraphics{Pasted image 20241120234652.png}\includegraphics{Pasted image 20241120234731.png}
+
+\subsection*{Paging}
+
+\includegraphics{Pasted image 20241120234802.png}\includegraphics{Pasted image 20241120234958.png}\includegraphics{Pasted image 20241121002233.png}
+
+How does page size affect things?
+
+\begin{itemize}
+\tightlist
+\item
+  \ul{Smaller} pages =\textgreater{} less \ul{internal fragmentation}
+  and hence more efficient memory use
+\item
+  \ul{Larger} pages =\textgreater{} smaller memory map, less overhead
+  for address translation, hence faster memory access
+\end{itemize}
+
+When performing \ul{context switches}, the OS must
+
+\begin{itemize}
+\tightlist
+\item
+  locate the \ul{page table} for the process that is to start running
+\item
+  set the \ul{base register} in the \ul{MMU} so that it point to the
+  page table in memory
+\item
+  clear any now-invalid cached address translations from the \ul{TLB}
+\end{itemize}
+
+\subsubsection*{\texorpdfstring{Address Translation with \ul{One-Level
+Paging}}{Address Translation with One-Level Paging}}
+
+\includegraphics{Pasted image 20241121001555.png}\includegraphics{Pasted image 20241121001607.png}
+\textbf{\textit{NOTE:}} careful with the \textbf{\textit{bits}}
+vs.~\textbf{\textit{bytes}} units,
+
+\begin{itemize}
+\tightlist
+\item
+  its \iMbox{\displaystyle 2^m} \textbf{\textit{bits}} of \ul{address
+  space}, where each \ul{address} refers to a \textbf{\textit{byte}} in
+  memory
+\item
+  and its \iMbox{2^n} \textbf{\textit{bytes}} of \textbf{\textit{page
+  size}}, which spans \iMbox{2^n} \textbf{\textit{bits}} of \ul{address
+  space}
+\end{itemize}
+
+\subsubsection*{\texorpdfstring{Memory Protection with \ul{One-Level
+Paging}}{Memory Protection with One-Level Paging}}
+
+\includegraphics{Pasted image 20241121002445.png}\includegraphics{Pasted image 20241121002517.png}
+
+\subsection*{Page Table Implementations}
+
+So far we've seen basic \textbf{\textit{One-Level Page Tables}} with
+\ul{no caching}, which are kept in memory with
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\textit{Page-table base register (PTBR)}} points to \ul{page
+  table}
+\item
+  \textbf{\textit{Page-table length register (PTLR)}} indicates size But
+  this is \ul{inefficient},
+\item
+  Every data/instruction access requires two memory accesses, 1) for
+  \ul{page table} 2) for data/instruction
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We can use \ul{associative memory/TLBs} for this
+  \end{itemize}
+\item
+  On 64-bit machines with 4 kB page sizes \ul{thats
+  \iMbox{\displaystyle p=52} and \iMbox{\displaystyle d=10}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The\ul{ page table} needs \iMbox{\displaystyle 2^{p}=2^{52}} entries
+  \item
+    With 8 bytes per entry \textit{(8 bytes is the size of an
+    address/pointer)} thats \textbf{\textasciitilde30 MILLION GB\ldots.}
+  \item
+    Instead of storing an entry per page, we store per frame :-
+    e.g.~\ul{hashed page tables}, \ul{inverted page tables}
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Translation Look-aside Buffers (TLBs)}
+
+We can use special \ul{fast-lookup hardware cache} \textit{(in the CPU)}
+called \textbf{\textit{associative memory}} to store portions of the
+\ul{page table} \includegraphics{Pasted image 20241121014235.png} This
+associative memory, when used for the purpose of caching page tables, is
+called \textbf{\textit{Translation Look-aside Buffers (TLBs)}}.
+
+\begin{itemize}
+\tightlist
+\item
+  Some \textbf{\textit{TLBs}} store \ul{address-space ids (ASIDs)} in
+  entries
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Uniquely identifies each process to provide address-space protection
+    for that process
+  \end{itemize}
+\item
+  \textbf{\textit{TLBs}} usually needs to be \ul{flushed} after
+  \ul{context switch}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Can lead to substantial overhead
+  \item
+    What about kernel pages for system calls?
+    \includegraphics{Pasted image 20241121014705.png}
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Performance: Effective Access Time}
+
+\includegraphics{Pasted image 20241121014814.png} \^{}this formula is
+for \ul{one-level tables} where \ul{memory cycle time} \iMbox{M} is
+\iMbox{M=1 \mu sec}, but we can generalize to to \ul{\iMbox{n}-level
+tables}
+
+\begin{itemize}
+\tightlist
+\item
+  \iMbox{EAT = \displaystyle (\varepsilon + M) \cdot \alpha + (\varepsilon + M + nM) \cdot (1-\alpha) = \varepsilon + M\cdot \left[1 + \textcolor{red}{n}\cdot(1-\alpha) \right]}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    so the cost would be \iMbox{1} \ul{TLB lookup} and \iMbox{1}
+    \ul{memory lookup} \textit{always happens}, and \iMbox{n}
+    \textit{additional} \ul{memory lookups} if there is a \ul{cache
+    miss}
+  \end{itemize}
+\item
+  So with \ul{one-level tables} \iMbox{n=1} and \iMbox{M=1}, we get
+  \iMbox{EAT = 2 + \varepsilon - \alpha} which \ul{recreated the formula
+  from above}
+\item
+  And for e.g.~\iMbox{n=4} and \iMbox{M=1} we get
+  \iMbox{EAT = 5 + \varepsilon - 4\alpha}, etc.
+\end{itemize}
+
+\subsubsection*{Page Table Type: Hierarchical Page Table}
+
+Break up \ul{logical address space} into \ul{multiple page tables}
+
+\paragraph*{Two-Level Page Tables}
+
+\includegraphics{Pasted image 20241121015119.png}\includegraphics{Pasted image 20241121015142.png}\includegraphics{Pasted image 20241121015202.png}
+
+\paragraph*{Three-Level Page Tables}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121015246.png}
+\caption{400}
+\end{figure}
+
+\subsubsection*{Page Table Type: Hashed Page Table}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121015455.png}
+\caption{450}
+\end{figure}
+
+\subsubsection*{Page Table Type: Inverted Page Table}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121015511.png}
+\caption{450}
+\end{figure}
+
+\subsection*{Shared Memory}
+
+\includegraphics{Pasted image 20241121043002.png}\includegraphics{Pasted image 20241121043052.png}
+
+\subsection*{Segmentation \& Hybrid Paging/Segmentation Approaches}
+
+\includegraphics{Pasted image 20241121043422.png}\includegraphics{Pasted image 20241121043557.png}
+
+\subsection*{Virtual Memory Tricks}
+
+\subsubsection*{Copy On Write (COW)}
+
+\includegraphics{Pasted image 20241121051904.png}\includegraphics{Pasted image 20241121051922.png}\includegraphics{Pasted image 20241121051959.png}
+
+\subsubsection*{Memory-mapped Files}
+
+\begin{itemize}
+\tightlist
+\item
+  Map file into virtual address space using paging
+\item
+  Simplifies programming model for I/O
+\end{itemize}
+
+\section*{Demand Paging}
+
+\includegraphics{Pasted image 20241121051008.png}\includegraphics{Pasted image 20241121051024.png}
+
+\subsection*{Page Faults}
+
+\includegraphics{Pasted image 20241121051211.png}\includegraphics{Pasted image 20241121051229.png}
+
+\subsection*{Performance of Demand Paging}
+
+\includegraphics{Pasted image 20241121051359.png}\includegraphics{Pasted image 20241121051441.png}
+
+\subsection*{Page Replacement}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121052234.png}
+\caption{450}
+\end{figure}
+
+\subsubsection*{Basic Page Replacement Strategy}
+
+\includegraphics{Pasted image 20241121052331.png}\includegraphics{Pasted image 20241121052345.png}
+
+\subsubsection*{Page replacement algorithms}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121052422.png}
+\caption{450}
+\end{figure}
+
+\paragraph*{First-In-First-Out (FIFO) Algorithm}
+
+\includegraphics{Pasted image 20241121052634.png}\includegraphics{Pasted image 20241121052741.png}\includegraphics{Pasted image 20241121052754.png}
+
+\paragraph*{Optimal Algorithm}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121052828.png}
+\caption{450}
+\end{figure}
+
+\paragraph*{Least Recently Used (LRU) Algorithm and its approximations:
+Reference bit algorithm, Second chance algorithm}
+
+\includegraphics{Pasted image 20241121052855.png}\includegraphics{Pasted image 20241121052941.png}\includegraphics{Pasted image 20241121053003.png}
+
+\paragraph*{\texorpdfstring{Counting Algorithms: \ul{LFU (least
+frequently used)} algorithm, \ul{MFU (most frequently used)}
+algorithm}{Counting Algorithms: LFU (least frequently used) algorithm, MFU (most frequently used) algorithm}}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121053246.png}
+\caption{400}
+\end{figure}
+
+\paragraph*{\texorpdfstring{\ul{Working Set (WS)} Clock
+Algorithm}{Working Set (WS) Clock Algorithm}}
+
+\includegraphics{Pasted image 20241121054055.png}
+\includegraphics{Pasted image 20241121054205.png}\includegraphics{Pasted image 20241121054226.png}\includegraphics{Pasted image 20241121054508.png}
+
+\subsection*{Locality of Reference \& Thrashing}
+
+Programs tend to request \ul{same} pages in space and time, this effect
+is called the \textbf{\textit{Locality of Reference}}. Therefore for
+program to run efficiently:
+
+\begin{itemize}
+\tightlist
+\item
+  System must maintain program's \ul{favoured} subset of pages in main
+  memory
+\item
+  Otherwise \textbf{\textit{thrashing}} will occur
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Excessive paging activity causing low processor utilisation
+  \item
+    Program repeatedly requests pages from secondary storage
+    \includegraphics{Pasted image 20241121053818.png}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Working set model}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121053938.png}
+\caption{600}
+\end{figure}
+
+\section*{Case Study: Linux Memory Management}
+
+\subsection*{Linux: 32-bit Virtual Memory Layout}
+
+\includegraphics{Pasted image 20241121043955.png}\includegraphics{Pasted image 20241121044018.png}
+
+\subsection*{Linux: Paging}
+
+\begin{figure}
+\centering
+\includegraphics{Pasted image 20241121044109.png}
+\caption{500}
+\end{figure}
+
+\subsection*{Linux: Page Replacement}
+
+\includegraphics{Pasted image 20241121054602.png}\includegraphics{Pasted image 20241121054630.png}
+
+\section*{\texorpdfstring{Exploiting \ul{cached virtual addresses}:
+Meltdown attack}{Exploiting cached virtual addresses: Meltdown attack}}
+
+\includegraphics{Pasted image 20241121045915.png}\includegraphics{Pasted image 20241121045936.png}\includegraphics{Pasted image 20241121050027.png}
+\includegraphics{Pasted image 20241121050057.png} Essentially you do it
+like this:
+
+\begin{itemize}
+\tightlist
+\item
+  access kernel memory
+\item
+  shift down to the bit you want to reveal, and mask the rest
+\item
+  now index into user memory with \texttt{4096} multiplier
+
+  \begin{itemize}
+  \tightlist
+  \item
+    will load either \texttt{user\_mem{[}0*4096{]}} or
+    \texttt{user\_mem{[}1*4096{]}} into \ul{cache}
+  \item
+    depending on the value of the kernel memory bit we read
+  \end{itemize}
+\item
+  then after the branch prediction, compare the access times of
+  \texttt{user\_mem{[}0*4096{]}} and \texttt{user\_mem{[}1*4096{]}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the one which was cached during the branch prediction will be
+    significantly faster
+  \item
+    therefore we have gained access to the bit in the kernel space
+  \end{itemize}
+\item
+  we can now perform this for
+
+  \begin{itemize}
+  \tightlist
+  \item
+    every bit in that byte (just use a different shift value)
+  \item
+    every byte in some region
+  \item
+    and read out things like encryption keys and so on
+  \end{itemize}
+\end{itemize}
