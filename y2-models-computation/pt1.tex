@@ -1,0 +1,248 @@
+
+\subsection*{General - Uncategorized}
+
+\stu{Common features} of definitions of \kwub{algorithm}:
+\begin{enumerate}
+  \vItem \stb{finite} description of the procedure in terms of elementary operations
+  \vItem \stb{deterministic} => next step is uniquely determined if there is one
+  \vItem procedure may not terminate on some input data, but we can recognise when it does terminate and \stu{what} the \stu{result} will be
+  \vItem We can think of \stu{algorithms} as \kwb{computable functions} \textit{(e.g. RM-computable, TM-computable, etc.)}
+\end{enumerate}
+
+\hSep
+
+\kwub{Partial function} \iMbox{f: X \rightharpoonup Y} is such that:
+\begin{enumerate}
+  \vItem \iMbox{X \rightharpoonup Y} is the \stu{set of partial functions} from \iMbox{X} to \iMbox{Y}
+  \vItem \iMbox{f(x) = y} means \iMbox{(x, y) \in f}
+  \vItem \iMbox{f(x) = y \ \wedge \ f(x) = y^{\prime} \ \ \implies \ \ y=y^{\prime} }
+  \vItem \iMbox{f(x) \downarrow} means \iMbox{\exists y \in Y(f(x)=y)} \ ; \
+  \iMbox{f(x) \uparrow} means \iMbox{\neg{f(x) \downarrow}}
+  \vItem \iMbox{f} is \kwub{total} if \iMbox{\forall x \in X} we have \iMbox{f(x) \downarrow}
+  \vItem \iMbox{X \to Y} is \stu{set of total functions} from \iMbox{X} to \iMbox{Y}
+\end{enumerate}
+
+
+\hSep
+
+\kwub{General halting problem} is the decision problem with:
+\begin{enumerate}
+  \vItem the set \iMbox{S} of all pairs \iMbox{(A, D)}, where \iMbox{A} is an \stb{algorithm} and
+  \iMbox{D} is some \stb{input datum} on which \iMbox{A} is designed to operate
+  \vItem \iMbox{A(D) \downarrow} holds for \iMbox{(A, D) \in S} if \iMbox{A} applied to \iMbox{D} \stu{eventually halts}
+  \vItem The \kwu{halting problem} is \stb{unsolvable (undecidable)}, i.e.
+  no algorithm \iMbox{H: S \to \mathbb{B}} exists s.t. \iMbox{H(A,D) = \begin{cases}
+      \mathbf{tt} & A(D) \downarrow \\
+      \mathbf{ff} & A(D) \uparrow
+    \end{cases}}
+\end{enumerate}
+
+\hSep
+
+\subsection*{Register Machine Definitions}
+
+A \kwub{register machine (RM)} is specified by:
+\begin{itemize}
+  \vItem finite \stb{registers} \iMbox{R_{0}, \dots, R_{n}}; each can store one nat. \iMbox{\mathbb{N}}
+  \vItem a \stb{program} => finite list of \stu{instructions}
+
+  \begin{enumerate}
+    \vItem each \stb{instruction} of the form \iMbox{L_i : B_i}
+    \vItem \iMbox{L_i} is \stb{label} of \iMbox{i+1}-th \stu{instruction},
+    for \iMbox{i = 0,1,\dots}
+    \vItem \iMbox{B_i} is \stb{instruction body}, and is one of:
+
+    \begin{enumerate}
+      \vItem \iMbox{R^{\textcolor{cornellred}{+}} \rightarrow L^{\prime}} =>
+      add \iMbox{1} to \stu{reg.} \iMbox{R} \& jump to \stu{inst.} \iMbox{L^{\prime}}
+      \vItem \iMbox{R^{\textcolor{cornellred}{-}} \rightarrow L^{\prime}, L^{\prime \prime}} =>
+      \stub[orange]{if} \iMbox{R > 0} sub. \iMbox{1} from \iMbox{R} \& jump to \iMbox{L^{\prime}};
+      \stub[orange]{else} jump to \iMbox{L^{\prime \prime}}
+      \vItem \iMbox{HALT} => stop executing instructions
+    \end{enumerate}
+  \end{enumerate}
+
+  \vItem \stu{initial/final} reg. contents related by \stu{partial function}
+\end{itemize}
+
+\hSep
+
+\kwub{RM configuration} => \iMbox{c=\left(\ell, r_{0}, \dots, r_{n}\right)}
+\begin{enumerate}
+  \vItem \iMbox{\ell = \text{current label}}; \iMbox{r_i = \text{current contents of} \ R_i}
+  \vItem \iMbox{R_{i}=x[\text{in config.} \ c]} means
+  \iMbox{c=\left(\ell, r_{0}, \dots, r_{n}\right)} with \iMbox{r_{i}=x}
+  \vItem \kwb{initial configuration} => \iMbox{c_{0}=\left(0, r_{0}, \dots, r_{n}\right)}
+\end{enumerate}
+
+\hSep
+
+\kwub{RM computation} => finite \textit{(or infinite)} \stu{sequence} of \stu{configurations} \iMbox{c_{0}, c_{1}, c_{2}, \dots}
+\begin{enumerate}
+  \vItem \iMbox{c_{0}=\left(0, r_{0}, \dots, r_{n}\right)} is \stu{initial configuration}
+  \vItem each \iMbox{c_{i+1}} determined from \iMbox{c_i =\left(\ell, r_{0}, \dots, r_{n}\right)}
+  by performing \stu{inst.} labelled \iMbox{L_{\ell}}
+  \vItem \kwb{halting computation} => \stu{finite sequence} \iMbox{c_{0}, c_{1} \dots, c_{m}}
+  \begin{enumerate}
+    \vItem \kwb{halting configuration} \iMbox{c_{m}=(\ell, r, \dots)}
+
+    \vItem \stu{inst.} labelled \iMbox{L_{\ell}} is
+    \stub[orange]{either} \iMbox{HALT} i.e. \kwb{proper halt};
+    \stub[orange]{or} performs \stu{jump to nonexistent label}  i.e. \kwb{erroneous halt}
+
+    \vItem e.g. \iMbox{\begin{aligned}
+        L_{0} & : R_{1}^{+} \rightarrow L_{2} \\
+        L_{1} & : HALT
+      \end{aligned}} \stu{halts erroneously}
+  \end{enumerate}
+
+  \vItem \kwb{Non-halting Computation} => \stu{infinite sequence} \iMbox{c_{0}, c_{1}, \dots},
+  e.g. \iMbox{\begin{aligned}
+      L_{0} & : R_{1}^{+} \rightarrow L_{0} \\
+      L_{1} & : HALT
+    \end{aligned}}
+\end{enumerate}
+
+\hSep
+
+\kwub{RM graphical representation}
+\begin{enumerate}
+  \vItem \stu{one node} per \stu{inst.} \iMbox{L_\ell : B_\ell}
+  \vItem each node labelled by \iMbox{[L_\ell]}, where \iMbox{[L_\ell]} is \stu{register} of
+  \stu{inst. body} \iMbox{B_\ell}
+  \vItem \kwb{arcs} are \stu{jumps}; \stb{initial instruction} is \iMbox{START}
+\end{enumerate}
+\mkImg[70pt]{image}
+
+\hSep
+
+\iMbox{f: \mathbb{N}^n \rightharpoonup \mathbb{N}} is \kwub{(RM) computable function} if:
+\begin{enumerate}
+  \vItem There is RM \iMbox{M} with \iMbox{\geq n + 1} registers, such that
+  \vItem for all \iMbox{(x_1,\dots, x_n)\in \mathbb{N}^n, y \in \mathbb{N}} we have
+  \stu{initial configuration} \iMbox{c_0 = (0, x_1, \dots, x_n, 0, 0, \dots)}, and
+  \vItem \iMbox{M} halts with \iMbox{R_0 = y} \stub[orange]{iff} \iMbox{f(x_1,\dots, x_n) = y}
+  \vItem \stu{Basic computable functions} => \stb{addition} ; \stb{multiplication} ;
+  \stb{projection} \iMbox{(x,y) \mapsto x} ; \stb{constant} \iMbox{x \mapsto k} ;
+  \stb{truncated subtraction} \iMbox{(x,y) \mapsto \max(0, x-y)} ;
+  \stb{integer division} \iMbox{(x,y) \mapsto \begin{cases}
+      \lfloor x / y \rfloor & y > 0 \\
+      0                     & y = 0
+    \end{cases}} ;
+  \stb{integer remainder} \iMbox{(x,y) \mapsto \begin{cases}
+      x - y \cdot \lfloor x / y \rfloor & y > 0 \\
+      x                                 & y = 0
+    \end{cases}} ;
+  \stb{exp. and log. base-2} \iMbox{x \mapsto 2^x, \ x \mapsto \begin{cases}
+      \lfloor \log_2(x) \rfloor & x > 0 \\
+      0                         & x = 0
+    \end{cases}}
+\end{enumerate}
+
+\hSep
+
+\subsection*{Numerical Coding}
+
+\stub{Numerical Coding of Pairs} => for \iMbox{\alpha,\beta \in \mathbb{N}} define:
+\begin{enumerate}
+  \vItem \iMbox{\lAngle \alpha,\beta \rAngle \ \triangleq \ 2^\alpha (2\beta + 1)}
+  is a \stu{bijection} between \iMbox{\mathbb{N}^2} and \iMbox{\mathbb{N}^+}
+  \begin{enumerate}
+    \vItem where \iMbox{\mathbb{N}^+ = \{ n \in \mathbb{N} | n > 0 \}}
+    \vItem \stu{Binary form} => \iMbox{\mathrm{0b} \lAngle \alpha,\beta \rAngle =
+      \mathrm{0b} \left[ \beta \middle| 1 \middle| \underbrace{0 \cdots 0}_{\alpha} \right]}
+  \end{enumerate}
+
+  \vItem \iMbox{\langle \alpha,\beta \rangle \ \triangleq \ \lAngle \alpha,\beta \rAngle - 1 = 2^\alpha (2\beta + 1) - 1}
+  \begin{enumerate}
+    \vItem \iMbox{\langle —, — \rangle: \mathbb{N}^2 \to \mathbb{N}} is a \stu{bijection} between \iMbox{\mathbb{N}^2} and \iMbox{\mathbb{N}}
+    \vItem \stu{Binary form} => \iMbox{\mathrm{0b} \langle \alpha,\beta \rangle =
+      \mathrm{0b} \left[ \beta \middle| 0 \middle| \underbrace{1 \cdots 1}_{\alpha} \right]}
+  \end{enumerate}
+
+  \vItem \textbf{EXAMPLE:} \iMbox{27 = \mathrm{0b}11011 = \lAngle 0, 13 \rAngle = \langle 2, 3 \rangle}
+\end{enumerate}
+
+\hSep
+
+\stub{Numerical Coding of Lists}:
+\begin{enumerate}
+  \vItem \iMbox{List \ \mathbb{N}} is \ul{set of all finite lists} of \stu{natural numbers}:
+  \begin{enumerate}
+    \vItem \kwb{empty list} => \iMbox{[] \in {List \ \mathbb{N}}}
+    \vItem \kwb{list cons} => \iMbox{{x {::} \ell} \in {List \ \mathbb{N}} \ \ 
+    \impliedby \ \ x \in \mathbb{N} \ \wedge \ \ell \in {List \ \mathbb{N}}}
+    \vItem \kwb{notation} => \iMbox{[x_{1}, x_{2}, \dots, x_{n}] \triangleq
+     {x_{1} {::} (x_{2} {::} (\cdots {x_{n} {::} []} \cdots))}}
+  \end{enumerate}
+  \vItem Define \stu{bijection} \iMbox{{\tlcorner — \trcorner}: {List \ \mathbb{N}} \to \mathbb{N}} inductively:
+  \begin{enumerate}
+    \vItem \iMbox{{\tlcorner [] \trcorner} \ \triangleq \ 0} \ ; \ 
+    \iMbox{{\tlcorner x {::} \ell \trcorner} \ \triangleq \ \lAngle x, {\tlcorner \ell \trcorner} \rAngle
+    = 2^x (2{\tlcorner \ell \trcorner} + 1)}
+    \vItem \stu{Binary form} => \iMbox{\mathrm{0b} {\tlcorner [x_1, \dots, x_{n-1}, x_n] \trcorner} =
+      \mathrm{0b} \left[ 
+        1 \underbrace{0 \cdots 0}_{x_n} \middle|
+        1 \underbrace{0 \cdots 0}_{x_{n-1}} \middle| \cdots \middle|
+        1 \underbrace{0 \cdots 0}_{x_1}
+      \right]}
+  \end{enumerate} 
+\end{enumerate}
+
+\hSep
+
+Let \iMbox{P = [L_0{:}B_0, L_1{:}B_1, \dots, L_n{:}B_n]} be an \stb{RM program}:
+\begin{enumerate}
+  \vItem \stub{Numerical Coding of Bodies} \iMbox{{\tlcorner B \trcorner}} is defined by \iMbox{\begin{cases}
+    {\tlcorner R_i^{\textcolor{cornellred}{+}} \rightarrow L_j \trcorner}
+    &\triangleq \ \lAngle 2i, j \rAngle \\
+    {\tlcorner R_i^{\textcolor{cornellred}{-}} \rightarrow L_j, L_k \trcorner}
+    &\triangleq \ \lAngle 2i+1, \langle j,k \rangle \rAngle \\
+    {\tlcorner HALT \trcorner} &\triangleq \ 0
+  \end{cases}} and \iMbox{{\tlcorner B \trcorner}} defines a \stu{bijection}
+  \vItem \stub{Numerical Coding of RM Programs} \iMbox{{\tlcorner P \trcorner} \ \triangleq \ 
+  {\tlcorner [{\tlcorner B_0 \trcorner}, {\tlcorner B_1 \trcorner}, \dots, {\tlcorner B_n \trcorner}] \trcorner}}
+  defines a \stu{bijection}
+
+  \vItem Any \iMbox{x \in \mathbb{N}} decodes to \stu{unique instruction} \iMbox{body(x)}
+  \begin{enumerate}
+    \vItem \iMbox{x = 0 \ \implies \ body(x) = HALT}
+    \vItem \iMbox{x > 1 \ \implies \ x = \lAngle y, z \rAngle} and:
+    \begin{enumerate}
+      \vItem \iMbox{y = 2i \ \implies\ body(x) = R_i^{\textcolor{cornellred}{+}} \rightarrow L_z}
+      \vItem \iMbox{y = 2i + 1 \ \implies \ z = \langle j,k \rangle} and
+      \iMbox{body(x) = R_i^{\textcolor{cornellred}{-}} \rightarrow L_j,L_k}
+    \end{enumerate}
+  \end{enumerate}
+
+  \vItem Any \iMbox{e \in \mathbb{N}} decodes to \stu{unique program} \iMbox{prog(e)}
+  called \stub{program with index} \iMbox{e}
+\end{enumerate}
+
+\hSep
+
+\subsection*{Register Machine Gadgets}
+
+\kwub{RM gadgets} => \stu{partial RM graph} with \stb{$1$ entry wire} \& \stb{$\geq 1$ more exit wires}
+\begin{enumerate}
+  \vItem \stu{Input/output registers} specified in \stu{gadget's name}
+  \vItem \stb{Scratch registers} => \stu{internal} registers for \stu{temporary storage}
+  \vItem these \stu{scratch registers} are \stub[orange]{initially} \stu{set to zero}
+  \& \stub[orange]{upon exit} \stu{must return to zero}
+  \vItem Compose \stu{smaller gadgets} to create \stu{bigger gadgets} => can \stb{rename} clashing scratch register names
+\end{enumerate}
+
+\hSep
+
+\kwub{Common RM gadgets:}
+
+\mkSvg[101.5pt]{image2}
+\^{} \stb{NOTE:} the \kwu{hollow arrow} coming out of \stu{gadgets} represents \textbf{all outputs} combined
+
+\hSep
+
+\stub{RM Gadgets for Coded Lists:}
+
+foo bar
+
+\hSep

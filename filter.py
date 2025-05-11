@@ -53,6 +53,7 @@ def apply_all[T](*args: list[Consumer[T]]):
     return go
 
 mk_raw_inline: Function[str, pf.RawInline] = lambda text: pf.RawInline(text, 'latex')
+mk_raw_block: Function[str, pf.RawBlock] = lambda text: pf.RawBlock(text, 'latex')
 
 def rec_convert_text(text: str, doc: pf.Doc):
     return [e.walk(action, doc=doc) for e in pf.convert_text(text, INPUT_FORMAT)]
@@ -116,6 +117,19 @@ def replace_link_with_ul(el: pf.Link, doc: pf.Doc):
 
 def replace_images_with_placeholder(el: pf.Image, doc: pf.Doc):
     return mk_raw_inline(f"\\textcolor{{red}}{{\\textbf{{{el.url}}}}}")
+
+def place_codeblock_into_listing(el: pf.CodeBlock, doc: pf.Doc):
+    # Extract at most one language class
+    if len(el.classes) > 1:
+        raise Exception(f"Code block {el} has more than one language-class specified")
+    lang = None
+    if len(el.classes) == 1:
+        lang = el.classes[0]
+    
+    # Put it inside lstlisting
+    return mk_raw_block(f"""\\begin{{lstlisting}}[{"" if lang is None else f"language={lang}, "}linewidth=100pt]
+{el.text}
+\\end{{lstlisting}}""")
 
 def html_tag_polyfill(el: pf.RawInline):
     """
@@ -192,6 +206,7 @@ def action(el, doc):
         case pf.Link(): return replace_link_with_ul(el, doc)
         case pf.RawInline(): return raw_inline_actions(el, doc) 
         case pf.Image(): return replace_images_with_placeholder(el, doc)
+        case pf.CodeBlock(): return place_codeblock_into_listing(el, doc)
         
     return el
 
