@@ -1,0 +1,26 @@
+% !TeX program = xelatex
+\documentclass{article}
+
+\newcommand*{\StyleDir}{../style}
+\usepackage{\StyleDir/cheat}
+
+\graphicspath{ {./images/} }
+
+\begin{document}
+\begin{CheatSheet}{8}
+
+\newcommand{\mkImg}[2][103.5pt]{\includegraphics[width=#1]{#2}}
+\newcommand{\mkSvg}[2][103.5pt]{\includesvg[width=#1]{#2}}
+
+\input{pt1}
+\input{pt2}
+\input{pt3}
+\input{pt4}
+\input{pt5}
+\input{pt6}
+\input{pt7}
+\input{pt8}
+\input{pt9}
+
+\end{CheatSheet}
+\end{document}
