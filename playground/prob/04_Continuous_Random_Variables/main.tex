@@ -22,155 +22,155 @@ Department of Computing, Imperial College London}
 \maketitle
 
 
-\section*{Probability Density Function}
-\begin{itemize}
-  \item Suppose again we have a random experiment with sample space $S$ and probability measure P .
-  \item For a random variable $X: S \rightarrow \mathbb{R}$ we have defined the induced probability
-\end{itemize}
+% \section*{Probability Density Function}
+% \begin{itemize}
+%   \item Suppose again we have a random experiment with sample space $S$ and probability measure P .
+%   \item For a random variable $X: S \rightarrow \mathbb{R}$ we have defined the induced probability
+% \end{itemize}
 
-$$
-\mathrm{P}_{X}(X \leq x)=\mathrm{P}_{X}((-\infty, x])=\mathrm{P}\left(S_{X}\right)=F_{X}(x)
-$$
+% $$
+% \mathrm{P}_{X}(X \leq x)=\mathrm{P}_{X}((-\infty, x])=\mathrm{P}\left(S_{X}\right)=F_{X}(x)
+% $$
 
-\begin{itemize}
-  \item We define the random variable $X$ to be (absolutely) continuous if $\exists f_{X}: \mathbb{R} \rightarrow \mathbb{R}$ such that
-\end{itemize}
-
-
-\begin{equation*}
-F_{X}(x)=\int_{u=-\infty}^{x} f_{X}(u) d u \tag{1}
-\end{equation*}
+% \begin{itemize}
+%   \item We define the random variable $X$ to be (absolutely) continuous if $\exists f_{X}: \mathbb{R} \rightarrow \mathbb{R}$ such that
+% \end{itemize}
 
 
-in which case $f_{X}$ is referred to as the probability density function (pdf) of $X$.
+% \begin{equation*}
+% F_{X}(x)=\int_{u=-\infty}^{x} f_{X}(u) d u \tag{1}
+% \end{equation*}
 
-\section*{Interval Probabilities}
-\begin{itemize}
-  \item What is the probability that a continuous random variable lies in an interval $(a, b]$ ?
-  \item $\mathrm{P}_{X}(a<X \leq b)=\mathrm{P}_{X}(X \leq b)-\mathrm{P}_{X}(X \leq a)$, which in terms of the cdf and pdf gives:
-\end{itemize}
 
-$$
-\begin{aligned}
-\mathrm{P}_{X}(a<X \leq b) & =F_{X}(b)-F_{X}(a) \\
-& =\int_{a}^{b} f_{X}(x) d x
-\end{aligned}
-$$
+% in which case $f_{X}$ is referred to as the probability density function (pdf) of $X$.
 
-\begin{itemize}
-  \item That is, the area under the pdf curve between $a$ and $b$.\\
-\includegraphics[max width=\textwidth, center]{2025_05_11_1201cfe24e14b364b4ecg-05}
-\end{itemize}
+% \section*{Interval Probabilities}
+% \begin{itemize}
+%   \item What is the probability that a continuous random variable lies in an interval $(a, b]$ ?
+%   \item $\mathrm{P}_{X}(a<X \leq b)=\mathrm{P}_{X}(X \leq b)-\mathrm{P}_{X}(X \leq a)$, which in terms of the cdf and pdf gives:
+% \end{itemize}
 
-\section*{Consequences}
-\begin{itemize}
-  \item In the limit $a \rightarrow b$, our definition of interval probability suggests the assignment $\mathrm{P}_{X}(X=b)=0$.
-  \item Consistently with this, the probability assigned to any elementary event $\{x\}, x \in \mathbb{R}$ is zero for a continuous random variable
-\end{itemize}
+% $$
+% \begin{aligned}
+% \mathrm{P}_{X}(a<X \leq b) & =F_{X}(b)-F_{X}(a) \\
+% & =\int_{a}^{b} f_{X}(x) d x
+% \end{aligned}
+% $$
 
-$$
-\mathrm{P}_{X}(X=x)=\mathrm{P}_{X}(\{x\})=0 .
-$$
+% \begin{itemize}
+%   \item That is, the area under the pdf curve between $a$ and $b$.\\
+% \includegraphics[max width=\textwidth, center]{2025_05_11_1201cfe24e14b364b4ecg-05}
+% \end{itemize}
 
-\begin{itemize}
-  \item Hence, any countable set $\left\{x_{1}, x_{2}, \ldots\right\} \subseteq \mathbb{R}$ will have zero probability measure for a continuous random variable, since $\mathrm{P}_{X}\left(X \in\left\{x_{1}, x_{2}, \ldots\right\}\right)=\mathrm{P}_{X}\left(X=x_{1}\right)+\mathrm{P}_{X}\left(X=x_{2}\right)+\ldots$.
-  \item The support of a continuous random variable must therefore be uncountable - the probabilities could not sum to one otherwise.
-\end{itemize}
+% \section*{Consequences}
+% \begin{itemize}
+%   \item In the limit $a \rightarrow b$, our definition of interval probability suggests the assignment $\mathrm{P}_{X}(X=b)=0$.
+%   \item Consistently with this, the probability assigned to any elementary event $\{x\}, x \in \mathbb{R}$ is zero for a continuous random variable
+% \end{itemize}
 
-\section*{pdf as the Derivative of the cdf}
-\begin{itemize}
-  \item From Equation (1), we see that the cumulative distribution function (cdf) of a continuous random variable $X$ is
-\end{itemize}
+% $$
+% \mathrm{P}_{X}(X=x)=\mathrm{P}_{X}(\{x\})=0 .
+% $$
 
-$$
-F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t, \quad \forall x \in \mathbb{R}
-$$
+% \begin{itemize}
+%   \item Hence, any countable set $\left\{x_{1}, x_{2}, \ldots\right\} \subseteq \mathbb{R}$ will have zero probability measure for a continuous random variable, since $\mathrm{P}_{X}\left(X \in\left\{x_{1}, x_{2}, \ldots\right\}\right)=\mathrm{P}_{X}\left(X=x_{1}\right)+\mathrm{P}_{X}\left(X=x_{2}\right)+\ldots$.
+%   \item The support of a continuous random variable must therefore be uncountable - the probabilities could not sum to one otherwise.
+% \end{itemize}
 
-\begin{itemize}
-  \item Thus, if we are given the cdf of a continuous random variable $X$, we can use the Fundamental Theorem of Calculus to define the pdf of $X$ as
-\end{itemize}
+% \section*{pdf as the Derivative of the cdf}
+% \begin{itemize}
+%   \item From Equation (1), we see that the cumulative distribution function (cdf) of a continuous random variable $X$ is
+% \end{itemize}
 
-\section*{Definition}
-$$
-f_{X}(x)=\frac{d}{d x} F_{X}(x) \quad \text { or } \quad F_{X}^{\prime}(x) .
-$$
+% $$
+% F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t, \quad \forall x \in \mathbb{R}
+% $$
 
-\section*{Properties of a pdf}
-\begin{itemize}
-  \item The pdf will always be non-negative, since it is the derivative of the cdf, which is non-decreasing.
-  \item So, in the same way as for cdfs and pmfs of discrete random variables, we have the following checklist to ensure $f_{X}$ is a valid pdf:\\
-(1) $f_{X}(x) \geq 0, \forall x \in \mathbb{R}$;\\
-(2) $\int_{-\infty}^{\infty} f_{X}(x) d x=1$.
-  \item From (1) it is also clear that the pdf (when it exists) of a continuous random variable $X$ completely characterises its distribution, so we often just specify $f_{X}$.
-\end{itemize}
+% \begin{itemize}
+%   \item Thus, if we are given the cdf of a continuous random variable $X$, we can use the Fundamental Theorem of Calculus to define the pdf of $X$ as
+% \end{itemize}
 
-\section*{Contrast with discrete random variable cdfs}
-\begin{itemize}
-  \item The cdf $F_{X}$ of a continuous random variable $X$ is a non-decreasing function with $F_{X}(-\infty)=0, F_{X}(\infty)=1$ (true for all r.vs.) and also is (absolutely) continuous.
-  \item For a continuous random variable since $\forall x, \mathrm{P}(X=x)=0$, $F_{x}(x)=\mathrm{P}(X \leq x) \equiv \mathrm{P}(X<x)$.
-  \item We do not require $f_{X}(x) \leq 1$, since the pdf $f_{X}(x)$ is not itself a probability, unlike the pmf of a discrete random variable
-  \item For small $h, f_{X}(x) h$ is approximately the probability that takes a value in the small interval, say, $[x, x+h)$.
-\end{itemize}
+% \section*{Definition}
+% $$
+% f_{X}(x)=\frac{d}{d x} F_{X}(x) \quad \text { or } \quad F_{X}^{\prime}(x) .
+% $$
 
-\section*{Q\&A: Pareto distribution}
-UNIX process lifetimes follow a so-called Pareto law, with pdf
+% \section*{Properties of a pdf}
+% \begin{itemize}
+%   \item The pdf will always be non-negative, since it is the derivative of the cdf, which is non-decreasing.
+%   \item So, in the same way as for cdfs and pmfs of discrete random variables, we have the following checklist to ensure $f_{X}$ is a valid pdf:\\
+% (1) $f_{X}(x) \geq 0, \forall x \in \mathbb{R}$;\\
+% (2) $\int_{-\infty}^{\infty} f_{X}(x) d x=1$.
+%   \item From (1) it is also clear that the pdf (when it exists) of a continuous random variable $X$ completely characterises its distribution, so we often just specify $f_{X}$.
+% \end{itemize}
 
-$$
-f_{X}(x)=\frac{\alpha k^{\alpha}}{x^{\alpha+1}}
-$$
+% \section*{Contrast with discrete random variable cdfs}
+% \begin{itemize}
+%   \item The cdf $F_{X}$ of a continuous random variable $X$ is a non-decreasing function with $F_{X}(-\infty)=0, F_{X}(\infty)=1$ (true for all r.vs.) and also is (absolutely) continuous.
+%   \item For a continuous random variable since $\forall x, \mathrm{P}(X=x)=0$, $F_{x}(x)=\mathrm{P}(X \leq x) \equiv \mathrm{P}(X<x)$.
+%   \item We do not require $f_{X}(x) \leq 1$, since the pdf $f_{X}(x)$ is not itself a probability, unlike the pmf of a discrete random variable
+%   \item For small $h, f_{X}(x) h$ is approximately the probability that takes a value in the small interval, say, $[x, x+h)$.
+% \end{itemize}
 
-with support $x \geq k$, where $k$ is called scale and $\alpha>0$ is called shape.\\
-\includegraphics[max width=\textwidth, center]{2025_05_11_1201cfe24e14b364b4ecg-10}
+% \section*{Q\&A: Pareto distribution}
+% UNIX process lifetimes follow a so-called Pareto law, with pdf
 
-Q: Determine an expression for the cdf $F_{X}(x)$.\\
-Q: If $X$ models the process lifetime, find $P(X>x)$.
+% $$
+% f_{X}(x)=\frac{\alpha k^{\alpha}}{x^{\alpha+1}}
+% $$
 
-\section*{Mean, Variance and Quantiles}
-\section*{$\mathrm{E}(X)$}
-For a continuous random variable $X$, we define the mean or expectation of $X$,
+% with support $x \geq k$, where $k$ is called scale and $\alpha>0$ is called shape.\\
+% \includegraphics[max width=\textwidth, center]{2025_05_11_1201cfe24e14b364b4ecg-10}
 
-\section*{Definition}
-$$
-\mu_{X} \text { or } \mathrm{E}_{X}(X)=\int_{-\infty}^{\infty} x f_{X}(x) d x
-$$
+% Q: Determine an expression for the cdf $F_{X}(x)$.\\
+% Q: If $X$ models the process lifetime, find $P(X>x)$.
 
-More generally, for a function of interest of the random variable $g: \mathbb{R} \rightarrow \mathbb{R}$ we have
+% \section*{Mean, Variance and Quantiles}
+% \section*{$\mathrm{E}(X)$}
+% For a continuous random variable $X$, we define the mean or expectation of $X$,
 
-$$
-\mathrm{E}_{X}(g(X))=\int_{-\infty}^{\infty} g(x) f_{X}(x) d x
-$$
+% \section*{Definition}
+% $$
+% \mu_{X} \text { or } \mathrm{E}_{X}(X)=\int_{-\infty}^{\infty} x f_{X}(x) d x
+% $$
 
-\section*{Linearity of Expectation}
-For continuous random variables, we again have linearity of expectation:
+% More generally, for a function of interest of the random variable $g: \mathbb{R} \rightarrow \mathbb{R}$ we have
 
-$$
-\mathrm{E}(a X+b)=a \mathrm{E}(X)+b, \quad \forall a, b \in \mathbb{R},
-$$
+% $$
+% \mathrm{E}_{X}(g(X))=\int_{-\infty}^{\infty} g(x) f_{X}(x) d x
+% $$
 
-and for two functions $g, h: \mathbb{R} \rightarrow \mathbb{R}$, we have additivity of expectation
+% \section*{Linearity of Expectation}
+% For continuous random variables, we again have linearity of expectation:
 
-$$
-\mathrm{E}(g(X)+h(X))=\mathrm{E}(g(X))+\mathrm{E}(h(X)) .
-$$
+% $$
+% \mathrm{E}(a X+b)=a \mathrm{E}(X)+b, \quad \forall a, b \in \mathbb{R},
+% $$
 
-\section*{$\operatorname{Var}(X)$}
-The variance of a continuous random variable $X$ is given by
+% and for two functions $g, h: \mathbb{R} \rightarrow \mathbb{R}$, we have additivity of expectation
 
-$$
-\sigma_{X}^{2} \text { or } \operatorname{Var}_{X}(X)=\mathrm{E}\left(\left(X-\mu_{X}\right)^{2}\right)=\int_{-\infty}^{\infty}\left(x-\mu_{X}\right)^{2} f_{X}(x) d x
-$$
+% $$
+% \mathrm{E}(g(X)+h(X))=\mathrm{E}(g(X))+\mathrm{E}(h(X)) .
+% $$
 
-Again, it is easy to show that
+% \section*{$\operatorname{Var}(X)$}
+% The variance of a continuous random variable $X$ is given by
 
-$$
-\begin{aligned}
-\operatorname{Var}_{X}(X) & =\int_{-\infty}^{\infty} x^{2} f_{X}(x) d x-\mu_{X}^{2} \\
-& =\mathrm{E}\left(X^{2}\right)-(\mathrm{E}(X))^{2}
-\end{aligned}
-$$
+% $$
+% \sigma_{X}^{2} \text { or } \operatorname{Var}_{X}(X)=\mathrm{E}\left(\left(X-\mu_{X}\right)^{2}\right)=\int_{-\infty}^{\infty}\left(x-\mu_{X}\right)^{2} f_{X}(x) d x
+% $$
 
-And for a linear transformation $a X+b$,\\
-$\operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X), \quad \forall a, b \in \mathbb{R}$.
+% Again, it is easy to show that
+
+% $$
+% \begin{aligned}
+% \operatorname{Var}_{X}(X) & =\int_{-\infty}^{\infty} x^{2} f_{X}(x) d x-\mu_{X}^{2} \\
+% & =\mathrm{E}\left(X^{2}\right)-(\mathrm{E}(X))^{2}
+% \end{aligned}
+% $$
+
+% And for a linear transformation $a X+b$,\\
+% $\operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X), \quad \forall a, b \in \mathbb{R}$.
 
 \section*{Quantiles and percentiles}
 \begin{itemize}
@@ -557,55 +557,55 @@ $$
   \item Used a lot in financial modelling and to describe "heavy tailed" distributions.
 \end{itemize}
 
-\section*{Moment generating function}
-\section*{Moment generating function, $M_{X}(t)$}
-\begin{itemize}
-  \item We close the study of basic random variables illustrating two alternative methods to describe a distribution.
-  \item The moment generating function (mgf) $M_{X}(t)$ of a (continuous) random variable $X$, is defined by
-\end{itemize}
+% \section*{Moment generating function}
+% \section*{Moment generating function, $M_{X}(t)$}
+% \begin{itemize}
+%   \item We close the study of basic random variables illustrating two alternative methods to describe a distribution.
+%   \item The moment generating function (mgf) $M_{X}(t)$ of a (continuous) random variable $X$, is defined by
+% \end{itemize}
 
-$$
-M_{X}(t)=\mathrm{E}\left(e^{t X}\right)=\int_{-\infty}^{\infty} e^{t x} f_{X}(x) d x
-$$
+% $$
+% M_{X}(t)=\mathrm{E}\left(e^{t X}\right)=\int_{-\infty}^{\infty} e^{t x} f_{X}(x) d x
+% $$
 
-\begin{itemize}
-  \item The mgf can be defined also for a discrete random variable $X$ as
-\end{itemize}
+% \begin{itemize}
+%   \item The mgf can be defined also for a discrete random variable $X$ as
+% \end{itemize}
 
-$$
-M_{X}(t)=\mathrm{E}\left(e^{t X}\right)=\sum_{x_{i} \in \operatorname{supp}(X)} e^{t x_{i}} p\left(x_{i}\right)
-$$
+% $$
+% M_{X}(t)=\mathrm{E}\left(e^{t X}\right)=\sum_{x_{i} \in \operatorname{supp}(X)} e^{t x_{i}} p\left(x_{i}\right)
+% $$
 
-where $p(x)$ is the pmf of $X$.
+% where $p(x)$ is the pmf of $X$.
 
-\section*{Obtaining moments from the mgf}
-\begin{itemize}
-  \item Assuming differentiation inside the expectation operator (or integral) is valid, the mgf provides an alternative way to obtain moments
-\end{itemize}
+% \section*{Obtaining moments from the mgf}
+% \begin{itemize}
+%   \item Assuming differentiation inside the expectation operator (or integral) is valid, the mgf provides an alternative way to obtain moments
+% \end{itemize}
 
-$$
-E\left[X^{n}\right]=\left.\frac{\mathrm{d}^{n} M_{X}(t)}{\mathrm{d} t^{n}}\right|_{t=0}
-$$
+% $$
+% E\left[X^{n}\right]=\left.\frac{\mathrm{d}^{n} M_{X}(t)}{\mathrm{d} t^{n}}\right|_{t=0}
+% $$
 
-\section*{Characteristic function, $\phi_{X}(t)$}
-\begin{itemize}
-  \item The integral that defines the mgf may not exist. In these cases, we may use instead the characteristic function
-\end{itemize}
+% \section*{Characteristic function, $\phi_{X}(t)$}
+% \begin{itemize}
+%   \item The integral that defines the mgf may not exist. In these cases, we may use instead the characteristic function
+% \end{itemize}
 
-$$
-\phi_{X}(t)=M_{X}(i t)=\int_{-\infty}^{\infty} e^{i t x} f_{X}(x) d x
-$$
+% $$
+% \phi_{X}(t)=M_{X}(i t)=\int_{-\infty}^{\infty} e^{i t x} f_{X}(x) d x
+% $$
 
-where $i=\sqrt{-1}$ is the imaginary unit.
+% where $i=\sqrt{-1}$ is the imaginary unit.
 
-\begin{itemize}
-  \item Unlike the mgf, the characteristic function $\phi_{X}(t)$ exists always.
-  \item Moments can be derived in a similar way
-\end{itemize}
+% \begin{itemize}
+%   \item Unlike the mgf, the characteristic function $\phi_{X}(t)$ exists always.
+%   \item Moments can be derived in a similar way
+% \end{itemize}
 
-$$
-E\left[X^{n}\right]=\left.i^{-n} \frac{\mathrm{~d}^{n} \phi_{X}(t)}{\mathrm{d} t^{n}}\right|_{t=0}
-$$
+% $$
+% E\left[X^{n}\right]=\left.i^{-n} \frac{\mathrm{~d}^{n} \phi_{X}(t)}{\mathrm{d} t^{n}}\right|_{t=0}
+% $$
 
 \section*{Product of Independent Random Variables}
 \begin{itemize}

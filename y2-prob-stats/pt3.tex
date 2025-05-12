@@ -2,8 +2,8 @@
 
 \kwub{Expectation} \iMbox{\mathrm{E}[X]} => the \stub{mean} \iMbox{\mu_X} of \stu{distribution} of \iMbox{X}
 \begin{enumerate}
-    \vItem \stu{Discrete} => \iMbox{\mathrm{E}[g(X)]=\sum_{x} g(x)p(x)}
-    \vItem \stu{Continuous} => \textcolor{red}{TODO: HEREEE!!!!!}
+    \vItem \stu{Discrete} => \iMbox{\mathrm{E}_{X}[g(X)]=\sum_{x} g(x)p_{X}(x)}
+    \vItem \stu{Continuous} => \iMbox{\mathrm{E}_{X}[g(X)]=\int_{-\infty}^{\infty} g(x) f_{X}(x) d x}
     \vItem \stb{Linearity} => 
     \iMbox{\mathrm{E}[\alpha g(X)+h(X)+\beta]= \alpha\mathrm{E}[g(X)]+\mathrm{E}[h(X)] + \beta}
 
@@ -12,12 +12,9 @@
         \vItem \iMbox{\mathrm{E}[\sum_{i=1}^{n} X_{i}]=\sum_{i=1}^{n} \mathrm{E}[X_{i}]}
         \iMbox{\mathrm{E}[\overline{X}] = \mathrm{E}[\frac{\sum_{i=1}^{n} X_{i}}{n}]
         =\frac{\sum_{i=1}^{n} \mathrm{E}[X_{i}]}{n}}
-
-        \vItem \stb{Independent and Identically Distributed (i.i.d.)} =>
-        \iMbox{E(\overline{X})=\mu_{X}}
+        \vItem \stb{Independent} => \iMbox{\mathrm{E}[\prod_{i=1}^{n} X_{i}]=\prod_{i=1}^{n} \mathrm{E}[X_{i}]}
+        \vItem \stb{Independent and Identically Distributed (i.i.d.)} => \iMbox{E(\overline{X})=\mu_{X}}
     \end{enumerate}
-
-
 \end{enumerate}
 
 \hSep
@@ -63,6 +60,22 @@
 
 \vspace{4pt}
 \hSep
+
+\kwub{Moment generating function (MGF) } \iMbox{M_X(t) = \mathrm{E}[e^{t X}]}
+\begin{enumerate}
+    \vItem \iMbox{\mathrm{E}[X^n]= \left.\frac{d^n M_X}{d t^n}\right|_{t=0}} if \stu{open interval} around \iMbox{t=0} exists
+    \begin{enumerate}
+        \vItem because \iMbox{e^{t X}=1+t X+\frac{t^2 X^2}{2!}+\frac{t^3 X^3}{3!}+\cdots+\frac{t^n X^n}{n!}+\cdots}
+
+        \vItem so \iMbox{M_X(t) = \mathrm{E}[e^{t X}] = 1 + t \mathrm{E}[X]+\frac{t^2 \mathrm{E}[X^2]}{2!}+
+            \cdots+\frac{t^n \mathrm{E}[X^n]}{n!}+\cdots}
+    \end{enumerate}
+
+    \vItem \stb{Sum} => for \stu{independent} \iMbox{X_1, \dots, X_n} 
+    
+    let \iMbox{X = \sum_{i=1}^n X_i} \ => \ \iMbox{M_{X}(t) = \prod_{i=1}^{n} M_{X_{i}}(t)}
+    
+\end{enumerate}
 
 \subsection*{Discrete Random Variables}
 

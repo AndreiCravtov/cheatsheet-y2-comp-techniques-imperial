@@ -1,0 +1,47 @@
+\subsection*{Continuous Random Variables}
+
+\iMbox{X} is \kwub{(Absolutely) continuous RRV} if \iMbox{\exists f_{X}: \mathbb{R} \rightarrow \mathbb{R}} such that
+\iMbox{F_{X}(x)=\int_{u=-\infty}^{x} f_{X}(u) du}
+\begin{enumerate}
+    \vItem \iMbox{f_X} called \stub{Probability Density Function (PDF)} of \iMbox{X}
+    \vItem \iMbox{\mathrm{P}_{X}(a<X \leq b)=\mathrm{P}_{X}(X \leq b)-\mathrm{P}_{X}(X \leq a)}
+    \iMbox{\mathrm{P}_{X}(a<X \leq b) = F_{X}(b)-F_{X}(a) =\int_{a}^{b} f_{X}(x) dx}
+
+    \vItem \iMbox{\mathrm{P}_{X}(X=x)=\mathrm{P}_{X}(\{x\})=0} and 
+    \iMbox{\mathrm{P}_{X}(X \in\{x_{1}, x_{2}, \dots\})=\mathrm{P}_{X}(X=x_{1})+\mathrm{P}_{X}(X=x_{2})+\dots}
+    for \stu{countable sets}
+    
+    \vItem \textbf{Properties of PDFs}:
+    \begin{enumerate}
+        \vItem \iMbox{F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt} \ \& \ \iMbox{f_{X}(x)=\frac{d}{d x} F_{X}(x)}
+        \vItem \iMbox{f_X(x) \geq 0} \ \& \ \iMbox{\int_{-\infty}^{\infty} f_{X}(x) dx = 1}
+        \vItem \iMbox{f_X(x) \cdot h \approx \mathrm{P}_X(X \in [x, x+h))}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep 
+
+\stub{Quantiles and Percentiles}:
+\begin{enumerate}
+    \vItem The \stb{lower} and \stb{upper quartiles} and \stb{median} of \ul{sample of data} are the points
+           $(\frac{1}{4}, \frac{3}{4}, \frac{1}{2})$-way through the \ul{ordered dataset}, respectively
+    \vItem \stub{$\alpha$-quantile} \iMbox{Q_{X}(\alpha)} => for continuous \iMbox{X} and \iMbox{0 \leq \alpha \leq 1},
+            the \ul{least number} satisfying \iMbox{\mathrm{P}(X \leq \mathrm{Q}_{X}(\alpha))=\alpha},
+
+            i.e. \iMbox{\mathrm{Q}_{X}(\alpha)=F_{X}^{-1}(\alpha)}
+
+    \vItem \iMbox{Q(1/2)} is \stu{median} \ \& \ \stb{$k$-th percentile} is \iMbox{Q(k/100)}
+\end{enumerate}
+
+\hSep
+
+\kwub{Uniform(a,b)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Exp(λ)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Normal(µ, σ2)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Lognormal} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\hSep
+
