@@ -110,6 +110,7 @@
   "2218-"2218, % Ring operator i.e. \circ
   "2AAF-"2AAF, % ⪯ symbol
   "231C-"231D, % ⌜⌝ symbols
+  "22C2-"22C3, % ⋂⋃ symbols
   \vdots,\ddots,\top,\bot, \Coloneq, \triangleq,
   \oplus, \ominus, \otimes, \oslash, \circledast, % Circled-ops
 }] % Provide fallback for missing glyphs, and replace some
@@ -119,6 +120,7 @@
 \setmathfont{STIX Two Math}[range={
   \cdot,
 },Colour=electricultramarine] % Color certain operators as orange
+\DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n} % Make mathcal use `cmbright'
 \setmathfont{Fira Math}[range=]
 
 \AtBeginDocument{ % Math spacing
@@ -246,7 +248,7 @@
     \noindent % Prevent paragraph indentation before the columns
 
     \fontfamily{\sfdefault}\selectfont  % Set font family/font-size
-    \fontsize{5}{4}\selectfont
+    \fontsize{5}{6.5}\selectfont
     \raggedright % Justify to the right
 }{\end{multicols*}}
 

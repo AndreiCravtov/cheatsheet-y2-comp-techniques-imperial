@@ -1,1 +1,133 @@
-fooobar
+\subsection*{Probability Spaces}
+
+\kwub{Sample Space} \iMbox{\Omega} => set of \stb{all outcomes} \textit{(mutually exclusive)} of \stb{random experiment}
+
+\kwub{Event} \iMbox{E \subseteq \Omega} => any \ul{subset of sample space}
+\begin{enumerate}
+  \vItem \kwub{Extreme events} => \stb{null event} \iMbox{\emptyset} \ \& \ \stb{universal event} \iMbox{S}
+  \vItem \kwub{Elementary event} => \stu{singleton subsets} of \iMbox{S}
+  \vItem If \iMbox{s \in E} is \stu{experiment outcome}, then \iMbox{E} \stb{occurred}
+
+  \begin{enumerate}
+    \vItem \stu{Null event} \iMbox{\emptyset} \ul{never} \& 
+    \stu{universal event} \iMbox{S} \ul{always} \ -occurs
+  \end{enumerate}
+
+  \vItem For events \iMbox{E_1, E_2, \dots}:
+  \begin{enumerate}
+    \vItem \stu{\iMbox{E_1} or \iMbox{E_2} or \dots} => \iMbox{\bigcup_i E_i}
+    \vItem \stu{\iMbox{E_1} and \iMbox{E_2} and \dots} => \iMbox{\bigcap_i E_i}
+    \vItem \iMbox{E_1, E_2, \dots} are \kwub{mutually exclusive} => \iMbox{\forall i, j. \ \ E_{i} \cap E_{j}=\emptyset}
+    i.e. they're \stu{pairwise-disjoint}
+
+    \vItem \iMbox{E_1, E_2, \dots} are \kwub{independent} => 
+    \iMbox{\mathrm{P}(\bigcap_{j=1}^{n} E_{i_{j}})=\prod_{j=1}^{n} \mathrm{P}(E_{i_{j}})}
+    for any \ul{finite subset} \iMbox{\{E_{i_{1}}, E_{i_{2}}, \dots, E_{i_{n}}\}}
+
+    \begin{enumerate}
+      \vItem If events \iMbox{A, B} are \stu{independent}, 
+             then \iMbox{\overline{A}, B} are \stu{also independent}
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\stub{$\sigma$-algebra} \iMbox{\mathcal{F} \subseteq \mathcal{P}(\Omega)} => 
+\ul{family of subsets} of \iMbox{\Omega} s.t.
+\begin{enumerate}
+  \vItem \stu{nonempty}: \iMbox{\Omega \in \mathcal{F}}
+  \vItem closed under \stu{complements}: \iMbox{E \in \mathcal{F} \Longrightarrow \overline{E} \in \mathcal{F}}
+  \vItem closed under \stu{countable union}: \iMbox{E_{1}, E_{2}, \dots \in \mathcal{F} \Longrightarrow \bigcup_{i} E_{i} \in \mathcal{F}}
+  \vItem \textbf{Immediate Basic Results}:
+  \begin{enumerate}
+    \vItem \iMbox{\emptyset \in \mathcal{F}}
+    \vItem closed under \stu{countable intersection}:
+           \iMbox{E_{1}, E_{2}, \dots \in \mathcal{F} \Longrightarrow \bigcap_{i} E_{i} \in \mathcal{F}}
+    \vItem \iMbox{\{\emptyset, \Omega \}} is \ul{smallest} \& 
+    \iMbox{\mathcal{P}(\Omega)} is \ul{largest} \ -\stu{$\sigma$-algebras}
+  \end{enumerate}
+  \vItem \textbf{Generated $\sigma$-algebras}:
+  \begin{enumerate}
+    \vItem \iMbox{\sigma(\mathcal{G})} => for \ul{family of subsets} \iMbox{\mathcal{G} \subseteq \mathcal{P}(\Omega)},
+    its \stu{smallest $\sigma$-algebra} to contain \iMbox{\mathcal{G}} \textit{(exists \& unique)}
+
+    \vItem \iMbox{\sigma(f)} => for \iMbox{f: \Omega \to E} where 
+    \iMbox{(E, \mathcal{E})} is \stu{measurable space},
+    \iMbox{\sigma(f) = \{ f^{-1}[F] \mid F \in \mathcal{E} \}}
+    i.e. \ul{all pre-images}
+
+    \vItem \stb{trace $\sigma$-algebra} of \iMbox{B \in \mathcal{F}} => 
+    \iMbox{\mathcal{F}_B = \{ B \cap A \mid A \in \mathcal{F} \}}
+           
+  \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\kwub{Probability measure} \iMbox{\mathrm{P}: \mathcal{F} \to [0,1]} on \iMbox{(\Omega, \mathcal{F})} 
+\begin{enumerate}
+  \vItem \iMbox{\forall E \in \mathcal{F}, 0 \leq \mathrm{P}(E) \leq 1} i.e. between \iMbox{0} and \iMbox{1}
+  \vItem \iMbox{\mathrm{P}(\Omega)=1} i.e. \stu{universal event} \iMbox{S} \ul{always} occurs
+  \vItem \stb{$\sigma$-additive} \textit{(\stu{countably additive})} => 
+  \iMbox{\mathrm{P}(\bigcup_{i} E_{i})=\sum_{i} \mathrm{P}(E_{i})}
+  for \stu{pairwise-disjoint} events \iMbox{E_{1}, E_{2}, \dots \in \mathcal{F}}
+
+  \vItem \textbf{Immediate Basic Results}:
+  \begin{enumerate}
+    \vItem \iMbox{\mathrm{P}(\overline{E})=1-\mathrm{P}(E)}
+    \vItem \iMbox{\mathrm{P}(\emptyset)=0}
+    \vItem \iMbox{\mathrm{P}(A \cup B)=\mathrm{P}(A)+\mathrm{P}(B)-\mathrm{P}(A \cap B)}
+  \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\kwub{Measurable space} \iMbox{(\Omega, \mathcal{F})} =>
+\stu{sample space} \iMbox{\Omega} with \stu{$\sigma$-algebra} \iMbox{\mathcal{F}} on it
+
+\kwub{Probability space} \iMbox{(\Omega, \mathcal{F}, \mathrm{P})} =>
+\stu{measurable space} \iMbox{(\Omega, \mathcal{F})} with \stu{probability measure} \iMbox{\mathrm{P}} on it
+
+\hSep
+
+\subsection*{Conditional Probability}
+
+\kwub{Conditional probability} => \iMbox{\mathrm{P}(A \mid B)=\frac{\mathrm{P}(A \cap B)}{\mathrm{P}(B)}}
+where \iMbox{A, B \subseteq \Omega} and \iMbox{\mathrm{P}(B) \neq 0}
+
+\begin{enumerate}
+  \vItem The \stb{conditional probability space} is \iMbox{(B, \mathcal{F}_B, \mathrm{P}(\cdot \mid B))}
+  \begin{enumerate}
+    \vItem \stu{Sample space} \iMbox{B \subseteq \Omega}
+    \vItem \stu{Trace $\sigma$-algebra} \iMbox{\mathcal{F}_B = \{ B \cap A \mid A \in \mathcal{F} \}}
+    \vItem \stu{Probability measure} \iMbox{\mathrm{P}({\cdot} \mid B)}
+  \end{enumerate}
+
+  \vItem If \iMbox{A, B} are \stu{independent} then \iMbox{\mathrm{P}(A \mid B)=\mathrm{P}(A)}
+  \vItem \iMbox{A_1, A_2} are \kwub{conditionally independent} given \iMbox{B} \ \stub[orange]{iff} \ 
+         \iMbox{\mathrm{P}(A_{1} \cap A_{2} \mid B)=\mathrm{P}(A_{1} \mid B) \mathrm{P}(A_{2} \mid B)}
+\end{enumerate} 
+
+\hSep
+
+\kwub{Law of Total Probability} => 
+for any \ul{events} \iMbox{\{B_{1}, B_{2}, \dots\}} which \ul{partition} \iMbox{\Omega},
+\iMbox{\mathrm{P}(A)
+=\sum_{i} \mathrm{P}(A \mid B_{i}) \mathrm{P}(B_{i})
+=\sum_{i} \mathrm{P}(A \cap B_{i})}
+\begin{enumerate}
+  \vItem \kwu{special case} => \iMbox{\mathrm{P}(A) = \mathrm{P}(A \cap B)+\mathrm{P}(A \cap \overline{B})
+ =\mathrm{P}(A \mid B) \mathrm{P}(B)+\mathrm{P}(A \mid \overline{B}) \mathrm{P}(\overline{B})}
+\end{enumerate}
+
+\hSep
+
+\kwub{Bayes Theorem} => \iMbox{\mathrm{P}(A \mid B)=\frac{\mathrm{P}(B \mid A) \mathrm{P}(A)}{\mathrm{P}(B)}}
+\vspace{4pt}
+
+\hSep
+
+
+
+

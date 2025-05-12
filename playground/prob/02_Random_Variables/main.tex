@@ -1,0 +1,185 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+\usepackage{mathrsfs}
+
+% \title{Probability and Statistics - Elementary Probability Theory \\
+%  Random Variables }
+
+% \author{Giuliano Casale\\
+% Department of Computing, Imperial College London}
+% \date{}
+
+
+% \begin{document}
+% \maketitle
+
+
+% \section*{Definition}
+% \begin{itemize}
+%   \item A probability space $(S, \mathcal{F}, \mathrm{P})$ is a triplet that models our random experiment by means of a probability measure $\mathrm{P}(E)$ defined on subsets $E \subseteq S$ of the sample space $S$ belonging to the $\sigma$-algebra $\mathcal{F}$.
+%   \item Within this space, we may want to study quantities of interest that are function of randomly occurring events, e.g., inflation, temperature, exchange rates, job response times, . . . .
+%   \item Random variables provide a formalism to map these variables of interest to numerical values.
+% \end{itemize}
+
+% \section*{Definition}
+% \begin{itemize}
+%   \item A Random Variable (r.v.) is a mapping from the sample space to the real numbers. So if $X$ is a random variable, $X: S \rightarrow \mathbb{R}$.
+%   \item Each element of the sample space $s \in S$ is therefore assigned by $X$ a numerical value $X(s)$.
+%   \item If we denote the generic (unknown) outcome of the random experiment as $s$, then the corresponding outcome of the random variable $X(s)$ will be generically referred to as $X$.
+% \end{itemize}
+
+% \section*{Examples of Random Variables}
+% Consider once again the experiment of rolling a single fair die.
+
+% \begin{itemize}
+%   \item Then $S=\{\odot, \odot, \odot,: \mathfrak{E},: \mathfrak{E}\}$ and for any $s \in S, \mathrm{P}(\{s\})=\frac{1}{6}$.
+%   \item An obvious random variable to define on $S$ is $X: S \rightarrow \mathbb{R}$, s.t.
+% \end{itemize}
+
+% $$
+% \begin{aligned}
+% X(\odot) & =1, \\
+% X(\odot) & =2, \\
+% \vdots & \\
+% X(:) & =6 .
+% \end{aligned}
+% $$
+
+% \begin{itemize}
+%   \item Then e.g. $\mathrm{P}_{X}(1<X \leq 5)=\mathrm{P}(\{\odot, \circledast, \circledast, \circledast\})=\frac{4}{6}=\frac{2}{3}$
+%   \item and $\mathrm{P}_{X}(X \in\{2,4,6\})=\mathrm{P}(\{\odot, \circledast, \circledast\})=\frac{1}{2}$.
+%   \item Alternatively, we could define a random variable $Y: S \rightarrow \mathbb{R}$, s.t.
+% \end{itemize}
+
+% $$
+% \begin{aligned}
+% & Y(\odot)=Y(\odot)=Y(: \mathrm{B})=0, \\
+% & Y(\odot)=Y(: \mathrm{B})=Y(\mathrm{~B})=1 .
+% \end{aligned}
+% $$
+
+% \begin{itemize}
+%   \item Then clearly
+% \end{itemize}
+
+% $$
+% \mathrm{P}_{Y}(Y=0)=\mathrm{P}\left(\left\{\odot, \odot, \mathscr{H}^{\circ}\right\}\right)=\frac{1}{2}
+% $$
+
+% and
+
+% Random variable with a finite set of possible outcomes are called simple. In general, they may also be countable, in which case they are called discrete, or they may be continuous.
+
+% \section*{Induced Probability}
+% \section*{Induced Probability}
+% \begin{itemize}
+%   \item How can we formalize in general the probability that assumes a specific value $x$ ?
+%   \item Using the probability measure P already defined on $S$, we may obtain a new probability function $P_{X}$ on the random variable $X$ in $\mathbb{R}$ with the following procedure.
+%   \item For each $x \in \mathbb{R}$, let $S_{x} \subseteq S$ be the set containing just those elements of $S$ which are mapped by $X$ to numbers no greater than $x$, i.e., $S_{x}=\{s \in S \mid X(s) \leq x\}$.
+%   \item Then we write
+% \end{itemize}
+
+% $$
+% \mathrm{P}_{X}(X \leq x) \equiv \mathrm{P}\left(S_{x}\right)
+% $$
+
+% \section*{Support of a RV}
+% \begin{itemize}
+%   \item The image of $S$ under $X$ is called the support of $X$ :
+% \end{itemize}
+
+% $$
+% \operatorname{supp}(X) \equiv X(S)=\{x \in \mathbb{R} \mid \exists s \in S \text { s.t. } X(s)=x\}
+% $$
+
+% \begin{itemize}
+%   \item So as $S$ contains all the possible outcomes of the experiment, $\operatorname{supp}(X)$ contains all the possible outcomes for the random variable $X$.
+%   \item Thus, $\mathrm{P}_{X}(X \leq x)$ is defined for all $x \in \operatorname{supp}(X)$.
+% \end{itemize}
+
+% \section*{Example}
+% Consider the experiment of tossing a fair coin, with sample space $\{\mathrm{H}, \mathrm{T}\}$ and probability measure $\mathrm{P}(\{\mathrm{H}\})=\mathrm{P}(\{\mathrm{T}\})=\frac{1}{2}$.
+
+% Suppose that we play a betting game where we win $1 \pounds$ if we get heads, or we lose it otherwise.
+
+% \begin{itemize}
+%   \item We can define a random variable $X:\{\mathrm{H}, \mathrm{T}\} \rightarrow \mathbb{R}$ taking values, say,
+% \end{itemize}
+
+% $$
+% \begin{aligned}
+% & X(\mathrm{~T})=-1, \\
+% & X(\mathrm{H})=1 .
+% \end{aligned}
+% $$
+
+% \begin{itemize}
+%   \item What does $S_{x}$ look like for some $x \in \mathbb{R}$ ?
+%   \item The set $S_{x}$ is defined by:
+% \end{itemize}
+
+% $$
+% S_{x}= \begin{cases}\emptyset & \text { if } x<-1 \\ \{\mathrm{~T}\} & \text { if }-1 \leq x<1 \\ \{\mathrm{H}, \mathrm{~T}\} & \text { if } x \geq 1\end{cases}
+% $$
+
+% \begin{itemize}
+%   \item This induces probabilities $P_{X}$ on $\mathbb{R}$
+% \end{itemize}
+
+% $$
+% \mathrm{P}_{X}(X \leq x)=\mathrm{P}\left(S_{x}\right)= \begin{cases}\mathrm{P}(\emptyset)=0 & \text { if } x<-1 ; \\ \mathrm{P}(\{\mathrm{~T}\})=\frac{1}{2} & \text { if }-1 \leq x<1 ; \\ \mathrm{P}(\{\mathrm{H}, \mathrm{~T}\})=1 & \text { if } x \geq 1\end{cases}
+% $$
+
+% The key point for the theory is that with our definitions we can now associate a probability to every interval of $\mathbb{R}$, i.e., a random variable $X$ has the intervals $(-\infty, x]$ as its events.
+
+% \section*{Cumulative Distribution Function}
+% \section*{Cumulative distribution function}
+% The cumulative distribution function (cdf) of a random variable $X$, written $F_{X}(x)$ (or just $F(x)$ ) is the probability that $X$ takes a value less than or equal to $x$, i.e.,
+
+% $$
+% F_{X}(x)=\mathrm{P}_{X}(X \leq x)
+% $$
+
+% A cdf offers an alternative way to describe the probability measure $\mathrm{P}_{X}$ for a random variable $X$. It enables a unified treatment of discrete and continuous random variables.
+
+% For any random variable $X, F_{X}$ is right-continuous, meaning if a decreasing sequence of real numbers $x_{1}, x_{2}, \ldots \rightarrow x$, then $F_{X}\left(x_{1}\right), F_{X}\left(x_{2}\right), \ldots \rightarrow F_{X}(x)$.
+
+% \section*{Properties of the cdf}
+% To check a given function, $F_{X}(x)$, is a valid cdf, we need to verify the following conditions:\\
+% (1) Monotonicity: $\forall x_{1}, x_{2} \in \mathbb{R}, x_{1}<x_{2} \Rightarrow F_{X}\left(x_{1}\right) \leq F_{X}\left(x_{2}\right)$;\\
+% (2) $F_{X}(-\infty)=0, F_{X}(\infty)=1$.\\
+% (3) $F_{X}$ is right-continuous.
+
+% Note that the first two conditions imply $0 \leq F_{X}(x) \leq 1, \forall x \in \mathbb{R}$.
+
+For finite intervals $(a, b] \subseteq \mathbb{R}$, it is possible to check that
+
+$$
+\mathrm{P}_{X}(a<X \leq b)=F_{X}(b)-F_{X}(a)
+$$
+
+This can be done after noting that the event $E=\{X \leq b\}$ may be written as the union $E=H \cup G$ of the disjoint events:
+
+\begin{itemize}
+  \item $H=(-\infty, a]$
+  \item $G=(a, b]$\\
+and the result follows from Axiom 3.
+\end{itemize}
+
+\section*{Comments}
+\begin{itemize}
+  \item A random variable is simply a numeric relabelling of our underlying sample space, and all probabilities are derived from the associated underlying probability measure.
+  \item Unless there is any ambiguity, we generally suppress the subscript of $\mathrm{P}_{X}(\cdot)$ in our notation and just write $\mathrm{P}(\cdot)$ for the probability measure associated with a random variable.
+  \item That is, we forget about the underlying sample space and just think about the random variable and its probabilities.
+  \item Essentially, the support of $X$ becomes our sample space $S$.
+  \item Events for random variables are frequently of the kind $X=x$, $X>a, X \leq b, a \leq X \leq b, \ldots$
+\end{itemize}
+
+\end{document}
