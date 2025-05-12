@@ -22,252 +22,252 @@ Department of Computing, Imperial College London}
 \maketitle
 
 
-\section*{Discrete Random Variables}
-We say a random variable is discrete if it can take only a countable number of possible values. That is,\\
-$X$ is discrete $\Longleftrightarrow \operatorname{supp}(X)$ is countable.
+% \section*{Discrete Random Variables}
+% We say a random variable is discrete if it can take only a countable number of possible values. That is,\\
+% $X$ is discrete $\Longleftrightarrow \operatorname{supp}(X)$ is countable.
 
-Thus, $\operatorname{supp}(X)$ can either be finite or countably infinite.
+% Thus, $\operatorname{supp}(X)$ can either be finite or countably infinite.
 
-\begin{itemize}
-  \item Suppose $X$ is discrete, and can take values in the countable set $\operatorname{supp}(X)=\left\{x_{1}, x_{2}, \ldots\right\}$ ordered so that $x_{1}<x_{2}<\ldots$.
-  \item The subset $S_{x}=\{s \in S \mid X(s) \leq x\}$ is thus constant as we increase $x$ in an interval $\left[x_{i-1}, x_{i}\right)$. Only once we reach $x=x_{i}$, $S_{x}$ grows larger to include the outcomes that map to $x_{i}$.
-  \item Thus, $F_{X}$ will be a monotonic increasing step function with vertical jumps at points in $\operatorname{supp}(X)$, i.e.,
-\end{itemize}
+% \begin{itemize}
+%   \item Suppose $X$ is discrete, and can take values in the countable set $\operatorname{supp}(X)=\{x_{1}, x_{2}, \ldots\}$ ordered so that $x_{1}<x_{2}<\ldots$.
+%   \item The subset $S_{x}=\{s \in S \mid X(s) \leq x\}$ is thus constant as we increase $x$ in an interval $[x_{i-1}, x_{i})$. Only once we reach $x=x_{i}$, $S_{x}$ grows larger to include the outcomes that map to $x_{i}$.
+%   \item Thus, $F_{X}$ will be a monotonic increasing step function with vertical jumps at points in $\operatorname{supp}(X)$, i.e.,
+% \end{itemize}
 
-$$
-F_{X}\left(x_{i}\right)=F_{X}\left(x_{i-1}\right)+\mathrm{P}_{X}\left(X=x_{i}\right)
-$$
+% $$
+% F_{X}(x_{i})=F_{X}(x_{i-1})+\mathrm{P}_{X}(X=x_{i})
+% $$
 
-\begin{itemize}
-  \item Equivalently, this may be re-written as
-\end{itemize}
+% \begin{itemize}
+%   \item Equivalently, this may be re-written as
+% \end{itemize}
 
-$$
-\mathrm{P}_{X}\left(X=x_{i}\right)=F_{X}\left(x_{i}\right)-F_{X}\left(x_{i-1}\right)
-$$
+% $$
+% \mathrm{P}_{X}(X=x_{i})=F_{X}(x_{i})-F_{X}(x_{i-1})
+% $$
 
-\section*{Example: Poisson(5) cdf}
-The Poisson random variable with parameter 5 (defined later) has cdf that looks like this:\\
-\includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-04}
+% \section*{Example: Poisson(5) cdf}
+% The Poisson random variable with parameter 5 (defined later) has cdf that looks like this:\\
+% \includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-04}
 
-\section*{Probability Mass Function}
-For a discrete random variable $X$ and $x \in \mathbb{R}$, we define the probability mass function (pmf), $p(x)$ (more precisely $p_{X}(x)$ ) as
+% \section*{Probability Mass Function}
+% For a discrete random variable $X$ and $x \in \mathbb{R}$, we define the probability mass function (pmf), $p(x)$ (more precisely $p_{X}(x)$ ) as
 
-$$
-p(x)=\mathrm{P}_{x}(X=x)
-$$
+% $$
+% p(x)=\mathrm{P}_{x}(X=x)
+% $$
 
-If $X$ can take values $\operatorname{supp}(X)=\left\{x_{1}, x_{2}, \ldots\right\}$, then:\\
-(1) $0 \leq p(x) \leq 1, \forall x \in \mathbb{R}$;\\
-(2) $\sum_{x \in \operatorname{supp}(X)} p(x)=1$.
+% If $X$ can take values $\operatorname{supp}(X)=\{x_{1}, x_{2}, \ldots\}$, then:\\
+% (1) $0 \leq p(x) \leq 1, \forall x \in \mathbb{R}$;\\
+% (2) $\sum_{x \in \operatorname{supp}(X)} p(x)=1$.
 
-\section*{Example: Poisson(5) pmf}
-The Poisson random variable with parameter 5 has pmf with a discrete plot that looks like:\\
-\includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-06}
+% \section*{Example: Poisson(5) pmf}
+% The Poisson random variable with parameter 5 has pmf with a discrete plot that looks like:\\
+% \includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-06}
 
-\begin{itemize}
-  \item Either the pmf or cdf of a discrete random variable fully characterises its probability distribution.
-  \item Indeed, from the cdf we can derive the pmf, and vice versa since
-\end{itemize}
+% \begin{itemize}
+%   \item Either the pmf or cdf of a discrete random variable fully characterises its probability distribution.
+%   \item Indeed, from the cdf we can derive the pmf, and vice versa since
+% \end{itemize}
 
-$$
-\begin{aligned}
-& p\left(x_{i}\right)=F\left(x_{i}\right)-F\left(x_{i-1}\right), \\
-& F\left(x_{i}\right)=\sum_{j=1}^{i} p\left(x_{j}\right) .
-\end{aligned}
-$$
+% $$
+% \begin{aligned}
+% & p(x_{i})=F(x_{i})-F(x_{i-1}), \\
+% & F(x_{i})=\sum_{j=1}^{i} p(x_{j}) .
+% \end{aligned}
+% $$
 
-\section*{Expectation}
-\section*{Expectation: $\mathrm{E}[X]$}
-For a discrete random variable $X$ we define the expectation of
+% \section*{Expectation}
+% \section*{Expectation: $\mathrm{E}[X]$}
+% For a discrete random variable $X$ we define the expectation of
 
-\section*{Definition}
-$$
-E(X)=\sum_{x} x p(x)
-$$
+% \section*{Definition}
+% $$
+% E(X)=\sum_{x} x p(x)
+% $$
 
-\begin{itemize}
-  \item $\mathrm{E}(X)$ (often more precisely $\mathrm{E}_{X}(X)$ or even $\mu_{X}$ ) is also referred to as the mean of the distribution of $X$.
-  \item $\mathrm{E}(X)$ gives a weighted average of the possible values of the random variable $X$, with the weights given by the probability of that particular outcome.
-\end{itemize}
+% \begin{itemize}
+%   \item $\mathrm{E}(X)$ (often more precisely $\mathrm{E}_{X}(X)$ or even $\mu_{X}$ ) is also referred to as the mean of the distribution of $X$.
+%   \item $\mathrm{E}(X)$ gives a weighted average of the possible values of the random variable $X$, with the weights given by the probability of that particular outcome.
+% \end{itemize}
 
-\section*{Examples}
-(1) If $X$ is a r.v. taking the integer value scored with a single roll of a fair die, then
+% \section*{Examples}
+% (1) If $X$ is a r.v. taking the integer value scored with a single roll of a fair die, then
 
-$$
-\begin{aligned}
-E(X) & =\sum_{x=1}^{6} x p(x) \\
-& =1 \cdot \frac{1}{6}+2 \cdot \frac{1}{6}+3 \cdot \frac{1}{6}+4 \cdot \frac{1}{6}+5 \cdot \frac{1}{6}+6 \cdot \frac{1}{6}=\frac{21}{6}=3.5 .
-\end{aligned}
-$$
+% $$
+% \begin{aligned}
+% E(X) & =\sum_{x=1}^{6} x p(x) \\
+% & =1 \cdot \frac{1}{6}+2 \cdot \frac{1}{6}+3 \cdot \frac{1}{6}+4 \cdot \frac{1}{6}+5 \cdot \frac{1}{6}+6 \cdot \frac{1}{6}=\frac{21}{6}=3.5 .
+% \end{aligned}
+% $$
 
-(2) Q: A student gets $X$ marks answering a single multiple choice question with four options, where 3 marks are awarded for a correct answer and -1 for a wrong answer. What is the expected value for a random answer?
+% (2) Q: A student gets $X$ marks answering a single multiple choice question with four options, where 3 marks are awarded for a correct answer and -1 for a wrong answer. What is the expected value for a random answer?
 
-\section*{Expectation of a function of a random variable: $\mathrm{E}(g(X))$}
-More generally, for a (measurable) function of interest $g: \mathbb{R} \rightarrow \mathbb{R}$ of the random variable $X$, we notice that $g(X)$,
+% \section*{Expectation of a function of a random variable: $\mathrm{E}(g(X))$}
+% More generally, for a (measurable) function of interest $g: \mathbb{R} \rightarrow \mathbb{R}$ of the random variable $X$, we notice that $g(X)$,
 
-$$
-g(X)(s)=(g \circ X)(s)
-$$
+% $$
+% g(X)(s)=(g \circ X)(s)
+% $$
 
-is also a random variable, where o denotes composition. It then follows that
-
-
-\begin{equation*}
-\mathrm{E}(g(X))=\sum_{x} g(x) p(x) \tag{1}
-\end{equation*}
+% is also a random variable, where o denotes composition. It then follows that
 
 
-\section*{Linearity of Expectation}
-Consider the linear function $g(X)=a X+b$ for constants $a, b \in \mathbb{R}$.
+% \begin{equation*}
+% \mathrm{E}(g(X))=\sum_{x} g(x) p(x) \tag{1}
+% \end{equation*}
 
-\begin{itemize}
-  \item We can see from (1) that
-\end{itemize}
 
-$$
-\begin{aligned}
-\mathrm{E}(a X+b) & =\sum_{x}(a x+b) p(x) \\
-& =a \sum_{x} x p(x)+b \sum_{x} p(x)
-\end{aligned}
-$$
+% \section*{Linearity of Expectation}
+% Consider the linear function $g(X)=a X+b$ for constants $a, b \in \mathbb{R}$.
 
-\begin{itemize}
-  \item since $\sum_{x} x p(x)=\mathrm{E}(X)$ and $\sum_{x} p(x)=1$ we have
-\end{itemize}
+% \begin{itemize}
+%   \item We can see from (1) that
+% \end{itemize}
 
-$$
-\mathrm{E}(a X+b)=a \mathrm{E}(X)+b, \quad \forall a, b \in \mathbb{R} .
-$$
+% $$
+% \begin{aligned}
+% \mathrm{E}(a X+b) & =\sum_{x}(a x+b) p(x) \\
+% & =a \sum_{x} x p(x)+b \sum_{x} p(x)
+% \end{aligned}
+% $$
 
-It is equally easy to check that for $g, h: \mathbb{R} \rightarrow \mathbb{R}$, we have
+% \begin{itemize}
+%   \item since $\sum_{x} x p(x)=\mathrm{E}(X)$ and $\sum_{x} p(x)=1$ we have
+% \end{itemize}
 
-$$
-\mathrm{E}(g(X)+h(X))=\mathrm{E}(g(X))+\mathrm{E}(h(X)) .
-$$
+% $$
+% \mathrm{E}(a X+b)=a \mathrm{E}(X)+b, \quad \forall a, b \in \mathbb{R} .
+% $$
 
-Moments
+% It is equally easy to check that for $g, h: \mathbb{R} \rightarrow \mathbb{R}$, we have
 
-\section*{Variance: $\operatorname{Var}(X)$}
-The expectation of a function $g(X)=X^{n}$ gives us the $n^{\text {th }}$ (raw) moment of $X$.
+% $$
+% \mathrm{E}(g(X)+h(X))=\mathrm{E}(g(X))+\mathrm{E}(h(X)) .
+% $$
 
-A central moment is similarly defined, but re-centered to characterize the deviation from the mean. Choose for example:
+% Moments
 
-$$
-g(X)=(X-\mathrm{E}(X))^{2} .
-$$
+% \section*{Variance: $\operatorname{Var}(X)$}
+% The expectation of a function $g(X)=X^{n}$ gives us the $n^{\text {th }}$ (raw) moment of $X$.
 
-The expectation of this function with respect to $P_{X}$ gives a measure of the variability of the r.v. $X$ around its mean, called the variance and denoted $\operatorname{Var}(X)$ (or $\operatorname{Var}_{X}(X)$ or sometimes $\sigma_{X}^{2}$ ).
+% A central moment is similarly defined, but re-centered to characterize the deviation from the mean. Choose for example:
 
-\section*{Definition}
-$$
-\operatorname{Var}(X)=\mathrm{E}\left[(X-\mathrm{E}(X))^{2}\right] .
-$$
+% $$
+% g(X)=(X-\mathrm{E}(X))^{2} .
+% $$
 
-We can expand the expression $(X-\mathrm{E}(X))^{2}$ and use the linearity of expectation to get an alternative formula for the variance:
+% The expectation of this function with respect to $P_{X}$ gives a measure of the variability of the r.v. $X$ around its mean, called the variance and denoted $\operatorname{Var}(X)$ (or $\operatorname{Var}_{X}(X)$ or sometimes $\sigma_{X}^{2}$ ).
 
-$$
-\begin{aligned}
-(X-\mathrm{E}(X))^{2} & =X^{2}-2 \mathrm{E}(X) X+(\mathrm{E}(X))^{2} \\
-\Rightarrow \operatorname{Var}(X) & =\mathrm{E}\left[X^{2}-(2 \mathrm{E}(X)) X+(\mathrm{E}(X))^{2}\right] \\
-& =\mathrm{E}\left(X^{2}\right)-2 \mathrm{E}(X) \mathrm{E}(X)+(\mathrm{E}(X))^{2}
-\end{aligned}
-$$
+% \section*{Definition}
+% $$
+% \operatorname{Var}(X)=\mathrm{E}[(X-\mathrm{E}(X))^{2}] .
+% $$
 
-and hence
+% We can expand the expression $(X-\mathrm{E}(X))^{2}$ and use the linearity of expectation to get an alternative formula for the variance:
 
-$$
-\operatorname{Var}(X)=\mathrm{E}\left(X^{2}\right)-(\mathrm{E}(X))^{2} .
-$$
+% $$
+% \begin{aligned}
+% (X-\mathrm{E}(X))^{2} & =X^{2}-2 \mathrm{E}(X) X+(\mathrm{E}(X))^{2} \\
+% \Rightarrow \operatorname{Var}(X) & =\mathrm{E}[X^{2}-(2 \mathrm{E}(X)) X+(\mathrm{E}(X))^{2}] \\
+% & =\mathrm{E}(X^{2})-2 \mathrm{E}(X) \mathrm{E}(X)+(\mathrm{E}(X))^{2}
+% \end{aligned}
+% $$
 
-\section*{Variance of a Linear Function of a Random Variable}
-\begin{itemize}
-  \item Corresponding to the linearity of expectation, i.e. $\mathrm{E}(a X+b)=a \mathrm{E}(X)+b$ for constants $a, b \in \mathbb{R}$, for variance we have:
-\end{itemize}
+% and hence
 
-$$
-\operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X), \quad \forall a, b \in \mathbb{R} .
-$$
+% $$
+% \operatorname{Var}(X)=\mathrm{E}(X^{2})-(\mathrm{E}(X))^{2} .
+% $$
 
-\begin{itemize}
-  \item Proof follows by expanding the definition of Var (left as an exercise).
-\end{itemize}
+% \section*{Variance of a Linear Function of a Random Variable}
+% \begin{itemize}
+%   \item Corresponding to the linearity of expectation, i.e. $\mathrm{E}(a X+b)=a \mathrm{E}(X)+b$ for constants $a, b \in \mathbb{R}$, for variance we have:
+% \end{itemize}
 
-\section*{Standard deviation: $\operatorname{sd}(X)$}
-The standard deviation of a random variable $X$, written $\operatorname{sd}(X)$ (or sometimes $\sigma_{X}$ ), is the square root of the variance:
+% $$
+% \operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X), \quad \forall a, b \in \mathbb{R} .
+% $$
 
-\section*{Definition}
-$$
-\operatorname{sd}(X)=\sqrt{\operatorname{Var}_{X}(X)}
-$$
+% \begin{itemize}
+%   \item Proof follows by expanding the definition of Var (left as an exercise).
+% \end{itemize}
 
-\section*{Examples}
-(1) If $X$ is a r.v. taking the integer value scored with a single roll of a fair die, then
+% \section*{Standard deviation: $\operatorname{sd}(X)$}
+% The standard deviation of a random variable $X$, written $\operatorname{sd}(X)$ (or sometimes $\sigma_{X}$ ), is the square root of the variance:
 
-$$
-\begin{aligned}
-\operatorname{Var}(X) & =\sum_{x=1}^{6} x^{2} p(x)-3.5^{2} \\
-& =1^{2} \cdot \frac{1}{6}+2^{2} \cdot \frac{1}{6}+\ldots+6^{2} \cdot \frac{1}{6}-(7 / 2)^{2}=35 / 12 .
-\end{aligned}
-$$
+% \section*{Definition}
+% $$
+% \operatorname{sd}(X)=\sqrt{\operatorname{Var}_{X}(X)}
+% $$
 
-(2) Q: If $Y$ is a student's mark on a multiple choice question with four options, with 3 marks for a correct answer and -1 for a wrong answer, what is the standard deviation of a random choice?
+% \section*{Examples}
+% (1) If $X$ is a r.v. taking the integer value scored with a single roll of a fair die, then
 
-\section*{Skewness}
-\begin{itemize}
-  \item The skewness $\left(\gamma_{1}\right)$ of a discrete random variable $X$, is a measure of its asymmetry. It is expressed as the following standardized moment:
-\end{itemize}
+% $$
+% \begin{aligned}
+% \operatorname{Var}(X) & =\sum_{x=1}^{6} x^{2} p(x)-3.5^{2} \\
+% & =1^{2} \cdot \frac{1}{6}+2^{2} \cdot \frac{1}{6}+\ldots+6^{2} \cdot \frac{1}{6}-(7 / 2)^{2}=35 / 12 .
+% \end{aligned}
+% $$
 
-\section*{Definition}
-$$
-\gamma_{1}=\frac{\mathrm{E}\left[(X-\mathrm{E}(X))^{3}\right]}{\operatorname{sd}(X)^{3}} .
-$$
+% (2) Q: If $Y$ is a student's mark on a multiple choice question with four options, with 3 marks for a correct answer and -1 for a wrong answer, what is the standard deviation of a random choice?
 
-\begin{itemize}
-  \item Commonly we have $\mu=\mathrm{E}(X)$ and $\sigma=\operatorname{sd}(X)$, and then we can write:
-\end{itemize}
+% \section*{Skewness}
+% \begin{itemize}
+%   \item The skewness $(\gamma_{1})$ of a discrete random variable $X$, is a measure of its asymmetry. It is expressed as the following standardized moment:
+% \end{itemize}
 
-$$
-\gamma_{1}=\frac{\mathrm{E}\left[(X-\mu)^{3}\right]}{\sigma^{3}} .
-$$
+% \section*{Definition}
+% $$
+% \gamma_{1}=\frac{\mathrm{E}[(X-\mathrm{E}(X))^{3}]}{\operatorname{sd}(X)^{3}} .
+% $$
 
-\section*{Skew of a distribution}
-The skewness helps to capture the asymmetry of the distribution:\\
-\includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-20(1)}\\
-\includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-20}
+% \begin{itemize}
+%   \item Commonly we have $\mu=\mathrm{E}(X)$ and $\sigma=\operatorname{sd}(X)$, and then we can write:
+% \end{itemize}
 
-\section*{Sum of Random Variables}
-\section*{Motivating example}
-Consider the following game: we flip a fair coin $n$ times and win $\pounds 1$ every time we get heads and $\pounds 0$ otherwise. What is the expected amount of money $S_{n}$ that we are going to win?
+% $$
+% \gamma_{1}=\frac{\mathrm{E}[(X-\mu)^{3}]}{\sigma^{3}} .
+% $$
 
-Calling $X_{i} \in\{0,1\}$ the random variable that models the outcome of the $i$-th toss, where $X_{i}(\{H\})=1$ and $X_{i}(\{T\})=0$, the amount we win is the random variable
+% \section*{Skew of a distribution}
+% The skewness helps to capture the asymmetry of the distribution:\\
+% \includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-20(1)}\\
+% \includegraphics[max width=\textwidth, center]{2025_05_11_35704811148ad612caa6g-20}
 
-$$
-S_{n}=X_{1}+X_{2}+\ldots+X_{n}
-$$
+% \section*{Sum of Random Variables}
+% \section*{Motivating example}
+% Consider the following game: we flip a fair coin $n$ times and win $\pounds 1$ every time we get heads and $\pounds 0$ otherwise. What is the expected amount of money $S_{n}$ that we are going to win?
 
-Our problem is therefore to quantify $E\left[S_{n}\right]$. Intuitively, since the repetitions are independent and the coin is fair, we expect to win half of the times, i.e., $E\left[S_{n}\right]=n / 2$. How do we formalize this?
+% Calling $X_{i} \in\{0,1\}$ the random variable that models the outcome of the $i$-th toss, where $X_{i}(\{H\})=1$ and $X_{i}(\{T\})=0$, the amount we win is the random variable
 
-\section*{Expectation of a Sum of Random Variables}
-Let $X_{1}, X_{2}, \ldots, X_{n}$ be $n$ random variables, possibly with different distributions and not necessarily independent.
+% $$
+% S_{n}=X_{1}+X_{2}+\ldots+X_{n}
+% $$
 
-Let $S_{n}=\sum_{i=1}^{n} X_{i}$ be their sum, and $\bar{X}=\frac{S_{n}}{n}$ be their average.\\
-Then:
+% Our problem is therefore to quantify $E[S_{n}]$. Intuitively, since the repetitions are independent and the coin is fair, we expect to win half of the times, i.e., $E[S_{n}]=n / 2$. How do we formalize this?
 
-$$
-\mathrm{E}\left(S_{n}\right)=\sum_{i=1}^{n} \mathrm{E}\left(X_{i}\right), \quad \mathrm{E}(\bar{X})=\frac{\sum_{i=1}^{n} \mathrm{E}\left(X_{i}\right)}{n} .
-$$
+% \section*{Expectation of a Sum of Random Variables}
+% Let $X_{1}, X_{2}, \ldots, X_{n}$ be $n$ random variables, possibly with different distributions and not necessarily independent.
 
-We will give a proof when we consider joint random variables.
+% Let $S_{n}=\sum_{i=1}^{n} X_{i}$ be their sum, and $\bar{X}=\frac{S_{n}}{n}$ be their average.\\
+% Then:
+
+% $$
+% \mathrm{E}(S_{n})=\sum_{i=1}^{n} \mathrm{E}(X_{i}), \quad \mathrm{E}(\bar{X})=\frac{\sum_{i=1}^{n} \mathrm{E}(X_{i})}{n} .
+% $$
+
+% We will give a proof when we consider joint random variables.
 
 \section*{Variance of a Sum of Independent Random Variables}
 If the random variables $X_{1}, X_{2}, \ldots, X_{n}$ are independent, then:
 
 $$
-\operatorname{Var}\left(S_{n}\right)=\sum_{i=1}^{n} \operatorname{Var}\left(X_{i}\right), \quad \operatorname{Var}(\bar{X})=\frac{\sum_{i=1}^{n} \operatorname{Var}\left(X_{i}\right)}{n^{2}}
+\operatorname{Var}(S_{n})=\sum_{i=1}^{n} \operatorname{Var}(X_{i}), \quad \operatorname{Var}(\bar{X})=\frac{\sum_{i=1}^{n} \operatorname{Var}(X_{i})}{n^{2}}
 $$
 
-So if $X_{1}, X_{2}, \ldots, X_{n}$ are independent and identically distributed (i.i.d.) with $\mathrm{E}\left(X_{i}\right)=\mu_{X}$ and $\operatorname{Var}\left(X_{i}\right)=\sigma_{X}^{2}$ we get
+So if $X_{1}, X_{2}, \ldots, X_{n}$ are independent and identically distributed (i.i.d.) with $\mathrm{E}(X_{i})=\mu_{X}$ and $\operatorname{Var}(X_{i})=\sigma_{X}^{2}$ we get
 
 $$
 E(\bar{X})=\mu_{X}, \quad \operatorname{Var}(\bar{X})=\frac{\sigma_{X}^{2}}{n} .
@@ -293,7 +293,7 @@ $$
 \mu=p, \quad \sigma^{2}=p(1-p) .
 $$
 
-\section*{Example: Bernoulli $\left(\frac{1}{4}\right)$ pmf}
+\section*{Example: Bernoulli $(\frac{1}{4})$ pmf}
 \begin{center}
 \includegraphics[max width=\textwidth]{2025_05_11_35704811148ad612caa6g-27}
 \end{center}
@@ -336,7 +336,7 @@ $$
 \gamma_{1}=\frac{1-2 p}{\sqrt{n p(1-p)}}
 $$
 
-\section*{Example: Binomial $\left(20, \frac{1}{4}\right)$ pmf}
+\section*{Example: Binomial $(20, \frac{1}{4})$ pmf}
 \begin{center}
 \includegraphics[max width=\textwidth]{2025_05_11_35704811148ad612caa6g-30}
 \end{center}
@@ -349,7 +349,7 @@ Consider a potentially infinite sequence of independent Bernoulli $(p)$ random v
 \end{itemize}
 
 $$
-X=\min \left\{i \mid i \geq 1, X_{i}=1\right\}
+X=\min \{i \mid i \geq 1, X_{i}=1\}
 $$
 
 to be the index of the first Bernoulli trial to result in a 1 .
@@ -388,7 +388,7 @@ $$
 and so is always positive.\\
 Remark: some texts call Geometric the distribution of the number of trials before we obtain our first 1 . Formulas for pmf and moments are similar.
 
-\section*{Example: Geometric $\left(\frac{1}{4}\right)$ pmf}
+\section*{Example: Geometric $(\frac{1}{4})$ pmf}
 \begin{center}
 \includegraphics[max width=\textwidth]{2025_05_11_35704811148ad612caa6g-33}
 \end{center}

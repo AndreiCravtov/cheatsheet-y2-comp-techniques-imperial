@@ -1,0 +1,104 @@
+\subsection*{Moments of RRVs}
+
+\kwub{Expectation} \iMbox{\mathrm{E}[X]} => the \stub{mean} \iMbox{\mu_X} of \stu{distribution} of \iMbox{X}
+\begin{enumerate}
+    \vItem \stu{Discrete} => \iMbox{\mathrm{E}[g(X)]=\sum_{x} g(x)p(x)}
+    \vItem \stu{Continuous} => \textcolor{red}{TODO: HEREEE!!!!!}
+    \vItem \stb{Linearity} => 
+    \iMbox{\mathrm{E}[\alpha g(X)+h(X)+\beta]= \alpha\mathrm{E}[g(X)]+\mathrm{E}[h(X)] + \beta}
+
+    \vItem \stb{Sum} => for any \iMbox{X_1, \dots, X_n}:
+    \begin{enumerate}
+        \vItem \iMbox{\mathrm{E}[\sum_{i=1}^{n} X_{i}]=\sum_{i=1}^{n} \mathrm{E}[X_{i}]}
+        \iMbox{\mathrm{E}[\overline{X}] = \mathrm{E}[\frac{\sum_{i=1}^{n} X_{i}}{n}]
+        =\frac{\sum_{i=1}^{n} \mathrm{E}[X_{i}]}{n}}
+
+        \vItem \stb{Independent and Identically Distributed (i.i.d.)} =>
+        \iMbox{E(\overline{X})=\mu_{X}}
+    \end{enumerate}
+
+
+\end{enumerate}
+
+\hSep
+
+\stub{$n$-th Raw Moment} \iMbox{\mu_n'\mathrm{E}[X^n]} => i.e. \ul{about zero}
+
+\stub{$n$-th Central Moment} \iMbox{\mu_n = \mathrm{E}[(X - E[X])^n]}
+
+\vspace{2pt}
+\hSep
+
+\kwub{Variance} \iMbox{\sigma_X^2 = \operatorname{Var}(X)=\mathrm{E}[(X-\mathrm{E}(X))^{2}]}
+\begin{enumerate}
+    \vItem \iMbox{\operatorname{Var}(X)=\mathrm{E}[X^{2}]-(\mathrm{E}[X])^{2}}
+    \vItem \iMbox{\operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X)}
+
+
+    \vItem \stb{Sum} => for \stu{independent} \iMbox{X_1, \dots, X_n}:
+    \begin{enumerate}
+        \vItem \iMbox{\mathrm{Var}(\sum_{i=1}^{n} X_{i})=\sum_{i=1}^{n} \mathrm{Var}(X_{i})}
+        
+        \vItem \iMbox{\mathrm{Var}(\overline{X}) = \mathrm{Var}(\frac{\sum_{i=1}^{n} X_{i}}{n^2})
+        =\frac{\sum_{i=1}^{n} \mathrm{Var}(X_{i})}{n}}
+
+        \vItem \stb{Independent and Identically Distributed (i.i.d.)} =>
+        \iMbox{\operatorname{Var}(\overline{X})=\frac{\sigma_{X}^{2}}{n}}
+    \end{enumerate}
+\end{enumerate}
+
+\kwub{standard deviation} \iMbox{\sigma_X = \operatorname{sd}(X)=\sqrt{\operatorname{Var}(X)}}
+
+\vspace{2pt}
+\hSep
+
+\stub{$n$-th Standardized Moment} \iMbox{\tilde{\mu}_n = \frac{\mu_n}{\sigma^n} = 
+\frac{\mathrm{E}[(X - E[X])^n]}{\sqrt{\operatorname{Var}(X)}^n}}
+
+\kwub{skewness} \iMbox{\gamma_{1} = \tilde{\mu}_3 = \frac{\mathrm{E}[(X-\mu)^{3}]}{\sigma^{3}}} \stu{measures asymmetry}
+\begin{enumerate}
+    \vItem \ul{positive skew} => distribution \stu{leans left}
+    \vItem \ul{negative skew} => distribution \stu{leans right}
+\end{enumerate}
+
+\vspace{4pt}
+\hSep
+
+\subsection*{Discrete Random Variables}
+
+\kwub{Discrete RRV} \ \stub[orange]{iff} \ \stu{countable} \iMbox{\mathrm{supp}(X)}
+\begin{enumerate}
+    \vItem Let \iMbox{\operatorname{supp}(X)=\{x_{1}, x_{2}, \dots\}} be ordered s.t. \iMbox{x_{1}<x_{2}<\dots}
+
+    \vItem \stu{CDF} \iMbox{F_X} will be \stu{monotonic increasing step function}, 
+            
+           i.e. \iMbox{F_{X}(x_{i})=F_{X}(x_{i-1})+\mathrm{P}_{X}(X=x_{i})}
+
+           i.e. \iMbox{\mathrm{P}_{X}(X=x_{i})=F_{X}(x_{i})-F_{X}(x_{i-1})}
+\end{enumerate}
+
+\kwub{probability mass function (PMF)} \iMbox{p(x) = \mathrm{P}_X(X = x)}
+\begin{enumerate}
+    \vItem \iMbox{0 \leq p(x) \leq 1, \forall x \in \mathbb{R}}
+    \vItem \iMbox{\sum_{x \in \operatorname{supp}(X)} p(x)=1}
+    \vItem \iMbox{p(x_{i})=F(x_{i})-F(x_{i-1})}
+    \vItem \iMbox{F(x_{i})=\sum_{j=1}^{i} p(x_{j})}
+\end{enumerate}
+
+\hSep
+
+\kwub{Bernoulli(p)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Binomial(n,p)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Poisson(p)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Poisson(λ)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Uniform(U)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Negative binomial distribution(U)} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\kwub{Poisson binomial distribution} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\hSep
