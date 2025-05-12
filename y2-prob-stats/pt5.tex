@@ -1,0 +1,368 @@
+\subsection*{Joint Random Variables}
+
+\kwub{Product Probability Space} \iMbox{(\prod_i \Omega_i, \ \bigotimes_i \mathcal{F}_i, \ \bigtimes_i \mathrm{P}_i)}
+\begin{enumerate}
+    \vItem Let \iMbox{(\Omega_{1}, \mathcal{F}_{1}, \mathrm{P}_{1} ), \dots, (\Omega_{n}, \mathcal{F}_{n}, \mathrm{P}_{n})}
+    be \stu{probability spaces}
+
+    \vItem \iMbox{\prod_{i} \Omega_{i}} is \stu{$n$-ary Cartesian product} of \iMbox{\Omega_{1},\dots, \Omega_{n}}
+
+    \vItem \iMbox{\bigotimes_i \mathcal{F}_i} is \stu{product $\sigma$-algebra} of \iMbox{\mathcal{F}_{1},\dots, \mathcal{F}_{n}}
+    \begin{enumerate}
+        \vItem \iMbox{\bigotimes_{i} \mathcal{F}_{i} \triangleq \sigma\left( \left\{ \prod_{i = 1}^{n} E_{i} \ \middle| \
+            E_{1} \in \mathcal{F}_{1}, \dots, E_{n} \in \mathcal{F}_{n} \right\} \right)}
+
+        \vspace{1pt}
+
+        \vItem where \iMbox{\sigma(\cdot)} is the \stu{generated $\sigma$-algebra}
+    \end{enumerate}
+
+    \vItem \iMbox{\bigtimes_{i} \mathrm{P}_{i}} is \stu{unique measure} such that
+    \iMbox{\left(\bigtimes_{i} \mathrm{P}_{i}\right)(E_{1},\dots, E_{n})
+        = \mathrm{P}_{1}(E_{1}) \cdots \mathrm{P}_{n}(E_{n})}
+
+    for every \iMbox{E_{1} \in \mathcal{F}_{1}, \dots, E_{n} \in \mathcal{F}_{n}}
+\end{enumerate}
+
+\hSep
+
+\kwub{Multivariate Random Variable} => \iMbox{\mathbf{X}: \Omega \to \mathbb{R}^n}
+\begin{enumerate}
+    \vItem Consider \stu{RRVs} \iMbox{X_1, \dots, X_n: \Omega \to \mathbb{R}}
+    \begin{enumerate}
+        \vItem \textbf{NOTE:} take \stu{product space if} their \stu{sample spaces differ}
+    \end{enumerate}
+
+    \vItem \iMbox{\mathbf{X} = (X_1, \dots, X_n): \Omega \to \mathbb{R}^n} is a \kwub{random vector}
+    \begin{enumerate}
+        \vItem \iMbox{[\mathbf{X}(s)]_i = X_i(s)} => it's a \stu{random variable}
+
+        from \iMbox{(\Omega, \mathcal{F}, \mathrm{P})} to \iMbox{(\mathbb{R}^{n}, \mathcal{B}(\mathbb{R}^{n}))}
+
+        \vItem \iMbox{\mathcal{B}(\mathbb{R}^{n})} is \stb{Borel $\sigma$-algebra} on \iMbox{\mathbb{R}^{n}}
+
+        i.e. requirement that each \iMbox{X_i} is \stu{also an RV}
+    \end{enumerate}
+
+    \vItem \kwub{Induced probability} =>
+    \begin{enumerate}
+        \vItem \iMbox{\begin{aligned}
+                \mathrm{P}_{\mathbf{X}}( & X_1 \leq x_1, \dots, X_n \leq x_n)                                                         \\
+                                         & = \mathrm{P}(\{ s \in \Omega \mid X_1(s) \leq x_1 \wedge \cdots \wedge X_n(s) \leq x_n \})
+            \end{aligned}}
+
+        \vItem \textbf{RECALL:} this \stu{pushforward measure} is \textit{also} called \stu{probability distribution} of \iMbox{X}
+        \ => \ this \stu{measure}
+
+        on \stu{Borel $\sigma$-algebras} is \textit{also} called the \kwub{joint probability distribution}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\kwub{Joint CDF} \iMbox{F_{\mathbf{X}}(x_1, \dots, x_n) =\mathrm{P}_{\mathbf{X}}(X_1 \leq x_1, \dots, X_n \leq x_n)}
+\begin{enumerate}
+    \vItem Recover \stb{Marginal CDFs} for each \iMbox{X_i} with
+    \iMbox{\ds F_{X_i}(x_i) = \lim\limits_{j \neq i, x_j \to \infty} F_{\mathbf{X}}(x_1, \dots, x_n)}
+    \begin{enumerate}
+        \vItem e.g. for \stu{RVs} \iMbox{X,Y} => \iMbox{F_{X}(x)=F(x, \infty)} and \iMbox{F_{Y}(y)=F(\infty, y)}
+    \end{enumerate}
+
+    \vItem To \ul{check that function is valid CDF}, must obey:
+    \begin{enumerate}
+        \vItem \kwu{Monotonicity}:
+        \begin{enumerate}
+            \vItem For every \iMbox{i}, \stu{hold fixed} \textit{all-but-the} \iMbox{i}-th component
+            \vItem Then for every \iMbox{x_{i_{1}}, x_{i_2}} we have
+            \vItem \iMbox{x_{i_1}<x_{i_2} \implies F_{\mathbf{X}}(\dots, x_{i_1}, \dots) \leq F_{\mathbf{X}}(\dots, x_{i_2}, \dots)}
+        \end{enumerate}
+
+        \vItem \iMbox{0 \leq F_{\mathbf{X}}(x_1, \dots, x_n) \leq 1}
+
+        \vItem \iMbox{F_{\mathbf{X}}(\dots, -\infty, \dots)=0, F_{\mathbf{X}}(\infty, \dots, \infty)=1}
+    \end{enumerate}
+
+    \vItem \kwb{Interval probabilities} for \stu{bi-variate} case \iMbox{Z = (X,Y)}
+    \begin{enumerate}
+        \vItem \iMbox{\mathrm{P}_{Z}(x_{1}<X \leq x_{2}, Y \leq y)=F(x_{2}, y)-F(x_{1}, y)}, hence
+
+        \vItem \iMbox{\begin{aligned}
+                \mathrm{P}_{Z}( & x_{1}<X \leq x_{2}, y_{1}<Y \leq y_{2})                           \\
+                                & = F(x_{2}, y_{2})-F(x_{1}, y_{2})-F(x_{2}, y_{1})+F(x_{1}, y_{1})
+            \end{aligned}}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\kwub{Joint PMF} \iMbox{p(x_1, \dots, x_n) =\mathrm{P}_{\mathbf{X}}(X_1 = x_1, \dots, X_n = x_n)}
+\begin{enumerate}
+    \vItem Recover \stb{Marginal PMFs} for each \iMbox{X_i} with
+    \iMbox{p_{X_i}(x_i) = {{\sum\limits_{x_n} \cdots \sum\limits_{x_{i+1}}}
+        {\sum\limits_{x_{i-1}} \cdots \sum\limits_{x_1}}}
+    p_{\mathbf{X}}(x_1, \dots, x_n)}
+    \begin{enumerate}
+        \vItem e.g. for \stu{RVs} \iMbox{X,Y} => \iMbox{p_{X}(x)=\sum\limits_y p(x, y)} \ \& \
+        \iMbox{p_{Y}(y)=\sum\limits_x p(x, y)}
+    \end{enumerate}
+
+    \vItem To \ul{check that function is valid PMF}, must obey:
+    \iMbox{0 \leq p_{\mathbf{X}}(x_1, \dots, x_n) \leq 1} \ \& \
+    \iMbox{{\sum\limits_{x_1} \cdots \sum\limits_{x_n}} p_{\mathbf{X}}(x_n, \dots, x_1) = 1}
+\end{enumerate}
+
+\hSep
+
+\kwub{Multinomial distribution} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\hSep
+
+\iMbox{X_1,\dots,X_n} are \kwub{jointly continuous} if
+\iMbox{\exists f_{\mathbf{X}}: \mathbb{R}^n \rightarrow \mathbb{R}} such that
+\iMbox{\ds F_{\mathbf{X}}(x_1, \dots, x_n) =
+{\int\limits_{t_n = -\infty}^{x_n} \cdots \int\limits_{t_1 = -\infty}^{x_1}}
+f_{\mathbf{X}}(t_1, \dots, t_n) \ \ {{d{t_1}} \cdots {d{t_n}}}}
+\begin{enumerate}
+    \vItem \iMbox{f_{\mathbf{X}}} called \kwub{joint PDF} of \iMbox{\mathbf{X} = (X_1,\dots,X_n)}
+
+    \vItem \iMbox{f_{\mathbf{X}}(x_1, \dots, x_n) =
+        \frac{\partial^{n}}{\partial x_1 \cdots \partial x_n} F_{\mathbf{X}}(x_1, \dots, x_n)}
+
+    \vItem To \ul{check that function is valid PMF}, must obey:
+    \begin{enumerate}
+        \vItem \iMbox{f_{\mathbf{X}}(x_1, \dots, x_n) \geq 0} \ \& \
+        \vItem \iMbox{{\int\limits_{t_n = -\infty}^{\infty} \cdots \int\limits_{t_1 = -\infty}^{\infty}}
+            f_{\mathbf{X}}(t_1, \dots, t_n) {{d{t_1}} \cdots {d{t_n}}} \ \ = \ \ 1}
+    \end{enumerate}
+
+    \vItem Recover \stb{Marginal PDFs} for each \iMbox{X_i} with
+    \iMbox{\begin{aligned}
+            f_{X_i}(x_i) =
+             & \int\limits_{x_n = -\infty}^{\infty} \cdots \int\limits_{x_{i+1} = -\infty}^{\infty}       \\
+             & \quad \int\limits_{x_{i-1} = -\infty}^{\infty} \cdots \int\limits_{x_1 = -\infty}^{\infty}
+            f_{\mathbf{X}}(x_1, \dots, x_n) \ \ {{d{x_1}} \cdots {d{x_n}}}
+        \end{aligned}}
+    \begin{enumerate}
+        \vItem e.g. for \stu{RVs} \iMbox{X,Y} => \iMbox{f_{X}(x)=\int\limits_{y = -\infty}^{\infty} f(x, y) dy} and
+        \iMbox{f_{Y}(y)=\int\limits_{x = -\infty}^{\infty} f(x, y) dx}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\iMbox{X,Y} are \kwub{independent RRVs} \stub[orange]{if-and-only-if}
+\begin{enumerate}
+    \vItem \stu{General} => \iMbox{F(x, y)=F_{X}(x) F_{Y}(y)}
+    \vItem \stu{Discrete} => \iMbox{p(x, y)=p_{X}(x) p_{Y}(y)}
+    \vItem \stu{Continuous} => \iMbox{f(x, y)=f_{X}(x) f_{Y}(y)}
+\end{enumerate}
+
+\hSep
+
+\kwub{Joint Expectation} \iMbox{\mathrm{E}[\mathbf{X}] = \mathrm{E}[X_1, \dots, X_n]}
+\begin{enumerate}
+    \vItem \stu{Discrete} => \iMbox{\mathrm{E}_{\mathbf{X}}[g(\mathbf{X})]=
+    {\sum\limits_{x_n} \cdots \sum\limits_{x_1}} g(x_1, \dots, x_n) p_{\mathbf{X}}(x_1, \dots, x_n)}
+    \vItem \stu{Continuous} => \iMbox{\begin{aligned}
+             & \mathrm{E}_{\mathbf{X}}[g(\mathbf{X})] \ \ =                                             \\
+             & \quad {\int\limits_{x_n = -\infty}^{\infty} \cdots \int\limits_{x_1 = -\infty}^{\infty}}
+            g(x_1, \dots, x_n) f_{\mathbf{X}}(x_1, \dots, x_n) {{d{x_1}} \cdots {d{x_n}}}
+        \end{aligned}}
+
+    \vItem \stb{Sum} => \iMbox{\mathrm{E}[\sum_i g_i(X_i)]= \sum_i E_{X_i}[g_{i}(X_i)]}:
+
+    \vItem \stb{Independent Product} => \iMbox{\mathrm{E}[\prod_i g_i(X_i)]= \prod_i E_{X_i}[g_{i}(X_i)]}:
+\end{enumerate}
+
+\hSep
+
+\kwub{Covariance} =>
+\iMbox{\sigma_{XY} = \operatorname{Cov}(X,Y) = \mathrm{E}[(X-\mu_{X})(Y-\mu_{Y})] = \mathrm{E}[X Y]-\mu_{X} \mu_{Y}}
+\begin{enumerate}
+    \vItem \textbf{NOTE:} \iMbox{\operatorname{Var}(X) = \operatorname{Cov}(X,X)}
+    \vItem For \stu{independent RVs} \iMbox{\mathrm{E}[X Y]=\mathrm{E}_{X}[X] \mathrm{E}_{Y}[Y]}
+    so \iMbox{\sigma_{X Y}=0}
+\end{enumerate}
+
+\hSep
+
+\kwub{Correlation} =>
+\iMbox{\rho_{XY}=\operatorname{Cor}(X, Y)=\frac{\sigma_{XY}}{\sigma_{X} \sigma_{Y}} =
+    \frac{\operatorname{Cov}(X,Y)}{\operatorname{sd}(X) \operatorname{sd}(Y)}}
+\begin{enumerate}
+    \vItem \kwu{correlation} is \stu{invariant to the scale} of the \iMbox{X,Y}
+    \vItem \textbf{NOTE:} \iMbox{\operatorname{Var}(X) = \operatorname{Cov}(X,X)}
+    \vItem For \stu{independent RVs} \iMbox{\sigma_{X Y}=\rho_{X Y}=0}
+\end{enumerate}
+
+\hSep
+
+\kwub{Multivariate Normal distribution} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\hSep
+
+\subsection*{Conditional Distributions}
+
+\kwub{Conditional Distribution}
+\iMbox{\mathrm{P}_{Y \mid X}(B_Y \mid B_X)=\frac{\mathrm{P}_{XY}(B_X, B_Y)}{\mathrm{P}_X(B_X)}}
+for any \iMbox{B_X,B_Y \in \mathbb{R}}
+\begin{enumerate}
+    \vItem Probability of \iMbox{Y} falling inside \iMbox{B_Y} \ul{given that we know} \iMbox{X} fell inside \iMbox{B_X}
+\end{enumerate}
+
+\kwub{Conditional CDF} \iMbox{F_{Y \mid X}(y \mid x) = \mathrm{P}(Y \leq y \mid X=x)}
+\begin{enumerate}
+    \vItem \stu{Discrete} => \iMbox{\mathrm{P}(Y \leq y \mid X=x) = \sum_{u=-\infty}^{y} p_{Y \mid X}(u \mid x)}
+    \vItem \stu{Continuous} => \iMbox{\mathrm{P}(Y \leq y \mid X=x) = \int_{u=-\infty}^{y} f_{Y \mid X}(u \mid x) du}
+
+    \vspace{1pt}
+
+    \vItem \stb{Interval Probabilities} =>
+    \iMbox{\mathrm{P}(a<X \leq b \mid Y=y)=F_{X \mid Y}(b \mid y)-F_{X \mid Y}(a \mid y)}
+
+    \vspace{1pt}
+
+    \vItem \stb{Law of Total Probability CDF} =>
+    \iMbox{F_{X}(x)=\int_{y=-\infty}^{\infty} F_{X \mid Y}(x \mid y) f_{Y}(y) dy}
+\end{enumerate}
+
+\kwub{Conditional PMF} \iMbox{p_{Y \mid X}(y \mid x)=\frac{p_{XY}(x, y)}{p_{X}(x)}}
+if \iMbox{p_X(x)>0}
+\begin{enumerate}
+    \vItem \kwb{Bayes Theorem PMF} => \iMbox{p_{X \mid Y}(x \mid y)=\frac{p_{Y \mid X}(y \mid x) p_{X}(x)}{p_{Y}(y)}}
+    \vItem \stb{Law of Total Probability PMF} => \iMbox{p_{X}(x)=\sum_{y} p_{X \mid Y}(x \mid y) p_{Y}(y)}
+\end{enumerate}
+
+\kwub{Conditional PDF} \iMbox{f_{Y \mid X}(y \mid x)=\frac{f_{X Y}(x, y)}{f_X(x)}}
+if \iMbox{p_X(x)>0}
+\begin{enumerate}
+    \vItem \kwb{Bayes Theorem PDF} => \iMbox{f_{X \mid Y}(x \mid y)=\frac{f_{Y \mid X}(y \mid x) f_{X}(x)}{f_{Y}(y)}}
+    \vItem \stb{Law of Total Probability PDF} => \iMbox{f_{X}(x)=\int_{y=-\infty}^{\infty} f_{X \mid Y}(x \mid y) f_{Y}(y) dy}
+\end{enumerate}
+
+\hSep
+
+\kwub{Conditional Expectation} \iMbox{\mathrm{E}_{Y|X}[Y \mid X=x]}
+\begin{enumerate}
+    \vItem \stu{Discrete} => \iMbox{\mathrm{E}_{Y|X}[Y \mid X=x] = \sum_{y} y p_{Y \mid X}(y \mid x)}
+    \vItem \stu{Continuous} => \iMbox{\mathrm{E}_{Y|X}[Y \mid X=x] = \int_{y=-\infty}^{\infty} y f_{Y \mid X}(y \mid x) dy}
+
+    \vItem \textbf{NOTE:} \iMbox{\mathrm{E}_{Y|X}[Y \mid X= {\cdot}]} is a function of \iMbox{x}
+\end{enumerate}
+
+\stub{Law of Total Expectation}:
+\begin{enumerate}
+    \vItem Define \iMbox{\mathrm{E}_{Y \mid X}[Y \mid X](s) = \mathrm{E}_{Y|X}[Y \mid X= X(s)]}
+
+    \vspace{1pt}
+
+    \vItem Now \iMbox{\mathrm{E}_{Y \mid X}[Y \mid X]: \Omega \to \mathbb{R}} is \stu{function of RRV} \iMbox{X}
+
+    \vspace{1pt}
+
+    \vItem Then we have \iMbox{\mathrm{E}_{Y}[Y]=\mathrm{E}_{X}[\mathrm{E}_{Y \mid X}[Y \mid X]]}
+
+    \begin{enumerate}
+        \vItem e.g. in \stu{continuous case} =>
+        \iMbox{\begin{aligned}
+                 & \int_{x} \int_{y} y f_{Y \mid X}(y \mid x) f_{X}(x) \mathrm{d} y \mathrm{d}x \\
+                 & = \int_{y} \int_{x} y f(x, y) \mathrm{d} x \mathrm{d}y                       \\
+                 & =\int_{y} y f_{Y}(y) \mathrm{d}y
+            \end{aligned}}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\subsection*{Markov Chains}
+
+\kwub{Discrete Time Markov Chains (DTMC)} => \ul{generalization} of \stu{sequences of i.i.d. RVs} to
+support \stu{arbitrary (and possibly dependent) RVs}
+\begin{enumerate}
+    \vItem \kwb{state space} \iMbox{J} => elements \iMbox{j \in J} are \stu{states}
+    \vItem \iMbox{X_{n}, n \geq 0} => takes values in \iMbox{J} \& \ul{models state at time} \iMbox{n}
+    \vItem \stb{Realization of} \iMbox{X_{0}, X_{1}, \dots} is called \kwb{sample path}
+    \vItem \textbf{GOAL} => calculate \iMbox{\mathrm{P}(X_{n}=j)}
+
+    i.e. probability that at \ul{time} \iMbox{n} system reaches \ul{state} \iMbox{j}
+
+    \vItem \stb{Markov property} => \iMbox{\begin{aligned}
+             & \mathrm{P}(X_{n+1}=j_{n+1} \mid X_{n}=j_{n}, \dots, X_{1}=j_{1}, X_{0}=j_{0}) \\ &=\mathrm{P}(X_{n+1}=j_{n+1} \mid X_{n}=j_{n})
+        \end{aligned}}
+
+    i.e. choice of the \ul{next state} depends on the \ul{current state only}
+
+
+    \vItem How to \stu{specify DTMCs}:
+    \begin{enumerate}
+        \vItem \kwb{initial probability vector} =>
+        \ul{row-vector} \iMbox{\pi_{0}^{T} \in \mathbb{R}^n} where \iMbox{(\pi_{0})_i = \mathrm{P}(X_{0}=i)}
+        \vItem \kwb{transition probability matrix} => \iMbox{R \in \mathbb{R}^{n \times n}}
+        where \iMbox{R_{ij} =\mathrm{P}(X_{n+1}=j \mid X_{n}=i)}
+        \begin{enumerate}
+            \vItem Each \ul{transition probability} \iMbox{R_{ij}} is \ul{independent of the time} \iMbox{n}
+            \vItem \stu{Self-loops} are allowed => e.g. \iMbox{R_{ii}=1} means DTMC can \stu{never leave} state \iMbox{i}
+            \textit{(e.g. a permanent fault)}
+            \vItem \iMbox{R} is a \stu{non-nonegative matrix} who's \ul{rows sum to \iMbox{1}},
+            \vItem Also called \stb{stochastic matrix}
+        \end{enumerate}
+    \end{enumerate}
+
+    \vItem \iMbox{\mathrm{P}(X_{n}=j \mid X_{0}=i)=(R^{n})_{i j}} \ => \
+    \iMbox{\mathrm{P}(X_{n}=j) = (\pi_{0} R^{n})_{j}}
+\end{enumerate}
+
+\hSep
+
+\kwub{Classification of DTMCs}:
+\begin{enumerate}
+    \vItem \kwb{irreducible DTMC} => \stu{directed graph} associated to \iMbox{R} is \stu{strongly connected}:
+    \begin{enumerate}
+        \vItem For any pair \iMbox{(i,j)} there \stu{exist some sample path} where,
+        \vItem starting in state \iMbox{i}, the DTMC eventually reaches state \iMbox{j}
+    \end{enumerate}
+    \vItem \kwb{periodic DTMC} => \stu{time to return to a state} is an \stu{integer multiple of a fixed period};
+    otherwise it's \stb{aperiodic DTMC}
+\end{enumerate}
+
+\hSep
+
+\kwub{Common Long-term behaviours of DTMC}:
+\begin{enumerate}
+    \vItem \kwb{Steady-state/Stationary distribution} =>
+    row-vector \iMbox{\pi_{\infty}^{*}} thats \ul{invariant under} \iMbox{R},
+
+    i.e. \iMbox{\mathrm{P}(X_{n}=j)=(\pi_{\infty}^{*})_j} for all \iMbox{n \geq 0, j \in J}
+
+    \vItem \kwb{Limiting distribution} => row-vector \iMbox{\pi_{\infty}} such that
+    \iMbox{\pi_{\infty}= \lim_{n \rightarrow+\infty} \pi_{0} R^{n}}
+    \begin{enumerate}
+        \vItem \stu{If exits}, its \stu{also a steady-state distribution} => \ul{converse isn't true}
+    \end{enumerate}
+
+    \vItem \stb{Uniqueness and existence}:
+    \begin{enumerate}
+        \vItem The two above are \stb{not unique in general}
+        \vItem If \stu{irreducible and aperiodic DTMC}:
+        \begin{enumerate}
+            \vItem \stu{Limiting \& steady-state distributions} both exist =>
+             \stu{unique} and \ul{identical to each other}
+            \vItem Elements of \iMbox{\pi_{\infty}} all \stu{strictly positive}
+            \vItem \iMbox{\pi_{\infty}} is solution of \iMbox{\pi_{\infty} R=\pi_{\infty}} 
+            subject to \iMbox{\sum_{j} (\pi_{\infty})_j=1}
+
+            i.e. \ul{left-eigenvector} with \ul{left-eigenvalue} \iMbox{\lambda = 1}
+        \end{enumerate}
+
+        \vItem If \stu{irreducible but \textbf{not} aperiodic DTMC}:
+        \begin{enumerate}
+            \vItem  \stu{limiting distribution} \iMbox{\pi_{\infty}} \ul{no longer exists}
+            \vItem \stu{Steady-state distribution} \iMbox{\pi_{\infty}^{*}} \ul{still exists} =>
+
+            its the \stu{unique positive solution} of \iMbox{\pi_{\infty}^{*} R=\pi_{\infty}^{*}}
+            subject to \iMbox{\sum_{j} (\pi_{\infty}^{*})_j = 1}
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep
