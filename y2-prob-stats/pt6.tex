@@ -1,0 +1,131 @@
+\subsection*{Estimator Theory}
+
+\stub{Sample of Data} \iMbox{x=(x_{1}, \dots, x_{n})} =>
+may be seen as \stu{realisation of RVs} \iMbox{\mathbf{X}=(X_{1}, \dots, X_{n})} which are \stub[orange]{i.i.d}
+\begin{enumerate}
+    \vItem Assume that a single draw \iMbox{X_{i}} follows a \stu{distribution} \iMbox{\mathrm{P}(\cdot \mid \theta)},
+
+    \vItem where \iMbox{\theta=(\theta_{1}, \dots, \theta_{r})} are \ul{parameters we wish to estimate}
+    \vItem \stub[orange]{I.i.d} assumption implies => sampling is \ul{with replacement},
+    i.e. any number of samples \iMbox{n} may be collected
+\end{enumerate}
+
+\hSep
+
+\kwub{Statistic} \iMbox{T=T(\mathbf{X})=T(X_{1}, \dots, X_{n})} => a function of \stu{random sample vector} \iMbox{\mathbf{X}}
+\begin{enumerate}
+    \vItem Since \iMbox{T} is a \stu{random vector}, its a \stu{random variable}
+    \vItem If \iMbox{T(\mathbf{X})} used to \stu{approximate parameters} in \iMbox{\theta} then,
+    \iMbox{T} is an \kwub{estimator} for \iMbox{\theta}
+    \begin{enumerate}
+        \vItem \stb{realisation} \iMbox{t(x)} of \stu{estimator} for \stu{particular data sample} \iMbox{x} is called \stub{estimate} of \iMbox{\theta}
+    \end{enumerate}
+    \vItem \textbf{GOAL} => study \stub{sampling distribution} \iMbox{\mathrm{P}(T \mid \theta) \equiv \mathrm{P}(T(X) \mid \theta)} 
+    for \stu{statistic} \iMbox{T} and \stu{its moments}
+\end{enumerate}
+
+\hSep
+
+\stub{Estimators for Mean} => \textcolor{red}{TODO: HEREEE!!!!!}
+
+\hSep
+
+\stub{Bias of Estimator} \iMbox{\operatorname{bias}(T)=E[T \mid \theta]-\theta}
+\begin{enumerate}
+    \vItem Requires to determine the \stu{expectation} of \iMbox{T(\mathbf{X})} 
+    based on \stu{sampling distribution}
+    \vItem If \iMbox{\operatorname{bias}(T) = 0} we say \iMbox{T} is \kwb{unbiased}
+    \vItem \stb{Sample mean} \iMbox{\overline{X} = \frac{\sum_{i=1}^{n} X_{i}}{n}} is \stu{unbiased estimate} 
+    for the \stu{population mean} \iMbox{\mu}, i.e. \iMbox{E[\overline{X}] = \mu}
+    \vItem \stb{Sample variance} \iMbox{\frac{1}{n} \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}} is known to be \stu{biased estimate} of \iMbox{\sigma^2}
+    \begin{enumerate}
+        \vItem Only if we know \stu{population mean} \iMbox{\mu} then 
+        \iMbox{\frac{1}{n} \sum_{i=1}^{n}\left(X_{i}-\mu\right)^{2}} is \stu{unbiased estimate} of \iMbox{\sigma^2}
+
+        \vItem \stub{Bessel's correction} => 
+        \iMbox{S^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}} is an
+        is \stu{unbiased estimate} of \iMbox{\sigma^2}, i.e. \iMbox{E[S^2] = \sigma^2}
+    \end{enumerate}
+\end{enumerate}
+
+\hSep
+
+\stub{Efficiency of Estimators}
+\begin{enumerate}
+    \vItem Let \iMbox{T \equiv T(\mathbf{X}), H \equiv H(\mathbf{X})} be unbiased estimators for a parameter \iMbox{\theta}
+    \vItem Assume we know the \stu{corresponding sampling distributions} \iMbox{\mathrm{P}(T \mid \theta), \mathrm{P}(H \mid \theta)} =>
+           we can \ul{calculate their variances}
+    \vItem \iMbox{T} is \kwb{more efficient} than \iMbox{H} if:
+    \begin{enumerate}
+        \vItem 1) \iMbox{\forall \theta \quad \operatorname{Var}(T \mid \theta) \leq \operatorname{Var}(H \mid \theta)}
+        \vItem 2) \iMbox{\exists \theta \quad \operatorname{Var}(T \mid \theta)<\operatorname{Var}(H \mid \theta)}
+    \end{enumerate}
+
+    \vItem \iMbox{T} is \kwb{efficient} \stub[orange]{if} its
+    \stu{more efficient} than \stu{any other possible estimator}
+
+    \vItem e.g. \iMbox{T = \overline{X}} is \stu{more efficient} than \iMbox{H = X_1} as \stu{estimator} for \iMbox{\mu} 
+    \textit{(for \iMbox{n \geq 2})}
+\end{enumerate}
+
+\hSep
+
+\stub{Consistency of Estimators}
+\begin{enumerate}
+    \vItem \stu{Consistency} allows us to \ul{recognize bad patterns} as \iMbox{n} grows large
+    \vItem \iMbox{T} is a \kwb{consistent estimator} for parameter \iMbox{\theta} \stub[orange]{if}
+    \begin{enumerate}
+        \vItem \iMbox{\forall \varepsilon>0, \quad \mathrm{P}(|T(X)-\theta|>\varepsilon) \rightarrow 0 \text { as } n \rightarrow \infty}
+        \vItem i.e. all \stu{probability mass} of the \stu{estimator} \textit{(seen as a random variable)} 
+               is \stu{asymptotically} on the value \iMbox{\theta}
+    \end{enumerate}
+    \vItem e.g. \iMbox{T = \overline{X}} is and \iMbox{H = X_1} isn't a \stu{consistent estimator} for \iMbox{\mu}
+\end{enumerate}
+
+\hSep
+
+\subsection*{Maximum Likelihood Estimation}
+
+\mkImg{image}
+
+\hSep
+
+\subsection*{Central Limit Theorem (CLT)}
+
+\mkImg{image2}
+
+\hSep
+
+\subsection*{Hypothesis Testing}
+
+\mkImg{image3}
+\mkImg{image4}
+\mkImg{image5}
+\mkImg{image6}
+\mkImg{image7}
+\mkImg{image8}
+\mkImg{image9}
+\mkImg{image10}
+
+\hSep
+
+\subsection*{Simulation}
+
+\mkImg{image11}
+\mkImg{image12}
+\mkImg{image13}
+\mkImg{image14}
+\mkImg{image15}
+\mkImg{image16}
+\mkImg{image17}
+\mkImg{image18}
+\mkImg{image19}
+\mkImg{image20}
+
+\hSep
+
+\subsection*{Misc}
+
+\mkImg{image21}
+
+\hSep
